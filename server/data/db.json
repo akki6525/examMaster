@@ -1,0 +1,3317 @@
+{
+  "mockTests": {
+    "58bcf924-261e-45c4-a857-2f4a0bc8f39f": {
+      "id": "58bcf924-261e-45c4-a857-2f4a0bc8f39f",
+      "title": "SSC CGL Mock Test - 6/4/2026",
+      "description": "Test with 10 questions from SSC CGL",
+      "questions": [
+        {
+          "id": "ssc cgl-5128",
+          "type": "mcq",
+          "question": "Area of square = 64. Perimeter?",
+          "options": [
+            "28",
+            "30",
+            "32",
+            "36"
+          ],
+          "correctAnswer": "32",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Math-Mensuration",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "SSC CGL-9019",
+          "type": "mcq",
+          "question": "First Asian Nobel Peace Prize?",
+          "options": [
+            "Dalai Lama",
+            "Aung San",
+            "14th Dalai Lama",
+            "Mother Teresa"
+          ],
+          "correctAnswer": "14th Dalai Lama",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Awards",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "SSC CGL-10079",
+          "type": "mcq",
+          "question": "Unstarred Question requires?",
+          "options": [
+            "Oral answer",
+            "Written answer",
+            "Both",
+            "None"
+          ],
+          "correctAnswer": "Written answer",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ssc cgl-5124",
+          "type": "mcq",
+          "question": "Speed 60 km/hr means how much m/s?",
+          "options": [
+            "16.67",
+            "50",
+            "100",
+            "36"
+          ],
+          "correctAnswer": "16.67",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Math-Speed",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ssc cgl-5129",
+          "type": "mcq",
+          "question": "Perimeter of square = 40. Area?",
+          "options": [
+            "64",
+            "81",
+            "100",
+            "121"
+          ],
+          "correctAnswer": "100",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Math-Mensuration",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ssc cgl-5127",
+          "type": "mcq",
+          "question": "A boat speed 10km/hr. Stream 2km/hr. Upstream speed?",
+          "options": [
+            "8",
+            "10",
+            "12",
+            "14"
+          ],
+          "correctAnswer": "8",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Math-Boats",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ssc-2048",
+          "type": "mcq",
+          "question": "IRDAI regulates?",
+          "options": [
+            "Stock Market",
+            "Insurance",
+            "Banking",
+            "Foreign Exchange"
+          ],
+          "correctAnswer": "Insurance",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Economics",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "math-2131",
+          "type": "mcq",
+          "question": "2³ = ?",
+          "options": [
+            "6",
+            "8",
+            "9",
+            "12"
+          ],
+          "correctAnswer": "8",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Math - Cube",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "math-2137",
+          "type": "mcq",
+          "question": "0.5 × 0.5 = ?",
+          "options": [
+            "0.1",
+            "0.25",
+            "0.5",
+            "1"
+          ],
+          "correctAnswer": "0.25",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Math - Decimals",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "reason-2106",
+          "type": "mcq",
+          "question": "अगला: 2, 6, 12, 20, ?",
+          "options": [
+            "28",
+            "30",
+            "32",
+            "36"
+          ],
+          "correctAnswer": "30",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Reasoning - Series",
+          "source": "SSC CGL",
+          "examName": "SSC CGL",
+          "year": 2024,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 15,
+      "totalMarks": 10,
+      "createdAt": "2026-04-06T13:59:38.373Z"
+    },
+    "5043156c-b26d-48df-b858-9eb13e1e10b0": {
+      "id": "5043156c-b26d-48df-b858-9eb13e1e10b0",
+      "title": "UPSC Mock Test - 6/4/2026",
+      "description": "Test with 10 questions from UPSC",
+      "questions": [
+        {
+          "id": "upsc-2022-real-6rmneg",
+          "type": "mcq",
+          "question": "Which of the following is an example of a chemical change?",
+          "options": [
+            "Melting of ice",
+            "Boiling of water",
+            "Rusting of iron",
+            "Tearing of paper"
+          ],
+          "correctAnswer": "Rusting of iron",
+          "explanation": "Rusting of iron is a chemical change because a new substance (iron oxide) is formed.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-n8j7",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-38bt4a",
+          "type": "mcq",
+          "question": "Which is the largest gland in the human body?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "correctAnswer": "Liver",
+          "explanation": "The liver is the largest internal organ and the largest gland in the human body.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-004",
+          "type": "mcq",
+          "question": "Which river forms the boundary between India and Nepal for most of its length?",
+          "options": [
+            "Gandak",
+            "Kosi",
+            "Kali",
+            "Rapti"
+          ],
+          "correctAnswer": "Kali",
+          "explanation": "The Kali River (Mahakali/Sharda) forms the boundary between India and Nepal for much of its course.",
+          "difficulty": "medium",
+          "topic": "Geography - Rivers",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "Consider the following statements about the Fundamental Duties in the Indian Constitution:\n1. They were added by the 42nd Amendment Act\n2. They are enforceable by courts\n3. They are based on the Soviet Constitution\nWhich of the above statements is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "1 and 3 only",
+            "2 and 3 only",
+            "1, 2 and 3"
+          ],
+          "correctAnswer": "1 and 3 only",
+          "explanation": "Fundamental Duties were added by the 42nd Amendment (1976) and were inspired by the Soviet Constitution. They are not directly enforceable by courts.",
+          "difficulty": "medium",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-4qmko",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-44tjhs",
+          "type": "mcq",
+          "question": "Who wrote 'Panchatantra'?",
+          "options": [
+            "Kalidasa",
+            "Vishnu Sharma",
+            "Banabhatta",
+            "Chanakya"
+          ],
+          "correctAnswer": "Vishnu Sharma",
+          "explanation": "Panchatantra is an ancient Indian collection of interrelated animal fables in Sanskrit verse and prose, written by Vishnu Sharma.",
+          "difficulty": "medium",
+          "topic": "Art and Culture",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-fu3fhi",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "The monsoon in India is caused by?",
+          "options": [
+            "Differential heating of land and sea",
+            "Inter Tropical Convergence Zone",
+            "Jet streams",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Indian monsoon is influenced by differential heating, ITCZ shift, and jet stream patterns.",
+          "difficulty": "medium",
+          "topic": "Geography - Climatology",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-iaxeln",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 10,
+      "createdAt": "2026-04-06T14:28:34.711Z"
+    },
+    "6cf4fad8-b6f8-409b-a832-194cac9f42e4": {
+      "id": "6cf4fad8-b6f8-409b-a832-194cac9f42e4",
+      "title": "Mixed Mock Test - 7/4/2026",
+      "description": "Test with 5 questions",
+      "questions": [
+        {
+          "id": "dc57e592-1172-486c-a306-a6f5156c3b42",
+          "type": "mcq",
+          "question": "DEC S2)\nA. Global economic recession, severely impacting Indian exports\nB. Major wars and droughts leading to resource constraints\nC. Initiation of economic liberalization policies attracting foreign investment\nD. Implementation of the Green Revolution shifting focus towards agriculture\n\nCorrect Answer: B) Major wars and droughts leading to resource constraints\nExplanation:\nIndia's Third Five-Year Plan (1961-1966) faced severe challenges due to the Indo-China War\n(1962), Indo-Pakistan War (1965), and severe droughts in 1965-66. These events strained resources, diverted\nfunds to defense, and caused agricultural crisis, leading to the plan's failure. Key Points:\nEmployment in agriculture: 70-72% (1951)\n→\n64% (1991)\nIndustrial employment grew slowly: 10%\n→\n13%\nService sector: 17%\n→\n23%\nJobless growth and underemployment remained challenges\n60. With reference to the Second Five-Year Plan in India, consider the following statements:\n(UPSC Prelims\n2018)\n1.\nIt emphasized development of heavy and capital goods industries.\n2.\nIt was based on the Mahalanobis growth model.\n3.\nIt gave highest priority to agriculture and irrigation.\nWhich of the statements given above are correct?",
+          "options": [
+            "1 and 2 only",
+            "2 and 3 only",
+            "1 and 3 only",
+            "1, 2 and 3"
+          ],
+          "correctAnswer": "1 and 2 only",
+          "explanation": "Correct answer: 1 and 2 only",
+          "difficulty": "medium",
+          "topic": "1. Read the following Assertion (A) and Reason (R) carefully and choose the correct option. ( SSC CG",
+          "source": "Five Year Plans PYQs.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "b9138db1-5a63-4607-a735-a2545bfdb2fb",
+          "type": "mcq",
+          "question": "Explanation:\nThe Second Plan was based on the Mahalanobis growth model, emphasizing heavy and capital\ngoods industries.\nMajor public sector projects like Bhilai, Rourkela, and Durgapur steel plants were established.\nThe strategy aimed to build a strong industrial base and achieve long-term self-reliance.\nCompared to the First Plan, agriculture received relatively lower priority as industrialization became the focus.\n61. With reference to the Fourth Five-Year Plan (1969–74), consider the following statements:\n(UPSC Prelims\n2017)\n1.\nIt aimed at growth with stability and progress toward self-reliance.\n2.\nIt emphasized controlling in fl ation and reducing concentration of wealth.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 only",
+            "2 only",
+            "Both 1 and 2",
+            "Neither 1 nor 2"
+          ],
+          "correctAnswer": "Both 1 and 2",
+          "explanation": "Correct answer: Both 1 and 2",
+          "difficulty": "medium",
+          "topic": "1. Read the following Assertion (A) and Reason (R) carefully and choose the correct option. ( SSC CG",
+          "source": "Five Year Plans PYQs.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "0b8f385c-ca58-4c60-8478-c5eeeeb3301b",
+          "type": "mcq",
+          "question": "Explanation:\nThe Fourth Plan adopted the objectives of “growth with stability” and progress toward self-\nreliance.\nIt aimed to control in fl ation while maintaining steady economic growth.\nThe plan also focused on reducing concentration of wealth and economic power to promote social equality.\nThis approach aligned with reforms like the nationalization of 14 major banks in 1969.\n62. With reference to the Ninth Five-Year Plan (1997–2002), consider the following statements: (UPSC\nPrelims 2015)\n1.\nIt emphasized growth with social justice and equality.\n2.\nIt focused on agriculture and rural development.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 only",
+            "2 only",
+            "Both 1 and 2",
+            "Neither 1 nor 2"
+          ],
+          "correctAnswer": "Both 1 and 2",
+          "explanation": "Correct answer: Both 1 and 2",
+          "difficulty": "medium",
+          "topic": "1. Read the following Assertion (A) and Reason (R) carefully and choose the correct option. ( SSC CG",
+          "source": "Five Year Plans PYQs.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "c39d0ea7-e7f2-4238-a8ee-1dcb98fb1a4c",
+          "type": "mcq",
+          "question": "HS - 29/07/2025 -\nSHIFT 2)\nA) Pure Capitalism\nB) Pure Socialism\nC) Mixed Economy\nD) Laissez-faire Economy\nAnswer: C\nExplanation : From 1947 to 1991, India followed a mixed economy combining features of capitalism and\nsocialism. It was marked by public–private sector coexistence, central planning through Five-Year Plans, and\nextensive regulation under the Licence Raj.\n29. Consider the following statements :\n(STENO - 07/08/2025 - SHIFT 2)\nStatement I: The objective of \"Growth with Social Justice & Equality\" was introduced in the 10th Five-Year Plan.\nStatement II: The\nfi rst Five-Year Plan was based on the \"Harrod-Domar model\".\nWhich of the above statements is/are correct?",
+          "options": [
+            "Statement I is incorrect, Statement II is correct",
+            "Both statements I and II are correct",
+            "Both statements I and II are incorrect",
+            "Statement I is correct, Statement II is incorrect"
+          ],
+          "correctAnswer": "Statement I is incorrect, Statement II is correct",
+          "explanation": "Correct answer: Statement I is incorrect, Statement II is correct",
+          "difficulty": "medium",
+          "topic": "1. Read the following Assertion (A) and Reason (R) carefully and choose the correct option. ( SSC CG",
+          "source": "Five Year Plans PYQs.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "80449d0b-c74b-452d-9667-5757147ac603",
+          "type": "mcq",
+          "question": "Explanation : Statement I is incorrect because \"Growth with Social Justice and Equality\" was introduced in the\n9th Five-Year Plan (1997–2002), not the 10th. Statement II is correct because the First Five-Year Plan\n(1951–56) was based on the Harrod-Domar model, emphasizing savings and investment for economic growth.\n28. Read the below statements: (STENO - 07/08/2025 - SHIFT 1)\nStatement I: The Sixth Five-Year Plan aimed at income growth and modernization of technology through\nvarious schemes.\nStatement II: The Third Five-Year Plan failed due to various factors such as wars, rupee devaluation and food\ncrisis.\nWhich of the above statements is/are correct?",
+          "options": [
+            "Both statements I and II are incorrect",
+            "Statement I is correct, Statement II is incorrect",
+            "Statement I is incorrect, Statement II is correct",
+            "Both statements I and II are correct"
+          ],
+          "correctAnswer": "Both statements I and II are correct",
+          "explanation": "Correct answer: Both statements I and II are correct",
+          "difficulty": "medium",
+          "topic": "1. Read the following Assertion (A) and Reason (R) carefully and choose the correct option. ( SSC CG",
+          "source": "Five Year Plans PYQs.pdf",
+          "sourceType": "uploaded"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 5,
+      "createdAt": "2026-04-07T15:19:39.483Z"
+    },
+    "63b86f8e-89e4-41d6-b854-c27bec95b881": {
+      "id": "63b86f8e-89e4-41d6-b854-c27bec95b881",
+      "title": "UKPSC-ROARO Mock Test - 7 Apr 2026",
+      "description": "Test with 10 questions from UKPSC-ROARO",
+      "questions": [
+        {
+          "id": "ukpsc-roaro-1029",
+          "type": "mcq",
+          "question": "How many districts are in Kumaon division?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "correctAnswer": "6",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "UK Admin",
+          "source": "UKPSC RO/ARO",
+          "examName": "UKPSC-ROARO",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-2025-real-c2zxa",
+          "type": "mcq",
+          "question": "Which of the following is an example of a chemical change?",
+          "options": [
+            "Melting of ice",
+            "Boiling of water",
+            "Rusting of iron",
+            "Tearing of paper"
+          ],
+          "correctAnswer": "Rusting of iron",
+          "explanation": "Rusting of iron is a chemical change because a new substance (iron oxide) is formed.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "ukpsc-roaro 2025",
+          "examName": "UKPSC-ROARO",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-2023-real-x271vo",
+          "type": "mcq",
+          "question": "The concept of 'Fundamental Duties' in the Indian Constitution was adopted from:",
+          "options": [
+            "USA",
+            "UK",
+            "USSR (Russia)",
+            "Ireland"
+          ],
+          "correctAnswer": "USSR (Russia)",
+          "explanation": "Fundamental Duties were added to the Constitution by the 42nd Amendment in 1976, inspired by the Constitution of the USSR.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "ukpsc-roaro 2023",
+          "examName": "UKPSC-ROARO",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-1035",
+          "type": "mcq",
+          "question": "Who wrote Uttarakhand state song?",
+          "options": [
+            "Sumitranandan Pant",
+            "Chakradhar Bahuguna",
+            "Narendra Singh Negi",
+            "Gopal Babbu Sharma"
+          ],
+          "correctAnswer": "Chakradhar Bahuguna",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "UK Culture",
+          "source": "UKPSC RO/ARO",
+          "examName": "UKPSC-ROARO",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-1027",
+          "type": "mcq",
+          "question": "Hindi typing speed required for RO is?",
+          "options": [
+            "20 wpm",
+            "25 wpm",
+            "30 wpm",
+            "35 wpm"
+          ],
+          "correctAnswer": "25 wpm",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Exam Info",
+          "source": "UKPSC RO/ARO",
+          "examName": "UKPSC-ROARO",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-2025-real-x7hza",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "ukpsc-roaro 2025",
+          "examName": "UKPSC-ROARO",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-2022-real-hjur9",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "ukpsc-roaro 2022",
+          "examName": "UKPSC-ROARO",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-2022-real-f1kz29",
+          "type": "mcq",
+          "question": "In which year did the Quit India Movement start?",
+          "options": [
+            "1930",
+            "1940",
+            "1942",
+            "1945"
+          ],
+          "correctAnswer": "1942",
+          "explanation": "The Quit India Movement was launched by Mahatma Gandhi in August 1942.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "ukpsc-roaro 2022",
+          "examName": "UKPSC-ROARO",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-2022-real-9nmk1o",
+          "type": "mcq",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "ukpsc-roaro 2022",
+          "examName": "UKPSC-ROARO",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "ukpsc-roaro-1032",
+          "type": "mcq",
+          "question": "Bageshwar was carved out of which district?",
+          "options": [
+            "Pithoragarh",
+            "Almora",
+            "Nainital",
+            "Champawat"
+          ],
+          "correctAnswer": "Almora",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "UK Admin",
+          "source": "UKPSC RO/ARO",
+          "examName": "UKPSC-ROARO",
+          "year": 2024,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 15,
+      "totalMarks": 10,
+      "createdAt": "2026-04-07T16:04:27.591Z"
+    },
+    "98bcb161-e821-4239-b231-03212f523806": {
+      "id": "98bcb161-e821-4239-b231-03212f523806",
+      "title": "UPSC Mock Test - 7 Apr 2026",
+      "description": "Test with 20 questions from UPSC",
+      "questions": [
+        {
+          "id": "upsc-2022-real-iaxeln",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-44tjhs",
+          "type": "mcq",
+          "question": "Who wrote 'Panchatantra'?",
+          "options": [
+            "Kalidasa",
+            "Vishnu Sharma",
+            "Banabhatta",
+            "Chanakya"
+          ],
+          "correctAnswer": "Vishnu Sharma",
+          "explanation": "Panchatantra is an ancient Indian collection of interrelated animal fables in Sanskrit verse and prose, written by Vishnu Sharma.",
+          "difficulty": "medium",
+          "topic": "Art and Culture",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-n8j7",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-4qmko",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-005",
+          "type": "mcq",
+          "question": "The 'Doctrine of Lapse' was introduced by?",
+          "options": [
+            "Lord Wellesley",
+            "Lord Dalhousie",
+            "Lord Canning",
+            "Lord Cornwallis"
+          ],
+          "correctAnswer": "Lord Dalhousie",
+          "explanation": "The Doctrine of Lapse was an annexation policy devised by Lord Dalhousie (1848-56) to expand British territories.",
+          "difficulty": "easy",
+          "topic": "Indian History",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "The monsoon in India is caused by?",
+          "options": [
+            "Differential heating of land and sea",
+            "Inter Tropical Convergence Zone",
+            "Jet streams",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Indian monsoon is influenced by differential heating, ITCZ shift, and jet stream patterns.",
+          "difficulty": "medium",
+          "topic": "Geography - Climatology",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-6rmneg",
+          "type": "mcq",
+          "question": "Which of the following is an example of a chemical change?",
+          "options": [
+            "Melting of ice",
+            "Boiling of water",
+            "Rusting of iron",
+            "Tearing of paper"
+          ],
+          "correctAnswer": "Rusting of iron",
+          "explanation": "Rusting of iron is a chemical change because a new substance (iron oxide) is formed.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "Consider the following statements about the Fundamental Duties in the Indian Constitution:\n1. They were added by the 42nd Amendment Act\n2. They are enforceable by courts\n3. They are based on the Soviet Constitution\nWhich of the above statements is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "1 and 3 only",
+            "2 and 3 only",
+            "1, 2 and 3"
+          ],
+          "correctAnswer": "1 and 3 only",
+          "explanation": "Fundamental Duties were added by the 42nd Amendment (1976) and were inspired by the Soviet Constitution. They are not directly enforceable by courts.",
+          "difficulty": "medium",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-3f1gga",
+          "type": "mcq",
+          "question": "Which is the largest gland in the human body?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "correctAnswer": "Liver",
+          "explanation": "The liver is the largest internal organ and the largest gland in the human body.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-yfy27p",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-fu3fhi",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-nma3f",
+          "type": "mcq",
+          "question": "What is the SI unit of electric current?",
+          "options": [
+            "Volt",
+            "Ampere",
+            "Ohm",
+            "Watt"
+          ],
+          "correctAnswer": "Ampere",
+          "explanation": "The ampere is the SI unit of electric current.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-38bt4a",
+          "type": "mcq",
+          "question": "Which is the largest gland in the human body?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "correctAnswer": "Liver",
+          "explanation": "The liver is the largest internal organ and the largest gland in the human body.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-004",
+          "type": "mcq",
+          "question": "Which river forms the boundary between India and Nepal for most of its length?",
+          "options": [
+            "Gandak",
+            "Kosi",
+            "Kali",
+            "Rapti"
+          ],
+          "correctAnswer": "Kali",
+          "explanation": "The Kali River (Mahakali/Sharda) forms the boundary between India and Nepal for much of its course.",
+          "difficulty": "medium",
+          "topic": "Geography - Rivers",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-001",
+          "type": "mcq",
+          "question": "Which Schedule of the Constitution deals with the division of powers between the Union and the States?",
+          "options": [
+            "Sixth Schedule",
+            "Seventh Schedule",
+            "Eighth Schedule",
+            "Ninth Schedule"
+          ],
+          "correctAnswer": "Seventh Schedule",
+          "explanation": "The Seventh Schedule contains three lists - Union List, State List, and Concurrent List - dividing powers between Centre and States.",
+          "difficulty": "easy",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-003",
+          "type": "mcq",
+          "question": "The concept of 'Basic Structure' was propounded in which case?",
+          "options": [
+            "Golaknath Case",
+            "Kesavananda Bharati Case",
+            "Minerva Mills Case",
+            "Maneka Gandhi Case"
+          ],
+          "correctAnswer": "Kesavananda Bharati Case",
+          "explanation": "The Basic Structure doctrine was established in 1973 Kesavananda Bharati case, limiting Parliament's amending power.",
+          "difficulty": "medium",
+          "topic": "Indian Polity",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-002",
+          "type": "mcq",
+          "question": "The Chipko Movement was associated with:",
+          "options": [
+            "Land rights",
+            "Forest conservation",
+            "Water rights",
+            "Mining protests"
+          ],
+          "correctAnswer": "Forest conservation",
+          "explanation": "The Chipko Movement (1973) was a forest conservation movement in Uttarakhand where villagers hugged trees to prevent logging.",
+          "difficulty": "easy",
+          "topic": "Environment - Movements",
+          "source": "UPSC CSE Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-1tehyp",
+          "type": "mcq",
+          "question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+          "options": [
+            "Mars",
+            "Jupiter",
+            "Venus",
+            "Mercury"
+          ],
+          "correctAnswer": "Venus",
+          "explanation": "Venus is often called the morning or evening star because it is often visible shortly before sunrise or after sunset.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-6cm80l",
+          "type": "mcq",
+          "question": "The headquarters of the Reserve Bank of India (RBI) is located in:",
+          "options": [
+            "New Delhi",
+            "Mumbai",
+            "Chennai",
+            "Kolkata"
+          ],
+          "correctAnswer": "Mumbai",
+          "explanation": "The RBI headquarters is located in Mumbai, Maharashtra.",
+          "difficulty": "medium",
+          "topic": "Economy",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-pdawp5",
+          "type": "mcq",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 20,
+      "createdAt": "2026-04-07T17:11:51.178Z"
+    },
+    "cec1d291-c2b6-407c-b328-c6f5c548b2e7": {
+      "id": "cec1d291-c2b6-407c-b328-c6f5c548b2e7",
+      "title": "UPSC Mock Test - 7 Apr 2026",
+      "description": "Test with 18 questions from UPSC",
+      "questions": [
+        {
+          "id": "upsc-2025-real-6cm80l",
+          "type": "mcq",
+          "question": "The headquarters of the Reserve Bank of India (RBI) is located in:",
+          "options": [
+            "New Delhi",
+            "Mumbai",
+            "Chennai",
+            "Kolkata"
+          ],
+          "correctAnswer": "Mumbai",
+          "explanation": "The RBI headquarters is located in Mumbai, Maharashtra.",
+          "difficulty": "medium",
+          "topic": "Economy",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-1tehyp",
+          "type": "mcq",
+          "question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+          "options": [
+            "Mars",
+            "Jupiter",
+            "Venus",
+            "Mercury"
+          ],
+          "correctAnswer": "Venus",
+          "explanation": "Venus is often called the morning or evening star because it is often visible shortly before sunrise or after sunset.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-38bt4a",
+          "type": "mcq",
+          "question": "Which is the largest gland in the human body?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "correctAnswer": "Liver",
+          "explanation": "The liver is the largest internal organ and the largest gland in the human body.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "The monsoon in India is caused by?",
+          "options": [
+            "Differential heating of land and sea",
+            "Inter Tropical Convergence Zone",
+            "Jet streams",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Indian monsoon is influenced by differential heating, ITCZ shift, and jet stream patterns.",
+          "difficulty": "medium",
+          "topic": "Geography - Climatology",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-3f1gga",
+          "type": "mcq",
+          "question": "Which is the largest gland in the human body?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "correctAnswer": "Liver",
+          "explanation": "The liver is the largest internal organ and the largest gland in the human body.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-005",
+          "type": "mcq",
+          "question": "The 'Doctrine of Lapse' was introduced by?",
+          "options": [
+            "Lord Wellesley",
+            "Lord Dalhousie",
+            "Lord Canning",
+            "Lord Cornwallis"
+          ],
+          "correctAnswer": "Lord Dalhousie",
+          "explanation": "The Doctrine of Lapse was an annexation policy devised by Lord Dalhousie (1848-56) to expand British territories.",
+          "difficulty": "easy",
+          "topic": "Indian History",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-n8j7",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-001",
+          "type": "mcq",
+          "question": "Which Schedule of the Constitution deals with the division of powers between the Union and the States?",
+          "options": [
+            "Sixth Schedule",
+            "Seventh Schedule",
+            "Eighth Schedule",
+            "Ninth Schedule"
+          ],
+          "correctAnswer": "Seventh Schedule",
+          "explanation": "The Seventh Schedule contains three lists - Union List, State List, and Concurrent List - dividing powers between Centre and States.",
+          "difficulty": "easy",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-nma3f",
+          "type": "mcq",
+          "question": "What is the SI unit of electric current?",
+          "options": [
+            "Volt",
+            "Ampere",
+            "Ohm",
+            "Watt"
+          ],
+          "correctAnswer": "Ampere",
+          "explanation": "The ampere is the SI unit of electric current.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-002",
+          "type": "mcq",
+          "question": "Which Schedule of the Constitution deals with languages?",
+          "options": [
+            "Sixth Schedule",
+            "Seventh Schedule",
+            "Eighth Schedule",
+            "Ninth Schedule"
+          ],
+          "correctAnswer": "Eighth Schedule",
+          "explanation": "The Eighth Schedule lists 22 recognized languages of India.",
+          "difficulty": "easy",
+          "topic": "Indian Polity",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-pdawp5",
+          "type": "mcq",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-yfy27p",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-6rmneg",
+          "type": "mcq",
+          "question": "Which of the following is an example of a chemical change?",
+          "options": [
+            "Melting of ice",
+            "Boiling of water",
+            "Rusting of iron",
+            "Tearing of paper"
+          ],
+          "correctAnswer": "Rusting of iron",
+          "explanation": "Rusting of iron is a chemical change because a new substance (iron oxide) is formed.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-4qmko",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-004",
+          "type": "mcq",
+          "question": "Which river forms the boundary between India and Nepal for most of its length?",
+          "options": [
+            "Gandak",
+            "Kosi",
+            "Kali",
+            "Rapti"
+          ],
+          "correctAnswer": "Kali",
+          "explanation": "The Kali River (Mahakali/Sharda) forms the boundary between India and Nepal for much of its course.",
+          "difficulty": "medium",
+          "topic": "Geography - Rivers",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-iaxeln",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-44tjhs",
+          "type": "mcq",
+          "question": "Who wrote 'Panchatantra'?",
+          "options": [
+            "Kalidasa",
+            "Vishnu Sharma",
+            "Banabhatta",
+            "Chanakya"
+          ],
+          "correctAnswer": "Vishnu Sharma",
+          "explanation": "Panchatantra is an ancient Indian collection of interrelated animal fables in Sanskrit verse and prose, written by Vishnu Sharma.",
+          "difficulty": "medium",
+          "topic": "Art and Culture",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-fu3fhi",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 15,
+      "totalMarks": 18,
+      "createdAt": "2026-04-07T17:47:41.834Z"
+    },
+    "a529117e-6ada-4bf5-9e7e-1188e1d64175": {
+      "id": "a529117e-6ada-4bf5-9e7e-1188e1d64175",
+      "title": "UPSC Mock Test - 7 Apr 2026",
+      "description": "Test with 17 questions from UPSC",
+      "questions": [
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "Consider the following statements about the Fundamental Duties in the Indian Constitution:\n1. They were added by the 42nd Amendment Act\n2. They are enforceable by courts\n3. They are based on the Soviet Constitution\nWhich of the above statements is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "1 and 3 only",
+            "2 and 3 only",
+            "1, 2 and 3"
+          ],
+          "correctAnswer": "1 and 3 only",
+          "explanation": "Fundamental Duties were added by the 42nd Amendment (1976) and were inspired by the Soviet Constitution. They are not directly enforceable by courts.",
+          "difficulty": "medium",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-001",
+          "type": "mcq",
+          "question": "The monsoon in India is caused by?",
+          "options": [
+            "Differential heating of land and sea",
+            "Inter Tropical Convergence Zone",
+            "Jet streams",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Indian monsoon is influenced by differential heating, ITCZ shift, and jet stream patterns.",
+          "difficulty": "medium",
+          "topic": "Geography - Climatology",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-002",
+          "type": "mcq",
+          "question": "The Chipko Movement was associated with:",
+          "options": [
+            "Land rights",
+            "Forest conservation",
+            "Water rights",
+            "Mining protests"
+          ],
+          "correctAnswer": "Forest conservation",
+          "explanation": "The Chipko Movement (1973) was a forest conservation movement in Uttarakhand where villagers hugged trees to prevent logging.",
+          "difficulty": "easy",
+          "topic": "Environment - Movements",
+          "source": "UPSC CSE Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-003",
+          "type": "mcq",
+          "question": "The concept of 'Basic Structure' was propounded in which case?",
+          "options": [
+            "Golaknath Case",
+            "Kesavananda Bharati Case",
+            "Minerva Mills Case",
+            "Maneka Gandhi Case"
+          ],
+          "correctAnswer": "Kesavananda Bharati Case",
+          "explanation": "The Basic Structure doctrine was established in 1973 Kesavananda Bharati case, limiting Parliament's amending power.",
+          "difficulty": "medium",
+          "topic": "Indian Polity",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-3f1gga",
+          "type": "mcq",
+          "question": "Which is the largest gland in the human body?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "correctAnswer": "Liver",
+          "explanation": "The liver is the largest internal organ and the largest gland in the human body.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-pdawp5",
+          "type": "mcq",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-n8j7",
+          "type": "mcq",
+          "question": "Which article of the Indian Constitution deals with the Right to Equality?",
+          "options": [
+            "Article 14",
+            "Article 19",
+            "Article 21",
+            "Article 32"
+          ],
+          "correctAnswer": "Article 14",
+          "explanation": "Article 14 guarantees equality before the law and equal protection of the laws.",
+          "difficulty": "medium",
+          "topic": "Polity",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-44tjhs",
+          "type": "mcq",
+          "question": "Who wrote 'Panchatantra'?",
+          "options": [
+            "Kalidasa",
+            "Vishnu Sharma",
+            "Banabhatta",
+            "Chanakya"
+          ],
+          "correctAnswer": "Vishnu Sharma",
+          "explanation": "Panchatantra is an ancient Indian collection of interrelated animal fables in Sanskrit verse and prose, written by Vishnu Sharma.",
+          "difficulty": "medium",
+          "topic": "Art and Culture",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-6cm80l",
+          "type": "mcq",
+          "question": "The headquarters of the Reserve Bank of India (RBI) is located in:",
+          "options": [
+            "New Delhi",
+            "Mumbai",
+            "Chennai",
+            "Kolkata"
+          ],
+          "correctAnswer": "Mumbai",
+          "explanation": "The RBI headquarters is located in Mumbai, Maharashtra.",
+          "difficulty": "medium",
+          "topic": "Economy",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-6rmneg",
+          "type": "mcq",
+          "question": "Which of the following is an example of a chemical change?",
+          "options": [
+            "Melting of ice",
+            "Boiling of water",
+            "Rusting of iron",
+            "Tearing of paper"
+          ],
+          "correctAnswer": "Rusting of iron",
+          "explanation": "Rusting of iron is a chemical change because a new substance (iron oxide) is formed.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-002",
+          "type": "mcq",
+          "question": "Which Schedule of the Constitution deals with languages?",
+          "options": [
+            "Sixth Schedule",
+            "Seventh Schedule",
+            "Eighth Schedule",
+            "Ninth Schedule"
+          ],
+          "correctAnswer": "Eighth Schedule",
+          "explanation": "The Eighth Schedule lists 22 recognized languages of India.",
+          "difficulty": "easy",
+          "topic": "Indian Polity",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2024-005",
+          "type": "mcq",
+          "question": "The 'Doctrine of Lapse' was introduced by?",
+          "options": [
+            "Lord Wellesley",
+            "Lord Dalhousie",
+            "Lord Canning",
+            "Lord Cornwallis"
+          ],
+          "correctAnswer": "Lord Dalhousie",
+          "explanation": "The Doctrine of Lapse was an annexation policy devised by Lord Dalhousie (1848-56) to expand British territories.",
+          "difficulty": "easy",
+          "topic": "Indian History",
+          "source": "UPSC Prelims 2024",
+          "examName": "UPSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2025-real-8t9q9q",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-001",
+          "type": "mcq",
+          "question": "Which Schedule of the Constitution deals with the division of powers between the Union and the States?",
+          "options": [
+            "Sixth Schedule",
+            "Seventh Schedule",
+            "Eighth Schedule",
+            "Ninth Schedule"
+          ],
+          "correctAnswer": "Seventh Schedule",
+          "explanation": "The Seventh Schedule contains three lists - Union List, State List, and Concurrent List - dividing powers between Centre and States.",
+          "difficulty": "easy",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-1tehyp",
+          "type": "mcq",
+          "question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+          "options": [
+            "Mars",
+            "Jupiter",
+            "Venus",
+            "Mercury"
+          ],
+          "correctAnswer": "Venus",
+          "explanation": "Venus is often called the morning or evening star because it is often visible shortly before sunrise or after sunset.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2023-real-nma3f",
+          "type": "mcq",
+          "question": "What is the SI unit of electric current?",
+          "options": [
+            "Volt",
+            "Ampere",
+            "Ohm",
+            "Watt"
+          ],
+          "correctAnswer": "Ampere",
+          "explanation": "The ampere is the SI unit of electric current.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "upsc 2023",
+          "examName": "UPSC",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "upsc-2022-real-yfy27p",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "upsc 2022",
+          "examName": "UPSC",
+          "year": 2022,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 17,
+      "createdAt": "2026-04-07T17:54:56.871Z"
+    },
+    "2b02b4c6-3fb4-4514-9376-dd0416bc73f8": {
+      "id": "2b02b4c6-3fb4-4514-9376-dd0416bc73f8",
+      "title": "UKSSSC Mock Test - 8 Apr 2026",
+      "description": "Test with 10 questions from UKSSSC",
+      "questions": [
+        {
+          "id": "uksssc-5092",
+          "type": "mcq",
+          "question": "Which blood component helps clotting?",
+          "options": [
+            "RBC",
+            "WBC",
+            "Platelets",
+            "Plasma"
+          ],
+          "correctAnswer": "Platelets",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5108",
+          "type": "mcq",
+          "question": "Which organ stores bile?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Kidney",
+            "Gallbladder"
+          ],
+          "correctAnswer": "Gallbladder",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5109",
+          "type": "mcq",
+          "question": "pH of human blood?",
+          "options": [
+            "7.0",
+            "7.35-7.45",
+            "6.5",
+            "8.0"
+          ],
+          "correctAnswer": "7.35-7.45",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5082",
+          "type": "mcq",
+          "question": "What is SI unit of mass?",
+          "options": [
+            "Kilogram",
+            "Gram",
+            "Pound",
+            "Ounce"
+          ],
+          "correctAnswer": "Kilogram",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5093",
+          "type": "mcq",
+          "question": "Normal BP range?",
+          "options": [
+            "120/80",
+            "140/90",
+            "100/60",
+            "160/100"
+          ],
+          "correctAnswer": "120/80",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-2025-real-tivifb",
+          "type": "mcq",
+          "question": "What is the SI unit of electric current?",
+          "options": [
+            "Volt",
+            "Ampere",
+            "Ohm",
+            "Watt"
+          ],
+          "correctAnswer": "Ampere",
+          "explanation": "The ampere is the SI unit of electric current.",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "uksssc 2025",
+          "examName": "UKSSSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5104",
+          "type": "mcq",
+          "question": "Deficiency of Vitamin A causes?",
+          "options": [
+            "Anemia",
+            "Scurvy",
+            "Rickets",
+            "Night Blindness"
+          ],
+          "correctAnswer": "Night Blindness",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5091",
+          "type": "mcq",
+          "question": "Which blood cells carry oxygen?",
+          "options": [
+            "RBC",
+            "WBC",
+            "Platelets",
+            "Plasma"
+          ],
+          "correctAnswer": "RBC",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5089",
+          "type": "mcq",
+          "question": "Water freezes at?",
+          "options": [
+            "0°C",
+            "4°C",
+            "32°F",
+            "Both A&C"
+          ],
+          "correctAnswer": "Both A&C",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-5106",
+          "type": "mcq",
+          "question": "Which organ filters blood?",
+          "options": [
+            "Liver",
+            "Pancreas",
+            "Kidney",
+            "Spleen"
+          ],
+          "correctAnswer": "Kidney",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Science",
+          "source": "UKSSSC",
+          "examName": "UKSSSC",
+          "year": 2024,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 15,
+      "totalMarks": 10,
+      "createdAt": "2026-04-07T19:41:55.292Z"
+    },
+    "84f77521-3545-48f0-9223-fecf7d310dba": {
+      "id": "84f77521-3545-48f0-9223-fecf7d310dba",
+      "title": "UKSSSC-Forest Mock Test - 8 Apr 2026",
+      "description": "Test with 9 questions from UKSSSC-Forest",
+      "questions": [
+        {
+          "id": "uksssc-forest-2022-real-psjfal",
+          "type": "mcq",
+          "question": "The headquarters of the Reserve Bank of India (RBI) is located in:",
+          "options": [
+            "New Delhi",
+            "Mumbai",
+            "Chennai",
+            "Kolkata"
+          ],
+          "correctAnswer": "Mumbai",
+          "explanation": "The RBI headquarters is located in Mumbai, Maharashtra.",
+          "difficulty": "medium",
+          "topic": "Economy",
+          "source": "uksssc-forest 2022",
+          "examName": "UKSSSC-Forest",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-forest-2023-real-gj13f",
+          "type": "mcq",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "uksssc-forest 2023",
+          "examName": "UKSSSC-Forest",
+          "year": 2023,
+          "sourceType": "official"
+        },
+        {
+          "id": "UKSSSC-Forest-10042",
+          "type": "mcq",
+          "question": "ICFRE is in?",
+          "options": [
+            "Dehradun",
+            "Delhi",
+            "Bangalore",
+            "Chennai"
+          ],
+          "correctAnswer": "Dehradun",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Organizations",
+          "source": "UKSSSC-Forest",
+          "examName": "UKSSSC-Forest",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-forest-2022-real-fgk49f",
+          "type": "mcq",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "uksssc-forest 2022",
+          "examName": "UKSSSC-Forest",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-forest-2022-real-i1yqf",
+          "type": "mcq",
+          "question": "Who was the founder of the Maurya Empire?",
+          "options": [
+            "Ashoka",
+            "Chandragupta Maurya",
+            "Bindusara",
+            "Bimbisara"
+          ],
+          "correctAnswer": "Chandragupta Maurya",
+          "explanation": "Chandragupta Maurya founded the Maurya Empire in 322 BCE.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "uksssc-forest 2022",
+          "examName": "UKSSSC-Forest",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-forest-2022-real-psc4u",
+          "type": "mcq",
+          "question": "The Tropic of Cancer does NOT pass through which of the following Indian states?",
+          "options": [
+            "Gujarat",
+            "Rajasthan",
+            "Odisha",
+            "West Bengal"
+          ],
+          "correctAnswer": "Odisha",
+          "explanation": "The Tropic of Cancer passes through 8 states: Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "uksssc-forest 2022",
+          "examName": "UKSSSC-Forest",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-forest-2022-real-kjyfsp",
+          "type": "mcq",
+          "question": "In which year did the Quit India Movement start?",
+          "options": [
+            "1930",
+            "1940",
+            "1942",
+            "1945"
+          ],
+          "correctAnswer": "1942",
+          "explanation": "The Quit India Movement was launched by Mahatma Gandhi in August 1942.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "uksssc-forest 2022",
+          "examName": "UKSSSC-Forest",
+          "year": 2022,
+          "sourceType": "official"
+        },
+        {
+          "id": "uksssc-forest-1064",
+          "type": "mcq",
+          "question": "Forest Survey of India is headquartered at?",
+          "options": [
+            "Delhi",
+            "Dehradun",
+            "Shimla",
+            "Nainital"
+          ],
+          "correctAnswer": "Dehradun",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Organizations",
+          "source": "UKSSSC Forest Guard",
+          "examName": "UKSSSC-Forest",
+          "year": 2024,
+          "sourceType": "official"
+        },
+        {
+          "id": "UKSSSC-Forest-10037",
+          "type": "mcq",
+          "question": "Wildlife Crime Control Bureau under?",
+          "options": [
+            "MoEFCC",
+            "Home Ministry",
+            "PMO",
+            "State"
+          ],
+          "correctAnswer": "MoEFCC",
+          "explanation": "",
+          "difficulty": "medium",
+          "topic": "Organizations",
+          "source": "UKSSSC-Forest",
+          "examName": "UKSSSC-Forest",
+          "year": 2024,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 15,
+      "totalMarks": 9,
+      "createdAt": "2026-04-07T20:39:44.531Z"
+    }
+  },
+  "testResults": {
+    "4d8ee98f-0444-486e-aceb-4ae75a881e57": {
+      "id": "4d8ee98f-0444-486e-aceb-4ae75a881e57",
+      "testId": "58bcf924-261e-45c4-a857-2f4a0bc8f39f",
+      "answers": [
+        {
+          "questionId": "ssc cgl-5128",
+          "userAnswer": "32",
+          "isCorrect": true,
+          "timeTaken": 3297,
+          "flagged": false
+        },
+        {
+          "questionId": "SSC CGL-9019",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 2255,
+          "flagged": false
+        },
+        {
+          "questionId": "SSC CGL-10079",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc cgl-5124",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc cgl-5129",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc cgl-5127",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-2048",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "math-2131",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "math-2137",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "reason-2106",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        }
+      ],
+      "score": 1,
+      "totalMarks": 10,
+      "percentage": 10,
+      "timeTaken": 5553,
+      "topicWiseScore": [
+        {
+          "topic": "Math-Mensuration",
+          "correct": 1,
+          "total": 2,
+          "percentage": 50,
+          "avgTime": 1649
+        },
+        {
+          "topic": "Awards",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 2255
+        },
+        {
+          "topic": "Polity",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Math-Speed",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Math-Boats",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Economics",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Math - Cube",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Math - Decimals",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Reasoning - Series",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 0
+        }
+      ],
+      "completedAt": "2026-04-07T15:48:58.453Z"
+    },
+    "befeee7d-c4d8-46c7-a248-77db3f1e130b": {
+      "id": "befeee7d-c4d8-46c7-a248-77db3f1e130b",
+      "testId": "63b86f8e-89e4-41d6-b854-c27bec95b881",
+      "answers": [
+        {
+          "questionId": "ukpsc-roaro-1029",
+          "userAnswer": "6",
+          "isCorrect": true,
+          "timeTaken": 5003,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-2025-real-c2zxa",
+          "userAnswer": "Rusting of iron",
+          "isCorrect": true,
+          "timeTaken": 3092,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-2023-real-x271vo",
+          "userAnswer": "UK",
+          "isCorrect": false,
+          "timeTaken": 1856,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-1035",
+          "userAnswer": "Chakradhar Bahuguna",
+          "isCorrect": true,
+          "timeTaken": 3456,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-1027",
+          "userAnswer": "25 wpm",
+          "isCorrect": true,
+          "timeTaken": 1558,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-2025-real-x7hza",
+          "userAnswer": "Cauvery",
+          "isCorrect": false,
+          "timeTaken": 1064,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-2022-real-hjur9",
+          "userAnswer": "Krishna",
+          "isCorrect": false,
+          "timeTaken": 1186,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-2022-real-f1kz29",
+          "userAnswer": "1940",
+          "isCorrect": false,
+          "timeTaken": 1104,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-2022-real-9nmk1o",
+          "userAnswer": "Indira Gandhi",
+          "isCorrect": false,
+          "timeTaken": 1038,
+          "flagged": false
+        },
+        {
+          "questionId": "ukpsc-roaro-1032",
+          "userAnswer": "Pithoragarh",
+          "isCorrect": false,
+          "timeTaken": 2755,
+          "flagged": false
+        }
+      ],
+      "score": 4,
+      "totalMarks": 10,
+      "percentage": 40,
+      "timeTaken": 22113,
+      "topicWiseScore": [
+        {
+          "topic": "UK Admin",
+          "correct": 1,
+          "total": 2,
+          "percentage": 50,
+          "avgTime": 3879
+        },
+        {
+          "topic": "Science",
+          "correct": 1,
+          "total": 1,
+          "percentage": 100,
+          "avgTime": 3092
+        },
+        {
+          "topic": "Polity",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0,
+          "avgTime": 1856
+        },
+        {
+          "topic": "UK Culture",
+          "correct": 1,
+          "total": 1,
+          "percentage": 100,
+          "avgTime": 3456
+        },
+        {
+          "topic": "Exam Info",
+          "correct": 1,
+          "total": 1,
+          "percentage": 100,
+          "avgTime": 1558
+        },
+        {
+          "topic": "Geography",
+          "correct": 0,
+          "total": 2,
+          "percentage": 0,
+          "avgTime": 1125
+        },
+        {
+          "topic": "History",
+          "correct": 0,
+          "total": 2,
+          "percentage": 0,
+          "avgTime": 1071
+        }
+      ],
+      "completedAt": "2026-04-07T16:04:49.759Z"
+    },
+    "f3418c25-7407-48bc-9fb8-61d463e0dbae": {
+      "id": "f3418c25-7407-48bc-9fb8-61d463e0dbae",
+      "testId": "98bcb161-e821-4239-b231-03212f523806",
+      "answers": [
+        {
+          "questionId": "upsc-2022-real-iaxeln",
+          "userAnswer": "Krishna",
+          "isCorrect": false,
+          "timeTaken": 2440,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2022-real-44tjhs",
+          "userAnswer": "Vishnu Sharma",
+          "isCorrect": true,
+          "timeTaken": 1468,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2023-real-n8j7",
+          "userAnswer": "Article 14",
+          "isCorrect": true,
+          "timeTaken": 2089,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-real-4qmko",
+          "userAnswer": "Article 14",
+          "isCorrect": true,
+          "timeTaken": 2613,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2024-005",
+          "userAnswer": "Lord Dalhousie",
+          "isCorrect": true,
+          "timeTaken": 2758,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2024-001",
+          "userAnswer": "1 and 3 only",
+          "isCorrect": false,
+          "timeTaken": 8037,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2022-real-6rmneg",
+          "userAnswer": "Rusting of iron",
+          "isCorrect": true,
+          "timeTaken": 1948,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2024-001",
+          "userAnswer": "1 and 3 only",
+          "isCorrect": true,
+          "timeTaken": 8037,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-real-3f1gga",
+          "userAnswer": "Liver",
+          "isCorrect": true,
+          "timeTaken": 1640,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2022-real-yfy27p",
+          "userAnswer": "Chandragupta Maurya",
+          "isCorrect": true,
+          "timeTaken": 6161,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-real-fu3fhi",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 2564,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2023-real-nma3f",
+          "userAnswer": "Ampere",
+          "isCorrect": true,
+          "timeTaken": 2593,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2022-real-38bt4a",
+          "userAnswer": "Liver",
+          "isCorrect": true,
+          "timeTaken": 1719,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2024-004",
+          "userAnswer": "Kali",
+          "isCorrect": true,
+          "timeTaken": 2722,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2023-001",
+          "userAnswer": "Seventh Schedule",
+          "isCorrect": true,
+          "timeTaken": 1691,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2024-003",
+          "userAnswer": "Kesavananda Bharati Case",
+          "isCorrect": true,
+          "timeTaken": 1488,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2024-002",
+          "userAnswer": "Forest conservation",
+          "isCorrect": true,
+          "timeTaken": 2330,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2023-real-1tehyp",
+          "userAnswer": "Mars",
+          "isCorrect": false,
+          "timeTaken": 1593,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-real-6cm80l",
+          "userAnswer": "Mumbai",
+          "isCorrect": true,
+          "timeTaken": 1827,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2023-real-pdawp5",
+          "userAnswer": "Sarojini Naidu",
+          "isCorrect": false,
+          "timeTaken": 4202,
+          "flagged": false
+        }
+      ],
+      "score": 14,
+      "totalMarks": 20,
+      "percentage": 70,
+      "timeTaken": 51885,
+      "topicWiseScore": [
+        {
+          "topic": "Geography",
+          "correct": 0,
+          "total": 2,
+          "attempted": 2,
+          "percentage": 0,
+          "avgTime": 2017
+        },
+        {
+          "topic": "Art and Culture",
+          "correct": 1,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 100,
+          "avgTime": 1468
+        },
+        {
+          "topic": "Polity",
+          "correct": 2,
+          "total": 2,
+          "attempted": 2,
+          "percentage": 100,
+          "avgTime": 2351
+        },
+        {
+          "topic": "Indian History",
+          "correct": 1,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 100,
+          "avgTime": 2758
+        },
+        {
+          "topic": "Geography - Climatology",
+          "correct": 0,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 0,
+          "avgTime": 8037
+        },
+        {
+          "topic": "Science",
+          "correct": 4,
+          "total": 4,
+          "attempted": 4,
+          "percentage": 100,
+          "avgTime": 1975
+        },
+        {
+          "topic": "Indian Polity",
+          "correct": 3,
+          "total": 3,
+          "attempted": 3,
+          "percentage": 100,
+          "avgTime": 3739
+        },
+        {
+          "topic": "History",
+          "correct": 1,
+          "total": 3,
+          "attempted": 2,
+          "percentage": 33,
+          "avgTime": 4309
+        },
+        {
+          "topic": "Geography - Rivers",
+          "correct": 1,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 100,
+          "avgTime": 2722
+        },
+        {
+          "topic": "Environment - Movements",
+          "correct": 1,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 100,
+          "avgTime": 2330
+        },
+        {
+          "topic": "Economy",
+          "correct": 1,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 100,
+          "avgTime": 1827
+        }
+      ],
+      "completedAt": "2026-04-07T17:12:43.155Z"
+    },
+    "7bf4ebe2-2516-46cf-8b0b-86981e1f7f1b": {
+      "id": "7bf4ebe2-2516-46cf-8b0b-86981e1f7f1b",
+      "testId": "2b02b4c6-3fb4-4514-9376-dd0416bc73f8",
+      "answers": [
+        {
+          "questionId": "uksssc-5092",
+          "userAnswer": "Platelets",
+          "isCorrect": true,
+          "timeTaken": 3540,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5108",
+          "userAnswer": "Gallbladder",
+          "isCorrect": true,
+          "timeTaken": 3575,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5109",
+          "userAnswer": "7.35-7.45",
+          "isCorrect": true,
+          "timeTaken": 2164,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5082",
+          "userAnswer": "Kilogram",
+          "isCorrect": true,
+          "timeTaken": 1890,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5093",
+          "userAnswer": "120/80",
+          "isCorrect": true,
+          "timeTaken": 2800,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-2025-real-tivifb",
+          "userAnswer": "Ampere",
+          "isCorrect": true,
+          "timeTaken": 1905,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5104",
+          "userAnswer": "Anemia",
+          "isCorrect": false,
+          "timeTaken": 6436,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5091",
+          "userAnswer": "RBC",
+          "isCorrect": true,
+          "timeTaken": 4142,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5089",
+          "userAnswer": "Both A&C",
+          "isCorrect": true,
+          "timeTaken": 3307,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-5106",
+          "userAnswer": "Kidney",
+          "isCorrect": true,
+          "timeTaken": 5452,
+          "flagged": false
+        }
+      ],
+      "score": 8.75,
+      "totalMarks": 10,
+      "percentage": 88,
+      "timeTaken": 35213,
+      "topicWiseScore": [
+        {
+          "topic": "Science",
+          "correct": 9,
+          "total": 10,
+          "attempted": 10,
+          "percentage": 90,
+          "avgTime": 3521
+        }
+      ],
+      "completedAt": "2026-04-07T19:42:30.597Z"
+    },
+    "24a3bca2-c754-46a4-aba4-4ac856ae79b2": {
+      "id": "24a3bca2-c754-46a4-aba4-4ac856ae79b2",
+      "testId": "84f77521-3545-48f0-9223-fecf7d310dba",
+      "answers": [
+        {
+          "questionId": "uksssc-forest-2022-real-psjfal",
+          "userAnswer": "Mumbai",
+          "isCorrect": true,
+          "timeTaken": 2449,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-forest-2023-real-gj13f",
+          "userAnswer": "Cauvery",
+          "isCorrect": false,
+          "timeTaken": 1636,
+          "flagged": false
+        },
+        {
+          "questionId": "UKSSSC-Forest-10042",
+          "userAnswer": "Delhi",
+          "isCorrect": false,
+          "timeTaken": 1854,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-forest-2022-real-fgk49f",
+          "userAnswer": "Annie Besant",
+          "isCorrect": true,
+          "timeTaken": 2597,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-forest-2022-real-i1yqf",
+          "userAnswer": "Chandragupta Maurya",
+          "isCorrect": true,
+          "timeTaken": 2023,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-forest-2022-real-psc4u",
+          "userAnswer": "Odisha",
+          "isCorrect": true,
+          "timeTaken": 2318,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-forest-2022-real-kjyfsp",
+          "userAnswer": "1942",
+          "isCorrect": true,
+          "timeTaken": 2130,
+          "flagged": false
+        },
+        {
+          "questionId": "uksssc-forest-1064",
+          "userAnswer": "Dehradun",
+          "isCorrect": true,
+          "timeTaken": 2251,
+          "flagged": false
+        },
+        {
+          "questionId": "UKSSSC-Forest-10037",
+          "userAnswer": "Home Ministry",
+          "isCorrect": false,
+          "timeTaken": 3937,
+          "flagged": false
+        }
+      ],
+      "score": 5.25,
+      "totalMarks": 9,
+      "percentage": 58,
+      "timeTaken": 21197,
+      "topicWiseScore": [
+        {
+          "topic": "Economy",
+          "correct": 1,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 100,
+          "avgTime": 2449
+        },
+        {
+          "topic": "Geography",
+          "correct": 1,
+          "total": 2,
+          "attempted": 2,
+          "percentage": 50,
+          "avgTime": 1977
+        },
+        {
+          "topic": "Organizations",
+          "correct": 1,
+          "total": 3,
+          "attempted": 3,
+          "percentage": 33,
+          "avgTime": 2681
+        },
+        {
+          "topic": "History",
+          "correct": 3,
+          "total": 3,
+          "attempted": 3,
+          "percentage": 100,
+          "avgTime": 2250
+        }
+      ],
+      "completedAt": "2026-04-07T20:40:05.831Z"
+    }
+  },
+  "importedQuestions": [],
+  "practiceStats": {
+    "totalAttempted": 58,
+    "correct": 32,
+    "incorrect": 26,
+    "topicWiseScore": [
+      {
+        "topic": "Polity",
+        "correct": 3,
+        "total": 4,
+        "percentage": 75
+      },
+      {
+        "topic": "Economy",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Art and Culture",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "History",
+        "correct": 1,
+        "total": 2,
+        "percentage": 50
+      },
+      {
+        "topic": "Environment",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Economics",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Uttarakhand GK - Wildlife",
+        "correct": 2,
+        "total": 2,
+        "percentage": 100
+      },
+      {
+        "topic": "General Science - Biology",
+        "correct": 2,
+        "total": 3,
+        "percentage": 67
+      },
+      {
+        "topic": "General Knowledge",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Geography",
+        "correct": 1,
+        "total": 2,
+        "percentage": 50
+      },
+      {
+        "topic": "Science",
+        "correct": 2,
+        "total": 5,
+        "percentage": 40
+      },
+      {
+        "topic": "General Science",
+        "correct": 2,
+        "total": 3,
+        "percentage": 67
+      },
+      {
+        "topic": "UK History",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "History & Polity",
+        "correct": 1,
+        "total": 3,
+        "percentage": 33
+      },
+      {
+        "topic": "Quantitative Aptitude - Algebra",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "General Awareness",
+        "correct": 3,
+        "total": 7,
+        "percentage": 43
+      },
+      {
+        "topic": "Agriculture",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "UK Culture",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Conservation",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "UK Polity",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "UK Admin",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Schemes",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Books",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Reasoning - Series",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "English - One Word",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Firsts",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Sports",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Inventions",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Mensuration",
+        "correct": 2,
+        "total": 4,
+        "percentage": 50
+      },
+      {
+        "topic": "Uttarakhand GK - Environment",
+        "correct": 0,
+        "total": 2,
+        "percentage": 0
+      },
+      {
+        "topic": "Organizations",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Current Affairs",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      }
+    ],
+    "answeredQuestions": {
+      "ssc_cgl-2025-real-4oift": {
+        "userAnswer": "Article 14",
+        "isCorrect": true
+      },
+      "ssc_cgl-2025-real-29apzf": {
+        "userAnswer": "Yuan",
+        "isCorrect": false
+      },
+      "ssc_cgl-2025-real-fa74xq": {
+        "userAnswer": "Vishnu Sharma",
+        "isCorrect": true
+      },
+      "ssc_cgl-2025-real-9yy3x7": {
+        "userAnswer": "1942",
+        "isCorrect": true
+      },
+      "ssc_cgl-2025-real-ofaz47": {
+        "userAnswer": "Uttarakhand",
+        "isCorrect": true
+      },
+      "SSC CGL-9038": {
+        "userAnswer": "1969",
+        "isCorrect": true
+      },
+      "uksssc-2024-007": {
+        "userAnswer": "Uttarkashi",
+        "isCorrect": true
+      },
+      "ssc-cgl-2025-bio-22": {
+        "userAnswer": "Calcium",
+        "isCorrect": false
+      },
+      "ssc-cgl-2023-013": {
+        "userAnswer": "Geneva",
+        "isCorrect": false
+      },
+      "upsc-2025-real-8t9q9q": {
+        "userAnswer": "Krishna",
+        "isCorrect": false
+      },
+      "ssc_cgl-2022-real-bcequg": {
+        "userAnswer": "Melting of ice",
+        "isCorrect": false
+      },
+      "SSC CGL-10074": {
+        "userAnswer": "Either",
+        "isCorrect": false
+      },
+      "SSC CGL-10084": {
+        "userAnswer": "2/3 majority",
+        "isCorrect": true
+      },
+      "ssc-cgl-2025-bio-34": {
+        "userAnswer": "Pancreas",
+        "isCorrect": true
+      },
+      "ssc-cgl-2023-008": {
+        "userAnswer": "Vitamin C",
+        "isCorrect": true
+      },
+      "UKPSC-9053": {
+        "userAnswer": "Sudarshan Shah",
+        "isCorrect": true
+      },
+      "uksssc-5092": {
+        "userAnswer": "WBC",
+        "isCorrect": false
+      },
+      "real-gen-1775583218143-320": {
+        "userAnswer": "1857",
+        "isCorrect": false
+      },
+      "real-gen-1775583218143-310": {
+        "userAnswer": "Chanakya",
+        "isCorrect": true
+      },
+      "ssc-math-1123": {
+        "userAnswer": "100",
+        "isCorrect": false
+      },
+      "api-tdb-1775583909381-39": {
+        "userAnswer": "The Milky Way Galaxy",
+        "isCorrect": true
+      },
+      "api-tdb-1775583909381-44": {
+        "userAnswer": "Truth",
+        "isCorrect": true
+      },
+      "api-tdb-1775583909381-49": {
+        "userAnswer": "Proximal",
+        "isCorrect": false
+      },
+      "ssc cgl-5010": {
+        "userAnswer": "Prawns/Onion",
+        "isCorrect": true
+      },
+      "UKPSC-9061": {
+        "userAnswer": "God of Justice",
+        "isCorrect": true
+      },
+      "api-tdb-1775583909380-29": {
+        "userAnswer": "Trojan Horse",
+        "isCorrect": false
+      },
+      "api-tdb-1775583909390-267": {
+        "userAnswer": "Vanuatu",
+        "isCorrect": false
+      },
+      "UKSSSC-Forest-10043": {
+        "userAnswer": "UNESCO",
+        "isCorrect": true
+      },
+      "ukpsc-pcs-1017": {
+        "userAnswer": "A.A. Desai",
+        "isCorrect": true
+      },
+      "ukpsc-roaro-1031": {
+        "userAnswer": "Pithoragarh",
+        "isCorrect": true
+      },
+      "api-tdb-1775583909384-70": {
+        "userAnswer": "4.5 Billion Years",
+        "isCorrect": true
+      },
+      "ssc-2033": {
+        "userAnswer": "1927",
+        "isCorrect": false
+      },
+      "UKSSSC-VDO-10009": {
+        "userAnswer": "15 days",
+        "isCorrect": true
+      },
+      "ssc-cgl-2025-bio-23": {
+        "userAnswer": "Alexander Fleming",
+        "isCorrect": true
+      },
+      "ssc-cgl-1107": {
+        "userAnswer": "Goitre",
+        "isCorrect": false
+      },
+      "ssc-2019": {
+        "userAnswer": "Banabhatta",
+        "isCorrect": false
+      },
+      "ssc-reason-1147": {
+        "userAnswer": "N",
+        "isCorrect": false
+      },
+      "ssc-cgl-1105": {
+        "userAnswer": "Deoxyribonucleic Acid",
+        "isCorrect": true
+      },
+      "ssc-eng-1150": {
+        "userAnswer": "Fratricide",
+        "isCorrect": false
+      },
+      "ssc-2029": {
+        "userAnswer": "M.H. Beg",
+        "isCorrect": false
+      },
+      "ssc-cgl-1119": {
+        "userAnswer": "2008",
+        "isCorrect": true
+      },
+      "ssc-2020": {
+        "userAnswer": "Graham Bell",
+        "isCorrect": true
+      },
+      "gk-012": {
+        "userAnswer": "Thermometer",
+        "isCorrect": false
+      },
+      "SSC CGL-10071": {
+        "userAnswer": "Both",
+        "isCorrect": true
+      },
+      "uksssc-5083": {
+        "userAnswer": "1.6",
+        "isCorrect": true
+      },
+      "uksssc-5084": {
+        "userAnswer": "2.45",
+        "isCorrect": false
+      },
+      "uksssc-5085": {
+        "userAnswer": "12",
+        "isCorrect": true
+      },
+      "uksssc-5086": {
+        "userAnswer": "4",
+        "isCorrect": false
+      },
+      "uksssc-2024-002": {
+        "userAnswer": "Haridwar",
+        "isCorrect": false
+      },
+      "uksssc-2024-new-004": {
+        "userAnswer": "1982",
+        "isCorrect": false
+      },
+      "uksssc-2024-new-002": {
+        "userAnswer": "2",
+        "isCorrect": true
+      },
+      "UKSSSC-Forest-10037": {
+        "userAnswer": "Home Ministry",
+        "isCorrect": false
+      },
+      "api-tdb-1775583909387-186": {
+        "userAnswer": "1982",
+        "isCorrect": false
+      },
+      "api-tdb-1775583909381-42": {
+        "userAnswer": "Richard Branson",
+        "isCorrect": true
+      },
+      "api-tdb-1775583909390-269": {
+        "userAnswer": "Dyntos",
+        "isCorrect": false
+      },
+      "api-tdb-1775583909390-248": {
+        "userAnswer": "Qatar",
+        "isCorrect": true
+      },
+      "gk-010": {
+        "userAnswer": "Pacific",
+        "isCorrect": true
+      },
+      "ssc-cgl-1108": {
+        "userAnswer": "Helium",
+        "isCorrect": true
+      }
+    },
+    "dailyStats": {
+      "2026-04-07": 29,
+      "2026-04-08": {
+        "total": 27,
+        "correct": 13
+      }
+    },
+    "lastUpdated": "2026-04-07T20:33:47.334Z"
+  }
+}
