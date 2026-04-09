@@ -529,7 +529,7 @@ export default function QuestionBank() {
 
                                 <p className="text-lg mb-4 whitespace-pre-wrap">{question.question}</p>
 
-                                {question.type === 'mcq' && question.options && (
+                                {(question.type === 'mcq' || (!question.type && question.options)) && question.options && (
                                     <div className="space-y-2 mb-4">
                                         {question.options.map((option, optIndex) => {
                                             const isSelected = userAnswer === option;

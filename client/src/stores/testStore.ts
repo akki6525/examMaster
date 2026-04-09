@@ -26,6 +26,11 @@ export interface Test {
     questions: Question[];
     duration: number;
     totalMarks: number;
+    sections?: {
+        id: string;
+        name: string;
+        questionIds: string[];
+    }[];
     createdAt: string;
 }
 
@@ -73,6 +78,7 @@ interface TestState {
         questionCount?: number;
         duration?: number;
     }) => Promise<string>;
+    generateSmartTest: (examId: string, year?: number) => Promise<string>;
     startTest: (testId: string) => Promise<void>;
     setAnswer: (questionId: string, answer: string | string[]) => void;
     toggleFlag: (questionId: string) => void;
@@ -110,6 +116,23 @@ export const useTestStore = create<TestState>((set, get) => ({
             const response = await axios.post(`${API_URL}/tests/generate`, {
                 documentIds,
                 ...options
+            });
+
+            await get().fetchTests();
+            set({ isLoading: false });
+            return response.data.testId;
+        } catch (error: any) {
+            set({ error: error.response?.data?.error || error.message, isLoading: false });
+            throw error;
+        }
+    },
+    
+    generateSmartTest: async (examId, year) => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await axios.post(`${API_URL}/smart-tests/generate`, {
+                examId,
+                year
             });
 
             await get().fetchTests();

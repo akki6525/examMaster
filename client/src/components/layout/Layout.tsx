@@ -8,6 +8,7 @@ import {
     Layers,
     GraduationCap,
     FileUp,
+    Sparkles,
     Sun,
     Moon,
     Menu,
@@ -32,12 +33,12 @@ const primaryNav = [
     { path: '/', label: 'Dashboard', icon: Home },
     { path: '/upload', label: 'Upload', icon: Upload },
     { path: '/question-bank', label: 'Question Bank', icon: FileQuestion },
-    { path: '/official-exams', label: 'Official Exams', icon: GraduationCap },
     { path: '/ai-report', label: 'AI Report', icon: Brain },
 ];
 
 // Secondary nav in "More" dropdown
 const secondaryNav = [
+    { path: '/official-exams', label: 'Official Exams', icon: GraduationCap },
     { path: '/flashcards', label: 'Flashcards', icon: Layers },
     { path: '/import', label: 'Import Questions', icon: FileUp },
     { path: '/import-pdf', label: 'Import PDF', icon: FileText },
@@ -168,14 +169,8 @@ export default function Layout({ children }: LayoutProps) {
                         </nav>
 
                         {/* Right Actions */}
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                            {user && (
-                                <div className="hidden lg:flex items-center mr-2 px-3 py-1.5 rounded-full bg-muted/50 border border-border/50">
-                                    <span className="text-xs font-semibold text-muted-foreground mr-1">Hello,</span>
-                                    <span className="text-xs font-bold text-foreground">{user.username}</span>
-                                </div>
-                            )}
-
+                        {/* Right Actions */}
+                        <div className="flex items-center gap-3 flex-shrink-0">
                             <button
                                 onClick={toggleTheme}
                                 className="w-10 h-10 rounded-full hover:bg-muted/80 flex items-center justify-center transition-colors border border-transparent hover:border-border"
@@ -186,9 +181,15 @@ export default function Layout({ children }: LayoutProps) {
                             {user && (
                                 <button
                                     onClick={() => setProfileOpen(true)}
-                                    className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/25 border border-white/10"
+                                    className="flex items-center gap-3 pl-4 pr-1 py-1 rounded-full bg-muted/50 border border-border/50 hover:bg-muted transition-all active:scale-95 group"
                                 >
-                                    <User className="w-5 h-5 text-white" />
+                                    <div className="hidden lg:flex flex-col items-end leading-none">
+                                        <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-0.5">Profile</span>
+                                        <span className="text-sm font-black text-foreground">{user.username}</span>
+                                    </div>
+                                    <div className="w-9 h-9 rounded-full gradient-primary flex items-center justify-center shadow-lg shadow-primary/20 border border-white/10 group-hover:scale-105 transition-transform">
+                                        <User className="w-4 h-5 text-white" />
+                                    </div>
                                 </button>
                             )}
 

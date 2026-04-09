@@ -11,5 +11,9 @@
     },
     "devDependencies": {
         "concurrently": "^8.2.2"
+    },
+    "dependencies": {
+        "react-confetti": "^6.4.0",
+        "react-use": "^17.6.0"
     }
 }

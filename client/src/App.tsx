@@ -12,6 +12,8 @@ import OfficialExams from './pages/OfficialExams';
 import QuestionImport from './pages/QuestionImport';
 import PDFImport from './pages/PDFImport';
 import AIReport from './pages/AIReport';
+import StudentCorner from './pages/StudentCorner';
+import SmartMockTests from './pages/SmartMockTests';
 
 import { useAuthStore } from './stores/authStore';
 import Login from './components/auth/Login';
@@ -52,6 +54,8 @@ function App() {
           <Route path="/import" element={<QuestionImport />} />
           <Route path="/import-pdf" element={<PDFImport />} />
           <Route path="/ai-report" element={<AIReport />} />
+          <Route path="/student-corner" element={<StudentCorner />} />
+          <Route path="/smart-mock-tests" element={<SmartMockTests />} />
         </Routes>
       </Layout>
     </Router>

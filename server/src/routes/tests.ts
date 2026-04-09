@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { documents } from './upload.js';
 import { generateQuestions } from '../services/question-generator.js';
 import { MockTest, TestResult, Question, UserAnswer, TopicScore } from '../types/index.js';
-import { officialQuestions } from './official-questions.js';
+import { getOfficialQuestions } from './official-questions.js';
 import { loadDB, saveDB } from '../services/persistence.js';
 
 const router = Router();
@@ -54,7 +54,7 @@ router.post('/generate', async (req, res) => {
             .map(ts => ts.topic.toLowerCase());
 
         if ((includeOfficial || documentIds.length === 0) && examTypes && examTypes.length > 0) {
-            let official = officialQuestions.filter(q =>
+            let official = getOfficialQuestions().filter(q =>
                 examTypes.some((et: string) =>
                     q.examName?.toUpperCase() === et.toUpperCase() ||
                     q.examName?.replace(' ', '-').toUpperCase() === et.toUpperCase()

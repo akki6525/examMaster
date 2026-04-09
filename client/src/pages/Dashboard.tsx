@@ -16,7 +16,8 @@ import {
     GraduationCap,
     CheckCircle,
     XCircle,
-    Brain
+    Brain,
+    Zap
 } from 'lucide-react';
 import { useDocumentStore } from '../stores/documentStore';
 import { useTestStore } from '../stores/testStore';
@@ -97,6 +98,13 @@ export default function Dashboard() {
             icon: FileText,
             link: '/question-bank',
             gradient: 'from-emerald-500 to-teal-500'
+        },
+        {
+            title: 'Smart Mock Tests',
+            description: 'AI-generated full-length exam simulations',
+            icon: Zap,
+            link: '/smart-mock-tests',
+            gradient: 'from-orange-500 to-red-500'
         },
         {
             title: 'Flashcards',

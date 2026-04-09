@@ -369,6 +369,10 @@ export default function Results() {
                                                 )}>
                                                     {q.userAnswer || '(Not answered)'}
                                                 </span>
+                                                <span className="text-xs text-muted-foreground ml-auto bg-muted px-2 py-1 rounded-md flex items-center gap-1">
+                                                    <Clock className="w-3 h-3" />
+                                                    {Math.round(q.timeTaken / 1000)}s
+                                                </span>
                                             </div>
 
                                             {!q.isCorrect && (

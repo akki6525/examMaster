@@ -7,6 +7,7 @@ import { flashcardsRouter } from './routes/flashcards.js';
 import { officialQuestionsRouter } from './routes/official-questions.js';
 import { practiceStatsRouter } from './routes/practice-stats.js';
 import { insightsRouter } from './routes/ai-insights.js';
+import { smartTestsRouter } from './routes/smart-tests.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,6 +25,7 @@ app.use('/api/flashcards', flashcardsRouter);
 app.use('/api/official-questions', officialQuestionsRouter);
 app.use('/api/practice-stats', practiceStatsRouter);
 app.use('/api/ai-insights', insightsRouter);
+app.use('/api/smart-tests', smartTestsRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {

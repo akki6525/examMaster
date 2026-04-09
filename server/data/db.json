@@ -2150,6 +2150,2106 @@
       "duration": 15,
       "totalMarks": 9,
       "createdAt": "2026-04-07T20:39:44.531Z"
+    },
+    "781534f2-1667-49a7-b95d-43ce59726121": {
+      "id": "781534f2-1667-49a7-b95d-43ce59726121",
+      "title": "Mixed Mock Test - 8 Apr 2026",
+      "description": "Test with 16 questions",
+      "questions": [
+        {
+          "id": "f4b6bbc8-a75b-47d8-a6fb-84a87c6159e8",
+          "type": "mcq",
+          "question": "Which one among the following royal dynasties is associated with the Taleshwar copper plate grants?",
+          "options": [
+            "Naga dynasty",
+            "Paurav dynasty",
+            "Katyuri dynasty",
+            "Yadu dynasty",
+            "Katyuri dynasty"
+          ],
+          "correctAnswer": "Naga dynasty",
+          "explanation": "Correct answer: Naga dynasty",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "7608242f-7db1-4834-93c3-6ab4c4fcc7aa",
+          "type": "mcq",
+          "question": "Who started the “Maiti Movement” for plantation?",
+          "options": [
+            "Bhagat Singh Rawat",
+            "Kalyan Singh Rawat",
+            "Sundar Lal Bahuguna",
+            "Mohan Singh Negi",
+            "Kalyan Singh Rawat"
+          ],
+          "correctAnswer": "Bhagat Singh Rawat",
+          "explanation": "Correct answer: Bhagat Singh Rawat",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "4a3889d8-6073-469f-a9cb-8d385fc38cca",
+          "type": "mcq",
+          "question": "Select the correct pair of the river basins separated by Dudhatoli Mt. Range.",
+          "options": [
+            "Bhagirathi and Bhilangana Basin",
+            "Nayar and Aglar Basin",
+            "Pindar and Ramganga Basin",
+            "Bhilangana and Mandakini Basin",
+            "Pindar and Ramganga Basin"
+          ],
+          "correctAnswer": "Bhagirathi and Bhilangana Basin",
+          "explanation": "Correct answer: Bhagirathi and Bhilangana Basin",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "4b7d39ff-d21f-4ce8-ab42-46d52997a1a8",
+          "type": "mcq",
+          "question": "When did the Government of Uttarakhand pass the Fiscal Responsibility and Budget Management Act?",
+          "options": [
+            "In 2003",
+            "In 2007",
+            "In 2005",
+            "In 2009",
+            "In 2007"
+          ],
+          "correctAnswer": "In 2003",
+          "explanation": "Correct answer: In 2003",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "7b8c28b0-b9c6-4437-9799-428a1d866b8b",
+          "type": "mcq",
+          "question": "UTDB is established in Uttarakhand to promote:",
+          "options": [
+            "Technology",
+            "Tourism",
+            "Trade",
+            "Training",
+            "Tourism"
+          ],
+          "correctAnswer": "Technology",
+          "explanation": "Correct answer: Technology",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "ccd3fed4-a848-49d1-aaaa-87aa7569f0d1",
+          "type": "mcq",
+          "question": "In Uttarakhand State, which district got first place in fish production in 2022-2023?",
+          "options": [
+            "Dehradun",
+            "Haridwar",
+            "Udhamsingh Nagar",
+            "Tehri Garhwal",
+            "Udhamsingh Nagar"
+          ],
+          "correctAnswer": "Dehradun",
+          "explanation": "Correct answer: Dehradun",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "8c2b409f-02b7-47d5-9b99-2865f6c89435",
+          "type": "mcq",
+          "question": "Which district of Uttarakhand has the highest forest cover share percentage of its total geographical area?",
+          "options": [
+            "Rudraprayag",
+            "Nainital",
+            "Champawat",
+            "Pauri Garhwal",
+            "Rudraprayag"
+          ],
+          "correctAnswer": "Rudraprayag",
+          "explanation": "Correct answer: Rudraprayag",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "d08c4de4-0c0d-4973-9890-91396d0bda88",
+          "type": "mcq",
+          "question": "Which of the following folk dances/celebrations of Uttarakhand is included in the intangible heritage list of UNESCO?",
+          "options": [
+            "Ramman",
+            "Chanchari",
+            "Cholia",
+            "Jhumelo",
+            "Ramman"
+          ],
+          "correctAnswer": "Ramman",
+          "explanation": "Correct answer: Ramman",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "f8ec9c2b-90e6-4a44-bd5f-1450359d20d7",
+          "type": "mcq",
+          "question": "Untadhura Pass is situated near which one of the following glaciers of Uttarakhand?",
+          "options": [
+            "Pindari glacier",
+            "Milam glacier",
+            "Kafni glacier",
+            "Sundardhunga glacier",
+            "Milam glacier"
+          ],
+          "correctAnswer": "Pindari glacier",
+          "explanation": "Correct answer: Pindari glacier",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "32890dea-297b-41f7-824d-0be03fa12281",
+          "type": "mcq",
+          "question": "Headquarters of which of the following is located in Dehradun, the Capital of Uttarakhand?",
+          "options": [
+            "Archaeological Survey of India",
+            "Survey of India",
+            "Botanical Survey of India",
+            "Geological Survey of India",
+            "Survey of India"
+          ],
+          "correctAnswer": "Archaeological Survey of India",
+          "explanation": "Correct answer: Archaeological Survey of India",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "380b5327-8cdf-4d25-a1fa-11f84fa239e4",
+          "type": "mcq",
+          "question": "As per census 2011, which of the following districts of Uttarakhand had the lowest female literacy rate?",
+          "options": [
+            "Haridwar",
+            "Udhamsingh Nagar",
+            "Uttarkashi",
+            "Tehri Garhwal",
+            "Haridwar"
+          ],
+          "correctAnswer": "Haridwar",
+          "explanation": "Correct answer: Haridwar",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "f49e67e9-5315-44cf-ae76-5429f94a3701",
+          "type": "mcq",
+          "question": "How many of the following women M.L.A.s were there in the first Legislative Assembly of Uttarakhand?",
+          "options": [
+            "8 (Eight)",
+            "7 (Seven)",
+            "6 (Six)",
+            "4 (Four)",
+            "7 (Seven)"
+          ],
+          "correctAnswer": "8 (Eight)",
+          "explanation": "Correct answer: 8 (Eight)",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "b98429f8-1c91-4213-b852-a1da9a7712fd",
+          "type": "mcq",
+          "question": "What percentage (approximately) of Uttarakhand is plain area?",
+          "options": [
+            "25",
+            "18",
+            "14",
+            "20",
+            "18"
+          ],
+          "correctAnswer": "25",
+          "explanation": "Correct answer: 25",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "39b33ae8-732c-4ee1-a74b-8c503c33eb3b",
+          "type": "mcq",
+          "question": "Hindu religious pilgrimage place named Purnagiri is situated in which of the following districts of Uttarakhand?",
+          "options": [
+            "Almora",
+            "Pithoragarh",
+            "Champawat",
+            "Rudraprayag",
+            "Champawat"
+          ],
+          "correctAnswer": "Almora",
+          "explanation": "Correct answer: Almora",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "5649476d-0d28-4ad9-82d5-f7f81e005f2b",
+          "type": "mcq",
+          "question": "Who has been appointed as the first woman Chief Secretary of Uttarakhand?",
+          "options": [
+            "Manisha Panwar",
+            "Radha Raturi",
+            "Radhika Jha",
+            "Divya Mittal",
+            "Manisha Panwar"
+          ],
+          "correctAnswer": "Manisha Panwar",
+          "explanation": "Correct answer: Manisha Panwar",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "90269c54-b96d-4e0c-b0c4-211bdba2f49c",
+          "type": "mcq",
+          "question": "Which of the following streams is the tributary of the Girthi river in Uttarakhand?",
+          "options": [
+            "Kiogad/Kiogadh",
+            "Kalsar river",
+            "Baur River",
+            "Rani Dhara",
+            "Kiogad/Kiogadh"
+          ],
+          "correctAnswer": "Kiogad/Kiogadh",
+          "explanation": "Correct answer: Kiogad/Kiogadh",
+          "difficulty": "medium",
+          "topic": "Options",
+          "source": "Uttarakhand_Questions.docx",
+          "sourceType": "uploaded"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 16,
+      "createdAt": "2026-04-08T00:29:29.365Z"
+    },
+    "22c0638b-7727-4792-8d9f-6413dae36032": {
+      "id": "22c0638b-7727-4792-8d9f-6413dae36032",
+      "title": "SSC CGL Tier-I (Pre) - 2025 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "id": "api-tdb-1775583909387-185",
+          "question": "The fraudelent doctor John R. Brinkley acummulated great fame and wealth in the early 1900s offering what service?",
+          "options": [
+            "Pig blood transfusion",
+            "Turkey breast implants",
+            "Goat testicles transplant",
+            "Cow liver transplant"
+          ],
+          "correctAnswer": "Goat testicles transplant",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Goat testicles transplant",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909390-260",
+          "question": "A minotaur is half human half what?",
+          "options": [
+            "Eagle",
+            "Bull",
+            "Cow",
+            "Horse"
+          ],
+          "correctAnswer": "Bull",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Bull",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909379-0",
+          "question": "Which item of clothing is usually worn by a Scotsman at a wedding?",
+          "options": [
+            "Skirt",
+            "Rhobes",
+            "Dress",
+            "Kilt"
+          ],
+          "correctAnswer": "Kilt",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Kilt",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909390-270",
+          "question": "Which greek god/goddess tossed a golden apple with the words \"for the fairest\" into the middle of the feast of the gods?",
+          "options": [
+            "Artemis",
+            "Ares",
+            "Eris",
+            "Hades"
+          ],
+          "correctAnswer": "Eris",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Eris",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909379-5",
+          "question": "What is the romanized Japanese word for \"university\"?",
+          "options": [
+            "Daigaku",
+            "Shokudou",
+            "Toshokan",
+            "Jimusho"
+          ],
+          "correctAnswer": "Daigaku",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Daigaku",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909391-290",
+          "question": "Talos, the mythical giant bronze man, was the protector of which island?",
+          "options": [
+            "Cyprus",
+            "Sicily",
+            "Sardinia",
+            "Crete"
+          ],
+          "correctAnswer": "Crete",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Crete",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909390-255",
+          "question": "What is the name of the Greek god of peaceful deaths?",
+          "options": [
+            "Thanatos",
+            "Moros",
+            "Tartarus",
+            "Hades"
+          ],
+          "correctAnswer": "Thanatos",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Thanatos",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909380-15",
+          "question": "What is the name of the alcoholic beverage made from potatoes or grains that originates from Poland and Russia?",
+          "options": [
+            "Vodka",
+            "Sake",
+            "Absinthe",
+            "Rum"
+          ],
+          "correctAnswer": "Vodka",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Vodka",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909380-10",
+          "question": "Which church's interior in Vatican City was designed in 1503 by renaissance architects including Bramante, Michelangelo and Bernini?",
+          "options": [
+            "St. Peter's Basilica",
+            "The Duomo of Florence",
+            "Catania Cathedral",
+            "St. Mark's Basilica"
+          ],
+          "correctAnswer": "St. Peter's Basilica",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: St. Peter's Basilica",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909387-190",
+          "question": "What was the original name of New York City?",
+          "options": [
+            "New Paris",
+            "New Amsterdam",
+            "New Rome",
+            "New London"
+          ],
+          "correctAnswer": "New Amsterdam",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: New Amsterdam",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909387-180",
+          "question": "What did the first vending machines in the early 1880's dispense?",
+          "options": [
+            "Post cards",
+            "Sodas ",
+            "Alcohol",
+            "Cigarettes"
+          ],
+          "correctAnswer": "Post cards",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Post cards",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909380-20",
+          "question": "What is the name of the Jewish New Year?",
+          "options": [
+            "Rosh Hashanah",
+            "Elul",
+            "Succoss",
+            "New Year"
+          ],
+          "correctAnswer": "Rosh Hashanah",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Rosh Hashanah",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909386-155",
+          "question": "When did Norway get its constitution?",
+          "options": [
+            "1814",
+            "1854",
+            "1932",
+            "1905"
+          ],
+          "correctAnswer": "1814",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 1814",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909390-250",
+          "question": "The Norse god Odin has two pet crows named \"Huginn\" and \"Muninn\".  What do their names mean?",
+          "options": [
+            "Sleeping & Waking",
+            "War & Learning",
+            "Power & Peace",
+            "Thought & Memory"
+          ],
+          "correctAnswer": "Thought & Memory",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Thought & Memory",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909391-295",
+          "question": "Which of these mythological creatures is said to be half-man and half-horse?",
+          "options": [
+            "Centaur",
+            "Minotaur",
+            "Pegasus",
+            "Gorgon"
+          ],
+          "correctAnswer": "Centaur",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Centaur",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909386-160",
+          "question": "In what year did the Berlin Wall fall?",
+          "options": [
+            "1989",
+            "1991",
+            "1993",
+            "1987"
+          ],
+          "correctAnswer": "1989",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 1989",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909386-165",
+          "question": "During the Roman Triumvirate of 42 BCE, what region of the Roman Republic was given to Lepidus?",
+          "options": [
+            "Gallia",
+            "Asia",
+            "Hispania ",
+            "Italia"
+          ],
+          "correctAnswer": "Hispania ",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Hispania ",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909386-170",
+          "question": "What was William Frederick Cody better known as?",
+          "options": [
+            "Buffalo Bill",
+            "Pawnee Bill",
+            "Wild Bill Hickok",
+            "Billy the Kid"
+          ],
+          "correctAnswer": "Buffalo Bill",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Buffalo Bill",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909381-45",
+          "question": "The early part of which decade, did the Goth Subculture begin?",
+          "options": [
+            "2000s",
+            "1990s",
+            "1970s",
+            "1980s"
+          ],
+          "correctAnswer": "1980s",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: 1980s",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909381-40",
+          "question": "What is Tasmania?",
+          "options": [
+            "The Name of a Warner Brothers Cartoon Character",
+            "A Psychological Disorder",
+            "An Australian State",
+            "A flavor of Ben and Jerry's ice-cream"
+          ],
+          "correctAnswer": "An Australian State",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: An Australian State",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909381-35",
+          "question": "What did the Spanish autonomous community of Catalonia ban in 2010, that took effect in 2012?",
+          "options": [
+            "Bullfighting",
+            "Fiestas",
+            "Flamenco",
+            "Mariachi"
+          ],
+          "correctAnswer": "Bullfighting",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Bullfighting",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909380-25",
+          "question": "In \"Shrek\", what comedic actor voices Donkey?",
+          "options": [
+            "Richard Pryor",
+            "Bernie Mac",
+            "Chris Rock",
+            "Eddie Murphy"
+          ],
+          "correctAnswer": "Eddie Murphy",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Eddie Murphy",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909390-275",
+          "question": "An Ankh is the Egyptian Hieroglyph for what?",
+          "options": [
+            "Hatred",
+            "Life",
+            "Love",
+            "Poison"
+          ],
+          "correctAnswer": "Life",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Life",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909386-150",
+          "question": "The United States Army Air Corps became the United States Air Force on what date?",
+          "options": [
+            "November 08, 1944",
+            "October 27, 1945",
+            "December 14, 1946",
+            "September 18, 1947"
+          ],
+          "correctAnswer": "September 18, 1947",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: September 18, 1947",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        },
+        {
+          "id": "api-tdb-1775583909387-195",
+          "question": "Which of the following Physicists aided Nazi Germany in their production of a nuclear weapon?",
+          "options": [
+            "Albert Einstein",
+            "Max Planck",
+            "John von Neumann",
+            "Werner Heisenberg"
+          ],
+          "correctAnswer": "Werner Heisenberg",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Werner Heisenberg",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2025
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 50,
+      "sections": [
+        {
+          "id": "a32116e2-ac0b-4e8b-a55a-49dc9b421ce7",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": []
+        },
+        {
+          "id": "b2beaa2f-8c7c-4069-a347-4d9c179157af",
+          "name": "General Awareness",
+          "questionIds": [
+            "api-tdb-1775583909387-185",
+            "api-tdb-1775583909390-260",
+            "api-tdb-1775583909379-0",
+            "api-tdb-1775583909390-270",
+            "api-tdb-1775583909379-5",
+            "api-tdb-1775583909391-290",
+            "api-tdb-1775583909390-255",
+            "api-tdb-1775583909380-15",
+            "api-tdb-1775583909380-10",
+            "api-tdb-1775583909387-190",
+            "api-tdb-1775583909387-180",
+            "api-tdb-1775583909380-20",
+            "api-tdb-1775583909386-155",
+            "api-tdb-1775583909390-250",
+            "api-tdb-1775583909391-295",
+            "api-tdb-1775583909386-160",
+            "api-tdb-1775583909386-165",
+            "api-tdb-1775583909386-170",
+            "api-tdb-1775583909381-45",
+            "api-tdb-1775583909381-40",
+            "api-tdb-1775583909381-35",
+            "api-tdb-1775583909380-25",
+            "api-tdb-1775583909390-275",
+            "api-tdb-1775583909386-150",
+            "api-tdb-1775583909387-195"
+          ]
+        },
+        {
+          "id": "757bb1f3-3162-4c77-8f3d-31b303fdbb13",
+          "name": "Quantitative Aptitude",
+          "questionIds": []
+        },
+        {
+          "id": "c2ad1c37-d447-441e-b745-fe14287b2fe7",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-04-08T11:55:30.546Z"
+    },
+    "2b111f17-e775-4d17-b349-a6dfcf68efe7": {
+      "id": "2b111f17-e775-4d17-b349-a6dfcf68efe7",
+      "title": "SSC CGL Tier-II (Mains) - 2026 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-II (Mains) pattern.",
+      "questions": [],
+      "duration": 120,
+      "totalMarks": 0,
+      "sections": [
+        {
+          "id": "d03bb2a3-c7af-4d9f-ab63-fb8b1149a381",
+          "name": "Mathematical Abilities",
+          "questionIds": []
+        },
+        {
+          "id": "e37d0862-126a-4546-adc4-78245b46d6d4",
+          "name": "Reasoning and General Intelligence",
+          "questionIds": []
+        },
+        {
+          "id": "986dabac-bf13-4227-a565-36d9c46eb18c",
+          "name": "English Language and Comprehension",
+          "questionIds": []
+        },
+        {
+          "id": "3109a361-fc79-49e5-93dd-31dccc5fdfaa",
+          "name": "General Awareness",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-04-08T11:56:44.765Z"
+    },
+    "a272c189-70e1-4eff-85c2-e3e71be8ff42": {
+      "id": "a272c189-70e1-4eff-85c2-e3e71be8ff42",
+      "title": "SSC CGL Tier-I (Pre) - 2024 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "id": "api-tdb-1775583909381-36",
+          "question": "Who invented the first ever chocolate bar, in 1847?",
+          "options": [
+            "John Tyler",
+            "John Cadbury",
+            "Andrew Johnson",
+            "Joseph Fry"
+          ],
+          "correctAnswer": "Joseph Fry",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Joseph Fry",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909387-191",
+          "question": "Who invented the \"Flying Shuttle\" in 1738; one of the key developments in the industrialization of weaving?",
+          "options": [
+            "John Kay",
+            "James Hargreaves",
+            "Richard Arkwright",
+            "John Deere"
+          ],
+          "correctAnswer": "John Kay",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: John Kay",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909391-291",
+          "question": "How many heads does Cerberus have?",
+          "options": [
+            "5",
+            "2",
+            "1",
+            "3"
+          ],
+          "correctAnswer": "3",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: 3",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909391-281",
+          "question": "Hel was the daughter of which Norse Mythological figure?",
+          "options": [
+            "Loki",
+            "Thor",
+            "Balder",
+            "Odin"
+          ],
+          "correctAnswer": "Loki",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Loki",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909380-21",
+          "question": "Which company did Valve cooperate with in the creation of the Vive?",
+          "options": [
+            "Razer",
+            "Google",
+            "Oculus",
+            "HTC"
+          ],
+          "correctAnswer": "HTC",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: HTC",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909386-156",
+          "question": "In which year was Nelson Mandela released from prison",
+          "options": [
+            "1990",
+            "1992",
+            "1994",
+            "1980"
+          ],
+          "correctAnswer": "1990",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 1990",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909387-181",
+          "question": "Which of the following Soviet revolutionaries was exiled from the USSR and later assassinated in 1940 for criticizing Stalinism?",
+          "options": [
+            "Leon Trotsky",
+            "Lev Kamenev",
+            "Mikhail Kalinin",
+            "Vladimir Lenin"
+          ],
+          "correctAnswer": "Leon Trotsky",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Leon Trotsky",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909387-186",
+          "question": "In what year did the North American Video Game Crash occur?",
+          "options": [
+            "1983",
+            "1982",
+            "1993",
+            "1970"
+          ],
+          "correctAnswer": "1983",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 1983",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909380-31",
+          "question": "Which of these Indian languages is not part of the Indo-European language family?",
+          "options": [
+            "Punjabi",
+            "Tamil",
+            "Hindi",
+            "Urdu"
+          ],
+          "correctAnswer": "Tamil",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Tamil",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909379-1",
+          "question": "What was Bank of America originally established as?",
+          "options": [
+            "Bank of Italy",
+            "Bank of Long Island",
+            "Bank of Pennsylvania",
+            "Bank of Charlotte"
+          ],
+          "correctAnswer": "Bank of Italy",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Bank of Italy",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909381-46",
+          "question": "The Canadian $1 coin is colloquially known as a what?",
+          "options": [
+            "Loonie",
+            "Moodie",
+            "Boolie",
+            "Foolie"
+          ],
+          "correctAnswer": "Loonie",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Loonie",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909390-266",
+          "question": "In Norse mythology, what is the name of the serpent which eats the roots of the ash tree Yggdrasil?",
+          "options": [
+            "Bragi",
+            "Ymir",
+            "Nidhogg",
+            "Odin"
+          ],
+          "correctAnswer": "Nidhogg",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Nidhogg",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909390-271",
+          "question": "Who was the only god from Greece who did not get a name change in Rome?",
+          "options": [
+            "Athena",
+            "Demeter",
+            "Zeus",
+            "Apollo"
+          ],
+          "correctAnswer": "Apollo",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Apollo",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909390-251",
+          "question": "In most traditions, who was the wife of Zeus?",
+          "options": [
+            "Hera",
+            "Aphrodite",
+            "Athena",
+            "Hestia"
+          ],
+          "correctAnswer": "Hera",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Hera",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909380-26",
+          "question": "What does the \"G\" mean in \"G-Man\"?",
+          "options": [
+            "Government",
+            "Going",
+            "Ghost",
+            "Geronimo"
+          ],
+          "correctAnswer": "Government",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Government",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909380-16",
+          "question": "Where in La Coru&ntilde;a (Spain) is the headquarters of \"Inditex\", the biggest fashion group in the world?",
+          "options": [
+            "Órdenes",
+            "Sanjenjo",
+            "Arteijo",
+            "Mug&iacute;a"
+          ],
+          "correctAnswer": "Arteijo",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Arteijo",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909386-166",
+          "question": "Which one of these tanks was designed and operated by the United Kingdom?",
+          "options": [
+            "T-34",
+            "Tiger H1",
+            "Tog II",
+            "M4 Sherman"
+          ],
+          "correctAnswer": "Tog II",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Tog II",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909391-296",
+          "question": "The ancient Roman god of war was commonly known as which of the following?",
+          "options": [
+            "Juno",
+            "Ares",
+            "Jupiter",
+            "Mars"
+          ],
+          "correctAnswer": "Mars",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Mars",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909387-196",
+          "question": "When did Vesuvius destroy the city of Pompeii? ",
+          "options": [
+            "31 BC",
+            "54 BC",
+            "79 AD",
+            "62 AD"
+          ],
+          "correctAnswer": "79 AD",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 79 AD",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909390-276",
+          "question": "The Nike apparel and footwear brand takes it's name from the Greek goddess of what?",
+          "options": [
+            "Victory",
+            "Courage",
+            "Strength",
+            "Honor"
+          ],
+          "correctAnswer": "Victory",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Victory",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909390-261",
+          "question": "What is the name of the first human being in Norse mythology?",
+          "options": [
+            "Asger",
+            "Asmund",
+            "Ask",
+            "Ake"
+          ],
+          "correctAnswer": "Ask",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Ask",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909387-171",
+          "question": "Which of these theoretical phycisists first predicted the existence of antimatter?",
+          "options": [
+            "Albert Einstein",
+            "Werner Heisenberg",
+            "Niels Bohr",
+            "Paul Dirac"
+          ],
+          "correctAnswer": "Paul Dirac",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Paul Dirac",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909380-6",
+          "question": "What style of beer will typically have a higher than average hop content?",
+          "options": [
+            "India Pale Ale",
+            "Stout",
+            "Extra Special Bitter",
+            "Scotch Ale"
+          ],
+          "correctAnswer": "India Pale Ale",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: India Pale Ale",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909390-256",
+          "question": "According to Japanese folklore, what is the favorite food of the Kappa.",
+          "options": [
+            "Soba",
+            "Kabocha",
+            "Cucumbers",
+            "Nasu"
+          ],
+          "correctAnswer": "Cucumbers",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Cucumbers",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        },
+        {
+          "id": "api-tdb-1775583909391-286",
+          "question": "What weakpoint of Achilles was expoited by the Trojan prince, Paris?",
+          "options": [
+            "Calf",
+            "Back",
+            "Neck",
+            "Heel"
+          ],
+          "correctAnswer": "Heel",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Heel",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2024
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 50,
+      "sections": [
+        {
+          "id": "1c9c8d27-7130-420e-997c-bf1faf1ea3b6",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": []
+        },
+        {
+          "id": "f5d96410-5f27-4335-b114-f21c734d1683",
+          "name": "General Awareness",
+          "questionIds": [
+            "api-tdb-1775583909381-36",
+            "api-tdb-1775583909387-191",
+            "api-tdb-1775583909391-291",
+            "api-tdb-1775583909391-281",
+            "api-tdb-1775583909380-21",
+            "api-tdb-1775583909386-156",
+            "api-tdb-1775583909387-181",
+            "api-tdb-1775583909387-186",
+            "api-tdb-1775583909380-31",
+            "api-tdb-1775583909379-1",
+            "api-tdb-1775583909381-46",
+            "api-tdb-1775583909390-266",
+            "api-tdb-1775583909390-271",
+            "api-tdb-1775583909390-251",
+            "api-tdb-1775583909380-26",
+            "api-tdb-1775583909380-16",
+            "api-tdb-1775583909386-166",
+            "api-tdb-1775583909391-296",
+            "api-tdb-1775583909387-196",
+            "api-tdb-1775583909390-276",
+            "api-tdb-1775583909390-261",
+            "api-tdb-1775583909387-171",
+            "api-tdb-1775583909380-6",
+            "api-tdb-1775583909390-256",
+            "api-tdb-1775583909391-286"
+          ]
+        },
+        {
+          "id": "f85fea12-f9e8-4a5d-a315-c46e5d5d2c48",
+          "name": "Quantitative Aptitude",
+          "questionIds": []
+        },
+        {
+          "id": "5db1f835-b00b-4212-84d6-14af83bd6c28",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-04-08T12:01:09.751Z"
+    },
+    "a8abd554-a737-4c0f-9a32-c6d153f08914": {
+      "id": "a8abd554-a737-4c0f-9a32-c6d153f08914",
+      "title": "SSC CGL Tier-I (Pre) - 2021 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "id": "api-tdb-1775583909381-34",
+          "question": "The new One World Trade Center in Manhattan, New York City was designed by which architect? ",
+          "options": [
+            "Fumihiko Maki",
+            "Michael Arad",
+            "Bjarke Ingels",
+            "David Childs"
+          ],
+          "correctAnswer": "David Childs",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: David Childs",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909387-179",
+          "question": "Who was Hannibal?",
+          "options": [
+            "Greek philosopher",
+            "British serial killer",
+            "Carthaginian general",
+            "French explorer"
+          ],
+          "correctAnswer": "Carthaginian general",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Carthaginian general",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909387-184",
+          "question": "When did the French Revolution begin?",
+          "options": [
+            "1789",
+            "1799",
+            "1823",
+            "1756"
+          ],
+          "correctAnswer": "1789",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 1789",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909391-294",
+          "question": "Who is the Egyptian god of reproduction and lettuce?",
+          "options": [
+            "Meret",
+            "Mut",
+            "Menu",
+            "Min"
+          ],
+          "correctAnswer": "Min",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Min",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909387-189",
+          "question": "What were the first states to break away from Yugoslavia?",
+          "options": [
+            "Slovenia, Macedonia",
+            "Slovenia, Croatia",
+            "Macedonia, Montenegro",
+            "Montenegro, Slovenia"
+          ],
+          "correctAnswer": "Slovenia, Croatia",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Slovenia, Croatia",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909387-194",
+          "question": "What year did World War II end?",
+          "options": [
+            "1945",
+            "1950",
+            "1943",
+            "1947"
+          ],
+          "correctAnswer": "1945",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: 1945",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909380-14",
+          "question": "What is the Swedish word for \"window\"?",
+          "options": [
+            "Ruta",
+            "F&ouml;nster",
+            "H&aring;l",
+            "Sk&auml;rm"
+          ],
+          "correctAnswer": "F&ouml;nster",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: F&ouml;nster",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909390-264",
+          "question": "Which Norse God has a horse named Sleipnir?",
+          "options": [
+            "Odin",
+            "Thor",
+            "Frigg",
+            "Balder"
+          ],
+          "correctAnswer": "Odin",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Odin",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909390-259",
+          "question": "Who is the God Loki's son? ",
+          "options": [
+            "Odin",
+            "Hel",
+            "Fenrir ",
+            "Sigyn"
+          ],
+          "correctAnswer": "Fenrir ",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Fenrir ",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909390-279",
+          "question": "Nidhogg is a mythical creature from what mythology?",
+          "options": [
+            "Greek",
+            "Egyptian",
+            "Hindu",
+            "Norse"
+          ],
+          "correctAnswer": "Norse",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Norse",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909379-4",
+          "question": "Which logical fallacy means to attack the character of your opponent rather than their arguments?",
+          "options": [
+            "Post hoc ergo propter hoc",
+            "Argumentum ad populum",
+            "Ad hominem",
+            "Tu quoque"
+          ],
+          "correctAnswer": "Ad hominem",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Ad hominem",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909380-29",
+          "question": "What was the nickname given to the Hughes H-4 Hercules, a heavy transport flying boat which achieved flight in 1947?",
+          "options": [
+            "Spruce Goose",
+            "Trojan Horse",
+            "Noah's Ark",
+            "Fat Man"
+          ],
+          "correctAnswer": "Spruce Goose",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Spruce Goose",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909390-269",
+          "question": "What is the name of the Greek god of blacksmiths?",
+          "options": [
+            "Artagatus",
+            "Vulcan",
+            "Dyntos",
+            "Hephaestus"
+          ],
+          "correctAnswer": "Hephaestus",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Hephaestus",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909380-24",
+          "question": "A statue of Charles Darwin sits in what London museum?",
+          "options": [
+            "British Museum",
+            "Tate",
+            "Science Museum",
+            "Natural History Museum"
+          ],
+          "correctAnswer": "Natural History Museum",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Natural History Museum",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909390-274",
+          "question": "What immense structure is referred to in Norse Mythology as the Yggdrasil.",
+          "options": [
+            "Temple",
+            "Castle",
+            "Mountain",
+            "Tree"
+          ],
+          "correctAnswer": "Tree",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Tree",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909386-169",
+          "question": "On which day did the attempted coup d'etat of 1991 in the Soviet Union begin?",
+          "options": [
+            "August 19",
+            "August 21",
+            "December 26",
+            "December 24"
+          ],
+          "correctAnswer": "August 19",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: August 19",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909387-199",
+          "question": "What is the bloodiest event in United States history, in terms of casualties?",
+          "options": [
+            "Battle of Antietam",
+            "Pearl Harbor",
+            "September 11th",
+            "D-Day"
+          ],
+          "correctAnswer": "Battle of Antietam",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Battle of Antietam",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909391-284",
+          "question": "Who was the King of Gods in Ancient Greek mythology?",
+          "options": [
+            "Zeus",
+            "Apollo",
+            "Hermes",
+            "Poseidon"
+          ],
+          "correctAnswer": "Zeus",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Zeus",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909380-9",
+          "question": "What is the largest organ of the human body?",
+          "options": [
+            "Skin",
+            "Heart",
+            "large Intestine",
+            "Liver"
+          ],
+          "correctAnswer": "Skin",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Skin",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909380-19",
+          "question": "How many notes are there on a standard grand piano?",
+          "options": [
+            "78",
+            "98",
+            "88",
+            "108"
+          ],
+          "correctAnswer": "88",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: 88",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909386-159",
+          "question": "What is the name of the famous Apache leader who died in 1909 at the age of 70?",
+          "options": [
+            "Crazy Horse",
+            "Red Cloud",
+            "Sitting Bull",
+            "Geronimo"
+          ],
+          "correctAnswer": "Geronimo",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Geronimo",
+          "difficulty": "medium",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909381-49",
+          "question": "Which of these anatomical terms refers to the tail end of the creature?",
+          "options": [
+            "Caudal",
+            "Ventral",
+            "Proximal",
+            "Coronal"
+          ],
+          "correctAnswer": "Caudal",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Caudal",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909381-44",
+          "question": "According to Sherlock Holmes, \"If you eliminate the impossible, whatever remains, however improbable, must be the...\"",
+          "options": [
+            "Cause",
+            "Truth",
+            "Answer",
+            "Source"
+          ],
+          "correctAnswer": "Truth",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Truth",
+          "difficulty": "easy",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909391-289",
+          "question": "Who did Hippomenes defeat in a footrace?",
+          "options": [
+            "Peleus",
+            "Atalanta",
+            "Theseus",
+            "Jason"
+          ],
+          "correctAnswer": "Atalanta",
+          "topic": "General Awareness",
+          "explanation": "Correct Answer is: Atalanta",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        },
+        {
+          "id": "api-tdb-1775583909386-154",
+          "question": "The ancient city of Chich&eacute;n Itz&aacute; was built by which civilization?",
+          "options": [
+            "Incas",
+            "Toltecs",
+            "Mayans",
+            "Aztecs"
+          ],
+          "correctAnswer": "Mayans",
+          "topic": "History & Polity",
+          "explanation": "Correct Answer is: Mayans",
+          "difficulty": "hard",
+          "type": "mcq",
+          "sourceType": "official",
+          "examName": "SSC CGL",
+          "year": 2021
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 50,
+      "sections": [
+        {
+          "id": "c7bc0094-5ad8-463d-bda5-c55b0e0be682",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": []
+        },
+        {
+          "id": "e17dc450-30e2-4808-aa04-8071ca35f54c",
+          "name": "General Awareness",
+          "questionIds": [
+            "api-tdb-1775583909381-34",
+            "api-tdb-1775583909387-179",
+            "api-tdb-1775583909387-184",
+            "api-tdb-1775583909391-294",
+            "api-tdb-1775583909387-189",
+            "api-tdb-1775583909387-194",
+            "api-tdb-1775583909380-14",
+            "api-tdb-1775583909390-264",
+            "api-tdb-1775583909390-259",
+            "api-tdb-1775583909390-279",
+            "api-tdb-1775583909379-4",
+            "api-tdb-1775583909380-29",
+            "api-tdb-1775583909390-269",
+            "api-tdb-1775583909380-24",
+            "api-tdb-1775583909390-274",
+            "api-tdb-1775583909386-169",
+            "api-tdb-1775583909387-199",
+            "api-tdb-1775583909391-284",
+            "api-tdb-1775583909380-9",
+            "api-tdb-1775583909380-19",
+            "api-tdb-1775583909386-159",
+            "api-tdb-1775583909381-49",
+            "api-tdb-1775583909381-44",
+            "api-tdb-1775583909391-289",
+            "api-tdb-1775583909386-154"
+          ]
+        },
+        {
+          "id": "eca62d75-92b6-4d8a-80ef-6318fc9d7f59",
+          "name": "Quantitative Aptitude",
+          "questionIds": []
+        },
+        {
+          "id": "974561a3-4b09-4fc0-81b1-44bfa6031366",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-04-08T12:37:29.555Z"
+    },
+    "22c7ba7c-998e-4953-9415-2d1e72f8c3de": {
+      "id": "22c7ba7c-998e-4953-9415-2d1e72f8c3de",
+      "title": "Mixed Mock Test - 9 Apr 2026",
+      "description": "Test with 19 questions",
+      "questions": [
+        {
+          "id": "0cca0762-1d25-424a-832d-e5a868f1423c",
+          "type": "short-answer",
+          "question": "Explain the following: and hopelessness is love....",
+          "correctAnswer": "and hopelessness is love.",
+          "explanation": "and hopelessness is love.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "165fc421-5336-4848-8203-389d899f39bb",
+          "type": "short-answer",
+          "question": "Explain the following: The poverty in the West...",
+          "correctAnswer": "The poverty in the West is a different kind of poverty – it is not only a poverty of (3)________ but also of (4)________.",
+          "explanation": "The poverty in the West is a different kind of poverty – it is not only a poverty of (3)________ but also of (4)________.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "b9f66c6d-ba79-4c3e-be75-cbda427e1aec",
+          "type": "short-answer",
+          "question": "Explain the following: Given below is a statement...",
+          "correctAnswer": "Given below is a statement (Cause) followed by possible effects numbered I, II and III.",
+          "explanation": "Given below is a statement (Cause) followed by possible effects numbered I, II and III.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "c1012014-4a00-487c-992d-efe5cb1187b8",
+          "type": "short-answer",
+          "question": "Explain the following: suming that the information given...",
+          "correctAnswer": "suming that the information given in the statements is true, even if it appears to be at variance with commonly known facts, decide which of the given conclusion(s) logically follow(s) from the statements.",
+          "explanation": "suming that the information given in the statements is true, even if it appears to be at variance with commonly known facts, decide which of the given conclusion(s) logically follow(s) from the statements.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "93fff319-dc93-4ad3-a4c1-4cdabcaf3f82",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Related to B in a certain pattern.",
+          "correctAnswer": "Figure A",
+          "explanation": "The answer is \"Figure A\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "6e200211-5295-42bc-9bf7-5561b8c9772d",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Some backward areas in Andhra Pradesh.",
+          "correctAnswer": "There",
+          "explanation": "The answer is \"There\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "0f4ef58e-0eea-41ff-a8ee-35081b83e879",
+          "type": "short-answer",
+          "question": "Explain the following: This is the ___________ book...",
+          "correctAnswer": "This is the ___________ book that I have read till now.",
+          "explanation": "This is the ___________ book that I have read till now.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "5908f9df-5c5a-4da3-9001-c923ca6081a2",
+          "type": "short-answer",
+          "question": "Explain the following: Violet and blue coloured houses...",
+          "correctAnswer": "Violet and blue coloured houses are immediate neighbouring houses of green and yellow coloured houses, respectively.",
+          "explanation": "Violet and blue coloured houses are immediate neighbouring houses of green and yellow coloured houses, respectively.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "3d946cb8-b467-4891-bad4-87d3e2d49cbb",
+          "type": "mcq",
+          "question": "What is Engaging in regular physical activity?",
+          "options": [
+            "Sufficient to answer the question.",
+            "3 : 2, and the perimeter of the park is 120 m.",
+            "Not only beneficial for physical well-being but also has a profound impact on mental health.",
+            "Sufficient to answer the question."
+          ],
+          "correctAnswer": "Not only beneficial for physical well-being but also has a profound impact on mental health.",
+          "explanation": "Engaging in regular physical activity: Not only beneficial for physical well-being but also has a profound impact on mental health.",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "0a55e509-bf3f-4a7c-9ac8-23d6a63a538b",
+          "type": "true-false",
+          "question": "True or False: together refers to sufficient to answer the question, whereas data in statement (I) alone is not.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "correctAnswer": "False",
+          "explanation": "This is FALSE. together is actually: Sufficient to answer the question.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "30f8447d-2720-4ee7-b7ca-a39755f076fa",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Sufficient to answer the question.",
+          "correctAnswer": "together",
+          "explanation": "The answer is \"together\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "a9fd3798-8e0f-41b5-89c0-5746ec2caa9b",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Not necessary for desktop and laptop operating systems.",
+          "correctAnswer": "Memory management",
+          "explanation": "The answer is \"Memory management\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "ddb3848f-2ea6-4f6b-a5b3-df576b4aeef5",
+          "type": "mcq",
+          "question": "What is Given below?",
+          "options": [
+            "3 : 2, and the perimeter of the park is 120 m.",
+            "A statement (Cause) followed by possible effects numbered I, II and III.",
+            "Sufficient to answer the question.",
+            "Sufficient to answer the question."
+          ],
+          "correctAnswer": "A statement (Cause) followed by possible effects numbered I, II and III.",
+          "explanation": "Given below: A statement (Cause) followed by possible effects numbered I, II and III.",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "f87cb884-5924-459f-baa8-660a9cc0b0e8",
+          "type": "mcq",
+          "question": "What is Three of the following four pairs?",
+          "options": [
+            "3 : 2, and the perimeter of the park is 120 m.",
+            "Sufficient to answer the question.",
+            "Sufficient to answer the question.",
+            "Alike in a certain way and thus form a group."
+          ],
+          "correctAnswer": "Alike in a certain way and thus form a group.",
+          "explanation": "Three of the following four pairs: Alike in a certain way and thus form a group.",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "2605bf2f-2642-401b-9f41-204de9806c0d",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Sufficient to answer the question while data in Statement II is not 3.",
+          "correctAnswer": "Data in Statement I alone",
+          "explanation": "The answer is \"Data in Statement I alone\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "96a04706-51b6-4941-9e4a-1d2d8829d5d8",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Digital Integration for Government Transactions.",
+          "correctAnswer": "DIGIT",
+          "explanation": "The answer is \"DIGIT\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "af885657-637f-4506-9235-35f513d2c9b5",
+          "type": "short-answer",
+          "question": "Explain the following: P x Q means ‘P...",
+          "correctAnswer": "P x Q means ‘P is the wife of Q’ and P ÷ Q means ‘P is the father of Q’.",
+          "explanation": "P x Q means ‘P is the wife of Q’ and P ÷ Q means ‘P is the father of Q’.",
+          "difficulty": "medium",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "d45b7180-d425-483b-b2a6-b916f58de20c",
+          "type": "fill-blank",
+          "question": "_______ is defined as: Crucial for maintaining soil quality, has decreased by 84% in the region.",
+          "correctAnswer": "which",
+          "explanation": "The answer is \"which\".",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        },
+        {
+          "id": "0242affd-a294-4c42-9cd2-b47376607b36",
+          "type": "mcq",
+          "question": "What is Four of the following five figures?",
+          "options": [
+            "Sufficient to answer the question.",
+            "Sufficient to answer the question.",
+            "Alike in a certain way and thus form a group.",
+            "3 : 2, and the perimeter of the park is 120 m."
+          ],
+          "correctAnswer": "Alike in a certain way and thus form a group.",
+          "explanation": "Four of the following five figures: Alike in a certain way and thus form a group.",
+          "difficulty": "easy",
+          "topic": "Q.1 Ans   1. 1320  2. 1310 3. 1330  4. 1300 Question ID    630680533606  Option 1 ID    630680208589",
+          "source": "20-Jan-Paper-I- 2025.pdf",
+          "sourceType": "uploaded"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 19,
+      "createdAt": "2026-04-09T09:32:13.033Z"
     }
   },
   "testResults": {
@@ -2874,9 +4974,9 @@
   },
   "importedQuestions": [],
   "practiceStats": {
-    "totalAttempted": 58,
-    "correct": 32,
-    "incorrect": 26,
+    "totalAttempted": 65,
+    "correct": 35,
+    "incorrect": 30,
     "topicWiseScore": [
       {
         "topic": "Polity",
@@ -2970,9 +5070,9 @@
       },
       {
         "topic": "General Awareness",
-        "correct": 3,
-        "total": 7,
-        "percentage": 43
+        "correct": 5,
+        "total": 13,
+        "percentage": 38
       },
       {
         "topic": "Agriculture",
@@ -3066,6 +5166,12 @@
       },
       {
         "topic": "Current Affairs",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Uttarakhand GK - Administration",
         "correct": 1,
         "total": 1,
         "percentage": 100
@@ -3303,15 +5409,47 @@
       "ssc-cgl-1108": {
         "userAnswer": "Helium",
         "isCorrect": true
+      },
+      "ukpsc-2024-005": {
+        "userAnswer": "13",
+        "isCorrect": true
+      },
+      "ssc-cgl-t1-gs-1775657680295-202500": {
+        "userAnswer": "Article 76",
+        "isCorrect": false
+      },
+      "ssc-cgl-t1-gs-1775657680295-202501": {
+        "userAnswer": "Robert Clive",
+        "isCorrect": false
+      },
+      "ssc-cgl-t1-gs-1775657680295-202502": {
+        "userAnswer": "Non-Cooperation Movement",
+        "isCorrect": true
+      },
+      "ssc-cgl-t1-gs-1775657680295-202503": {
+        "userAnswer": "Cauvery",
+        "isCorrect": false
+      },
+      "ssc-cgl-t1-gs-1775657680295-202504": {
+        "userAnswer": "44th Amendment",
+        "isCorrect": false
+      },
+      "ssc-cgl-t1-gs-1775657680295-202505": {
+        "userAnswer": "Article 72",
+        "isCorrect": true
       }
     },
     "dailyStats": {
       "2026-04-07": 29,
       "2026-04-08": {
-        "total": 27,
-        "correct": 13
+        "total": 28,
+        "correct": 14
+      },
+      "2026-04-09": {
+        "total": 6,
+        "correct": 2
       }
     },
-    "lastUpdated": "2026-04-07T20:33:47.334Z"
+    "lastUpdated": "2026-04-09T08:29:10.297Z"
   }
 }

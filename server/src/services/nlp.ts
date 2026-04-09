@@ -53,17 +53,44 @@ function extractExistingQuestions(text: string): ExtractedQuestion[] {
         .replace(/\\+\./g, '.')
         .replace(/\\+-/g, '-');
 
-    // PDF extraction often uses double spaces instead of newlines - convert them
-    // Also handle cases where options and answers are on same line
+    // Normalize spacing and insert helpful newlines. PDFs often place items
+    // on the same line (e.g. "Ans 1. 1320 2. 1310 3. 1330 4. 1300 Q.2 ...").
     cleanText = cleanText
-        .replace(/\s{2,}/g, '\n')  // Convert 2+ spaces to newline
-        .replace(/(Options:)/gi, '\n$1\n')  // Put Options: on its own line
-        .replace(/(Correct Answer:)/gi, '\n$1')  // Put Correct Answer: on its own line
-        .replace(/(\([a-d]\))/gi, '\n$1');  // Put each option on its own line
+        // Convert sequences of 3+ spaces to a newline (PDF extracting sometimes
+        // uses multiple spaces as separators)
+        .replace(/\s{3,}/g, '\n')
+        // Ensure question headers start on their own line
+        .replace(/\b(Q\.\d+|Q\d+)\b/gi, '\n$1')
+        // Ensure Answer/Ans/Chosen Option and Question ID markers are on their own lines
+        .replace(/(Options:)/gi, '\n$1\n')
+        .replace(/(Correct Answer:)/gi, '\n$1\n')
+        .replace(/(Chosen Option\s*:)/gi, '\n$1\n')
+        .replace(/(Question ID\s*:)/gi, '\n$1\n')
+        .replace(/(Option \d ID\s*:)/gi, '\n$1\n')
+        // Put parenthetical options like (a) on their own lines
+        .replace(/(\([a-dA-D0-9]+\))/g, '\n$1')
+    // Ensure a space after option digit-dot sequences like "1." when missing (avoid touching decimals like 5.6)
+    .replace(/([1-4])\.(?=\S)/g, '$1. ')
+        // Put isolated numbered options (e.g. "1.") onto new lines when preceded by a non-newline
+        .replace(/([^\n])([1-4]\.\s)/g, '$1\n$2')
+        // Handle common "Ans 1." inline marker - put markers on their own lines
+        .replace(/(Ans[:\s]*[1-4]\.?)/gi, '\n$1\n')
+        // Break long inline multi-option sequences into separate lines: "1. A 2. B 3. C 4. D"
+        // broaden lookahead to include various question boundaries like "Q.", "Question ID", "Question" or end of text
+    .replace(/1\.\s*(.+?)\s*2\.\s*(.+?)\s*3\.\s*(.+?)\s*4\.\s*(.+?)(?=(?:\s+Q\.|\s+Q\d+\b|\s+Question\b|\s+Question\s+ID|$))/gi, '1. $1\n2. $2\n3. $3\n4. $4')
+    // Also handle cases where numbering uses parentheses: "(1) A (2) B (3) C (4) D"
+    .replace(/\(1\)\s*(.+?)\s*\(2\)\s*(.+?)\s*\(3\)\s*(.+?)\s*\(4\)\s*(.+?)(?=(?:\s+Q\.|\s+Q\d+\b|\s+Question\b|\s+Question\s+ID|$))/gi, '1. $1\n2. $2\n3. $3\n4. $4')
+    // Looser splitting: force newline before 2., 3., 4. when they appear inline (helps many PDF extraction cases)
+    .replace(/\s+2\.\s+/g, '\n2. ')
+    .replace(/\s+3\.\s+/g, '\n3. ')
+    .replace(/\s+4\.\s+/g, '\n4. ')
+    // If options still remain inline after an "Ans" marker (e.g. "Ans 1. 1320 2. 1310 ..."), try a looser split
+    .replace(/Ans\s*(?:[:\-])?\s*(?:1\.|\(1\))\s*/gi, '\nAns ');
 
     // Debug: Log first 1000 chars and check for patterns
+    console.log('[NLP DEBUG] Text length:', cleanText.length);
     console.log('[NLP DEBUG] Text has ### headers:', cleanText.includes('###'));
-    console.log('[NLP DEBUG] Text has Q#: pattern:', /Q\d+:/i.test(cleanText));
+    console.log('[NLP DEBUG] Text has Q#: pattern:', /Q\.?\d+[\s.:]/i.test(cleanText));
     console.log('[NLP DEBUG] First 500 chars after cleanup:', cleanText.substring(0, 500));
 
     // Try splitting by ### headers (markdown format from DOCX)
@@ -73,7 +100,9 @@ function extractExistingQuestions(text: string): ExtractedQuestion[] {
         for (const section of sections) {
             if (!section.startsWith('###')) continue;
 
-            const lines = section.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            let lines = section.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            // Remove blocks that only contain option IDs or other metadata we don't want
+            lines = lines.filter(l => !/^Option\s+\d+\s+ID\s*:/i.test(l) && !/^Question\s*ID\s*:/i.test(l));
             if (lines.length < 3) continue;
 
             // Question is the first line after ###
@@ -86,6 +115,13 @@ function extractExistingQuestions(text: string): ExtractedQuestion[] {
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i];
                 if (/^options:?$/i.test(line)) continue;
+
+                // Handle lines like "Ans 1320" where answer text follows Ans without a letter marker
+                const ansOnlyMatchHeader = line.match(/^Ans[:\s]+(.+)$/i);
+                if (ansOnlyMatchHeader) {
+                    options.push(ansOnlyMatchHeader[1].trim());
+                    continue;
+                }
 
                 // Match options: (a), (b), etc
                 const optionMatch = line.match(/^\(?([a-d])\)?[\.)\s]+(.+)$/i);
@@ -111,56 +147,192 @@ function extractExistingQuestions(text: string): ExtractedQuestion[] {
         }
     }
 
-    // Try Q#: format (PDF style: Q1:, Q2:, etc.)
-    if (questions.length === 0 && /Q\d+:/i.test(cleanText)) {
-        const sections = cleanText.split(/(?=Q\d+:)/i);
+    // Try Q#: or Q.N or QN format (PDF style: Q1:, Q.1, Q1 etc.)
+    if (questions.length === 0 && /Q\.?\d+[\s.:]/i.test(cleanText)) {
+        const sections = cleanText.split(/(?=Q\.?\d+[\s.:])/i);
 
         for (const section of sections) {
-            if (!/^Q\d+:/i.test(section)) continue;
+            if (!/Q\.?\d+[\s.:]/i.test(section)) continue;
 
             const lines = section.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-            if (lines.length < 3) continue;
 
-            // Question text (first line, remove Q#: prefix)
-            let questionText = lines[0].replace(/^Q\d+:\s*/i, '').trim();
-            if (!questionText || questionText.length < 10) continue;
-
-            const options: string[] = [];
+            // Try to detect inline multi-option patterns that are on the same line as the question
+            // e.g. "... ? Ans 1. 56 hours 2. 55 hours 3. 48 hours 4. 47 hours ..."
+            // Looser match: match 1. ... 2. ... 3. ... 4. ... anywhere in section
+            const inlineMulti = section.match(/(?:Ans\s*)?1\.\s*(.+?)\s*2\.\s*(.+?)\s*3\.\s*(.+?)\s*4\.\s*(.+?)/i);
+            let questionText = '';
+            let options: string[] = [];
             let correctAnswer = '';
-            let foundAnswer = false;
+            let optionIndex = -1;
+            let foundMetadata = false;
 
-            for (let i = 1; i < lines.length && !foundAnswer; i++) {
-                const line = lines[i];
-                if (/^options:?$/i.test(line)) continue;
-
-                // Match: Correct Answer: (c) Speed - check this FIRST
-                const answerMatch = line.match(/^correct\s*answer:?\s*\(?([a-d])\)?\s*(.*)$/i);
-                if (answerMatch) {
-                    if (answerMatch[2] && answerMatch[2].trim().length > 0) {
-                        correctAnswer = answerMatch[2].trim();
-                    } else {
-                        const idx = answerMatch[1].toLowerCase().charCodeAt(0) - 97;
-                        if (options[idx]) correctAnswer = options[idx];
+            if (inlineMulti) {
+                // question is everything before the match
+                const qBefore = section.substring(0, inlineMulti.index || 0).replace(/^Q\.?\d+[\s.:]*/i, '').trim();
+                questionText = qBefore;
+                options = [inlineMulti[1].trim(), inlineMulti[2].trim(), inlineMulti[3].trim(), inlineMulti[4].trim()].map(o=>o.replace(/Question\s*ID.*$/i,'').trim());
+                // try to find chosen option or Answer within the section
+                const chosenMatch = section.match(/(?:Chosen Option|Correct Option|Correct Answer)\s*[:\s]*(\d+)/i);
+                if (chosenMatch) {
+                    const idx = parseInt(chosenMatch[1]) - 1;
+                    correctAnswer = options[idx] || '';
+                } else {
+                    const officialAnswerMatch = section.match(/\bAnswer\s*[:\s]*(\d+|[a-d])\b/i);
+                    if (officialAnswerMatch) {
+                        const val = officialAnswerMatch[1];
+                        if (val.match(/^[1-4]$/)) correctAnswer = options[parseInt(val) - 1] || '';
+                        else if (val.match(/^[a-d]$/i)) correctAnswer = options[val.toLowerCase().charCodeAt(0) - 97] || '';
                     }
-                    foundAnswer = true;
-                    break;  // Stop processing after finding answer
                 }
+            } else {
+                // If no inline multi-option and there are not enough lines, skip
+                if (lines.length < 2) continue;
 
-                // Match options: (a), (b), (c), (d) - only if we haven't found 4 yet
-                if (options.length < 4) {
-                    const optionMatch = line.match(/^\(?([a-d])\)?[\.)\s]+(.+)$/i);
+                // Fallback to line-wise scanning
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i];
+                    
+                    // Common option starts: 1. , (1) , a) , (a) , Ans 1.
+                    if (line.match(/^(?:Ans\s+)?(?:1\.\s+|\(1\)\s+|[a-d]\)\s+|\([a-d]\)\s+)/i)) {
+                        optionIndex = i;
+                        break;
+                    }
+                    
+                    // If the line contains multiple options like "1. A 2. B 3. C 4. D"
+                    if (line.match(/1\.\s+.+?2\.\s+.+?3\.\s+.+?4\.\s+.+/i)) {
+                        optionIndex = i;
+                        break;
+                    }
+
+                    // Add to question text if it's not the Q header itself or just "Ans"
+                    let cleanLine = line.replace(/^Q\.?\d+[\s.:]*/i, '').trim();
+                    // Skip if it is just "Ans" or weird formatting artifacts
+                    if (cleanLine.toLowerCase() === 'ans' || cleanLine === '.' || cleanLine === ':') continue;
+                    
+                    if (cleanLine.length > 0) {
+                        questionText += (questionText ? ' ' : '') + cleanLine;
+                    }
+                }
+            }
+
+            // Extract options
+            if (optionIndex !== -1) {
+                for (let i = optionIndex; i < lines.length; i++) {
+                    const line = lines[i];
+                    
+                    if (line.match(/Question ID|Option \d ID|Status|Chosen Option/i)) {
+                        foundMetadata = true;
+                    }
+
+                    // Check for multiple options on one line
+                    const multiOptionMatch = line.match(/(?:Ans\s+)?1\.\s+(.+?)\s+2\.\s+(.+?)\s+3\.\s+(.+?)\s+4\.\s+(.+)$/i);
+                    if (multiOptionMatch) {
+                        options = [multiOptionMatch[1], multiOptionMatch[2], multiOptionMatch[3], multiOptionMatch[4]];
+                        continue;
+                    }
+                    // Handle Ans-only like "Ans 1320" (option 1 text without explicit 1.)
+                    const ansOnlyMatch = line.match(/^Ans[:\s]+(.+)$/i);
+                    if (ansOnlyMatch) {
+                        options.push(ansOnlyMatch[1].trim());
+                        continue;
+                    }
+
+                    // Match individual option patterns
+                    const optionMatch = line.match(/^(?:Ans\s+)?(?:\(?([1-4]|[a-d])\)?[\.\)]\s+)(.+)$/i);
                     if (optionMatch) {
-                        const optionText = optionMatch[2].trim();
-                        // Don't add empty or very short options
-                        if (optionText.length >= 1 && !optionText.match(/^Correct Answer/i)) {
-                            options.push(optionText);
+                        const optText = optionMatch[2].trim();
+                        if (optText.length > 0) {
+                            options.push(optText);
+                        }
+                    } else if (options.length > 0 && options.length < 4 && !foundMetadata) {
+                        // Continuation of previous option
+                        options[options.length - 1] += ' ' + line;
+                    }
+
+                    // Look for correct answer indicators (Chosen Option is common in answer keys)
+                    const chosenMatch = line.match(/(?:Chosen Option|Correct Option|Correct Answer)\s*[:\s]*(\d+)/i);
+                    if (chosenMatch) {
+                        const idx = parseInt(chosenMatch[1]) - 1;
+                        if (options[idx]) {
+                            correctAnswer = options[idx];
+                        } else if (chosenMatch[1].match(/^[1-4]$/)) {
+                            // If options index not yet found, store index
+                            correctAnswer = `OPTION_INDEX_${chosenMatch[1]}`;
+                        }
+                    }
+                    
+                    // Also check for official Answer: X format
+                    const officialAnswerMatch = line.match(/^Answer\s*[:\s]*(\d+|[a-d])/i);
+                    if (officialAnswerMatch && !correctAnswer) {
+                        const val = officialAnswerMatch[1];
+                        if (val.match(/^[1-4]$/)) {
+                            correctAnswer = `OPTION_INDEX_${val}`;
+                        } else if (val.match(/^[a-d]$/i)) {
+                            const idx = val.toLowerCase().charCodeAt(0) - 97;
+                            correctAnswer = `OPTION_INDEX_${idx + 1}`;
                         }
                     }
                 }
             }
 
-            if (options.length >= 2 && questionText.length > 10) {
-                questions.push({ question: questionText, options: options.slice(0, 4), correctAnswer: correctAnswer || options[0], type: 'mcq' });
+            // Post-process correctAnswer if it was an index
+            if (correctAnswer && correctAnswer.startsWith('OPTION_INDEX_')) {
+                const idx = parseInt(correctAnswer.replace('OPTION_INDEX_', '')) - 1;
+                correctAnswer = options[idx] || '';
+            }
+
+            if (options.length >= 2 && questionText.length > 5) {
+                questions.push({ 
+                    question: questionText, 
+                    options: options.slice(0, 4), 
+                    correctAnswer: correctAnswer || options[0], 
+                    type: 'mcq' 
+                });
+            }
+            // Fallback: if we couldn't parse options but the section contains an 'Ans' inline
+            // and/or 'Question ID', try to extract options heuristically from the substring
+            if ((options.length < 2) && /\bAns\b/i.test(section)) {
+                try {
+                    const qBody = section.replace(/^Q\.?\d+[\s.:]*/i, '');
+                    const qidMatch = qBody.match(/Question\s*ID\s*[:\s]/i);
+                    const qidPos = qidMatch ? qBody.indexOf(qidMatch[0]) : -1;
+                    const beforeQid = qidPos >= 0 ? qBody.substring(0, qidPos) : qBody;
+
+                    const ansPos = beforeQid.search(/\bAns\b/i);
+                    let optsPart = '';
+                    if (ansPos >= 0) {
+                        optsPart = beforeQid.substring(ansPos + 3); // after 'Ans'
+                    } else {
+                        // try to find the first '1.' occurrence
+                        const oneMatch = beforeQid.match(/1\.\s*/);
+                        optsPart = oneMatch ? beforeQid.substring(oneMatch.index!) : '';
+                    }
+
+                    if (optsPart && optsPart.trim().length > 0) {
+                        // Split by occurrences of '2.' '3.' '4.' that often appear inline
+                        const parts = optsPart.split(/\s+(?=[1-4]\.\s+)/g).map(p => p.replace(/^[1-4]\.\s*/,'').trim()).filter(Boolean);
+                        if (parts.length >= 2) {
+                            options = parts.slice(0,4);
+                            // attempt to set question text if missing
+                            if (!questionText || questionText.length < 10) {
+                                const qTextCandidate = beforeQid.substring(0, Math.max(0, ansPos)).trim();
+                                questionText = (qTextCandidate || questionText || '').replace(/[:\s]+$/,'').trim();
+                            }
+                            // find chosen option index
+                            const chosenMatch = section.match(/Chosen Option\s*[:\s]*(\d+)/i) || section.match(/Answer\s*[:\s]*(\d+)/i);
+                            if (chosenMatch) {
+                                const idx = parseInt(chosenMatch[1]) - 1;
+                                correctAnswer = options[idx] || correctAnswer;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    // ignore fallback errors
+                }
+
+                if (options.length >= 2 && questionText.length > 5) {
+                    questions.push({ question: questionText, options: options.slice(0,4), correctAnswer: correctAnswer || options[0], type: 'mcq' });
+                }
             }
         }
     }
@@ -210,6 +382,13 @@ function parseQuestionBlock(block: string): ExtractedQuestion | null {
         const line = lines[i];
 
         // Match option pattern: (a), a), (a., a.
+        // Handle Ans-only like "Ans 1320"
+        const ansOnly = line.match(/^Ans[:\s]+(.+)$/i);
+        if (ansOnly) {
+            options.push(ansOnly[1].trim());
+            continue;
+        }
+
         const optionMatch = line.match(/^\s*\(?([a-d])\)?[.)\s]+(.+)$/i);
         if (optionMatch) {
             options.push(optionMatch[2].trim());

@@ -27,6 +27,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data.ssc_cgl).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'SSC CGL',
                         sourceType: 'official'
@@ -40,6 +41,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data.upsc).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UPSC',
                         sourceType: 'official'
@@ -53,6 +55,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data.ukpsc).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKPSC',
                         sourceType: 'official'
@@ -66,6 +69,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data.uksssc).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKSSSC',
                         sourceType: 'official'
@@ -79,6 +83,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data["ukpsc-pcs"]).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKPSC-PCS',
                         sourceType: 'official'
@@ -92,6 +97,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data["ukpsc-roaro"]).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKPSC-ROARO',
                         sourceType: 'official'
@@ -105,6 +111,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data["uksssc-vdo"]).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKSSSC-VDO',
                         sourceType: 'official'
@@ -118,6 +125,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data["uksssc-patwari"]).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKSSSC-Patwari',
                         sourceType: 'official'
@@ -131,6 +139,7 @@ function loadQuestionsFromDatabase(): Question[] {
             Object.entries(data["uksssc-forest"]).forEach(([year, yearQuestions]: [string, any]) => {
                 yearQuestions.forEach((q: any) => {
                     questions.push({
+                        type: 'mcq',
                         ...q,
                         examName: 'UKSSSC-Forest',
                         sourceType: 'official'
@@ -149,35 +158,39 @@ function loadQuestionsFromDatabase(): Question[] {
 
 // Initialize questions database — merge JSON db + persisted imports
 const _db = loadDB();
-let officialQuestions: Question[] = [
+let _officialQuestions: Question[] = [
     ...loadQuestionsFromDatabase(),
     ...(_db.importedQuestions || [])
 ];
 
+export function getOfficialQuestions() {
+    return _officialQuestions;
+}
+
 function persistImported() {
-    const imported = officialQuestions.filter(q => q.source === 'pdf-import' || q.source === 'imported');
+    const imported = _officialQuestions.filter(q => q.source === 'pdf-import' || q.source === 'imported');
     const existing = loadDB();
     saveDB({ ...existing, importedQuestions: imported });
 }
 
 // Available exam types
 const examTypes = [
-    { id: 'SSC CGL', name: 'SSC CGL', years: [2026, 2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'SSC CGL').length },
-    { id: 'UPSC', name: 'UPSC Civil Services', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UPSC').length },
-    { id: 'UKPSC', name: 'UKPSC (Uttarakhand PCS)', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKPSC').length },
-    { id: 'UKPSC-PCS', name: 'UKPSC PCS Prelims/Mains', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKPSC-PCS').length },
-    { id: 'UKPSC-ROARO', name: 'UKPSC RO/ARO', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKPSC-ROARO').length },
-    { id: 'UKSSSC', name: 'UKSSSC (Uttarakhand SSC)', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKSSSC').length },
-    { id: 'UKSSSC-VDO', name: 'UKSSSC VDO/Gram Vikas', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKSSSC-VDO').length },
-    { id: 'UKSSSC-Patwari', name: 'UKSSSC Patwari/Lekhpal', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKSSSC-Patwari').length },
-    { id: 'UKSSSC-Forest', name: 'UKSSSC Forest Guard', years: [2025, 2024, 2023, 2022], questionCount: officialQuestions.filter(q => q.examName === 'UKSSSC-Forest').length }
+    { id: 'SSC CGL', name: 'SSC CGL', years: [2026, 2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'SSC CGL').length },
+    { id: 'UPSC', name: 'UPSC Civil Services', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UPSC').length },
+    { id: 'UKPSC', name: 'UKPSC (Uttarakhand PCS)', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKPSC').length },
+    { id: 'UKPSC-PCS', name: 'UKPSC PCS Prelims/Mains', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKPSC-PCS').length },
+    { id: 'UKPSC-ROARO', name: 'UKPSC RO/ARO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKPSC-ROARO').length },
+    { id: 'UKSSSC', name: 'UKSSSC (Uttarakhand SSC)', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKSSSC').length },
+    { id: 'UKSSSC-VDO', name: 'UKSSSC VDO/Gram Vikas', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKSSSC-VDO').length },
+    { id: 'UKSSSC-Patwari', name: 'UKSSSC Patwari/Lekhpal', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKSSSC-Patwari').length },
+    { id: 'UKSSSC-Forest', name: 'UKSSSC Forest Guard', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKSSSC-Forest').length }
 ];
 
 // Get available exam types
 router.get('/exams', (req, res) => {
     res.json(examTypes.map(e => ({
         ...e,
-        questionCount: officialQuestions.filter(q => q.examName === e.id).length
+        questionCount: _officialQuestions.filter(q => q.examName === e.id).length
     })));
 });
 
@@ -186,7 +199,7 @@ router.get('/by-exam/:examType', (req, res) => {
     const { year, topic, difficulty, limit = 50 } = req.query;
     const examType = req.params.examType;
 
-    let questions = officialQuestions.filter(q =>
+    let questions = _officialQuestions.filter(q =>
         q.examName?.toUpperCase() === examType.toUpperCase() ||
         q.examName?.replace(' ', '-').toUpperCase() === examType.toUpperCase()
     );
@@ -218,7 +231,7 @@ router.get('/by-exam/:examType', (req, res) => {
 
 // Get all topics for an exam type
 router.get('/topics/:examType', (req, res) => {
-    const questions = officialQuestions.filter(q =>
+    const questions = _officialQuestions.filter(q =>
         q.examName?.toUpperCase() === req.params.examType.toUpperCase()
     );
     const topics = [...new Set(questions.map(q => q.topic))];
@@ -233,7 +246,7 @@ router.get('/topics/:examType', (req, res) => {
 // Get statistics for all exams
 router.get('/stats', (req, res) => {
     const stats = examTypes.map(exam => {
-        const questions = officialQuestions.filter(q => q.examName === exam.id);
+        const questions = _officialQuestions.filter(q => q.examName === exam.id);
         const topics = [...new Set(questions.map(q => q.topic))];
         const yearCounts: Record<number, number> = {};
 
@@ -258,7 +271,7 @@ router.get('/stats', (req, res) => {
     });
 
     res.json({
-        totalQuestions: officialQuestions.length,
+        totalQuestions: _officialQuestions.length,
         examStats: stats
     });
 });
@@ -271,7 +284,7 @@ router.get('/search', (req, res) => {
         return res.status(400).json({ error: 'Search query required' });
     }
 
-    let questions = officialQuestions.filter(q =>
+    let questions = _officialQuestions.filter(q =>
         q.question.toLowerCase().includes((query as string).toLowerCase()) ||
         q.topic.toLowerCase().includes((query as string).toLowerCase()) ||
         (q.explanation && q.explanation.toLowerCase().includes((query as string).toLowerCase()))
@@ -304,7 +317,7 @@ router.get('/search', (req, res) => {
 router.get('/random', (req, res) => {
     const { count = 10, examType, difficulty, topics } = req.query;
 
-    let questions = [...officialQuestions];
+    let questions = [..._officialQuestions];
 
     if (examType) {
         const examTypes = (examType as string).split(',');
@@ -348,7 +361,7 @@ router.post('/scrape', async (req, res) => {
 
         // Add scraped questions to the database (temporary, in-memory)
         if (scrapedQuestions.length > 0) {
-            officialQuestions = [...officialQuestions, ...scrapedQuestions];
+            _officialQuestions = [..._officialQuestions, ...scrapedQuestions];
         }
 
         res.json({
@@ -368,7 +381,7 @@ router.post('/fetch-external', async (req, res) => {
         const questions = await fetchFromExternalAPI(source);
 
         if (questions.length > 0) {
-            officialQuestions = [...officialQuestions, ...questions];
+            _officialQuestions = [..._officialQuestions, ...questions];
         }
 
         res.json({
@@ -382,10 +395,10 @@ router.post('/fetch-external', async (req, res) => {
 
 // Reload questions database
 router.post('/reload', (req, res) => {
-    officialQuestions = loadQuestionsFromDatabase();
+    _officialQuestions = loadQuestionsFromDatabase();
     res.json({
         message: 'Questions database reloaded',
-        totalQuestions: officialQuestions.length
+        totalQuestions: _officialQuestions.length
     });
 });
 
@@ -463,7 +476,8 @@ router.post('/import', (req, res) => {
 
     // Add to in-memory store
     if (importedQuestions.length > 0) {
-        officialQuestions = [...officialQuestions, ...importedQuestions];
+        _officialQuestions = [..._officialQuestions, ...importedQuestions];
+        persistImported();
     }
 
     res.json({
@@ -504,7 +518,7 @@ router.post('/import-parsed', (req, res) => {
     }
 
     if (importedQuestions.length > 0) {
-        officialQuestions = [...officialQuestions, ...importedQuestions];
+        _officialQuestions = [..._officialQuestions, ...importedQuestions];
         persistImported();
     }
 
@@ -517,4 +531,4 @@ router.post('/import-parsed', (req, res) => {
     });
 });
 
-export { router as officialQuestionsRouter, officialQuestions };
+export { router as officialQuestionsRouter };

@@ -156,6 +156,33 @@ export default function TestInterface() {
                 </div>
             </header>
 
+            {/* Section Tabs */}
+            {currentTest.sections && currentTest.sections.length > 0 && (
+                <div className="h-12 border-b bg-card flex items-center px-4 gap-2 overflow-x-auto no-scrollbar">
+                    {currentTest.sections.map((section: any) => {
+                        const isCurrentSection = section.questionIds.includes(currentQuestion.id);
+                        return (
+                            <button
+                                key={section.id}
+                                onClick={() => {
+                                    const firstQuestionId = section.questionIds[0];
+                                    const index = currentTest.questions.findIndex(q => q.id === firstQuestionId);
+                                    if (index !== -1) goToQuestion(index);
+                                }}
+                                className={cn(
+                                    "px-4 h-full border-b-2 font-medium text-sm transition-all whitespace-nowrap",
+                                    isCurrentSection
+                                        ? "border-primary text-primary bg-primary/5"
+                                        : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                )}
+                            >
+                                {section.name}
+                            </button>
+                        );
+                    })}
+                </div>
+            )}
+
             <div className="flex-1 flex overflow-hidden">
                 {/* Question Panel */}
                 <div className="flex-1 overflow-y-auto p-6 md:p-8">
@@ -195,7 +222,7 @@ export default function TestInterface() {
                         </div>
 
                         {/* Options */}
-                        {currentQuestion.type === 'mcq' && currentQuestion.options && (
+                        {(currentQuestion.type === 'mcq' || (!currentQuestion.type && currentQuestion.options)) && currentQuestion.options && (
                             <div className="space-y-3">
                                 {currentQuestion.options.map((option, index) => {
                                     const isSelected = currentAnswer?.answer === option;
