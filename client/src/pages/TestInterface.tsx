@@ -12,10 +12,12 @@ import {
     X,
     Send,
     Pause,
-    Play
+    Play,
+    Menu
 } from 'lucide-react';
 import { useTestStore, Question } from '../stores/testStore';
 import { cn, formatTime, getDifficultyColor } from '../lib/utils';
+
 
 export default function TestInterface() {
     const { testId } = useParams();
@@ -38,6 +40,7 @@ export default function TestInterface() {
     const [isPaused, setIsPaused] = useState(false);
     const [showSubmitModal, setShowSubmitModal] = useState(false);
     const [showNavPanel, setShowNavPanel] = useState(true);
+    const [showMobileNav, setShowMobileNav] = useState(false);
 
     // Start test on mount
     useEffect(() => {
@@ -79,6 +82,60 @@ export default function TestInterface() {
             console.error('Submit error:', err);
         }
     }, [submitTest, navigate]);
+
+    // Keyboard Shortcuts
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!currentTest) return;
+            const currentQuestion = currentTest.questions[currentQuestionIndex];
+            if (!currentQuestion) return;
+
+            const target = e.target as HTMLElement;
+            // Ignore keypresses inside input fields or text areas
+            if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+                return;
+            }
+
+            const key = e.key.toUpperCase();
+
+            // Direct option selection (A, B, C, D)
+            if (['A', 'B', 'C', 'D'].includes(key)) {
+                if (
+                    (currentQuestion.type === 'mcq' || (!currentQuestion.type && currentQuestion.options)) && 
+                    currentQuestion.options
+                ) {
+                    const index = key.charCodeAt(0) - 65;
+                    const option = currentQuestion.options[index];
+                    if (option) {
+                        setAnswer(currentQuestion.id, option);
+                    }
+                } else if (currentQuestion.type === 'true-false') {
+                    if (key === 'A') setAnswer(currentQuestion.id, 'True');
+                    if (key === 'B') setAnswer(currentQuestion.id, 'False');
+                }
+            }
+
+            // Arrow Keys or P/N to navigate
+            if (e.key === 'ArrowLeft' || key === 'P') {
+                if (currentQuestionIndex > 0) prevQuestion();
+            } else if (e.key === 'ArrowRight' || key === 'N') {
+                if (currentQuestionIndex < currentTest.questions.length - 1) nextQuestion();
+            }
+
+            // F key to toggle review flag
+            if (key === 'F') {
+                toggleFlag(currentQuestion.id);
+            }
+
+            // Escape or C key to clear selection
+            if (e.key === 'Escape' || key === 'C') {
+                setAnswer(currentQuestion.id, '');
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [currentTest, currentQuestionIndex, setAnswer, toggleFlag, nextQuestion, prevQuestion]);
 
     if (isLoading || !currentTest) {
         return (
@@ -144,6 +201,23 @@ export default function TestInterface() {
                             {flaggedCount} Flagged
                         </div>
                     </div>
+
+                    {/* Navigator Toggles */}
+                    <button
+                        onClick={() => setShowNavPanel(!showNavPanel)}
+                        className="hidden lg:flex items-center gap-1.5 px-3 py-2 bg-muted hover:bg-muted/80 rounded-xl text-sm font-semibold transition-colors border"
+                        title={showNavPanel ? "Collapse Question Navigator" : "Expand Question Navigator"}
+                    >
+                        {showNavPanel ? "Collapse Grid" : "Expand Grid"}
+                    </button>
+
+                    <button
+                        onClick={() => setShowMobileNav(true)}
+                        className="lg:hidden p-2 rounded-xl bg-muted hover:bg-muted/80 transition-colors border"
+                        title="Question Navigator"
+                    >
+                        <Menu className="w-5 h-5 text-muted-foreground" />
+                    </button>
 
                     {/* Submit Button */}
                     <button
@@ -290,6 +364,35 @@ export default function TestInterface() {
                             />
                         )}
 
+                        {/* Question Action Bar */}
+                        <div className="flex flex-wrap gap-3 mt-6 justify-end items-center">
+                            {(currentAnswer?.answer && currentAnswer.answer !== '') && (
+                                <button
+                                    onClick={() => setAnswer(currentQuestion.id, '')}
+                                    className="px-4 py-2 border border-destructive/30 text-destructive hover:bg-destructive/5 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5"
+                                    type="button"
+                                >
+                                    <X className="w-4 h-4" />
+                                    Clear Choice
+                                </button>
+                            )}
+                            <button
+                                onClick={() => {
+                                    if (!currentAnswer?.flagged) {
+                                        toggleFlag(currentQuestion.id);
+                                    }
+                                    if (currentQuestionIndex < currentTest.questions.length - 1) {
+                                        nextQuestion();
+                                    }
+                                }}
+                                className="px-4 py-2 bg-amber-500/10 text-amber-600 hover:bg-amber-500/25 border border-amber-500/20 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5"
+                                type="button"
+                            >
+                                <Flag className="w-4 h-4 animate-bounce-subtle" />
+                                Mark for Review & Next
+                            </button>
+                        </div>
+
                         {/* Navigation Buttons */}
                         <div className="flex items-center justify-between mt-8 pt-6 border-t">
                             <button
@@ -384,6 +487,91 @@ export default function TestInterface() {
                     )}
                 </AnimatePresence>
             </div>
+
+            {/* Mobile Navigation Drawer */}
+            <AnimatePresence>
+                {showMobileNav && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setShowMobileNav(false)}
+                            className="fixed inset-0 bg-black/60 z-[60] lg:hidden"
+                        />
+                        {/* Drawer */}
+                        <motion.div
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0 }}
+                            exit={{ y: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-card rounded-t-[2.5rem] border-t border-border z-[70] p-6 lg:hidden shadow-2xl flex flex-col"
+                        >
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-2">
+                                    <Menu className="w-5 h-5 text-primary" />
+                                    <h3 className="font-extrabold text-lg">Question Navigator</h3>
+                                </div>
+                                <button
+                                    onClick={() => setShowMobileNav(false)}
+                                    className="p-2 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+
+                            <div className="overflow-y-auto max-h-[50vh] pr-2 custom-scrollbar">
+                                <div className="grid grid-cols-5 gap-3 mb-6">
+                                    {currentTest.questions.map((q, index) => {
+                                        const answer = userAnswers.find(a => a.questionId === q.id);
+                                        const isAnswered = answer?.answer && answer.answer !== '';
+                                        const isFlagged = answer?.flagged;
+                                        const isCurrent = index === currentQuestionIndex;
+
+                                        return (
+                                            <button
+                                                key={q.id}
+                                                onClick={() => {
+                                                    goToQuestion(index);
+                                                    setShowMobileNav(false);
+                                                }}
+                                                className={cn(
+                                                    "relative w-full aspect-square rounded-xl font-black text-sm flex items-center justify-center transition-all duration-200 border-2",
+                                                    isCurrent && "ring-2 ring-primary ring-offset-2 ring-offset-background border-primary",
+                                                    isAnswered
+                                                        ? "bg-green-500 text-white border-green-600 shadow-md shadow-green-500/20"
+                                                        : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80"
+                                                )}
+                                            >
+                                                {index + 1}
+                                                {isFlagged && (
+                                                    <Flag className="absolute top-1 right-1 w-3 h-3 text-amber-500 fill-current" />
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-3 text-[10px] font-black uppercase text-center pt-4 border-t border-border/50 bg-card">
+                                <div className="flex flex-col items-center gap-1.5 p-3 bg-green-500/10 text-green-600 rounded-2xl border border-green-500/20">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                                    <span>Answered</span>
+                                </div>
+                                <div className="flex flex-col items-center gap-1.5 p-3 bg-muted text-muted-foreground rounded-2xl border border-border/50">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/30" />
+                                    <span>Not Answered</span>
+                                </div>
+                                <div className="flex flex-col items-center gap-1.5 p-3 bg-amber-500/10 text-amber-600 rounded-2xl border border-amber-500/20">
+                                    <Flag className="w-4 h-4 text-amber-500" />
+                                    <span>Flagged</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
 
             {/* Submit Modal */}
             <AnimatePresence>

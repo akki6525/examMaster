@@ -4250,6 +4250,99 @@
       "duration": 30,
       "totalMarks": 19,
       "createdAt": "2026-04-09T09:32:13.033Z"
+    },
+    "bf9a2e1e-c77b-4e72-8634-657d9b24badb": {
+      "id": "bf9a2e1e-c77b-4e72-8634-657d9b24badb",
+      "title": "SSC CGL Tier-I (Pre) - 2026 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc_cgl-2026-real-ijt2f",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "ssc_cgl 2026",
+          "examName": "SSC CGL",
+          "year": 2026,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc_cgl-2026-real-dtryy",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "ssc_cgl 2026",
+          "examName": "SSC CGL",
+          "year": 2026,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc_cgl-2026-real-i66mcr",
+          "question": "The Tropic of Cancer does NOT pass through which of the following Indian states?",
+          "options": [
+            "Gujarat",
+            "Rajasthan",
+            "Odisha",
+            "West Bengal"
+          ],
+          "correctAnswer": "Odisha",
+          "explanation": "The Tropic of Cancer passes through 8 states: Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "ssc_cgl 2026",
+          "examName": "SSC CGL",
+          "year": 2026,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 6,
+      "sections": [
+        {
+          "id": "d7751338-8121-4ae4-a50e-1a69b80f5d48",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": []
+        },
+        {
+          "id": "77ea518c-d78a-4854-9946-d3b740fd0fef",
+          "name": "General Awareness",
+          "questionIds": [
+            "ssc_cgl-2026-real-ijt2f",
+            "ssc_cgl-2026-real-dtryy",
+            "ssc_cgl-2026-real-i66mcr"
+          ]
+        },
+        {
+          "id": "9355817e-a954-4a5c-931b-6aac90c45306",
+          "name": "Quantitative Aptitude",
+          "questionIds": []
+        },
+        {
+          "id": "16beae3b-e52f-4372-8c9e-5ddb40d73392",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-07-12T10:27:45.782Z"
     }
   },
   "testResults": {
@@ -4974,15 +5067,15 @@
   },
   "importedQuestions": [],
   "practiceStats": {
-    "totalAttempted": 65,
-    "correct": 35,
-    "incorrect": 30,
+    "totalAttempted": 89,
+    "correct": 47,
+    "incorrect": 42,
     "topicWiseScore": [
       {
         "topic": "Polity",
         "correct": 3,
-        "total": 4,
-        "percentage": 75
+        "total": 5,
+        "percentage": 60
       },
       {
         "topic": "Economy",
@@ -5034,9 +5127,9 @@
       },
       {
         "topic": "Geography",
-        "correct": 1,
-        "total": 2,
-        "percentage": 50
+        "correct": 4,
+        "total": 6,
+        "percentage": 67
       },
       {
         "topic": "Science",
@@ -5071,8 +5164,8 @@
       {
         "topic": "General Awareness",
         "correct": 5,
-        "total": 13,
-        "percentage": 38
+        "total": 14,
+        "percentage": 36
       },
       {
         "topic": "Agriculture",
@@ -5175,6 +5268,30 @@
         "correct": 1,
         "total": 1,
         "percentage": 100
+      },
+      {
+        "topic": "Uttarakhand GK - Freedom Fighters",
+        "correct": 1,
+        "total": 1,
+        "percentage": 100
+      },
+      {
+        "topic": "Uttarakhand GK - Symbols",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Uttarakhand GK - Geography",
+        "correct": 8,
+        "total": 15,
+        "percentage": 53
+      },
+      {
+        "topic": "Uttarakhand GK - Culture",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
       }
     ],
     "answeredQuestions": {
@@ -5437,6 +5554,102 @@
       "ssc-cgl-t1-gs-1775657680295-202505": {
         "userAnswer": "Article 72",
         "isCorrect": true
+      },
+      "ssc_cgl-2026-real-dtryy": {
+        "userAnswer": "Godavari",
+        "isCorrect": true
+      },
+      "ssc_cgl-2026-real-i66mcr": {
+        "userAnswer": "West Bengal",
+        "isCorrect": false
+      },
+      "upsc-2023-real-1tehyp": {
+        "userAnswer": "Venus",
+        "isCorrect": true
+      },
+      "upsc-2022-real-iaxeln": {
+        "userAnswer": "Godavari",
+        "isCorrect": true
+      },
+      "upsc-2023-real-n8j7": {
+        "userAnswer": "Article 19",
+        "isCorrect": false
+      },
+      "ssc-cgl-t1-gs-1775657680294-202100": {
+        "userAnswer": "Article 76",
+        "isCorrect": false
+      },
+      "ukpsc-2022-001": {
+        "userAnswer": "Badri Dutt Pandey",
+        "isCorrect": true
+      },
+      "ukpsc-2022-003": {
+        "userAnswer": "Lotus",
+        "isCorrect": false
+      },
+      "ukpsc-2022-005": {
+        "userAnswer": "Rohtang",
+        "isCorrect": false
+      },
+      "ukpsc-2022-004": {
+        "userAnswer": "Rohtang Pass",
+        "isCorrect": false
+      },
+      "ukpsc-2022-007": {
+        "userAnswer": "Yamuna",
+        "isCorrect": true
+      },
+      "ukpsc-2022-010": {
+        "userAnswer": "Pithoragarh",
+        "isCorrect": false
+      },
+      "ukpsc-2023-002": {
+        "userAnswer": "Sattal Lake",
+        "isCorrect": false
+      },
+      "ukpsc-2023-005": {
+        "userAnswer": "Garhwal",
+        "isCorrect": true
+      },
+      "ukpsc-2023-007": {
+        "userAnswer": "Pindari Glacier",
+        "isCorrect": false
+      },
+      "ukpsc-2023-008": {
+        "userAnswer": "Chamoli",
+        "isCorrect": true
+      },
+      "ukpsc-2023-new-008": {
+        "userAnswer": "Pithoragarh",
+        "isCorrect": false
+      },
+      "ukpsc-2023-new-009": {
+        "userAnswer": "Glacial Lake",
+        "isCorrect": false
+      },
+      "ukpsc-2024-002": {
+        "userAnswer": "Nanda Devi",
+        "isCorrect": true
+      },
+      "ukpsc-2024-003": {
+        "userAnswer": "Uttarkashi",
+        "isCorrect": false
+      },
+      "ukpsc-2024-004": {
+        "userAnswer": "Ganga (Bhagirathi)",
+        "isCorrect": true
+      },
+      "ukpsc-2024-new-002": {
+        "userAnswer": "Nainital",
+        "isCorrect": true
+      },
+      "ukpsc-2024-new-003": {
+        "userAnswer": "Roopkund",
+        "isCorrect": true
+      },
+      "ukpsc-2024-new-013": {
+        "userAnswer": "Gangotri and Yamunotri",
+        "isCorrect": true
       }
     },
     "dailyStats": {
@@ -5448,8 +5661,12 @@
       "2026-04-09": {
         "total": 6,
         "correct": 2
+      },
+      "2026-07-12": {
+        "total": 24,
+        "correct": 12
       }
     },
-    "lastUpdated": "2026-04-09T08:29:10.297Z"
+    "lastUpdated": "2026-07-12T09:01:13.772Z"
   }
 }

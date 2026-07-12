@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -19,10 +19,21 @@ import {
     Brain,
     Zap
 } from 'lucide-react';
+import {
+    ResponsiveContainer,
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend
+} from 'recharts';
 import { useDocumentStore } from '../stores/documentStore';
 import { useTestStore } from '../stores/testStore';
 import { useAuthStore } from '../stores/authStore';
 import axios from 'axios';
+
 
 interface PracticeStats {
     totalAttempted: number;
@@ -73,9 +84,80 @@ export default function Dashboard() {
             .catch(console.error);
     }, [fetchDocuments, fetchTests]);
 
+    const [visibleTestsCount, setVisibleTestsCount] = useState<number>(10);
+    const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+
     const accuracy = practiceStats.totalAttempted > 0
         ? Math.round((practiceStats.correct / practiceStats.totalAttempted) * 100)
         : 0;
+
+    // Process recent results to calculate accuracy by topic over time
+    const uniqueTopics = Array.from(
+        new Set(
+            recentResults.flatMap((r: any) =>
+                (r.topicWiseScore || []).map((ts: any) => ts.topic)
+            )
+        )
+    );
+
+    const topicCounts = useMemo(() => {
+        const counts: Record<string, number> = {};
+        recentResults.forEach((r: any) => {
+            (r.topicWiseScore || []).forEach((ts: any) => {
+                counts[ts.topic] = (counts[ts.topic] || 0) + 1;
+            });
+        });
+        return counts;
+    }, [recentResults]);
+
+    const sortedTopics = useMemo(() => {
+        return [...uniqueTopics].sort((a, b) => (topicCounts[b] || 0) - (topicCounts[a] || 0));
+    }, [uniqueTopics, topicCounts]);
+
+    // Initialize selectedTopics to top 5 sortedTopics once loaded
+    useEffect(() => {
+        if (sortedTopics.length > 0 && selectedTopics.length === 0) {
+            setSelectedTopics(sortedTopics.slice(0, 5));
+        }
+    }, [sortedTopics, selectedTopics.length]);
+
+    const processedChartData: any[] = [];
+    const lastAccuracyMap: Record<string, number> = {};
+
+    uniqueTopics.forEach(topic => {
+        lastAccuracyMap[topic] = 0;
+    });
+
+    const reversedResults = [...recentResults].reverse();
+
+    reversedResults.forEach((result: any, index: number) => {
+        const date = new Date(result.completedAt).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric'
+        });
+
+        const dataPoint: any = {
+            name: `Test ${index + 1}`,
+            date: date,
+        };
+
+        if (result.topicWiseScore && Array.isArray(result.topicWiseScore)) {
+            result.topicWiseScore.forEach((ts: any) => {
+                lastAccuracyMap[ts.topic] = ts.percentage ?? 0;
+            });
+        }
+
+        uniqueTopics.forEach(topic => {
+            dataPoint[topic] = lastAccuracyMap[topic];
+        });
+
+        processedChartData.push(dataPoint);
+    });
+
+    const slicedChartData = useMemo(() => {
+        if (visibleTestsCount === 0) return processedChartData;
+        return processedChartData.slice(-visibleTestsCount);
+    }, [processedChartData, visibleTestsCount]);
 
     const quickActions = [
         {
@@ -254,7 +336,207 @@ export default function Dashboard() {
                 </motion.div>
             )}
 
+            {/* Topic Accuracy Over Time Chart */}
+            {recentResults.length > 0 && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="p-6 md:p-8 rounded-[2rem] border border-border bg-card/45 backdrop-blur-md shadow-lg space-y-6"
+                >
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <div className="flex items-center gap-2 mb-1">
+                                <TrendingUp className="w-5 h-5 text-indigo-500" />
+                                <h3 className="font-extrabold text-xl">Topic Accuracy Over Time</h3>
+                            </div>
+                            <p className="text-muted-foreground text-sm">
+                                Track your mock test performance trend across different subjects
+                            </p>
+                        </div>
+                        {uniqueTopics.length > 0 && (
+                            <div className="text-xs bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold px-3 py-1.5 rounded-xl border border-indigo-500/10 flex items-center gap-1.5 self-start sm:self-center">
+                                <Layers className="w-3.5 h-3.5" />
+                                {uniqueTopics.length} Topics Active
+                            </div>
+                        )}
+                    </div>
 
+                    {/* Filter & Range Selector controls */}
+                    <div className="flex flex-col gap-4 p-4 rounded-2xl bg-muted/30 border border-border/50">
+                        {/* Range Selector */}
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">Range:</span>
+                                {[5, 10, 20, 0].map((num) => (
+                                    <button
+                                        key={num}
+                                        type="button"
+                                        onClick={() => setVisibleTestsCount(num)}
+                                        className={`px-3 py-1.5 text-[9px] font-black uppercase rounded-lg border transition-all ${
+                                            visibleTestsCount === num
+                                                ? "bg-primary text-white border-primary shadow-sm"
+                                                : "bg-background/50 text-muted-foreground border-transparent hover:bg-background"
+                                        }`}
+                                    >
+                                        {num === 0 ? "All Tests" : `Last ${num}`}
+                                    </button>
+                                ))}
+                            </div>
+                            
+                            {/* Fast Select shortcuts */}
+                            <div className="flex items-center gap-2 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
+                                <button 
+                                    type="button" 
+                                    onClick={() => setSelectedTopics(sortedTopics.slice(0, 5))}
+                                    className="hover:underline"
+                                >
+                                    Reset to Top 5
+                                </button>
+                                <span className="opacity-40">•</span>
+                                <button 
+                                    type="button" 
+                                    onClick={() => setSelectedTopics([])}
+                                    className="hover:underline"
+                                >
+                                    Clear All
+                                </button>
+                                <span className="opacity-40">•</span>
+                                <button 
+                                    type="button" 
+                                    onClick={() => setSelectedTopics(uniqueTopics)}
+                                    className="hover:underline"
+                                >
+                                    Select All
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Topics Pill checkbox picker */}
+                        <div className="space-y-1.5">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-muted-foreground block">
+                                Plotting Topics (Select to toggle lines):
+                            </span>
+                            <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto pr-1 no-scrollbar">
+                                {sortedTopics.map((topic, i) => {
+                                    const isSelected = selectedTopics.includes(topic);
+                                    const topicColors = [
+                                        '#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#6366f1'
+                                    ];
+                                    const color = topicColors[i % topicColors.length];
+                                    return (
+                                        <button
+                                            key={topic}
+                                            type="button"
+                                            onClick={() => {
+                                                if (isSelected) {
+                                                    setSelectedTopics(selectedTopics.filter(t => t !== topic));
+                                                } else {
+                                                    setSelectedTopics([...selectedTopics, topic]);
+                                                }
+                                            }}
+                                            className={`flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-extrabold uppercase rounded-xl transition-all border ${
+                                                isSelected
+                                                    ? "text-white border-transparent"
+                                                    : "bg-background/40 text-muted-foreground border-transparent hover:bg-background/80"
+                                            }`}
+                                            style={isSelected ? { backgroundColor: color } : {}}
+                                        >
+                                            <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? "bg-white" : ""}`} style={!isSelected ? { backgroundColor: color } : {}} />
+                                            {topic}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Chart area */}
+                    <div className="w-full h-80 min-h-[320px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <LineChart
+                                data={slicedChartData}
+                                margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--muted-foreground) / 0.15)" />
+                                <XAxis 
+                                    dataKey="name" 
+                                    stroke="hsl(var(--muted-foreground))" 
+                                    fontSize={11} 
+                                    fontWeight={600}
+                                    tickLine={false}
+                                    axisLine={false}
+                                    dy={10}
+                                    interval={Math.max(0, Math.ceil(slicedChartData.length / 10) - 1)}
+                                />
+                                <YAxis 
+                                    stroke="hsl(var(--muted-foreground))" 
+                                    fontSize={11} 
+                                    fontWeight={600}
+                                    tickLine={false}
+                                    axisLine={false}
+                                    domain={[0, 100]}
+                                    tickFormatter={(val) => `${val}%`}
+                                />
+                                <Tooltip
+                                    contentStyle={{
+                                        backgroundColor: 'hsl(var(--card))',
+                                        borderColor: 'hsl(var(--border) / 0.8)',
+                                        borderRadius: '1.25rem',
+                                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                                        backdropFilter: 'blur(8px)',
+                                        color: 'hsl(var(--foreground))',
+                                        fontSize: '12px',
+                                        fontWeight: '600'
+                                    }}
+                                    cursor={{ stroke: 'hsl(var(--primary) / 0.15)', strokeWidth: 2 }}
+                                    formatter={(value) => [`${value}% Accuracy`]}
+                                />
+                                {selectedTopics.length > 0 && (
+                                    <Legend 
+                                        verticalAlign="bottom" 
+                                        height={36} 
+                                        iconType="circle"
+                                        iconSize={8}
+                                        wrapperStyle={{
+                                            fontSize: '11px',
+                                            fontWeight: '700',
+                                            paddingTop: '20px'
+                                        }}
+                                    />
+                                )}
+                                {sortedTopics.map((topic, i) => {
+                                    if (!selectedTopics.includes(topic)) return null;
+                                    const topicColors = [
+                                        '#8b5cf6', // Violet
+                                        '#3b82f6', // Blue
+                                        '#10b981', // Emerald
+                                        '#f59e0b', // Amber
+                                        '#ef4444', // Red
+                                        '#ec4899', // Pink
+                                        '#06b6d4', // Cyan
+                                        '#6366f1', // Indigo
+                                    ];
+                                    const color = topicColors[i % topicColors.length];
+                                    return (
+                                        <Line
+                                            key={topic}
+                                            type="monotone"
+                                            dataKey={topic}
+                                            name={topic}
+                                            stroke={color}
+                                            strokeWidth={3}
+                                            dot={slicedChartData.length < 25 ? { r: 3.5, strokeWidth: 1.5 } : false}
+                                            activeDot={{ r: 5, strokeWidth: 0 }}
+                                        />
+                                    );
+                                })}
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                </motion.div>
+            )}
 
             {/* Quick Actions */}
             <div>

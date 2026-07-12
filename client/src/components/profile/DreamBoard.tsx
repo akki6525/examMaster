@@ -20,6 +20,12 @@ import { useAuthStore } from '../../stores/authStore';
 import { cn } from '../../lib/utils';
 
 // --- Types ---
+interface Milestone {
+    id: string;
+    text: string;
+    completed: boolean;
+}
+
 interface Dream {
     id: string;
     userId: string;
@@ -30,6 +36,7 @@ interface Dream {
     progress: number;
     createdAt: number;
     emoji?: string;
+    milestones?: Milestone[];
 }
 
 const POST_OPTIONS = [
@@ -83,6 +90,7 @@ export default function DreamBoard() {
     const [showConfetti, setShowConfetti] = useState(false);
     const [showCelebrationOverlay, setShowCelebrationOverlay] = useState(false);
     const [deletingGoal, setDeletingGoal] = useState<Dream | null>(null);
+    const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<'ALL' | 'UPSC' | 'PCS' | 'SSC' | 'Banking' | 'Defense'>('ALL');
 
     // Daily Logic
     const dailyIndex = new Date().getDate() % SHAYARIS.length;
@@ -137,6 +145,13 @@ export default function DreamBoard() {
         e.preventDefault();
         if (!title) return;
 
+        const defaultMilestones = [
+            { id: 'm1', text: 'Syllabus Orientation & Reference Books', completed: false },
+            { id: 'm2', text: 'Core Topics Study & Chapter Quizzes', completed: false },
+            { id: 'm3', text: 'Smart Mock Practice & PYQ Review', completed: false },
+            { id: 'm4', text: 'Revision & Mock Strategy Mastery', completed: false }
+        ];
+
         const dreamData = {
             title,
             targetYear,
@@ -146,6 +161,7 @@ export default function DreamBoard() {
             isAchieved: editingDream ? editingDream.isAchieved : false,
             progress: editingDream ? editingDream.progress : 0,
             createdAt: editingDream ? editingDream.createdAt : Date.now(),
+            milestones: editingDream?.milestones || defaultMilestones
         };
 
         let updatedDreams: Dream[];
@@ -161,6 +177,37 @@ export default function DreamBoard() {
 
         saveDreams(updatedDreams);
         handleCloseModal();
+    };
+
+    const handleToggleMilestone = (dreamId: string, milestoneId: string) => {
+        const dream = dreams.find(d => d.id === dreamId);
+        if (!dream) return;
+
+        const updatedMilestones = (dream.milestones || []).map(m =>
+            m.id === milestoneId ? { ...m, completed: !m.completed } : m
+        );
+
+        const completedCount = updatedMilestones.filter(m => m.completed).length;
+        const totalCount = updatedMilestones.length;
+        const newProgress = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+        const isNowAchieved = newProgress === 100;
+
+        const updatedDreams = dreams.map(d =>
+            d.id === dreamId
+                ? {
+                    ...d,
+                    milestones: updatedMilestones,
+                    progress: newProgress,
+                    isAchieved: isNowAchieved
+                }
+                : d
+        );
+
+        saveDreams(updatedDreams);
+
+        if (isNowAchieved && !dream.isAchieved) {
+            handleAchieve(dreamId);
+        }
     };
 
     const handleAchieve = (dreamId: string) => {
@@ -197,6 +244,14 @@ export default function DreamBoard() {
         saveDreams(updated);
         setDeletingGoal(null);
     };
+
+    const filteredDreams = useMemo(() => {
+        if (selectedCategoryFilter === 'ALL') return dreams;
+        return dreams.filter(d => {
+            const option = POST_OPTIONS.find(opt => opt.value === d.title);
+            return option?.category === selectedCategoryFilter;
+        });
+    }, [dreams, selectedCategoryFilter]);
 
     const stats = useMemo(() => ({
         total: dreams.length,
@@ -248,22 +303,56 @@ export default function DreamBoard() {
                     </div>
                 </div>
 
+                {/* Category Filter Badges */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+                    {['ALL', 'UPSC', 'PCS', 'SSC', 'Banking', 'Defense'].map((cat) => (
+                        <button
+                            key={cat}
+                            type="button"
+                            onClick={() => setSelectedCategoryFilter(cat as any)}
+                            className={cn(
+                                "px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider rounded-xl transition-all border whitespace-nowrap",
+                                selectedCategoryFilter === cat
+                                    ? "bg-primary text-white border-primary shadow-sm shadow-primary/20 scale-105"
+                                    : "bg-muted/40 text-muted-foreground border-transparent hover:bg-muted/80"
+                            )}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+
                 {/* Shayari bar */}
-                <div className="bg-muted/30 p-4 rounded-2xl border border-border/50">
-                    <div className="flex items-center gap-2 text-primary mb-1"><Quote className="w-3 h-3 fill-current" /><span className="text-[10px] font-black uppercase tracking-wider">Motivational Pulse</span></div>
-                    <p className="text-xs font-bold italic text-muted-foreground leading-relaxed">"{dailyShayari}"</p>
+                <div className="relative overflow-hidden p-5 rounded-3xl border border-primary/20 bg-gradient-to-r from-purple-500/10 via-indigo-500/5 to-purple-500/10 shadow-inner group">
+                    <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-background to-transparent pointer-events-none z-10 opacity-30" />
+                    <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-background to-transparent pointer-events-none z-10 opacity-30" />
+                    <div className="flex items-center gap-2.5 text-primary mb-2.5 relative z-20">
+                        <Quote className="w-4 h-4 fill-current text-indigo-500 animate-pulse" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Motivational Pulse</span>
+                    </div>
+                    <div className="relative z-20 w-full overflow-hidden whitespace-nowrap">
+                        <motion.p 
+                            animate={{ x: [200, -800] }}
+                            transition={{ repeat: Infinity, ease: 'linear', duration: 18 }}
+                            className="inline-block text-sm font-extrabold italic text-indigo-950 dark:text-indigo-200"
+                        >
+                            "{dailyShayari}"
+                        </motion.p>
+                    </div>
                 </div>
 
                 {/* Dreams List */}
                 <div className="space-y-4">
                     <AnimatePresence mode="popLayout">
-                        {dreams.map((dream) => (
+                        {filteredDreams.map((dream) => (
                             <motion.div key={dream.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className={cn("p-4 rounded-3xl border-2 transition-all group relative", dream.isAchieved ? "bg-emerald-500/5 border-emerald-500/20" : "bg-card border-border/50 hover:border-primary/30")}>
                                 <div className="flex items-start justify-between gap-3 mb-3">
                                     <div className="flex items-center gap-2">
                                         <span className="text-2xl">{dream.emoji || "🎯"}</span>
                                         <div className="space-y-0.5">
-                                            <h4 className={cn("text-sm font-black text-foreground line-clamp-1", dream.isAchieved && "opacity-50")}>{dream.title}</h4>
+                                            <h4 className={cn("text-xs font-black text-foreground line-clamp-1", dream.isAchieved && "opacity-50")}>
+                                                {POST_OPTIONS.find(o => o.value === dream.title)?.label || dream.title}
+                                            </h4>
                                             {dream.isAchieved && <span className="text-[8px] font-black uppercase text-emerald-500 tracking-tighter">Milestone Reached 🏆</span>}
                                         </div>
                                     </div>
@@ -276,7 +365,34 @@ export default function DreamBoard() {
                                     <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
                                         <motion.div initial={{ width: 0 }} animate={{ width: `${dream.progress}%` }} className={cn("h-full transition-all duration-1000", dream.isAchieved ? "bg-emerald-500" : "bg-gradient-to-r from-indigo-500 to-purple-500")} />
                                     </div>
-                                    <div className="flex items-center gap-2">
+
+                                    {/* Milestone Checklist */}
+                                    <div className="space-y-2 py-1.5">
+                                        {(dream.milestones || []).map((milestone) => (
+                                            <label 
+                                                key={milestone.id}
+                                                className="flex items-center gap-2 cursor-pointer group/label"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={milestone.completed}
+                                                    disabled={dream.isAchieved && dream.progress === 100 && showConfetti}
+                                                    onChange={() => handleToggleMilestone(dream.id, milestone.id)}
+                                                    className="w-3.5 h-3.5 rounded border-border text-primary focus:ring-primary/20 cursor-pointer"
+                                                />
+                                                <span className={cn(
+                                                    "text-[10px] font-bold transition-all",
+                                                    milestone.completed 
+                                                        ? "line-through text-muted-foreground/60" 
+                                                        : "text-foreground group-hover/label:text-primary"
+                                                )}>
+                                                    {milestone.text}
+                                                </span>
+                                            </label>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex items-center gap-2 pt-1">
                                         {!dream.isAchieved ? (
                                             <button onClick={() => handleAchieve(dream.id)} className="flex-1 py-2 bg-indigo-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-700 transition-all">Strike Goal</button>
                                         ) : (
@@ -288,10 +404,10 @@ export default function DreamBoard() {
                             </motion.div>
                         ))}
                     </AnimatePresence>
-                    {dreams.length === 0 && (
+                    {filteredDreams.length === 0 && (
                         <div className="text-center py-12 space-y-4">
                             <div className="w-16 h-16 bg-muted rounded-3xl flex items-center justify-center mx-auto opacity-50"><Target className="w-8 h-8" /></div>
-                            <p className="text-sm font-medium text-muted-foreground">Your dream board is empty. <br/>Add your first goal to begin.</p>
+                            <p className="text-sm font-medium text-muted-foreground">No ambitions under this filter. <br/>Create one or change filter.</p>
                             <button onClick={() => handleOpenModal()} className="btn-primary py-2 px-6 text-xs font-black uppercase">Initialize Board</button>
                         </div>
                     )}
