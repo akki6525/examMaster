@@ -1,30 +1,36 @@
 import { Router } from 'express';
 import path from 'path';
 import fs from 'fs';
-import { documents } from './upload.js';
+import { documents, persistDocuments } from './upload.js';
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = Router();
 
-// Get all documents
-router.get('/', (req, res) => {
-    const docs = Array.from(documents.values()).map(doc => ({
-        id: doc.id,
-        fileName: doc.fileName,
-        fileType: doc.fileType,
-        topicsCount: doc.topics.length,
-        definitionsCount: doc.definitions.length,
-        keyTermsCount: doc.keyTerms.length,
-        createdAt: doc.createdAt
-    }));
+// Protect all document routes
+router.use(authMiddleware);
+
+// Get all documents for authenticated user
+router.get('/', (req: any, res) => {
+    const docs = Array.from(documents.values())
+        .filter(doc => doc.userId === req.userId)
+        .map(doc => ({
+            id: doc.id,
+            fileName: doc.fileName,
+            fileType: doc.fileType,
+            topicsCount: doc.topics.length,
+            definitionsCount: doc.definitions.length,
+            keyTermsCount: doc.keyTerms.length,
+            createdAt: doc.createdAt
+        }));
 
     res.json(docs);
 });
 
 // Get single document
-router.get('/:id', (req, res) => {
+router.get('/:id', (req: any, res) => {
     const doc = documents.get(req.params.id);
 
-    if (!doc) {
+    if (!doc || doc.userId !== req.userId) {
         return res.status(404).json({ error: 'Document not found' });
     }
 
@@ -32,10 +38,10 @@ router.get('/:id', (req, res) => {
 });
 
 // Get document content organized by topics
-router.get('/:id/topics', (req, res) => {
+router.get('/:id/topics', (req: any, res) => {
     const doc = documents.get(req.params.id);
 
-    if (!doc) {
+    if (!doc || doc.userId !== req.userId) {
         return res.status(404).json({ error: 'Document not found' });
     }
 
@@ -47,11 +53,11 @@ router.get('/:id/topics', (req, res) => {
 });
 
 // Search within document
-router.get('/:id/search', (req, res) => {
+router.get('/:id/search', (req: any, res) => {
     const { query } = req.query;
     const doc = documents.get(req.params.id);
 
-    if (!doc) {
+    if (!doc || doc.userId !== req.userId) {
         return res.status(404).json({ error: 'Document not found' });
     }
 
@@ -78,21 +84,27 @@ router.get('/:id/search', (req, res) => {
 });
 
 // Delete document
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req: any, res) => {
+    const doc = documents.get(req.params.id);
+    if (!doc || doc.userId !== req.userId) {
+        return res.status(404).json({ error: 'Document not found' });
+    }
+
     const deleted = documents.delete(req.params.id);
 
     if (!deleted) {
         return res.status(404).json({ error: 'Document not found' });
     }
 
+    persistDocuments();
     res.json({ success: true, message: 'Document deleted' });
 });
 
 // Serve document file for viewing
-router.get('/:id/file', (req, res) => {
+router.get('/:id/file', (req: any, res) => {
     const doc = documents.get(req.params.id);
 
-    if (!doc) {
+    if (!doc || doc.userId !== req.userId) {
         return res.status(404).json({ error: 'Document not found' });
     }
 

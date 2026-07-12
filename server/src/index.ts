@@ -8,6 +8,7 @@ import { officialQuestionsRouter } from './routes/official-questions.js';
 import { practiceStatsRouter } from './routes/practice-stats.js';
 import { insightsRouter } from './routes/ai-insights.js';
 import { smartTestsRouter } from './routes/smart-tests.js';
+import { authRouter } from './routes/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,6 +19,7 @@ app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 
 // Routes
+app.use('/api/auth', authRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/documents', documentsRouter);
 app.use('/api/tests', testsRouter);

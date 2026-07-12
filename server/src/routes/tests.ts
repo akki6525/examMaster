@@ -5,26 +5,29 @@ import { generateQuestions } from '../services/question-generator.js';
 import { MockTest, TestResult, Question, UserAnswer, TopicScore } from '../types/index.js';
 import { getOfficialQuestions } from './official-questions.js';
 import { loadDB, saveDB } from '../services/persistence.js';
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = Router();
 
 // Load from persistent storage on startup
 const _db = loadDB();
-export const mockTests: Map<string, MockTest> = new Map(Object.entries(_db.mockTests));
-export const testResults: Map<string, TestResult> = new Map(Object.entries(_db.testResults));
+export const mockTests: Map<string, MockTest & { userId?: string }> = new Map(Object.entries(_db.mockTests));
+export const testResults: Map<string, TestResult & { userId?: string }> = new Map(Object.entries(_db.testResults));
+
+// Protect all test routes
+router.use(authMiddleware);
 
 function persistDB() {
     const currentDB = loadDB();
     saveDB({
+        ...currentDB,
         mockTests: Object.fromEntries(mockTests),
         testResults: Object.fromEntries(testResults),
-        importedQuestions: [],
-        practiceStats: currentDB.practiceStats
     });
 }
 
 // Generate mock test from uploaded documents or official questions
-router.post('/generate', async (req, res) => {
+router.post('/generate', async (req: any, res) => {
     try {
         const { documentIds = [], includeOfficial = false, examTypes = [], questionCount = 30, duration = 60, year } = req.body;
 
@@ -34,7 +37,10 @@ router.post('/generate', async (req, res) => {
             const allContent: any[] = [];
             for (const docId of documentIds) {
                 const doc = documents.get(docId);
-                if (doc) allContent.push(doc);
+                // Ensure document exists and belongs to the requesting user
+                if (doc && doc.userId === req.userId) {
+                    allContent.push(doc);
+                }
             }
             if (allContent.length > 0) {
                 const docQuestionLimit = includeOfficial && examTypes.length > 0
@@ -47,7 +53,8 @@ router.post('/generate', async (req, res) => {
 
         // AI Optimization: Prioritize questions from topics where user has lower accuracy
         const db = loadDB();
-        const topicStats = db.practiceStats?.topicWiseScore || [];
+        const userStats = db.practiceStats[req.userId] || { topicWiseScore: [] };
+        const topicStats = userStats.topicWiseScore || [];
         const weakTopics = topicStats
             .filter(ts => ts.total > 0 && (ts.correct / ts.total) < 0.7)
             .sort((a, b) => (a.correct / a.total) - (b.correct / b.total))
@@ -89,14 +96,15 @@ router.post('/generate', async (req, res) => {
         const testId = uuidv4();
         const examName = examTypes.length > 0 ? examTypes.join(', ') : 'Mixed';
         const formattedDate = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-        const mockTest: MockTest = {
+        const mockTest: MockTest & { userId?: string } = {
             id: testId,
             title: `${examName} Mock Test - ${formattedDate}`,
             description: `Test with ${questions.length} questions${examTypes.length > 0 ? ` from ${examName}` : ''}`,
             questions,
             duration,
             totalMarks: questions.length,
-            createdAt: new Date()
+            createdAt: new Date(),
+            userId: req.userId
         };
 
         mockTests.set(testId, mockTest);
@@ -117,11 +125,15 @@ router.post('/generate', async (req, res) => {
 });
 
 // Generate quick practice test
-router.post('/quick-practice', async (req, res) => {
+router.post('/quick-practice', async (req: any, res) => {
     try {
         const { documentId, topic, questionCount = 10 } = req.body;
         const doc = documents.get(documentId);
-        if (!doc) return res.status(404).json({ error: 'Document not found' });
+        
+        // Security check: ensure doc belongs to user
+        if (!doc || doc.userId !== req.userId) {
+            return res.status(404).json({ error: 'Document not found' });
+        }
 
         let questions = await generateQuestions([doc], questionCount);
         if (topic) {
@@ -129,14 +141,15 @@ router.post('/quick-practice', async (req, res) => {
         }
 
         const testId = uuidv4();
-        const mockTest: MockTest = {
+        const mockTest: MockTest & { userId?: string } = {
             id: testId,
             title: `Quick Practice - ${topic || 'All Topics'}`,
             description: 'Practice mode - no time limit',
             questions: questions.slice(0, questionCount),
             duration: 0,
             totalMarks: questions.length,
-            createdAt: new Date()
+            createdAt: new Date(),
+            userId: req.userId
         };
 
         mockTests.set(testId, mockTest);
@@ -148,30 +161,34 @@ router.post('/quick-practice', async (req, res) => {
     }
 });
 
-// Get ALL results (for AI report) - must be before /:id to avoid shadowing
-router.get('/results', (req, res) => {
-    const results = Array.from(testResults.values()).map(r => {
-        const test = mockTests.get(r.testId);
-        return {
-            id: r.id,
-            testId: r.testId,
-            testTitle: test?.title || 'Unknown Test',
-            score: r.score,
-            totalMarks: r.totalMarks,
-            percentage: r.percentage,
-            timeTaken: r.timeTaken,
-            duration: test?.duration || 0,
-            topicWiseScore: r.topicWiseScore,
-            completedAt: r.completedAt
-        };
-    }).sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
+// Get ALL results for authenticated user (for AI report) - must be before /:id to avoid shadowing
+router.get('/results', (req: any, res) => {
+    const results = Array.from(testResults.values())
+        .filter(r => r.userId === req.userId)
+        .map(r => {
+            const test = mockTests.get(r.testId);
+            return {
+                id: r.id,
+                testId: r.testId,
+                testTitle: test?.title || 'Unknown Test',
+                score: r.score,
+                totalMarks: r.totalMarks,
+                percentage: r.percentage,
+                timeTaken: r.timeTaken,
+                duration: test?.duration || 0,
+                topicWiseScore: r.topicWiseScore,
+                completedAt: r.completedAt
+            };
+        }).sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
     res.json(results);
 });
 
-// Get test by ID
-router.get('/:id', (req, res) => {
+// Get test by ID for authenticated user
+router.get('/:id', (req: any, res) => {
     const test = mockTests.get(req.params.id);
-    if (!test) return res.status(404).json({ error: 'Test not found' });
+    if (!test || (test.userId && test.userId !== req.userId)) {
+        return res.status(404).json({ error: 'Test not found' });
+    }
 
     const testWithoutAnswers = {
         ...test,
@@ -187,24 +204,28 @@ router.get('/:id', (req, res) => {
     res.json(testWithoutAnswers);
 });
 
-// Get all tests
-router.get('/', (req, res) => {
-    const tests = Array.from(mockTests.values()).map(test => ({
-        id: test.id,
-        title: test.title,
-        description: test.description,
-        questionCount: test.questions.length,
-        duration: test.duration,
-        totalMarks: test.totalMarks,
-        createdAt: test.createdAt
-    }));
+// Get all tests for authenticated user
+router.get('/', (req: any, res) => {
+    const tests = Array.from(mockTests.values())
+        .filter(test => !test.userId || test.userId === req.userId)
+        .map(test => ({
+            id: test.id,
+            title: test.title,
+            description: test.description,
+            questionCount: test.questions.length,
+            duration: test.duration,
+            totalMarks: test.totalMarks,
+            createdAt: test.createdAt
+        }));
     res.json(tests);
 });
 
 // Submit test answers
-router.post('/:id/submit', (req, res) => {
+router.post('/:id/submit', (req: any, res) => {
     const test = mockTests.get(req.params.id);
-    if (!test) return res.status(404).json({ error: 'Test not found' });
+    if (!test || (test.userId && test.userId !== req.userId)) {
+        return res.status(404).json({ error: 'Test not found' });
+    }
 
     const { answers, timeTaken } = req.body;
     if (!answers || !Array.isArray(answers)) return res.status(400).json({ error: 'Answers array required' });
@@ -255,7 +276,7 @@ router.post('/:id/submit', (req, res) => {
     const scorePercentage = Math.round((calculatedScore / test.questions.length) * 100);
 
     const resultId = uuidv4();
-    const result: TestResult = {
+    const result: TestResult & { userId?: string } = {
         id: resultId,
         testId: test.id,
         answers: userAnswers,
@@ -264,7 +285,8 @@ router.post('/:id/submit', (req, res) => {
         percentage: Math.max(0, scorePercentage),
         timeTaken: timeTaken || 0,
         topicWiseScore,
-        completedAt: new Date()
+        completedAt: new Date(),
+        userId: req.userId
     };
 
     testResults.set(resultId, result);
@@ -284,32 +306,12 @@ router.post('/:id/submit', (req, res) => {
     });
 });
 
-// Get all test results summary
-router.get('/results', (req, res) => {
-    const resultsSummary = Array.from(testResults.values()).map(result => {
-        const test = mockTests.get(result.testId);
-        return {
-            id: result.id,
-            testId: result.testId,
-            testTitle: test?.title || 'Unknown Test',
-            score: result.score,
-            totalMarks: result.totalMarks,
-            percentage: result.percentage,
-            timeTaken: result.timeTaken,
-            duration: test?.duration || 0,
-            topicWiseScore: result.topicWiseScore,
-            completedAt: result.completedAt,
-        };
-    });
-    // Sort by newest first
-    resultsSummary.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
-    res.json(resultsSummary);
-});
-
 // Get test result
-router.get('/results/:resultId', (req, res) => {
+router.get('/results/:resultId', (req: any, res) => {
     const result = testResults.get(req.params.resultId);
-    if (!result) return res.status(404).json({ error: 'Result not found' });
+    if (!result || result.userId !== req.userId) {
+        return res.status(404).json({ error: 'Result not found' });
+    }
 
     const test = mockTests.get(result.testId);
     if (!test) return res.status(404).json({ error: 'Test not found' });
@@ -348,10 +350,13 @@ router.get('/results/:resultId', (req, res) => {
     });
 });
 
-// (GET /results is now above GET /:id to avoid route shadowing)
-
 // Delete a test result
-router.delete('/results/:resultId', (req, res) => {
+router.delete('/results/:resultId', (req: any, res) => {
+    const result = testResults.get(req.params.resultId);
+    if (!result || result.userId !== req.userId) {
+        return res.status(404).json({ error: 'Result not found' });
+    }
+
     testResults.delete(req.params.resultId);
     persistDB();
     res.json({ success: true });

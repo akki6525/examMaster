@@ -10,9 +10,13 @@
         "build": "cd client && npm run build"
     },
     "devDependencies": {
+        "@types/bcryptjs": "^2.4.6",
+        "@types/jsonwebtoken": "^9.0.10",
         "concurrently": "^8.2.2"
     },
     "dependencies": {
+        "bcryptjs": "^3.0.3",
+        "jsonwebtoken": "^9.0.3",
         "react-confetti": "^6.4.0",
         "react-use": "^17.6.0"
     }

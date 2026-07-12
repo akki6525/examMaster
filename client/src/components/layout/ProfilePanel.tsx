@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
+import { useToastStore } from '../../stores/toastStore';
 import { cn } from '../../lib/utils';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -348,7 +349,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                         <Save className="w-4 h-4 animate-bounce" style={{ animationDuration: '2s' }} />
                                         {isSaving ? 'Updating...' : 'Save Details'}
                                     </button>
-                                    <button onClick={() => { logout(); onClose(); }} className="w-full py-4 bg-muted text-muted-foreground rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-red-500/10 hover:text-red-500 transition-all active:scale-[0.98] border border-transparent hover:border-red-500/20">
+                                    <button onClick={() => { logout(); onClose(); useToastStore.getState().show('Logged out successfully', 'success'); }} className="w-full py-4 bg-muted text-muted-foreground rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-red-500/10 hover:text-red-500 transition-all active:scale-[0.98] border border-transparent hover:border-red-500/20">
                                         <LogOut className="w-4 h-4" /> Sign Out
                                     </button>
                                 </div>

@@ -5,11 +5,25 @@ import { v4 as uuidv4 } from 'uuid';
 import { extractText, ExtractionOptions } from '../services/extraction.js';
 import { processWithNLP } from '../services/nlp.js';
 import { ExtractedContent } from '../types/index.js';
+import { authMiddleware } from '../middleware/auth.js';
+import { loadDB, saveDB } from '../services/persistence.js';
 
 const router = Router();
 
-// In-memory storage for documents (in production, use a database)
-export const documents: Map<string, ExtractedContent> = new Map();
+// Load from persistent DB on startup
+const _db = loadDB();
+export const documents: Map<string, ExtractedContent & { userId?: string }> = new Map(Object.entries(_db.documents || {}));
+
+export function persistDocuments() {
+    const currentDB = loadDB();
+    saveDB({
+        ...currentDB,
+        documents: Object.fromEntries(documents)
+    });
+}
+
+// All uploads must be authenticated
+router.use(authMiddleware);
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -68,7 +82,7 @@ router.post('/single', upload.single('file'), async (req, res) => {
         const nlpResult = await processWithNLP(rawText);
 
         const docId = uuidv4();
-        const extractedContent: ExtractedContent = {
+        const extractedContent: ExtractedContent & { userId?: string } = {
             id: docId,
             fileName,
             fileType,
@@ -80,10 +94,12 @@ router.post('/single', upload.single('file'), async (req, res) => {
             formulas: nlpResult.formulas,
             questionableContent: nlpResult.questionableContent,
             extractedQuestions: nlpResult.extractedQuestions,
-            createdAt: new Date()
+            createdAt: new Date(),
+            userId: (req as any).userId
         };
 
         documents.set(docId, extractedContent);
+        persistDocuments();
 
         // Debug logging
         console.log(`Document "${fileName}" processed:`);
@@ -131,7 +147,7 @@ router.post('/multiple', upload.array('files', 10), async (req, res) => {
                     const nlpResult = await processWithNLP(rawText);
 
                     const docId = uuidv4();
-                    const extractedContent: ExtractedContent = {
+                    const extractedContent: ExtractedContent & { userId?: string } = {
                         id: docId,
                         fileName: file.originalname,
                         fileType: file.mimetype,
@@ -143,10 +159,12 @@ router.post('/multiple', upload.array('files', 10), async (req, res) => {
                         formulas: nlpResult.formulas,
                         questionableContent: nlpResult.questionableContent,
                         extractedQuestions: nlpResult.extractedQuestions,
-                        createdAt: new Date()
+                        createdAt: new Date(),
+                        userId: (req as any).userId
                     };
 
                     documents.set(docId, extractedContent);
+                    persistDocuments();
 
                     return {
                         success: true,

@@ -17,6 +17,7 @@ import SmartMockTests from './pages/SmartMockTests';
 
 import { useAuthStore } from './stores/authStore';
 import Login from './components/auth/Login';
+import ToastContainer from './components/common/ToastContainer';
 
 function App() {
   const { theme } = useThemeStore();
@@ -37,7 +38,12 @@ function App() {
   }, [theme]);
 
   if (!isAuthenticated) {
-    return <Login />;
+    return (
+      <>
+        <Login />
+        <ToastContainer />
+      </>
+    );
   }
 
   return (
@@ -58,6 +64,7 @@ function App() {
           <Route path="/smart-mock-tests" element={<SmartMockTests />} />
         </Routes>
       </Layout>
+      <ToastContainer />
     </Router>
   );
 }

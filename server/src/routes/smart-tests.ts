@@ -2,8 +2,12 @@ import { Router } from 'express';
 import { generateSmartMockTest, getAvailableExamPatterns } from '../services/mock-test-engine.js';
 import { mockTests, testResults } from './tests.js';
 import { loadDB, saveDB } from '../services/persistence.js';
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = Router();
+
+// Protect smart-tests endpoints
+router.use(authMiddleware);
 
 function persistDB() {
     const currentDB = loadDB();
@@ -15,12 +19,12 @@ function persistDB() {
 }
 
 // Get available smart exam patterns
-router.get('/patterns', (req, res) => {
+router.get('/patterns', (req: any, res) => {
     res.json(getAvailableExamPatterns());
 });
 
 // Generate a smart mock test
-router.post('/generate', (req, res) => {
+router.post('/generate', (req: any, res) => {
     try {
         const { examId, year } = req.body;
         
@@ -28,8 +32,11 @@ router.post('/generate', (req, res) => {
             return res.status(400).json({ error: 'Exam ID is required' });
         }
 
-        const test = generateSmartMockTest(examId, year ? parseInt(year) : undefined);
+        const test: any = generateSmartMockTest(examId, year ? parseInt(year) : undefined);
         
+        // Associate with current user
+        test.userId = req.userId;
+
         mockTests.set(test.id, test);
         persistDB();
 

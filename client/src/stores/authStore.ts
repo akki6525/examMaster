@@ -1,61 +1,129 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import axios from 'axios';
+
+const API_BASE = 'http://localhost:3001/api';
 
 export interface User {
+    id?: string;
     username: string;
+    name: string;
     email: string;
     phone: string;
-    password?: string;
+    avatar?: string;
 }
 
 interface AuthState {
     user: User | null;
+    token: string | null;
     isAuthenticated: boolean;
-    login: (username: string, password: string) => boolean;
+    login: (username: string, password: string) => Promise<{ success: boolean; error?: string }>;
+    register: (username: string, name: string, password: string) => Promise<{ success: boolean; error?: string }>;
     logout: () => void;
-    updateProfile: (data: Partial<User>) => void;
+    updateProfile: (data: Partial<User>) => Promise<{ success: boolean; error?: string }>;
+    resetPassword: (username: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
     clearAuthData: () => void;
 }
+
+// Automatically load token on application start for Axios defaults
+(() => {
+    try {
+        const stored = localStorage.getItem('exammaster-auth-storage');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed?.state?.token) {
+                axios.defaults.headers.common['Authorization'] = `Bearer ${parsed.state.token}`;
+            }
+        }
+    } catch (e) {
+        console.error('Error restoring authorization headers:', e);
+    }
+})();
 
 export const useAuthStore = create<AuthState>()(
     persist(
         (set, get) => ({
             user: null,
+            token: null,
             isAuthenticated: false,
-            login: (username, password) => {
-                const storedUser = get().user;
-                
-                // If a user is already "registered" in local storage for this session
-                // check if the username matches and password matches
-                if (storedUser && storedUser.username.toLowerCase() === username.toLowerCase()) {
-                    if (storedUser.password === password) {
-                        set({ isAuthenticated: true });
-                        return true;
-                    } else {
-                        return false; // Wrong password
-                    }
+            login: async (username, password) => {
+                try {
+                    const res = await axios.post(`${API_BASE}/auth/login`, { username, password });
+                    const { token, user } = res.data;
+                    
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                    
+                    set({
+                        user,
+                        token,
+                        isAuthenticated: true
+                    });
+                    return { success: true };
+                } catch (err: any) {
+                    return {
+                        success: false,
+                        error: err.response?.data?.error || 'Failed to sign in. Please verify your credentials.'
+                    };
                 }
-
-                // If no user exists or it's a new username, treat this as a "registration + login"
-                set({
-                    user: {
-                        username,
-                        password,
-                        email: `${username.toLowerCase()}@example.com`,
-                        phone: '+91 99999 88888'
-                    },
-                    isAuthenticated: true
-                });
-                return true;
             },
-            logout: () => set({ isAuthenticated: false }), // We keep the user data but set auth to false
-            updateProfile: (data) => set((state) => ({
-                user: state.user ? { ...state.user, ...data } : null
-            })),
-            clearAuthData: () => set({ user: null, isAuthenticated: false }),
+            register: async (username, name, password) => {
+                try {
+                    const res = await axios.post(`${API_BASE}/auth/register`, { username, name, password });
+                    const { token, user } = res.data;
+                    
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                    
+                    set({
+                        user,
+                        token,
+                        isAuthenticated: true
+                    });
+                    return { success: true };
+                } catch (err: any) {
+                    return {
+                        success: false,
+                        error: err.response?.data?.error || 'Registration failed. Username may already be in use.'
+                    };
+                }
+            },
+            logout: () => {
+                delete axios.defaults.headers.common['Authorization'];
+                set({
+                    user: null,
+                    token: null,
+                    isAuthenticated: false
+                });
+            },
+            updateProfile: async (data) => {
+                try {
+                    const res = await axios.patch(`${API_BASE}/auth/profile`, data);
+                    set({ user: res.data });
+                    return { success: true };
+                } catch (err: any) {
+                    return {
+                        success: false,
+                        error: err.response?.data?.error || 'Failed to update profile.'
+                    };
+                }
+            },
+            resetPassword: async (username, newPassword) => {
+                try {
+                    const res = await axios.post(`${API_BASE}/auth/reset-password`, { username, newPassword });
+                    return { success: true, message: res.data.message };
+                } catch (err: any) {
+                    return {
+                        success: false,
+                        error: err.response?.data?.error || 'Failed to reset password.'
+                    };
+                }
+            },
+            clearAuthData: () => {
+                delete axios.defaults.headers.common['Authorization'];
+                set({ user: null, token: null, isAuthenticated: false });
+            },
         }),
         {
-            name: 'exammaster-auth-storage', // Using a specific name for clarity
+            name: 'exammaster-auth-storage',
         }
     )
 );

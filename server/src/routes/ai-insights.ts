@@ -1,15 +1,21 @@
 import { Router } from 'express';
 import { testResults } from './tests.js';
-import { loadDB } from '../services/persistence.js';
+import { getPracticeStats } from '../services/persistence.js';
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = Router();
 
-router.get('/dashboard', (req, res) => {
+// Protect dashboard insights endpoint
+router.use(authMiddleware);
+
+router.get('/dashboard', (req: any, res) => {
+    // Filter test results to only current user
     const results = Array.from(testResults.values())
+        .filter(r => (r as any).userId === req.userId)
         .sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime());
     
-    const db = loadDB();
-    const practiceStats = db.practiceStats || { totalAttempted: 0, correct: 0, incorrect: 0 };
+    // Get current user's stats
+    const practiceStats = getPracticeStats(req.userId);
 
     // AI Prediction Logic
     let predictedScore = 0;

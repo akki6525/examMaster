@@ -4343,6 +4343,3480 @@
         }
       ],
       "createdAt": "2026-07-12T10:27:45.782Z"
+    },
+    "33c9bce6-5569-467f-910f-fe3dc793d122": {
+      "id": "33c9bce6-5569-467f-910f-fe3dc793d122",
+      "title": "SSC CGL Tier-I (Pre) - 2025 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405027",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-1-27)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405025",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-25)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405018",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-18)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405002",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-2)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405009",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-9)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405002",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-2)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405010",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-10)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405028",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-28)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405015",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-1-15)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405005",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-5)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405022",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-22)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405021",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-21)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405006",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-6)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405012",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-12)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405018",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-18)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405001",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-1)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405026",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-26)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405013",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-13)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405014",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-14)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405006",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-6)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405011",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-2-11)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405023",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-1-23)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405012",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-1-12)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405004",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-1-4)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405008",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-8)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202503",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202500",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202502",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202503",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202504",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202501",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202501",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202502",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202504",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202500",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607501",
+          "question": "The profit earned by selling an article for Rs. 800 is 20 times the loss incurred when it is sold for Rs. 275. At what price should the article be sold to make a 25% profit? (SSC 2025)",
+          "options": [
+            "Rs. 375",
+            "Rs. 400",
+            "Rs. 350",
+            "Rs. 425"
+          ],
+          "correctAnswer": "Rs. 375",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Let CP be x. (800-x) = 20(x-275). 800-x = 20x - 5500. 21x = 6300. x = 300. 125% of 300 = 375.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607500",
+          "question": "A can finish a work in 12 days and B can finish the same work in 15 days. If they work together, in how many days will the work be finished? (SSC 2025)",
+          "options": [
+            "6.7 days",
+            "7.5 days",
+            "6.2 days",
+            "8.1 days"
+          ],
+          "correctAnswer": "6.7 days",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Time = (12*15)/(12+15) = 180/27 ≈ 6.66 days.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607502",
+          "question": "Find the compound interest on Rs. 10,000 for 2 years at 10% per annum compound interest? (SSC 2025)",
+          "options": [
+            "Rs. 2,100",
+            "Rs. 2,000",
+            "Rs. 1,100",
+            "Rs. 2,200"
+          ],
+          "correctAnswer": "Rs. 2,100",
+          "topic": "Quantitative Aptitude",
+          "explanation": "CI = P(1 + R/100)^n - P = 10000(1.1)^2 - 10000 = 12100 - 10000 = 2100.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 76,
+      "sections": [
+        {
+          "id": "cf10499c-13be-461d-bcbc-72fa242c9bf0",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": [
+            "ssc-cgl-t1-res-1775657680295-405027",
+            "ssc-cgl-t2-res-1775657680296-405025",
+            "ssc-cgl-t2-res-1775657680296-405018",
+            "ssc-cgl-t1-res-1775657680295-405002",
+            "ssc-cgl-t2-res-1775657680296-405009",
+            "ssc-cgl-t2-res-1775657680296-405002",
+            "ssc-cgl-t2-res-1775657680296-405010",
+            "ssc-cgl-t2-res-1775657680296-405028",
+            "ssc-cgl-t1-res-1775657680295-405015",
+            "ssc-cgl-t2-res-1775657680296-405005",
+            "ssc-cgl-t2-res-1775657680296-405022",
+            "ssc-cgl-t2-res-1775657680296-405021",
+            "ssc-cgl-t1-res-1775657680295-405006",
+            "ssc-cgl-t2-res-1775657680296-405012",
+            "ssc-cgl-t1-res-1775657680295-405018",
+            "ssc-cgl-t1-res-1775657680295-405001",
+            "ssc-cgl-t1-res-1775657680295-405026",
+            "ssc-cgl-t1-res-1775657680295-405013",
+            "ssc-cgl-t1-res-1775657680295-405014",
+            "ssc-cgl-t2-res-1775657680296-405006",
+            "ssc-cgl-t2-res-1775657680296-405011",
+            "ssc-cgl-t1-res-1775657680295-405023",
+            "ssc-cgl-t1-res-1775657680295-405012",
+            "ssc-cgl-t1-res-1775657680295-405004",
+            "ssc-cgl-t2-res-1775657680296-405008"
+          ]
+        },
+        {
+          "id": "f7abcda3-fd7c-4cee-85f1-abf15b1544af",
+          "name": "General Awareness",
+          "questionIds": [
+            "ssc-cgl-t1-gs-1775657680295-202503",
+            "ssc-cgl-t1-gs-1775657680295-202500",
+            "ssc-cgl-t2-gs-1775657680296-202502",
+            "ssc-cgl-t2-gs-1775657680296-202503",
+            "ssc-cgl-t1-gs-1775657680295-202504",
+            "ssc-cgl-t2-gs-1775657680296-202501",
+            "ssc-cgl-t1-gs-1775657680295-202501",
+            "ssc-cgl-t1-gs-1775657680295-202502",
+            "ssc-cgl-t2-gs-1775657680296-202504",
+            "ssc-cgl-t2-gs-1775657680296-202500"
+          ]
+        },
+        {
+          "id": "14f50dc5-6ef1-4299-a927-9b89f70fdd66",
+          "name": "Quantitative Aptitude",
+          "questionIds": [
+            "ssc-cgl-t1-quant-1775657680295-607501",
+            "ssc-cgl-t1-quant-1775657680295-607500",
+            "ssc-cgl-t1-quant-1775657680295-607502"
+          ]
+        },
+        {
+          "id": "d45cfe43-61e9-447b-86da-f074dfc05498",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-07-12T12:01:14.665Z"
+    },
+    "16d3d7b4-763f-4f7f-b983-b66084165e3b": {
+      "id": "16d3d7b4-763f-4f7f-b983-b66084165e3b",
+      "title": "SSC CGL Tier-I (Pre) - 2026 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc_cgl-2026-real-ijt2f",
+          "question": "Who was the first woman President of the Indian National Congress?",
+          "options": [
+            "Annie Besant",
+            "Sarojini Naidu",
+            "Indira Gandhi",
+            "Sonia Gandhi"
+          ],
+          "correctAnswer": "Annie Besant",
+          "explanation": "Annie Besant became the first woman President of the Indian National Congress in 1917. Sarojini Naidu was the first Indian woman President.",
+          "difficulty": "medium",
+          "topic": "History",
+          "source": "ssc_cgl 2026",
+          "examName": "SSC CGL",
+          "year": 2026,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc_cgl-2026-real-dtryy",
+          "question": "Which is the longest river in Peninsular India?",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Narmada"
+          ],
+          "correctAnswer": "Godavari",
+          "explanation": "The Godavari is the longest river in Peninsular India, also known as the Dakshin Ganga.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "ssc_cgl 2026",
+          "examName": "SSC CGL",
+          "year": 2026,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc_cgl-2026-real-i66mcr",
+          "question": "The Tropic of Cancer does NOT pass through which of the following Indian states?",
+          "options": [
+            "Gujarat",
+            "Rajasthan",
+            "Odisha",
+            "West Bengal"
+          ],
+          "correctAnswer": "Odisha",
+          "explanation": "The Tropic of Cancer passes through 8 states: Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "ssc_cgl 2026",
+          "examName": "SSC CGL",
+          "year": 2026,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 6,
+      "sections": [
+        {
+          "id": "76d4d6e0-8aeb-4002-97e4-8274159f3c9a",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": []
+        },
+        {
+          "id": "bf76bffb-06c8-4c3c-9c88-09f59c40dfee",
+          "name": "General Awareness",
+          "questionIds": [
+            "ssc_cgl-2026-real-ijt2f",
+            "ssc_cgl-2026-real-dtryy",
+            "ssc_cgl-2026-real-i66mcr"
+          ]
+        },
+        {
+          "id": "59745a04-1d90-4e95-a885-b6985c29e350",
+          "name": "Quantitative Aptitude",
+          "questionIds": []
+        },
+        {
+          "id": "a5fbf331-89cb-4a86-9243-969c7310a667",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-07-12T12:04:53.948Z"
+    },
+    "fbe489eb-50f1-4a3e-9ad7-df71e2e0b206": {
+      "id": "fbe489eb-50f1-4a3e-9ad7-df71e2e0b206",
+      "title": "SSC CGL Tier-I (Pre) - 2025 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405020",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-20)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405028",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-1-28)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405015",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-2-15)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405022",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-22)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405026",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-26)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405029",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-29)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405005",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-5)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405025",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-25)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405026",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-26)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405004",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-1-4)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405014",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-1-14)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405021",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-21)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405000",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-1-0)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405017",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-17)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405012",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-12)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405028",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-28)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405003",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-2-3)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405010",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2025-2-10)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405015",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-1-15)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405001",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-1)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405024",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2025-2-24)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-405029",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-1-29)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405007",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2025-2-7)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405017",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-17)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680296-405009",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2025-2-9)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202500",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202500",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202503",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202501",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202504",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202503",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202504",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202502",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202502",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2025 Tier-1)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680296-202501",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2025 Tier-2)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607501",
+          "question": "The profit earned by selling an article for Rs. 800 is 20 times the loss incurred when it is sold for Rs. 275. At what price should the article be sold to make a 25% profit? (SSC 2025)",
+          "options": [
+            "Rs. 375",
+            "Rs. 400",
+            "Rs. 350",
+            "Rs. 425"
+          ],
+          "correctAnswer": "Rs. 375",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Let CP be x. (800-x) = 20(x-275). 800-x = 20x - 5500. 21x = 6300. x = 300. 125% of 300 = 375.",
+          "difficulty": "medium",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607500",
+          "question": "A can finish a work in 12 days and B can finish the same work in 15 days. If they work together, in how many days will the work be finished? (SSC 2025)",
+          "options": [
+            "6.7 days",
+            "7.5 days",
+            "6.2 days",
+            "8.1 days"
+          ],
+          "correctAnswer": "6.7 days",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Time = (12*15)/(12+15) = 180/27 ≈ 6.66 days.",
+          "difficulty": "easy",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607502",
+          "question": "Find the compound interest on Rs. 10,000 for 2 years at 10% per annum compound interest? (SSC 2025)",
+          "options": [
+            "Rs. 2,100",
+            "Rs. 2,000",
+            "Rs. 1,100",
+            "Rs. 2,200"
+          ],
+          "correctAnswer": "Rs. 2,100",
+          "topic": "Quantitative Aptitude",
+          "explanation": "CI = P(1 + R/100)^n - P = 10000(1.1)^2 - 10000 = 12100 - 10000 = 2100.",
+          "difficulty": "hard",
+          "year": 2025,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 76,
+      "sections": [
+        {
+          "id": "30ca1e8a-50a1-4523-ac49-3f83130d8b63",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": [
+            "ssc-cgl-t2-res-1775657680296-405020",
+            "ssc-cgl-t1-res-1775657680295-405028",
+            "ssc-cgl-t2-res-1775657680296-405015",
+            "ssc-cgl-t2-res-1775657680296-405022",
+            "ssc-cgl-t1-res-1775657680295-405026",
+            "ssc-cgl-t2-res-1775657680296-405029",
+            "ssc-cgl-t2-res-1775657680296-405005",
+            "ssc-cgl-t1-res-1775657680295-405025",
+            "ssc-cgl-t2-res-1775657680296-405026",
+            "ssc-cgl-t1-res-1775657680295-405004",
+            "ssc-cgl-t1-res-1775657680295-405014",
+            "ssc-cgl-t1-res-1775657680295-405021",
+            "ssc-cgl-t1-res-1775657680295-405000",
+            "ssc-cgl-t1-res-1775657680295-405017",
+            "ssc-cgl-t2-res-1775657680296-405012",
+            "ssc-cgl-t2-res-1775657680296-405028",
+            "ssc-cgl-t2-res-1775657680296-405003",
+            "ssc-cgl-t2-res-1775657680296-405010",
+            "ssc-cgl-t1-res-1775657680295-405015",
+            "ssc-cgl-t1-res-1775657680295-405001",
+            "ssc-cgl-t2-res-1775657680296-405024",
+            "ssc-cgl-t1-res-1775657680295-405029",
+            "ssc-cgl-t2-res-1775657680296-405007",
+            "ssc-cgl-t2-res-1775657680296-405017",
+            "ssc-cgl-t2-res-1775657680296-405009"
+          ]
+        },
+        {
+          "id": "aa08fdb2-6642-4333-966c-c1f81eda5294",
+          "name": "General Awareness",
+          "questionIds": [
+            "ssc-cgl-t1-gs-1775657680295-202500",
+            "ssc-cgl-t2-gs-1775657680296-202500",
+            "ssc-cgl-t1-gs-1775657680295-202503",
+            "ssc-cgl-t1-gs-1775657680295-202501",
+            "ssc-cgl-t2-gs-1775657680296-202504",
+            "ssc-cgl-t2-gs-1775657680296-202503",
+            "ssc-cgl-t1-gs-1775657680295-202504",
+            "ssc-cgl-t2-gs-1775657680296-202502",
+            "ssc-cgl-t1-gs-1775657680295-202502",
+            "ssc-cgl-t2-gs-1775657680296-202501"
+          ]
+        },
+        {
+          "id": "727ee7c5-263f-4c55-a172-a221de829379",
+          "name": "Quantitative Aptitude",
+          "questionIds": [
+            "ssc-cgl-t1-quant-1775657680295-607501",
+            "ssc-cgl-t1-quant-1775657680295-607500",
+            "ssc-cgl-t1-quant-1775657680295-607502"
+          ]
+        },
+        {
+          "id": "3f5e98d1-b266-461b-961b-ac454164018f",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-07-12T12:05:24.143Z"
+    },
+    "fb83dd89-ffea-4a90-8ea5-e07fd7182c1b": {
+      "id": "fb83dd89-ffea-4a90-8ea5-e07fd7182c1b",
+      "title": "SSC CGL Tier-I (Pre) - 2024 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404814",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-2-14)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404828",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-1-28)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404803",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-1-3)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404826",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-1-26)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404824",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-1-24)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404808",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-8)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404826",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-2-26)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404812",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-12)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404829",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-29)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404808",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-1-8)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404819",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-1-19)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404805",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-5)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404815",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-15)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404818",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-2-18)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404807",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-7)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404806",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-1-6)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404813",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-13)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404828",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-28)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404811",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-11)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404824",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-24)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404801",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-1)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404827",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-1-27)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404802",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-1-2)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404816",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-16)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404823",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-23)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202400",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202404",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202403",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202400",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202402",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202401",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202401",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202402",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202403",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202404",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607202",
+          "question": "Find the compound interest on Rs. 10,000 for 2 years at 10% per annum compound interest? (SSC 2024)",
+          "options": [
+            "Rs. 2,100",
+            "Rs. 2,000",
+            "Rs. 1,100",
+            "Rs. 2,200"
+          ],
+          "correctAnswer": "Rs. 2,100",
+          "topic": "Quantitative Aptitude",
+          "explanation": "CI = P(1 + R/100)^n - P = 10000(1.1)^2 - 10000 = 12100 - 10000 = 2100.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607201",
+          "question": "The profit earned by selling an article for Rs. 800 is 20 times the loss incurred when it is sold for Rs. 275. At what price should the article be sold to make a 25% profit? (SSC 2024)",
+          "options": [
+            "Rs. 375",
+            "Rs. 400",
+            "Rs. 350",
+            "Rs. 425"
+          ],
+          "correctAnswer": "Rs. 375",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Let CP be x. (800-x) = 20(x-275). 800-x = 20x - 5500. 21x = 6300. x = 300. 125% of 300 = 375.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607200",
+          "question": "A can finish a work in 12 days and B can finish the same work in 15 days. If they work together, in how many days will the work be finished? (SSC 2024)",
+          "options": [
+            "6.7 days",
+            "7.5 days",
+            "6.2 days",
+            "8.1 days"
+          ],
+          "correctAnswer": "6.7 days",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Time = (12*15)/(12+15) = 180/27 ≈ 6.66 days.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 76,
+      "sections": [
+        {
+          "id": "5192f7bb-b96f-404d-a2b9-e9e2d6361f6e",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": [
+            "ssc-cgl-t2-res-1775657680295-404814",
+            "ssc-cgl-t1-res-1775657680295-404828",
+            "ssc-cgl-t1-res-1775657680295-404803",
+            "ssc-cgl-t1-res-1775657680295-404826",
+            "ssc-cgl-t1-res-1775657680295-404824",
+            "ssc-cgl-t2-res-1775657680295-404808",
+            "ssc-cgl-t2-res-1775657680295-404826",
+            "ssc-cgl-t2-res-1775657680295-404812",
+            "ssc-cgl-t2-res-1775657680295-404829",
+            "ssc-cgl-t1-res-1775657680295-404808",
+            "ssc-cgl-t1-res-1775657680295-404819",
+            "ssc-cgl-t2-res-1775657680295-404805",
+            "ssc-cgl-t2-res-1775657680295-404815",
+            "ssc-cgl-t2-res-1775657680295-404818",
+            "ssc-cgl-t2-res-1775657680295-404807",
+            "ssc-cgl-t1-res-1775657680295-404806",
+            "ssc-cgl-t1-res-1775657680295-404813",
+            "ssc-cgl-t2-res-1775657680295-404828",
+            "ssc-cgl-t2-res-1775657680295-404811",
+            "ssc-cgl-t2-res-1775657680295-404824",
+            "ssc-cgl-t1-res-1775657680295-404801",
+            "ssc-cgl-t1-res-1775657680295-404827",
+            "ssc-cgl-t1-res-1775657680295-404802",
+            "ssc-cgl-t2-res-1775657680295-404816",
+            "ssc-cgl-t2-res-1775657680295-404823"
+          ]
+        },
+        {
+          "id": "5177d959-1964-4bcd-a7d5-092f70e046f4",
+          "name": "General Awareness",
+          "questionIds": [
+            "ssc-cgl-t1-gs-1775657680295-202400",
+            "ssc-cgl-t1-gs-1775657680295-202404",
+            "ssc-cgl-t1-gs-1775657680295-202403",
+            "ssc-cgl-t2-gs-1775657680295-202400",
+            "ssc-cgl-t2-gs-1775657680295-202402",
+            "ssc-cgl-t2-gs-1775657680295-202401",
+            "ssc-cgl-t1-gs-1775657680295-202401",
+            "ssc-cgl-t1-gs-1775657680295-202402",
+            "ssc-cgl-t2-gs-1775657680295-202403",
+            "ssc-cgl-t2-gs-1775657680295-202404"
+          ]
+        },
+        {
+          "id": "c15f6be2-9a8f-40bd-924d-271489b0ef49",
+          "name": "Quantitative Aptitude",
+          "questionIds": [
+            "ssc-cgl-t1-quant-1775657680295-607202",
+            "ssc-cgl-t1-quant-1775657680295-607201",
+            "ssc-cgl-t1-quant-1775657680295-607200"
+          ]
+        },
+        {
+          "id": "b2d2da05-b03c-4e60-97e7-f26cdadde266",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-07-12T12:09:47.605Z"
+    },
+    "7a140183-0aa0-4fb8-9f94-e4222fe02bac": {
+      "id": "7a140183-0aa0-4fb8-9f94-e4222fe02bac",
+      "title": "SSC CGL Tier-I (Pre) - 2024 Mock Test",
+      "description": "Full-length mock test based on SSC CGL Tier-I (Pre) pattern.",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404814",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-2-14)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404813",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-13)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404817",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-17)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404807",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-1-7)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404805",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-5)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404800",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-0)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404824",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-24)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404809",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-9)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404808",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-8)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404805",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-5)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404829",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-29)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404829",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-29)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404811",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-11)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404816",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-16)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404828",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-1-28)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404819",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-1-19)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404803",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-3)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404817",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-17)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404815",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-15)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404818",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-1-18)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404821",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-21)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404804",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2024-2-4)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404825",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-2-25)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404826",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-2-26)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404810",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-1-10)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202400",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202400",
+          "question": "Which of the following Article of the Indian Constitution empowers the President to grant pardons? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Article 72",
+            "Article 74",
+            "Article 76",
+            "Article 78"
+          ],
+          "correctAnswer": "Article 72",
+          "topic": "General Awareness",
+          "explanation": "Article 72 of the Constitution empowers the President to grant pardons, reprieves, respites or remissions of punishment.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202404",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202403",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202401",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202402",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202404",
+          "question": "The Fundamental Duties of Indian citizens were added to the Constitution by which amendment? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "42nd Amendment",
+            "44th Amendment",
+            "52nd Amendment",
+            "73rd Amendment"
+          ],
+          "correctAnswer": "42nd Amendment",
+          "topic": "General Awareness",
+          "explanation": "Fundamental Duties were added by the 42nd Constitutional Amendment Act, 1976.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202401",
+          "question": "Who was the first Governor-General of Bengal? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord William Bentinck",
+            "Robert Clive"
+          ],
+          "correctAnswer": "Warren Hastings",
+          "topic": "General Awareness",
+          "explanation": "Warren Hastings was the first Governor-General of Bengal, serving from 1772 to 1785.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-gs-1775657680295-202402",
+          "question": "The 'Swaraj Party' was formed following the failure of which movement? (SSC CGL 2024 Tier-2)",
+          "options": [
+            "Non-Cooperation Movement",
+            "Civil Disobedience Movement",
+            "Quit India Movement",
+            "Swadeshi Movement"
+          ],
+          "correctAnswer": "Non-Cooperation Movement",
+          "topic": "General Awareness",
+          "explanation": "The Swaraj Party was established in 1923 after the withdrawal of the Non-Cooperation Movement.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-gs-1775657680295-202403",
+          "question": "Which river is known as the 'Dakshin Ganga'? (SSC CGL 2024 Tier-1)",
+          "options": [
+            "Godavari",
+            "Krishna",
+            "Cauvery",
+            "Mahanadi"
+          ],
+          "correctAnswer": "Godavari",
+          "topic": "General Awareness",
+          "explanation": "Godavari is known as the Dakshin Ganga because of its large size and extent among the peninsular rivers.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607201",
+          "question": "The profit earned by selling an article for Rs. 800 is 20 times the loss incurred when it is sold for Rs. 275. At what price should the article be sold to make a 25% profit? (SSC 2024)",
+          "options": [
+            "Rs. 375",
+            "Rs. 400",
+            "Rs. 350",
+            "Rs. 425"
+          ],
+          "correctAnswer": "Rs. 375",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Let CP be x. (800-x) = 20(x-275). 800-x = 20x - 5500. 21x = 6300. x = 300. 125% of 300 = 375.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607202",
+          "question": "Find the compound interest on Rs. 10,000 for 2 years at 10% per annum compound interest? (SSC 2024)",
+          "options": [
+            "Rs. 2,100",
+            "Rs. 2,000",
+            "Rs. 1,100",
+            "Rs. 2,200"
+          ],
+          "correctAnswer": "Rs. 2,100",
+          "topic": "Quantitative Aptitude",
+          "explanation": "CI = P(1 + R/100)^n - P = 10000(1.1)^2 - 10000 = 12100 - 10000 = 2100.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-607200",
+          "question": "A can finish a work in 12 days and B can finish the same work in 15 days. If they work together, in how many days will the work be finished? (SSC 2024)",
+          "options": [
+            "6.7 days",
+            "7.5 days",
+            "6.2 days",
+            "8.1 days"
+          ],
+          "correctAnswer": "6.7 days",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Time = (12*15)/(12+15) = 180/27 ≈ 6.66 days.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 60,
+      "totalMarks": 76,
+      "sections": [
+        {
+          "id": "66ee047e-3c42-454c-93b9-8f2fdd487fb7",
+          "name": "General Intelligence and Reasoning",
+          "questionIds": [
+            "ssc-cgl-t2-res-1775657680295-404814",
+            "ssc-cgl-t1-res-1775657680295-404813",
+            "ssc-cgl-t2-res-1775657680295-404817",
+            "ssc-cgl-t1-res-1775657680295-404807",
+            "ssc-cgl-t1-res-1775657680295-404805",
+            "ssc-cgl-t2-res-1775657680295-404800",
+            "ssc-cgl-t2-res-1775657680295-404824",
+            "ssc-cgl-t2-res-1775657680295-404809",
+            "ssc-cgl-t2-res-1775657680295-404808",
+            "ssc-cgl-t2-res-1775657680295-404805",
+            "ssc-cgl-t2-res-1775657680295-404829",
+            "ssc-cgl-t1-res-1775657680295-404829",
+            "ssc-cgl-t2-res-1775657680295-404811",
+            "ssc-cgl-t2-res-1775657680295-404816",
+            "ssc-cgl-t1-res-1775657680295-404828",
+            "ssc-cgl-t1-res-1775657680295-404819",
+            "ssc-cgl-t2-res-1775657680295-404803",
+            "ssc-cgl-t1-res-1775657680295-404817",
+            "ssc-cgl-t2-res-1775657680295-404815",
+            "ssc-cgl-t1-res-1775657680295-404818",
+            "ssc-cgl-t2-res-1775657680295-404821",
+            "ssc-cgl-t2-res-1775657680295-404804",
+            "ssc-cgl-t2-res-1775657680295-404825",
+            "ssc-cgl-t2-res-1775657680295-404826",
+            "ssc-cgl-t1-res-1775657680295-404810"
+          ]
+        },
+        {
+          "id": "dec03cb0-5111-40a7-8c0e-60505ab44d7d",
+          "name": "General Awareness",
+          "questionIds": [
+            "ssc-cgl-t2-gs-1775657680295-202400",
+            "ssc-cgl-t1-gs-1775657680295-202400",
+            "ssc-cgl-t1-gs-1775657680295-202404",
+            "ssc-cgl-t2-gs-1775657680295-202403",
+            "ssc-cgl-t1-gs-1775657680295-202401",
+            "ssc-cgl-t1-gs-1775657680295-202402",
+            "ssc-cgl-t2-gs-1775657680295-202404",
+            "ssc-cgl-t2-gs-1775657680295-202401",
+            "ssc-cgl-t2-gs-1775657680295-202402",
+            "ssc-cgl-t1-gs-1775657680295-202403"
+          ]
+        },
+        {
+          "id": "df42e7bb-5ee9-4f2a-be8c-27c59841693f",
+          "name": "Quantitative Aptitude",
+          "questionIds": [
+            "ssc-cgl-t1-quant-1775657680295-607201",
+            "ssc-cgl-t1-quant-1775657680295-607202",
+            "ssc-cgl-t1-quant-1775657680295-607200"
+          ]
+        },
+        {
+          "id": "731f0410-0b8c-45b4-ba7a-eb7238fff00b",
+          "name": "English Comprehension",
+          "questionIds": []
+        }
+      ],
+      "createdAt": "2026-07-12T12:12:21.521Z"
+    },
+    "9c353569-becf-4fa3-a53d-b246867caf03": {
+      "id": "9c353569-becf-4fa3-a53d-b246867caf03",
+      "title": "SSC CGL Mock Test - 12 Jul 2026",
+      "description": "Test with 10 questions from SSC CGL",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404622",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2023-2-22)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2023,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404817",
+          "question": "Pointing to a man, a woman said, 'He is the only son of my mother's mother'. How is the woman related to the man? (Set 2024-1-17)",
+          "options": [
+            "Niece",
+            "Sister",
+            "Mother",
+            "Daughter"
+          ],
+          "correctAnswer": "Niece",
+          "topic": "Reasoning",
+          "explanation": "Mother's mother is grandmother. Her only son is maternal uncle. So the woman is his niece.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404604",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2023-2-4)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "medium",
+          "year": 2023,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404819",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-2-19)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t2-res-1775657680295-404619",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2023-2-19)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "medium",
+          "year": 2023,
+          "examName": "SSC CGL",
+          "tier": 2,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404212",
+          "question": "In a certain code language, 'FOCUS' is written as 'GVVZT'. How will 'STARE' be written in that language? (Set 2021-1-12)",
+          "options": [
+            "TUBSF",
+            "UVBSF",
+            "TUCSE",
+            "TVCSF"
+          ],
+          "correctAnswer": "TUBSF",
+          "topic": "Reasoning",
+          "explanation": "The code follows a +1 shift for each letter: F+1=G, O+1=V (wait, O+7?), actually it seems like a shift pattern.",
+          "difficulty": "easy",
+          "year": 2021,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-quant-1775657680295-606301",
+          "question": "The profit earned by selling an article for Rs. 800 is 20 times the loss incurred when it is sold for Rs. 275. At what price should the article be sold to make a 25% profit? (SSC 2021)",
+          "options": [
+            "Rs. 375",
+            "Rs. 400",
+            "Rs. 350",
+            "Rs. 425"
+          ],
+          "correctAnswer": "Rs. 375",
+          "topic": "Quantitative Aptitude",
+          "explanation": "Let CP be x. (800-x) = 20(x-275). 800-x = 20x - 5500. 21x = 6300. x = 300. 125% of 300 = 375.",
+          "difficulty": "medium",
+          "year": 2021,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404422",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2022-1-22)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "medium",
+          "year": 2022,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404803",
+          "question": "Which number will replace the question mark in the following series? 2, 5, 11, 23, 47, ? (Set 2024-1-3)",
+          "options": [
+            "95",
+            "96",
+            "94",
+            "92"
+          ],
+          "correctAnswer": "95",
+          "topic": "Reasoning",
+          "explanation": "The pattern is x2 + 1: (2*2)+1=5, (5*2)+1=11... (47*2)+1=95.",
+          "difficulty": "easy",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "ssc-cgl-t1-res-1775657680295-404802",
+          "question": "Select the related word from the given alternatives: Bird : Wings :: Fish : ? (Set 2024-1-2)",
+          "options": [
+            "Fins",
+            "Gills",
+            "Water",
+            "Scales"
+          ],
+          "correctAnswer": "Fins",
+          "topic": "Reasoning",
+          "explanation": "As birds use wings for movement, fish use fins.",
+          "difficulty": "hard",
+          "year": 2024,
+          "examName": "SSC CGL",
+          "tier": 1,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 10,
+      "createdAt": "2026-07-12T14:17:41.857Z",
+      "userId": "982d20ce-301f-4ab0-8b95-921cec10cf9d"
     }
   },
   "testResults": {
@@ -5063,13 +8537,466 @@
         }
       ],
       "completedAt": "2026-04-07T20:40:05.831Z"
+    },
+    "0d6b08a9-5052-4086-8575-16cb3faaebe8": {
+      "id": "0d6b08a9-5052-4086-8575-16cb3faaebe8",
+      "testId": "33c9bce6-5569-467f-910f-fe3dc793d122",
+      "answers": [
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405027",
+          "userAnswer": "94",
+          "isCorrect": false,
+          "timeTaken": 10863,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405025",
+          "userAnswer": "Daughter",
+          "isCorrect": false,
+          "timeTaken": 7989,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405018",
+          "userAnswer": "Scales",
+          "isCorrect": false,
+          "timeTaken": 5921,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405002",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 6356,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405009",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 141,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405002",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 157,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405010",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 147,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405028",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 129,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405015",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 167,
+          "flagged": true
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405005",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 4811,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405022",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405021",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405006",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405012",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405018",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405001",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405026",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405013",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405014",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405006",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405011",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405023",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405012",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-405004",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680296-405008",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-gs-1775657680295-202503",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-gs-1775657680295-202500",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-gs-1775657680296-202502",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-gs-1775657680296-202503",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-gs-1775657680295-202504",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-gs-1775657680296-202501",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-gs-1775657680295-202501",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-gs-1775657680295-202502",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-gs-1775657680296-202504",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-gs-1775657680296-202500",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-quant-1775657680295-607501",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 1209,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-quant-1775657680295-607500",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-quant-1775657680295-607502",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        }
+      ],
+      "score": -0.75,
+      "totalMarks": 38,
+      "percentage": 0,
+      "timeTaken": 37892,
+      "topicWiseScore": [
+        {
+          "topic": "Reasoning",
+          "correct": 0,
+          "total": 25,
+          "attempted": 3,
+          "percentage": 0,
+          "avgTime": 1467
+        },
+        {
+          "topic": "General Awareness",
+          "correct": 0,
+          "total": 10,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Quantitative Aptitude",
+          "correct": 0,
+          "total": 3,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 403
+        }
+      ],
+      "completedAt": "2026-07-12T12:01:52.941Z"
+    },
+    "6a36e3eb-7bc3-479f-b4c9-f22178b0eb28": {
+      "id": "6a36e3eb-7bc3-479f-b4c9-f22178b0eb28",
+      "testId": "16d3d7b4-763f-4f7f-b983-b66084165e3b",
+      "answers": [
+        {
+          "questionId": "ssc_cgl-2026-real-ijt2f",
+          "userAnswer": "Sonia Gandhi",
+          "isCorrect": false,
+          "timeTaken": 21106,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc_cgl-2026-real-dtryy",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc_cgl-2026-real-i66mcr",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        }
+      ],
+      "score": -0.25,
+      "totalMarks": 3,
+      "percentage": 0,
+      "timeTaken": 21106,
+      "topicWiseScore": [
+        {
+          "topic": "History",
+          "correct": 0,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 0,
+          "avgTime": 21106
+        },
+        {
+          "topic": "Geography",
+          "correct": 0,
+          "total": 2,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 0
+        }
+      ],
+      "completedAt": "2026-07-12T12:05:15.157Z"
+    },
+    "fec0c8bc-788d-4031-8997-3f3b40635bf4": {
+      "id": "fec0c8bc-788d-4031-8997-3f3b40635bf4",
+      "testId": "9c353569-becf-4fa3-a53d-b246867caf03",
+      "answers": [
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680295-404622",
+          "userAnswer": "Gills",
+          "isCorrect": false,
+          "timeTaken": 3256,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-404817",
+          "userAnswer": "Mother",
+          "isCorrect": false,
+          "timeTaken": 2296,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680295-404604",
+          "userAnswer": "TVCSF",
+          "isCorrect": false,
+          "timeTaken": 1140,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680295-404819",
+          "userAnswer": "96",
+          "isCorrect": false,
+          "timeTaken": 1130,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t2-res-1775657680295-404619",
+          "userAnswer": "96",
+          "isCorrect": false,
+          "timeTaken": 1030,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-404212",
+          "userAnswer": "UVBSF",
+          "isCorrect": false,
+          "timeTaken": 1090,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-quant-1775657680295-606301",
+          "userAnswer": "Rs. 350",
+          "isCorrect": false,
+          "timeTaken": 1256,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-404422",
+          "userAnswer": "Water",
+          "isCorrect": false,
+          "timeTaken": 1206,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-404803",
+          "userAnswer": "96",
+          "isCorrect": false,
+          "timeTaken": 1114,
+          "flagged": false
+        },
+        {
+          "questionId": "ssc-cgl-t1-res-1775657680295-404802",
+          "userAnswer": "Gills",
+          "isCorrect": false,
+          "timeTaken": 4334,
+          "flagged": false
+        }
+      ],
+      "score": -2.5,
+      "totalMarks": 10,
+      "percentage": 0,
+      "timeTaken": 17852,
+      "topicWiseScore": [
+        {
+          "topic": "Reasoning",
+          "correct": 0,
+          "total": 9,
+          "attempted": 9,
+          "percentage": 0,
+          "avgTime": 1844
+        },
+        {
+          "topic": "Quantitative Aptitude",
+          "correct": 0,
+          "total": 1,
+          "attempted": 1,
+          "percentage": 0,
+          "avgTime": 1256
+        }
+      ],
+      "completedAt": "2026-07-12T14:17:59.833Z",
+      "userId": "982d20ce-301f-4ab0-8b95-921cec10cf9d"
     }
   },
   "importedQuestions": [],
   "practiceStats": {
-    "totalAttempted": 89,
+    "totalAttempted": 91,
     "correct": 47,
-    "incorrect": 42,
+    "incorrect": 44,
     "topicWiseScore": [
       {
         "topic": "Polity",
@@ -5278,7 +9205,7 @@
       {
         "topic": "Uttarakhand GK - Symbols",
         "correct": 0,
-        "total": 1,
+        "total": 2,
         "percentage": 0
       },
       {
@@ -5289,6 +9216,12 @@
       },
       {
         "topic": "Uttarakhand GK - Culture",
+        "correct": 0,
+        "total": 1,
+        "percentage": 0
+      },
+      {
+        "topic": "Reasoning",
         "correct": 0,
         "total": 1,
         "percentage": 0
@@ -5650,6 +9583,14 @@
       "ukpsc-2024-new-013": {
         "userAnswer": "Gangotri and Yamunotri",
         "isCorrect": true
+      },
+      "ukpsc-2024-new-005": {
+        "userAnswer": "Snow Leopard",
+        "isCorrect": false
+      },
+      "ssc-cgl-t1-res-1775657680295-404622": {
+        "userAnswer": "Gills",
+        "isCorrect": false
       }
     },
     "dailyStats": {
@@ -5663,10 +9604,50 @@
         "correct": 2
       },
       "2026-07-12": {
-        "total": 24,
+        "total": 26,
         "correct": 12
       }
     },
-    "lastUpdated": "2026-07-12T09:01:13.772Z"
-  }
+    "lastUpdated": "2026-07-12T11:19:42.433Z",
+    "982d20ce-301f-4ab0-8b95-921cec10cf9d": {
+      "totalAttempted": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "topicWiseScore": [],
+      "answeredQuestions": {},
+      "dailyStats": {},
+      "lastUpdated": "2026-07-12T14:12:36.852Z"
+    },
+    "f62eb75b-c670-46ca-ae75-1ba5fe9a61df": {
+      "totalAttempted": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "topicWiseScore": [],
+      "answeredQuestions": {},
+      "dailyStats": {},
+      "lastUpdated": "2026-07-12T14:12:36.852Z"
+    }
+  },
+  "users": {
+    "982d20ce-301f-4ab0-8b95-921cec10cf9d": {
+      "id": "982d20ce-301f-4ab0-8b95-921cec10cf9d",
+      "username": "akki",
+      "name": "kartik",
+      "passwordHash": "$2b$10$U1FOlYUuc8sL4R1vBrVUIemrCqukBiqEGh.z6ujUN5o4cwaHqNmRW",
+      "email": "akki@example.com",
+      "phone": "7906538019",
+      "avatar": "data:image/jpeg;base64,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"
+    },
+    "f62eb75b-c670-46ca-ae75-1ba5fe9a61df": {
+      "id": "f62eb75b-c670-46ca-ae75-1ba5fe9a61df",
+      "username": "golu",
+      "name": "kartik",
+      "passwordHash": "$2b$10$6CARbczBR7oOjdLoDqRoOudpjmaTLZplWaIpZ3hPtbV3e72xtuJBa",
+      "email": "golu@example.com",
+      "phone": "8392868182",
+      "avatar": "data:image/jpeg;base64,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"
+    }
+  },
+  "documents": {},
+  "flashcards": {}
 }
