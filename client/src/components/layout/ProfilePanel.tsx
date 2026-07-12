@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket } from 'lucide-react';
+import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { cn } from '../../lib/utils';
 import { useNavigate } from 'react-router-dom';
@@ -16,12 +16,20 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
     const navigate = useNavigate();
     const [email, setEmail] = useState(user?.email || '');
     const [phone, setPhone] = useState(user?.phone || '');
+    const [avatar, setAvatar] = useState<string | undefined>(user?.avatar);
     const [isSaving, setIsSaving] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [showToast, setShowToast] = useState(false);
     const [dreamProgress, setDreamProgress] = useState({ total: 0, achieved: 0, avg: 0 });
+    const [showLightbox, setShowLightbox] = useState(false);
 
     React.useEffect(() => {
         if (!isOpen) return;
+
+        // Sync local states with store
+        setEmail(user?.email || '');
+        setPhone(user?.phone || '');
+        setAvatar(user?.avatar);
 
         // Fetch dreams from localStorage
         const userId = user?.username || "guest";
@@ -36,14 +44,60 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
         }
     }, [isOpen, user]);
 
+    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 180;
+                    const MAX_HEIGHT = 180;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    if (ctx) {
+                        ctx.drawImage(img, 0, 0, width, height);
+                        // Get compressed JPEG at 0.7 quality to keep size minuscule
+                        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+                        setAvatar(compressedBase64);
+                        updateProfile({ avatar: compressedBase64 });
+                    }
+                };
+                img.src = reader.result as string;
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSave = () => {
         setIsSaving(true);
         setSaved(false);
         setTimeout(() => {
-            updateProfile({ email, phone });
+            updateProfile({ email, phone, avatar });
             setIsSaving(false);
             setSaved(true);
-            setTimeout(() => setSaved(false), 2000);
+            setShowToast(true);
+            setTimeout(() => {
+                setSaved(false);
+                setShowToast(false);
+            }, 3000);
         }, 800);
     };
 
@@ -71,11 +125,11 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: '100%', opacity: 0.5 }}
                         transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-                        className="fixed right-0 top-0 bottom-0 bg-card border-l border-border shadow-[0_0_50px_rgba(0,0,0,0.1)] z-[2001] w-full max-w-md"
+                        className="fixed right-0 top-0 bottom-0 bg-white/90 dark:bg-card/75 backdrop-blur-2xl border-l border-slate-200/80 dark:border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.15)] dark:shadow-[0_0_80px_rgba(0,0,0,0.30)] z-[2001] w-full max-w-md"
                     >
                         <div className="h-full flex flex-col p-6 overflow-y-auto custom-scrollbar">
                             {/* Header */}
-                            <div className="flex items-center justify-between mb-8">
+                            <div className="flex-shrink-0 flex items-center justify-between mb-8">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-2xl gradient-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
                                         <Settings className="w-5 h-5" />
@@ -93,59 +147,189 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                 </button>
                             </div>
 
+                            {/* Toast Notification */}
+                            <AnimatePresence>
+                                {showToast && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -45, scale: 0.9, x: '-50%' }}
+                                        animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
+                                        exit={{ opacity: 0, y: -20, scale: 0.95, x: '-50%' }}
+                                        transition={{ type: "spring", stiffness: 380, damping: 26 }}
+                                        className="fixed top-8 left-1/2 z-[3000] flex items-center gap-4 px-6 py-4 bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-emerald-500/30 shadow-[0_25px_60px_rgba(16,185,129,0.25)] w-[90%] max-w-sm pointer-events-none overflow-hidden"
+                                    >
+                                        <div className="relative flex-shrink-0 animate-bounce" style={{ animationDuration: '1.2s' }}>
+                                            <div className="absolute inset-0 bg-emerald-400/20 rounded-full blur-sm" />
+                                            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md relative z-10">
+                                                <Check className="w-4 h-4 stroke-[3]" />
+                                            </div>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-white text-xs font-black tracking-tight leading-tight">Profile Updated</p>
+                                            <p className="text-emerald-400/90 text-[9px] font-black uppercase mt-0.5 tracking-wider">Changes Saved Successfully</p>
+                                        </div>
+                                        
+                                        {/* Auto-disappearing indicator bar */}
+                                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-emerald-950/40 overflow-hidden">
+                                            <motion.div 
+                                                initial={{ width: "100%" }}
+                                                animate={{ width: "0%" }}
+                                                transition={{ duration: 3, ease: "linear" }}
+                                                className="h-full bg-gradient-to-r from-emerald-400 to-teal-400"
+                                            />
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
                             {/* Profile Hero */}
-                            <div className="flex flex-col items-center text-center p-6 border border-border/50 rounded-[2.5rem] bg-gradient-to-br from-muted/50 via-background to-background mb-8 relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:rotate-12 transition-transform duration-500">
-                                    <Rocket className="w-20 h-20 text-primary" />
+                            <div className="flex-shrink-0 flex flex-col items-center text-center p-6 border border-slate-200/80 dark:border-white/10 rounded-[2.5rem] bg-gradient-to-br from-indigo-50/60 via-slate-100/70 to-purple-50/50 dark:from-indigo-950/40 dark:via-slate-900/50 dark:to-purple-950/30 mb-8 relative overflow-hidden group shadow-lg shadow-indigo-950/5 dark:shadow-indigo-950/20">
+                                {/* Ambient glow light inside card */}
+                                <div className="absolute -top-12 -left-12 w-32 h-32 bg-indigo-500/20 dark:bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+                                <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-fuchsia-500/20 dark:bg-fuchsia-500/10 rounded-full blur-2xl pointer-events-none" />
+                                
+                                <div className="absolute top-0 right-0 p-4 opacity-10 dark:opacity-10 group-hover:rotate-12 transition-transform duration-500">
+                                    <Rocket className="w-16 h-16 text-primary animate-pulse" />
                                 </div>
-                                <div className="relative mb-4">
-                                    <div className="w-24 h-24 rounded-[2rem] gradient-primary flex items-center justify-center shadow-xl ring-4 ring-background border-4 border-transparent group-hover:scale-105 transition-transform duration-300">
-                                        <User className="w-10 h-10 text-white" />
+                                <div 
+                                    className="relative mb-4 group/avatar cursor-pointer" 
+                                    onClick={() => {
+                                        if (avatar) {
+                                            setShowLightbox(true);
+                                        } else {
+                                            document.getElementById('avatar-upload')?.click();
+                                        }
+                                    }}
+                                >
+                                    <div className="w-20 h-20 rounded-[1.758rem] bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center shadow-xl ring-4 ring-indigo-100 dark:ring-indigo-950/40 border border-white/30 dark:border-white/20 group-hover/avatar:scale-105 transition-all duration-300 overflow-hidden relative">
+                                        {avatar ? (
+                                            <img src={avatar} alt="Avatar" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <User className="w-8 h-8 text-white" />
+                                        )}
+                                        {/* Hover Upload Overlay */}
+                                        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-200 text-center">
+                                            {avatar ? (
+                                                <>
+                                                    <Eye className="w-5 h-5 text-white mb-0.5" />
+                                                    <span className="text-[7px] font-black uppercase text-white/90 tracking-wider">View Photo</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Camera className="w-5 h-5 text-white mb-0.5" />
+                                                    <span className="text-[7px] font-black uppercase text-white/90 tracking-wider">Add Photo</span>
+                                                </>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-xl bg-emerald-500 border-2 border-background flex items-center justify-center text-white text-[10px] font-black uppercase shadow-lg">Pro</div>
+                                    <div className="absolute -bottom-1.5 -right-1.5 px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 text-[8px] font-black uppercase shadow-[0_4px_12px_rgba(245,158,11,0.3)] tracking-wider border border-white/15 pointer-events-none">Pro</div>
                                 </div>
-                                <h3 className="text-2xl font-black text-foreground">{user?.username}</h3>
-                                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mt-1">Official Aspirant</p>
+                                <h3 className="text-2xl font-black text-foreground tracking-tight">{user?.username}</h3>
+                                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1 flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                                    Official Aspirant
+                                </p>
+                                
+                                {avatar ? (
+                                    <div className="flex items-center gap-2 mt-3 relative z-10">
+                                        <button 
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                document.getElementById('avatar-upload')?.click();
+                                            }} 
+                                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-white hover:bg-slate-50 dark:bg-white/5 dark:hover:bg-white/10 rounded-full border border-slate-200/80 dark:border-white/10 text-[9px] font-extrabold uppercase text-primary tracking-wider transition-all hover:scale-103 active:scale-97"
+                                        >
+                                            <Camera className="w-3.5 h-3.5" /> Edit Photo
+                                        </button>
+                                        <button 
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setAvatar(undefined);
+                                                updateProfile({ avatar: undefined });
+                                            }} 
+                                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/10 hover:bg-red-500/15 rounded-full border border-red-200/30 dark:border-red-500/20 text-[9px] font-extrabold uppercase text-red-500 dark:text-red-400 tracking-wider transition-all hover:scale-103 active:scale-97"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button 
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            document.getElementById('avatar-upload')?.click();
+                                        }} 
+                                        className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-white hover:bg-slate-50 dark:bg-white/5 dark:hover:bg-white/10 rounded-full border border-slate-200/80 dark:border-white/10 text-[9px] font-extrabold uppercase text-primary tracking-wider transition-all hover:scale-103 active:scale-97"
+                                    >
+                                        <Camera className="w-3.5 h-3.5" /> Add Photo
+                                    </button>
+                                )}
+
+                                <input 
+                                    type="file" 
+                                    id="avatar-upload" 
+                                    accept="image/*" 
+                                    className="hidden" 
+                                    onChange={handleAvatarChange} 
+                                />
+
+                                {/* Micro stat numbers */}
+                                <div className="w-full grid grid-cols-3 gap-2 mt-6 pt-5 border-t border-slate-200/80 dark:border-white/5">
+                                    <div className="text-center">
+                                        <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Goals</p>
+                                        <p className="text-sm font-black text-foreground">{dreamProgress.total}</p>
+                                    </div>
+                                    <div className="text-center border-x border-slate-200/80 dark:border-white/5 px-2">
+                                        <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Achieved</p>
+                                        <p className="text-sm font-black text-emerald-500 dark:text-emerald-400">{dreamProgress.achieved}</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Avg Progress</p>
+                                        <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">{dreamProgress.avg}%</p>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Key Actions Section */}
-                            <div className="space-y-4 mb-8">
+                            <div className="flex-shrink-0 space-y-4 mb-8">
                                 <p className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em] ml-2">Personal Arena</p>
                                 <button
                                     onClick={handleNavigateToCorner}
-                                    className="w-full flex items-center justify-between p-5 rounded-3xl border-2 border-primary/20 bg-primary/5 hover:bg-primary/10 transition-all hover:border-primary/40 group active:scale-[0.98]"
+                                    className="w-full flex items-center justify-between p-5 rounded-3xl border border-slate-200/80 dark:border-white/10 bg-gradient-to-r from-violet-600/10 via-purple-600/5 to-transparent hover:from-violet-600/15 hover:via-purple-600/10 transition-all hover:border-primary/35 group active:scale-[0.98] shadow-[0_4px_20px_rgba(109,40,217,0.02)] dark:shadow-none relative overflow-hidden"
                                 >
-                                    <div className="flex items-center gap-4 text-left">
-                                        <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 group-hover:rotate-12 transition-transform">
-                                            <Sparkles className="w-6 h-6" />
+                                    <div className="absolute right-0 bottom-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none" />
+                                    <div className="flex items-center gap-4 text-left relative z-10">
+                                        <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:rotate-6 transition-transform">
+                                            <Sparkles className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <h4 className="font-black text-foreground">Your Dream Corner</h4>
-                                            <p className="text-[10px] font-bold text-muted-foreground uppercase mt-0.5">
-                                                {dreamProgress.achieved} / {dreamProgress.total} Goals Achieved
+                                            <h4 className="font-black text-sm text-foreground tracking-tight">Your Dream Corner</h4>
+                                            <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider mt-0.5">
+                                                {dreamProgress.achieved} / {dreamProgress.total} Goals Done
                                             </p>
                                         </div>
                                     </div>
-                                    <ChevronRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
+                                    <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform relative z-10" />
                                 </button>
                             </div>
 
                             {/* Settings Form */}
-                            <div className="space-y-6">
+                            <div className="flex-shrink-0 space-y-6">
                                 <p className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em] ml-2">Account Settings</p>
                                 <div className="space-y-4">
                                     <div className="space-y-1.5">
                                         <label className="text-[10px] font-black uppercase text-muted-foreground tracking-wider ml-1">Username</label>
                                         <div className="relative">
-                                            <input type="text" value={user?.username} disabled className="w-full pl-11 pr-4 py-3 bg-muted/40 border border-border rounded-2xl cursor-not-allowed opacity-60 font-bold text-sm" />
-                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/50" />
+                                            <input type="text" value={user?.username} disabled className="w-full pl-11 pr-4 py-3 bg-muted/20 border border-slate-200/50 dark:border-white/5 rounded-2xl cursor-not-allowed opacity-50 font-bold text-slate-800 dark:text-slate-200 text-sm" />
+                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/45" />
                                         </div>
                                     </div>
 
                                     <div className="space-y-1.5">
                                         <label className="text-[10px] font-black uppercase text-muted-foreground tracking-wider ml-1">Email Address</label>
                                         <div className="relative">
-                                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-background border border-border rounded-2xl font-bold text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+                                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 text-foreground focus:border-primary/50 focus:bg-white dark:focus:bg-transparent rounded-2xl font-bold text-sm outline-none transition-all focus:ring-1 focus:ring-primary/30" />
                                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary" />
                                         </div>
                                     </div>
@@ -153,7 +337,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                     <div className="space-y-1.5">
                                         <label className="text-[10px] font-black uppercase text-muted-foreground tracking-wider ml-1">Phone Number</label>
                                         <div className="relative">
-                                            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-background border border-border rounded-2xl font-bold text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+                                            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 text-foreground focus:border-primary/50 focus:bg-white dark:focus:bg-transparent rounded-2xl font-bold text-sm outline-none transition-all focus:ring-1 focus:ring-primary/30" />
                                             <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary" />
                                         </div>
                                     </div>
@@ -161,16 +345,55 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
 
                                 <div className="pt-4 space-y-3">
                                     <button onClick={handleSave} disabled={isSaving} className="w-full py-4 bg-primary text-primary-foreground rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/25 transition-all active:scale-[0.98] disabled:opacity-50">
-                                        <Save className="w-4 h-4" />
-                                        {isSaving ? 'Updating...' : saved ? 'Success!' : 'Save Details'}
+                                        <Save className="w-4 h-4 animate-bounce" style={{ animationDuration: '2s' }} />
+                                        {isSaving ? 'Updating...' : 'Save Details'}
                                     </button>
-                                    <button onClick={() => { logout(); onClose(); }} className="w-full py-4 bg-muted text-muted-foreground rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-red-500/10 hover:text-red-500 transition-all active:scale-[0.98]">
+                                    <button onClick={() => { logout(); onClose(); }} className="w-full py-4 bg-muted text-muted-foreground rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-red-500/10 hover:text-red-500 transition-all active:scale-[0.98] border border-transparent hover:border-red-500/20">
                                         <LogOut className="w-4 h-4" /> Sign Out
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </motion.div>
+
+
+
+                    {/* Lightbox Detail View */}
+                    <AnimatePresence>
+                        {showLightbox && avatar && (
+                            <div className="fixed inset-0 z-[2650] flex items-center justify-center p-4">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setShowLightbox(false)}
+                                    className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                                />
+                                
+                                <button
+                                    type="button"
+                                    onClick={() => setShowLightbox(false)}
+                                    className="absolute top-6 right-6 p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/10 z-[2660]"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+
+                                <motion.div
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    className="relative max-w-[90vw] max-h-[80vh] aspect-square rounded-[2rem] border border-white/15 overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.8)] bg-slate-950 flex items-center justify-center"
+                                >
+                                    <img 
+                                        src={avatar} 
+                                        alt="Profile Full View" 
+                                        className="w-full h-full object-cover max-w-[340px] max-h-[340px] md:max-w-[400px] md:max-h-[400px]" 
+                                    />
+                                </motion.div>
+                            </div>
+                        )}
+                    </AnimatePresence>
                 </>
             )}
         </AnimatePresence>

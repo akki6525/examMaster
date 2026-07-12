@@ -187,8 +187,12 @@ export default function Layout({ children }: LayoutProps) {
                                         <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-0.5">Profile</span>
                                         <span className="text-sm font-black text-foreground">{user.username}</span>
                                     </div>
-                                    <div className="w-9 h-9 rounded-full gradient-primary flex items-center justify-center shadow-lg shadow-primary/20 border border-white/10 group-hover:scale-105 transition-transform">
-                                        <User className="w-4 h-5 text-white" />
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-650 to-indigo-650 flex items-center justify-center shadow-lg shadow-primary/20 border border-white/10 group-hover:scale-105 transition-transform overflow-hidden">
+                                        {user.avatar ? (
+                                            <img src={user.avatar} alt="Avatar" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <User className="w-4 h-5 text-white" />
+                                        )}
                                     </div>
                                 </button>
                             )}

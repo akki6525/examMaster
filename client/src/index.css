@@ -201,3 +201,38 @@
 .flip-card-back {
   transform: rotateY(180deg);
 }
+
+/* Custom animations for premium UI */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.15;
+    filter: blur(40px);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    filter: blur(60px);
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 9s ease-in-out infinite;
+}
+
+@keyframes marquee-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-infinite {
+  animation: marquee-infinite 30s linear infinite;
+}
+
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -13,7 +13,9 @@ import {
     Send,
     Pause,
     Play,
-    Menu
+    Menu,
+    Info,
+    Lock
 } from 'lucide-react';
 import { useTestStore, Question } from '../stores/testStore';
 import { cn, formatTime, getDifficultyColor } from '../lib/utils';
@@ -42,6 +44,28 @@ export default function TestInterface() {
     const [showNavPanel, setShowNavPanel] = useState(true);
     const [showMobileNav, setShowMobileNav] = useState(false);
 
+    const [activeSectionIdx, setActiveSectionIdx] = useState(0);
+    const [sectionTimeLeft, setSectionTimeLeft] = useState(15 * 60 * 1000);
+
+    const activeSectionQuestions = useMemo(() => {
+        if (!currentTest || !currentTest.sections || currentTest.sections.length === 0) return [];
+        const sec = currentTest.sections[activeSectionIdx];
+        if (!sec) return [];
+        return currentTest.questions.filter(q => sec.questionIds.includes(q.id));
+    }, [currentTest, activeSectionIdx]);
+
+    const activeSectionAnsweredCount = useMemo(() => {
+        return activeSectionQuestions.filter(q => {
+            const ans = userAnswers.find(a => a.questionId === q.id);
+            return ans && ans.answer !== '';
+        }).length;
+    }, [activeSectionQuestions, userAnswers]);
+
+    const activeSectionProgressPercent = useMemo(() => {
+        if (activeSectionQuestions.length === 0) return 0;
+        return Math.round((activeSectionAnsweredCount / activeSectionQuestions.length) * 100);
+    }, [activeSectionQuestions.length, activeSectionAnsweredCount]);
+
     // Start test on mount
     useEffect(() => {
         if (testId) {
@@ -49,30 +73,84 @@ export default function TestInterface() {
         }
     }, [testId, startTest]);
 
-    // Set initial time
-    useEffect(() => {
-        if (currentTest && currentTest.duration > 0) {
-            setTimeLeft(currentTest.duration * 60 * 1000);
-        }
+    // Check if SSC mock test
+    const isSSCTest = useMemo(() => {
+        return !!(currentTest && (
+            currentTest.title.toUpperCase().includes('SSC') ||
+            currentTest.sections?.some(s => 
+                s.name.toUpperCase().includes('QUANT') || 
+                s.name.toUpperCase().includes('REASONING') || 
+                s.name.toUpperCase().includes('AWARENESS') || 
+                s.name.toUpperCase().includes('ENGLISH')
+            )
+        ));
     }, [currentTest]);
 
-    // Timer countdown
-    useEffect(() => {
-        if (!currentTest || currentTest.duration === 0 || isPaused) return;
+    const isQuestionInActiveSection = useCallback((qIndex: number) => {
+        if (!currentTest || !currentTest.sections || currentTest.sections.length === 0) return true;
+        const q = currentTest.questions[qIndex];
+        if (!q) return false;
+        
+        if (isSSCTest) {
+            const qSectionIdx = currentTest.sections.findIndex((sec: any) =>
+                sec.questionIds.includes(q.id)
+            );
+            return qSectionIdx === activeSectionIdx;
+        }
+        return true;
+    }, [currentTest, isSSCTest, activeSectionIdx]);
 
-        const interval = setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev <= 1000) {
-                    clearInterval(interval);
-                    handleSubmit();
-                    return 0;
+    const handleGoToQuestion = useCallback((index: number) => {
+        if (isSSCTest) {
+            if (isQuestionInActiveSection(index)) {
+                goToQuestion(index);
+            }
+        } else {
+            goToQuestion(index);
+        }
+    }, [isSSCTest, isQuestionInActiveSection, goToQuestion]);
+
+    const handleNextQuestion = useCallback(() => {
+        if (!currentTest) return;
+        const nextIdx = currentQuestionIndex + 1;
+        if (nextIdx < currentTest.questions.length) {
+            if (isSSCTest) {
+                if (isQuestionInActiveSection(nextIdx)) {
+                    goToQuestion(nextIdx);
                 }
-                return prev - 1000;
-            });
-        }, 1000);
+            } else {
+                goToQuestion(nextIdx);
+            }
+        }
+    }, [currentTest, currentQuestionIndex, isSSCTest, isQuestionInActiveSection, goToQuestion]);
 
-        return () => clearInterval(interval);
-    }, [currentTest, isPaused]);
+    const handlePrevQuestion = useCallback(() => {
+        if (!currentTest) return;
+        const prevIdx = currentQuestionIndex - 1;
+        if (prevIdx >= 0) {
+            if (isSSCTest) {
+                if (isQuestionInActiveSection(prevIdx)) {
+                    goToQuestion(prevIdx);
+                }
+            } else {
+                goToQuestion(prevIdx);
+            }
+        }
+    }, [currentTest, currentQuestionIndex, isSSCTest, isQuestionInActiveSection, goToQuestion]);
+
+    const hasPrev = useMemo(() => {
+        if (!currentTest) return false;
+        return isSSCTest 
+            ? currentQuestionIndex > 0 && isQuestionInActiveSection(currentQuestionIndex - 1)
+            : currentQuestionIndex > 0;
+    }, [currentTest, currentQuestionIndex, isSSCTest, isQuestionInActiveSection]);
+
+    const hasNext = useMemo(() => {
+        if (!currentTest) return false;
+        return isSSCTest 
+            ? currentQuestionIndex < currentTest.questions.length - 1 && isQuestionInActiveSection(currentQuestionIndex + 1)
+            : currentQuestionIndex < currentTest.questions.length - 1;
+    }, [currentTest, currentQuestionIndex, isSSCTest, isQuestionInActiveSection]);
 
     const handleSubmit = useCallback(async () => {
         try {
@@ -83,59 +161,78 @@ export default function TestInterface() {
         }
     }, [submitTest, navigate]);
 
-    // Keyboard Shortcuts
+    // Set initial time
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (!currentTest) return;
-            const currentQuestion = currentTest.questions[currentQuestionIndex];
-            if (!currentQuestion) return;
-
-            const target = e.target as HTMLElement;
-            // Ignore keypresses inside input fields or text areas
-            if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
-                return;
-            }
-
-            const key = e.key.toUpperCase();
-
-            // Direct option selection (A, B, C, D)
-            if (['A', 'B', 'C', 'D'].includes(key)) {
-                if (
-                    (currentQuestion.type === 'mcq' || (!currentQuestion.type && currentQuestion.options)) && 
-                    currentQuestion.options
-                ) {
-                    const index = key.charCodeAt(0) - 65;
-                    const option = currentQuestion.options[index];
-                    if (option) {
-                        setAnswer(currentQuestion.id, option);
-                    }
-                } else if (currentQuestion.type === 'true-false') {
-                    if (key === 'A') setAnswer(currentQuestion.id, 'True');
-                    if (key === 'B') setAnswer(currentQuestion.id, 'False');
+        if (currentTest) {
+            if (isSSCTest && currentTest.sections && currentTest.sections.length > 0) {
+                setSectionTimeLeft(15 * 60 * 1000);
+                setActiveSectionIdx(0);
+                setTimeLeft(currentTest.sections.length * 15 * 60 * 1000);
+                
+                const firstQuestionId = currentTest.sections[0].questionIds[0];
+                const index = currentTest.questions.findIndex(q => q.id === firstQuestionId);
+                if (index !== -1) {
+                    goToQuestion(index);
                 }
+            } else if (currentTest.duration > 0) {
+                setTimeLeft(currentTest.duration * 60 * 1000);
             }
+        }
+    }, [currentTest, isSSCTest, goToQuestion]);
 
-            // Arrow Keys or P/N to navigate
-            if (e.key === 'ArrowLeft' || key === 'P') {
-                if (currentQuestionIndex > 0) prevQuestion();
-            } else if (e.key === 'ArrowRight' || key === 'N') {
-                if (currentQuestionIndex < currentTest.questions.length - 1) nextQuestion();
+    // Timer countdown
+    useEffect(() => {
+        if (!currentTest || isPaused) return;
+
+        const sections = currentTest.sections;
+        const questions = currentTest.questions;
+
+        const interval = setInterval(() => {
+            if (isSSCTest && sections && sections.length > 0) {
+                setSectionTimeLeft((prevSectionTime) => {
+                    if (prevSectionTime <= 1000) {
+                        const nextIdx = activeSectionIdx + 1;
+                        if (nextIdx < sections.length) {
+                            setActiveSectionIdx(nextIdx);
+                            const nextSection = sections[nextIdx];
+                            const firstQuestionId = nextSection.questionIds[0];
+                            const index = questions.findIndex(q => q.id === firstQuestionId);
+                            if (index !== -1) {
+                                goToQuestion(index);
+                            }
+                            
+                            if ('speechSynthesis' in window) {
+                                const utterance = new SpeechSynthesisUtterance("Time is up for this section. Moving to next section.");
+                                window.speechSynthesis.speak(utterance);
+                            }
+                            
+                            return 15 * 60 * 1000;
+                        } else {
+                            clearInterval(interval);
+                            handleSubmit();
+                            return 0;
+                        }
+                    }
+                    return prevSectionTime - 1000;
+                });
+                
+                setTimeLeft((prevGlobal) => prevGlobal > 1000 ? prevGlobal - 1000 : 0);
+            } else if (currentTest.duration > 0) {
+                setTimeLeft((prev) => {
+                    if (prev <= 1000) {
+                        clearInterval(interval);
+                        handleSubmit();
+                        return 0;
+                    }
+                    return prev - 1000;
+                });
             }
+        }, 1000);
 
-            // F key to toggle review flag
-            if (key === 'F') {
-                toggleFlag(currentQuestion.id);
-            }
+        return () => clearInterval(interval);
+    }, [currentTest, isPaused, isSSCTest, activeSectionIdx, goToQuestion, handleSubmit]);
 
-            // Escape or C key to clear selection
-            if (e.key === 'Escape' || key === 'C') {
-                setAnswer(currentQuestion.id, '');
-            }
-        };
 
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [currentTest, currentQuestionIndex, setAnswer, toggleFlag, nextQuestion, prevQuestion]);
 
     if (isLoading || !currentTest) {
         return (
@@ -156,7 +253,7 @@ export default function TestInterface() {
     return (
         <div className="fixed inset-0 bg-background flex flex-col">
             {/* Header */}
-            <header className="h-16 border-b bg-card flex items-center justify-between px-4 flex-shrink-0">
+            <header className="h-16 border-b bg-card flex items-center justify-between px-4 flex-shrink-0 relative">
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => navigate('/')}
@@ -165,29 +262,60 @@ export default function TestInterface() {
                         <X className="w-5 h-5" />
                     </button>
                     <div>
-                        <h1 className="font-semibold">{currentTest.title}</h1>
-                        <p className="text-sm text-muted-foreground">
-                            Question {currentQuestionIndex + 1} of {currentTest.questions.length}
+                        <h1 className="font-semibold flex items-center gap-2">
+                            <span>{currentTest.title}</span>
+                            {isSSCTest && currentTest.sections && currentTest.sections[activeSectionIdx] && (
+                                <span className="text-xs px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-bold whitespace-nowrap">
+                                    {currentTest.sections[activeSectionIdx].name}
+                                </span>
+                            )}
+                        </h1>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1.5 mt-0.5">
+                            <span>Question {currentQuestionIndex + 1} of {currentTest.questions.length}</span>
+                            {isSSCTest && currentTest.sections && (
+                                <>
+                                    <span className="text-border">•</span>
+                                    <span className="font-bold text-emerald-500">
+                                        Section: {activeSectionAnsweredCount}/{activeSectionQuestions.length} Answered ({activeSectionProgressPercent}%)
+                                    </span>
+                                </>
+                            )}
                         </p>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-4">
                     {/* Timer */}
-                    {currentTest.duration > 0 && (
-                        <div className={cn(
-                            "flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-lg font-semibold",
-                            timeLeft < 300000 ? "bg-red-500/10 text-red-500 timer-warning" : "bg-muted"
-                        )}>
-                            <Clock className="w-5 h-5" />
-                            {formatTime(timeLeft)}
-                            <button
-                                onClick={() => setIsPaused(!isPaused)}
-                                className="p-1 rounded hover:bg-muted-foreground/20 transition-colors"
-                            >
-                                {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-                            </button>
+                    {isSSCTest ? (
+                        <div className="flex flex-col items-end gap-0.5 justify-center">
+                            <div className={cn(
+                                "flex items-center gap-2 px-3 py-1.5 rounded-xl font-mono text-base font-black border border-primary/20",
+                                sectionTimeLeft < 180000 ? "bg-red-500/10 text-red-500 timer-warning animate-pulse" : "bg-primary/5 text-primary"
+                            )}>
+                                <span className="text-[10px] font-black uppercase tracking-wider bg-primary/10 px-2 py-0.5 rounded text-primary">Section</span>
+                                <Clock className="w-4 h-4" />
+                                {formatTime(sectionTimeLeft)}
+                            </div>
+                            <span className="text-[10px] font-bold text-muted-foreground mr-1">
+                                Total: {formatTime(timeLeft)}
+                            </span>
                         </div>
+                    ) : (
+                        currentTest.duration > 0 && (
+                            <div className={cn(
+                                "flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-lg font-semibold",
+                                timeLeft < 300000 ? "bg-red-500/10 text-red-500 timer-warning" : "bg-muted"
+                            )}>
+                                <Clock className="w-5 h-5" />
+                                {formatTime(timeLeft)}
+                                <button
+                                    onClick={() => setIsPaused(!isPaused)}
+                                    className="p-1 rounded hover:bg-muted-foreground/20 transition-colors"
+                                >
+                                    {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+                                </button>
+                            </div>
+                        )
                     )}
 
                     {/* Stats */}
@@ -211,6 +339,8 @@ export default function TestInterface() {
                         {showNavPanel ? "Collapse Grid" : "Expand Grid"}
                     </button>
 
+
+
                     <button
                         onClick={() => setShowMobileNav(true)}
                         className="lg:hidden p-2 rounded-xl bg-muted hover:bg-muted/80 transition-colors border"
@@ -233,23 +363,31 @@ export default function TestInterface() {
             {/* Section Tabs */}
             {currentTest.sections && currentTest.sections.length > 0 && (
                 <div className="h-12 border-b bg-card flex items-center px-4 gap-2 overflow-x-auto no-scrollbar">
-                    {currentTest.sections.map((section: any) => {
+                    {currentTest.sections.map((section: any, idx: number) => {
                         const isCurrentSection = section.questionIds.includes(currentQuestion.id);
+                        const isSectionLocked = isSSCTest && idx !== activeSectionIdx;
                         return (
                             <button
                                 key={section.id}
+                                disabled={isSectionLocked}
                                 onClick={() => {
+                                    if (isSectionLocked) return;
                                     const firstQuestionId = section.questionIds[0];
                                     const index = currentTest.questions.findIndex(q => q.id === firstQuestionId);
                                     if (index !== -1) goToQuestion(index);
                                 }}
                                 className={cn(
-                                    "px-4 h-full border-b-2 font-medium text-sm transition-all whitespace-nowrap",
+                                    "px-4 h-full border-b-2 font-medium text-sm transition-all whitespace-nowrap flex items-center gap-2",
                                     isCurrentSection
-                                        ? "border-primary text-primary bg-primary/5"
-                                        : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                        ? "border-primary text-primary bg-primary/5 font-bold"
+                                        : isSectionLocked
+                                            ? "border-transparent text-muted-foreground/35 cursor-not-allowed opacity-50"
+                                            : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
                                 )}
                             >
+                                {isSectionLocked && (
+                                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                )}
                                 {section.name}
                             </button>
                         );
@@ -381,11 +519,13 @@ export default function TestInterface() {
                                     if (!currentAnswer?.flagged) {
                                         toggleFlag(currentQuestion.id);
                                     }
-                                    if (currentQuestionIndex < currentTest.questions.length - 1) {
-                                        nextQuestion();
-                                    }
+                                    handleNextQuestion();
                                 }}
-                                className="px-4 py-2 bg-amber-500/10 text-amber-600 hover:bg-amber-500/25 border border-amber-500/20 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5"
+                                disabled={isSSCTest && !hasNext}
+                                className={cn(
+                                    "px-4 py-2 bg-amber-500/10 text-amber-600 hover:bg-amber-500/25 border border-amber-500/20 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5",
+                                    isSSCTest && !hasNext && "opacity-50 cursor-not-allowed"
+                                )}
                                 type="button"
                             >
                                 <Flag className="w-4 h-4 animate-bounce-subtle" />
@@ -396,12 +536,12 @@ export default function TestInterface() {
                         {/* Navigation Buttons */}
                         <div className="flex items-center justify-between mt-8 pt-6 border-t">
                             <button
-                                onClick={prevQuestion}
-                                disabled={currentQuestionIndex === 0}
+                                onClick={handlePrevQuestion}
+                                disabled={!hasPrev}
                                 className={cn(
                                     "flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-colors",
-                                    currentQuestionIndex === 0
-                                        ? "text-muted-foreground cursor-not-allowed"
+                                    !hasPrev
+                                        ? "text-muted-foreground cursor-not-allowed opacity-50"
                                         : "hover:bg-muted"
                                 )}
                             >
@@ -414,12 +554,12 @@ export default function TestInterface() {
                             </div>
 
                             <button
-                                onClick={nextQuestion}
-                                disabled={currentQuestionIndex === currentTest.questions.length - 1}
+                                onClick={handleNextQuestion}
+                                disabled={!hasNext}
                                 className={cn(
                                     "flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-colors",
-                                    currentQuestionIndex === currentTest.questions.length - 1
-                                        ? "text-muted-foreground cursor-not-allowed"
+                                    !hasNext
+                                        ? "text-muted-foreground cursor-not-allowed opacity-50"
                                         : "btn-primary"
                                 )}
                             >
@@ -448,20 +588,31 @@ export default function TestInterface() {
                                     const isFlagged = answer?.flagged;
                                     const isCurrent = index === currentQuestionIndex;
 
+                                    const isQuestionLocked = isSSCTest && !isQuestionInActiveSection(index);
                                     return (
                                         <button
                                             key={q.id}
-                                            onClick={() => goToQuestion(index)}
+                                            disabled={isQuestionLocked}
+                                            onClick={() => {
+                                                if (isQuestionLocked) return;
+                                                goToQuestion(index);
+                                            }}
                                             className={cn(
                                                 "relative w-10 h-10 rounded-lg font-medium text-sm transition-all duration-200",
                                                 isCurrent && "ring-2 ring-primary ring-offset-2 ring-offset-background",
-                                                isAnswered
-                                                    ? "bg-green-500 text-white"
-                                                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                                                isQuestionLocked
+                                                    ? "bg-muted/30 text-muted-foreground/35 cursor-not-allowed border border-dashed flex items-center justify-center"
+                                                    : isAnswered
+                                                        ? "bg-green-500 text-white"
+                                                        : "bg-muted text-muted-foreground hover:bg-muted/80"
                                             )}
                                         >
-                                            {index + 1}
-                                            {isFlagged && (
+                                            {isQuestionLocked ? (
+                                                <svg className="w-3.5 h-3.5 mx-auto opacity-35" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                            ) : (
+                                                index + 1
+                                            )}
+                                            {!isQuestionLocked && isFlagged && (
                                                 <Flag className="absolute -top-1 -right-1 w-3 h-3 text-amber-500" />
                                             )}
                                         </button>
@@ -528,24 +679,33 @@ export default function TestInterface() {
                                         const isAnswered = answer?.answer && answer.answer !== '';
                                         const isFlagged = answer?.flagged;
                                         const isCurrent = index === currentQuestionIndex;
+                                        const isQuestionLocked = isSSCTest && !isQuestionInActiveSection(index);
 
                                         return (
                                             <button
                                                 key={q.id}
+                                                disabled={isQuestionLocked}
                                                 onClick={() => {
+                                                    if (isQuestionLocked) return;
                                                     goToQuestion(index);
                                                     setShowMobileNav(false);
                                                 }}
                                                 className={cn(
                                                     "relative w-full aspect-square rounded-xl font-black text-sm flex items-center justify-center transition-all duration-200 border-2",
                                                     isCurrent && "ring-2 ring-primary ring-offset-2 ring-offset-background border-primary",
-                                                    isAnswered
-                                                        ? "bg-green-500 text-white border-green-600 shadow-md shadow-green-500/20"
-                                                        : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80"
+                                                    isQuestionLocked
+                                                        ? "bg-muted/20 text-muted-foreground/30 border-transparent cursor-not-allowed"
+                                                        : isAnswered
+                                                            ? "bg-green-500 text-white border-green-600 shadow-md shadow-green-500/20"
+                                                            : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80"
                                                 )}
                                             >
-                                                {index + 1}
-                                                {isFlagged && (
+                                                {isQuestionLocked ? (
+                                                    <svg className="w-4 h-4 opacity-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                                ) : (
+                                                    index + 1
+                                                )}
+                                                {!isQuestionLocked && isFlagged && (
                                                     <Flag className="absolute top-1 right-1 w-3 h-3 text-amber-500 fill-current" />
                                                 )}
                                             </button>
@@ -631,6 +791,18 @@ export default function TestInterface() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* 3-Minute Section Timer Warning Toast */}
+            {isSSCTest && sectionTimeLeft < 180000 && sectionTimeLeft > 0 && (
+                <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[40]">
+                    <div className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-full text-xs font-black shadow-lg shadow-amber-500/25 border border-amber-600 animate-pulse">
+                        <AlertTriangle className="w-4 h-4" />
+                        <span>Hurry Up! Less than 3 minutes remaining in this section. Section auto-commits next.</span>
+                    </div>
+                </div>
+            )}
+
+
         </div>
     );
 }

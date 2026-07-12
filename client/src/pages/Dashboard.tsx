@@ -14,10 +14,8 @@ import {
     ArrowRight,
     Sparkles,
     GraduationCap,
-    CheckCircle,
-    XCircle,
-    Brain,
-    Zap
+    Zap,
+    ChevronRight
 } from 'lucide-react';
 import {
     ResponsiveContainer,
@@ -42,15 +40,6 @@ interface PracticeStats {
     lastUpdated?: string;
 }
 
-interface AIInsights {
-    predictedScore: number;
-    priorityTopic: string;
-    studyGoal: string;
-    learningStreak: number;
-    lastTestDate: string | null;
-    totalQuestionsAnswered: number;
-}
-
 export default function Dashboard() {
     const { documents, fetchDocuments } = useDocumentStore();
     const { tests, fetchTests } = useTestStore();
@@ -61,7 +50,6 @@ export default function Dashboard() {
         incorrect: 0
     });
     const [recentResults, setRecentResults] = useState<any[]>([]);
-    const [aiInsights, setAiInsights] = useState<AIInsights | null>(null);
 
     useEffect(() => {
         fetchDocuments();
@@ -77,10 +65,6 @@ export default function Dashboard() {
                     setPracticeStats(res.data);
                 }
             })
-            .catch(console.error);
-
-        axios.get(`http://localhost:3001/api/ai-insights/dashboard`)
-            .then(res => setAiInsights(res.data))
             .catch(console.error);
     }, [fetchDocuments, fetchTests]);
 
@@ -210,42 +194,45 @@ export default function Dashboard() {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="relative overflow-hidden rounded-3xl gradient-primary p-8 md:p-12"
+                className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-tr from-violet-600 via-indigo-600 to-purple-800 p-8 md:p-12 shadow-[0_20px_50px_rgba(99,102,241,0.2)] border border-white/20"
             >
-                <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-4">
-                        <Sparkles className="w-5 h-5 text-yellow-300" />
-                        <span className="text-white/80 text-sm font-medium">Your Personal Preparation Hub</span>
+                {/* Glowing decorative backdrop orbs */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl transform translate-x-10 -translate-y-10 animate-pulse-glow" style={{ animationDuration: '6s' }} />
+                <div className="absolute -left-10 -bottom-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl transform -translate-x-10 translate-y-10 animate-pulse-glow" style={{ animationDuration: '8s' }} />
+                <div className="absolute right-1/4 bottom-0 w-64 h-64 bg-fuchsia-500/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDuration: '5s' }} />
+
+                <div className="relative z-10 max-w-3xl">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-6 animate-pulse">
+                        <Sparkles className="w-4 h-4 text-yellow-300" />
+                        <span className="text-white/90 text-[10px] font-black uppercase tracking-wider">Your Practice Dashboard</span>
                     </div>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                        {user ? `Welcome back, ${user.username.charAt(0).toUpperCase() + user.username.slice(1)}!` : 'Welcome to ExamMaster'}
+                    <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+                        {user ? (
+                            <>Welcome back, <span className="underline decoration-yellow-400 decoration-wavy underline-offset-4">{user.username.charAt(0).toUpperCase() + user.username.slice(1)}</span>!</>
+                        ) : 'Welcome to ExamMaster'}
                     </h1>
-                    <p className="text-white/80 text-lg max-w-2xl mb-8">
-                        Upload your study materials, generate intelligent mock tests, and track your progress.
-                        The ultimate tool for serious exam preparation.
+                    <p className="text-white/80 text-base md:text-lg font-medium leading-relaxed mb-8">
+                        Upload your study materials, generate intelligent mock tests, and master any concept in minutes. Track your strengths and target your improvement areas.
                     </p>
                     <div className="flex flex-wrap gap-4">
-                        <Link to="/upload" className="inline-flex items-center gap-2 bg-white text-purple-600 font-semibold px-6 py-3 rounded-xl hover:bg-white/90 transition-all duration-300 shadow-lg">
+                        <Link to="/upload" className="inline-flex items-center gap-2 bg-white text-purple-600 font-extrabold px-6 py-3.5 rounded-2xl hover:bg-white/95 transition-all duration-300 shadow-xl shadow-indigo-950/20 hover:scale-103 active:scale-98">
                             <Upload className="w-5 h-5" />
                             Upload Documents
                         </Link>
-                        <Link to="/question-bank" className="inline-flex items-center gap-2 bg-white/20 text-white border border-white/30 font-semibold px-6 py-3 rounded-xl hover:bg-white/30 transition-all duration-300">
-                            <Play className="w-5 h-5" />
+                        <Link to="/question-bank" className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 backdrop-blur-sm font-extrabold px-6 py-3.5 rounded-2xl hover:bg-white/25 transition-all duration-300 hover:scale-103 active:scale-98">
+                            <Play className="w-5 h-5 fill-current text-white" />
                             Quick Practice
                         </Link>
                     </div>
                 </div>
 
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-900/30 rounded-full blur-3xl" />
-                <div className="absolute -right-10 top-1/2 -translate-y-1/2 opacity-20">
-                    <BookOpen className="w-64 h-64 text-white" />
+                <div className="absolute right-8 bottom-8 hidden lg:block opacity-10 hover:opacity-20 transition-opacity duration-300">
+                    <BookOpen className="w-56 h-56 text-white" />
                 </div>
             </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {statCards.map((stat, index) => (
                     <motion.div
                         key={stat.label}
@@ -253,88 +240,26 @@ export default function Dashboard() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
                         whileHover={{ scale: 1.03, y: -4 }}
-                        className="glass-card p-6 rounded-3xl border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden group cursor-default"
+                        className="relative overflow-hidden p-6 rounded-[2rem] bg-card/45 backdrop-blur-md border border-border/50 shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 group cursor-default"
                     >
-                        <div className="absolute -right-6 -bottom-6 opacity-5 group-hover:scale-125 group-hover:opacity-10 transition-transform duration-500 pointer-events-none">
-                            <stat.icon className={`w-32 h-32 ${stat.color}`} />
+                        {/* Soft ambient background tint */}
+                        <div className="absolute -right-8 -bottom-8 opacity-5 group-hover:scale-125 group-hover:opacity-10 transition-transform duration-500 pointer-events-none">
+                            <stat.icon className={`w-36 h-36 ${stat.color}`} />
                         </div>
-                        <div className={`w-14 h-14 rounded-2xl bg-muted/80 backdrop-blur-md flex items-center justify-center mb-5 border border-border/50 shadow-sm relative z-10`}>
-                            <stat.icon className={`w-7 h-7 ${stat.color}`} />
+                        <div className="flex items-center justify-between mb-4 relative z-10">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">{stat.label}</span>
+                            <div className="w-8 h-8 rounded-xl bg-muted/80 backdrop-blur-md flex items-center justify-center border border-border/50 shadow-sm">
+                                <stat.icon className={`w-4 h-4 ${stat.color}`} />
+                            </div>
                         </div>
-                        <p className="text-4xl font-bold mb-1 relative z-10">{stat.value}</p>
-                        <p className="text-muted-foreground font-medium text-sm relative z-10">{stat.label}</p>
+                        <div className="relative z-10 flex items-baseline gap-1.5 mt-2">
+                            <span className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-foreground">{stat.value}</span>
+                        </div>
                     </motion.div>
                 ))}
             </div>
 
-            {/* AI Insights Section */}
-            {aiInsights && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="p-8 rounded-[2rem] bg-gradient-to-br from-indigo-600/10 via-purple-600/5 to-transparent border border-indigo-500/20 shadow-xl overflow-hidden relative group"
-                >
-                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-                        <Brain className="w-32 h-32 text-indigo-500" />
-                    </div>
-                    
-                    <div className="relative z-10">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                                <Sparkles className="w-6 h-6 text-white" />
-                            </div>
-                            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">
-                                {user ? `${user.username.charAt(0).toUpperCase() + user.username.slice(1)}'s AI Insights` : 'AI Smart Recommendations'}
-                            </h2>
-                        </div>
 
-                        <div className="grid md:grid-cols-3 gap-6">
-                            <div className="bg-background/40 backdrop-blur-md p-5 rounded-2xl border border-white/10 flex flex-col items-center text-center">
-                                <Target className="w-6 h-6 text-indigo-500 mb-3" />
-                                <p className="text-sm font-medium text-muted-foreground mb-1">Predicted Next Score</p>
-                                <p className="text-3xl font-black text-indigo-500">{aiInsights.predictedScore}%</p>
-                                <p className="text-[10px] text-muted-foreground mt-2">Based on your last 5 test trends</p>
-                            </div>
-
-                            <div className="bg-background/40 backdrop-blur-md p-5 rounded-2xl border border-white/10 flex flex-col items-center text-center">
-                                <TrendingUp className="w-6 h-6 text-purple-500 mb-3" />
-                                <p className="text-sm font-medium text-muted-foreground mb-1">Priority Focus</p>
-                                <p className="text-xl font-bold text-foreground truncate w-full">{aiInsights.priorityTopic}</p>
-                                <p className="text-[10px] text-muted-foreground mt-2">Your current weakest section</p>
-                            </div>
-
-                            <div className="bg-background/40 backdrop-blur-md p-5 rounded-2xl border border-white/10 flex flex-col items-center text-center">
-                                <CheckCircle className="w-6 h-6 text-emerald-500 mb-3" />
-                                <p className="text-sm font-medium text-muted-foreground mb-1">AI Study Goal</p>
-                                <p className="text-base font-bold text-foreground leading-tight">{aiInsights.studyGoal}</p>
-                                <div className="mt-auto pt-3 flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 uppercase tracking-wider">
-                                    <Clock className="w-3 h-3" /> Recommended Today
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-8 flex items-center justify-between p-4 bg-indigo-500/10 rounded-2xl border border-indigo-500/10">
-                            <div className="flex items-center gap-4">
-                                <div className="flex -space-x-2">
-                                    {[...Array(Math.min(5, aiInsights.learningStreak))].map((_, i) => (
-                                        <div key={i} className="w-8 h-8 rounded-full bg-indigo-500 border-2 border-background flex items-center justify-center">
-                                            <Sparkles className="w-4 h-4 text-white" />
-                                        </div>
-                                    ))}
-                                </div>
-                                <div>
-                                    <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400">{aiInsights.learningStreak} Day Active Streak!</p>
-                                    <p className="text-xs text-muted-foreground">Keep the momentum going to unlock new mock tiers.</p>
-                                </div>
-                            </div>
-                            <Link to="/upload" className="px-5 py-2.5 bg-indigo-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-indigo-500/20 hover:bg-indigo-600 transition-all hover:scale-105">
-                                Start Goal
-                            </Link>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
 
             {/* Topic Accuracy Over Time Chart */}
             {recentResults.length > 0 && (
@@ -539,9 +464,12 @@ export default function Dashboard() {
             )}
 
             {/* Quick Actions */}
-            <div>
-                <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="space-y-6">
+                <h2 className="text-2xl font-black tracking-tight text-foreground flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-amber-500" />
+                    Quick Actions
+                </h2>
+                <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
                     {quickActions.map((action, index) => (
                         <motion.div
                             key={action.title}
@@ -549,20 +477,23 @@ export default function Dashboard() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + index * 0.1 }}
                             whileHover={{ scale: 1.03, y: -4 }}
+                            className="h-full"
                         >
                             <Link
                                 to={action.link}
-                                className="block p-6 rounded-3xl border border-border bg-card/50 backdrop-blur-md hover:bg-card hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl group relative overflow-hidden h-full"
+                                className="block p-6 rounded-3xl border border-border bg-card/45 backdrop-blur-md hover:bg-card hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl group relative overflow-hidden h-full flex flex-col justify-between"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none" style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }} />
-                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${action.gradient} flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-md`}>
-                                    <action.icon className="w-8 h-8 text-white" />
+                                <div>
+                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.gradient} flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-2 transition-transform duration-300 shadow-md`}>
+                                        <action.icon className="w-7 h-7 text-white" />
+                                    </div>
+                                    <h3 className="text-lg font-black tracking-tight text-foreground mb-1 group-hover:text-primary transition-colors leading-tight">{action.title}</h3>
+                                    <p className="text-muted-foreground text-[11px] leading-relaxed mb-6 font-medium line-clamp-2">{action.description}</p>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{action.title}</h3>
-                                <p className="text-muted-foreground text-sm mb-6 line-clamp-2">{action.description}</p>
-                                <div className="flex items-center gap-2 text-primary font-bold text-sm mt-auto absolute bottom-6">
+                                <div className="flex items-center gap-1.5 text-primary font-black text-[10px] uppercase tracking-wider mt-auto pt-2">
                                     Get Started
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                                 </div>
                             </Link>
                         </motion.div>
@@ -570,87 +501,102 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            {/* Recent Documents */}
-            {documents.length > 0 && (
-                <div>
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-2xl font-bold">Recent Documents</h2>
-                        <Link to="/upload" className="text-primary text-sm font-medium hover:underline flex items-center gap-1">
-                            View All <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {documents.slice(0, 3).map((doc, index) => (
-                            <motion.div
-                                key={doc.id}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.3 + index * 0.1 }}
-                                whileHover={{ scale: 1.02, x: 4 }}
-                                className="p-5 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 group cursor-pointer"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                                        <FileText className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
+            {/* Recent Documents & Tests Grid */}
+            <div className="grid lg:grid-cols-2 gap-8">
+                {/* Recent Documents */}
+                {documents.length > 0 && (
+                    <div className="space-y-6">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-2xl font-black tracking-tight text-foreground flex items-center gap-2">
+                                <FileText className="w-5 h-5 text-purple-500" />
+                                Recent Documents
+                            </h2>
+                            <Link to="/upload" className="text-primary text-xs font-bold uppercase tracking-wider hover:underline flex items-center gap-1">
+                                View All <ArrowRight className="w-3.5 h-3.5" />
+                            </Link>
+                        </div>
+                        <div className="space-y-4">
+                            {documents.slice(0, 3).map((doc, index) => (
+                                <motion.div
+                                    key={doc.id}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 + index * 0.1 }}
+                                    whileHover={{ x: 4 }}
+                                    className="p-5 rounded-2xl border border-border/60 bg-card hover:border-primary/30 hover:bg-card/90 transition-all duration-300 group cursor-pointer"
+                                >
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="flex items-center gap-4 min-w-0">
+                                            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                                                <FileText className="w-6 h-6 text-primary group-hover:scale-105 transition-transform" />
+                                            </div>
+                                            <div className="min-w-0">
+                                                <h4 className="font-extrabold text-sm text-foreground truncate mb-0.5 group-hover:text-primary transition-colors">{doc.fileName}</h4>
+                                                <p className="text-[10px] font-bold text-muted-foreground uppercase flex items-center gap-2">
+                                                    <span>{doc.topicsCount} Topics</span>
+                                                    <span className="w-1 h-1 rounded-full bg-border" />
+                                                    <span>{doc.definitionsCount} Definitions</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <ChevronRight className="w-4 h-4 text-muted-foreground/60 group-hover:translate-x-1 group-hover:text-primary transition-all flex-shrink-0" />
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <h4 className="font-bold text-lg truncate mb-1 group-hover:text-primary transition-colors">{doc.fileName}</h4>
-                                        <p className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                                            <span>{doc.topicsCount} topics</span>
-                                            <span className="w-1.5 h-1.5 rounded-full bg-border" />
-                                            <span>{doc.definitionsCount} definitions</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* Recent Tests */}
-            {recentResults.length > 0 && (
-                <div>
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-2xl font-bold">Recent Tests</h2>
-                        <Link to="/ai-report?tab=mock" className="text-primary text-sm font-medium hover:underline flex items-center gap-1">
-                            View All <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {recentResults.slice(0, 3).map((result, index) => (
-                            <motion.div
-                                key={result.id}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.4 + index * 0.1 }}
-                                whileHover={{ scale: 1.02, x: 4 }}
-                                className="p-5 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-blue-500/30 transition-all duration-300 group"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/20 transition-colors">
-                                        <BarChart3 className="w-7 h-7 text-blue-500 group-hover:scale-110 transition-transform" />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <h4 className="font-bold text-lg truncate mb-1 group-hover:text-blue-500 transition-colors">{result.testTitle}</h4>
-                                        <p className="text-sm font-medium text-muted-foreground flex items-center justify-between mb-3">
-                                            <span>{result.percentage}% Score</span>
-                                            <span className="w-1.5 h-1.5 rounded-full bg-border" />
-                                            <span>{Math.round(result.timeTaken / 60000)} min</span>
-                                        </p>
+                {/* Recent Tests */}
+                {recentResults.length > 0 && (
+                    <div className="space-y-6">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-2xl font-black tracking-tight text-foreground flex items-center gap-2">
+                                <BarChart3 className="w-5 h-5 text-blue-500" />
+                                Recent Tests
+                            </h2>
+                            <Link to="/ai-report?tab=mock" className="text-primary text-xs font-bold uppercase tracking-wider hover:underline flex items-center gap-1">
+                                View All <ArrowRight className="w-3.5 h-3.5" />
+                            </Link>
+                        </div>
+                        <div className="space-y-4">
+                            {recentResults.slice(0, 3).map((result, index) => (
+                                <motion.div
+                                    key={result.id}
+                                    initial={{ opacity: 0, x: 10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.4 + index * 0.1 }}
+                                    whileHover={{ x: -4 }}
+                                    className="p-5 rounded-2xl border border-border/60 bg-card hover:border-blue-500/30 hover:bg-card/90 transition-all duration-300 group"
+                                >
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="flex items-center gap-4 min-w-0">
+                                            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/20 transition-colors">
+                                                <BarChart3 className="w-6 h-6 text-blue-500 group-hover:scale-105 transition-transform" />
+                                            </div>
+                                            <div className="min-w-0">
+                                                <h4 className="font-extrabold text-sm text-foreground truncate mb-0.5 group-hover:text-blue-500 transition-colors">{result.testTitle}</h4>
+                                                <p className="text-[10px] font-bold text-muted-foreground uppercase flex items-center gap-2">
+                                                    <span className="text-blue-500 font-extrabold">{result.percentage}% Score</span>
+                                                    <span className="w-1 h-1 rounded-full bg-border" />
+                                                    <span>{Math.round(result.timeTaken / 60000)} Min</span>
+                                                </p>
+                                            </div>
+                                        </div>
                                         <Link
                                             to={`/ai-report?tab=mock`}
-                                            className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-xl hover:bg-blue-500 hover:text-white text-blue-500 font-bold text-sm transition-all duration-300 w-full justify-center group"
+                                            className="px-3 py-1.5 bg-muted/65 hover:bg-blue-500 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-wider text-blue-500 transition-all flex items-center gap-1 group/btn"
                                         >
-                                            View <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            View
+                                            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                                         </Link>
                                     </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
 
             {/* Empty State */}
             {documents.length === 0 && tests.length === 0 && practiceStats.totalAttempted === 0 && (
