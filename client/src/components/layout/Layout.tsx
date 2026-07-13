@@ -76,6 +76,13 @@ export default function Layout({ children }: LayoutProps) {
     const allNav = [...primaryNav, ...secondaryNav];
     const isSecondaryActive = secondaryNav.some(item => location.pathname === item.path);
 
+    const displayName = user 
+        ? (() => {
+            const namePart = user.username.includes('@') ? user.username.split('@')[0] : user.username;
+            return namePart.charAt(0).toUpperCase() + namePart.slice(1);
+          })()
+        : '';
+
     return (
         <div className="min-h-screen bg-background">
             {/* Header */}
@@ -88,12 +95,12 @@ export default function Layout({ children }: LayoutProps) {
                                 <BookOpen className="w-4 h-4 text-white" />
                             </div>
                             <span className="text-lg font-bold text-gradient hidden sm:block">
-                                {user ? `${user.username.charAt(0).toUpperCase() + user.username.slice(1)}'s ExamMaster` : 'ExamMaster'}
+                                {user ? `${displayName}'s ExamMaster` : 'ExamMaster'}
                             </span>
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden md:flex items-center gap-1.5 flex-1 justify-center">
+                        <nav className="hidden md:flex items-center gap-1.5 flex-1 justify-center mx-6 lg:mx-12">
                             {primaryNav.map((item) => {
                                 const isActive = location.pathname === item.path;
                                 const Icon = item.icon;

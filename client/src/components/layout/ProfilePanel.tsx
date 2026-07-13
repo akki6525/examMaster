@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye } from 'lucide-react';
+import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { useToastStore } from '../../stores/toastStore';
+import { useThemeStore } from '../../stores/themeStore';
 import { cn } from '../../lib/utils';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -14,7 +15,23 @@ interface ProfilePanelProps {
 
 export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
     const { user, updateProfile, logout } = useAuthStore();
+    const { theme, setTheme } = useThemeStore();
     const navigate = useNavigate();
+
+    const themes = [
+        { id: 'system', name: 'System Default (OS)', color: '#334155', accent: '#94a3b8' },
+        { id: 'light', name: 'Alabaster Light (Light)', color: '#f8fafc', accent: '#7c3aed' },
+        { id: 'dark', name: 'Slate Dark Code (Dark)', color: '#0f172a', accent: '#8b5cf6' },
+        { id: 'cyberpunk', name: 'Cyberpunk Neon (Dark)', color: '#0a000d', accent: '#f43f5e' },
+        { id: 'dracula', name: 'Dracula Vampire (Dark)', color: '#282a36', accent: '#ff79c6' },
+        { id: 'nord', name: 'Arctic Frost Nord (Dark)', color: '#2e3440', accent: '#88c0d0' },
+        { id: 'onedark', name: 'One Dark Pro (Dark)', color: '#1e1e24', accent: '#61afef' },
+        { id: 'monokai', name: 'Monokai Retro (Dark)', color: '#272822', accent: '#a6e22e' },
+        { id: 'solarized', name: 'Solarized Ocean (Dark)', color: '#001e26', accent: '#2aa198' },
+        { id: 'tokyonight', name: 'Tokyo Night (Dark)', color: '#1a1b26', accent: '#7aa2f7' },
+        { id: 'rose', name: 'Sweet Aura Rose (Dark)', color: '#190a10', accent: '#f43f5e' },
+    ];
+
     const [email, setEmail] = useState(user?.email || '');
     const [phone, setPhone] = useState(user?.phone || '');
     const [avatar, setAvatar] = useState<string | undefined>(user?.avatar);
@@ -313,6 +330,43 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                     </div>
                                     <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform relative z-10" />
                                 </button>
+                            </div>
+
+                            {/* Theme Preference Dropdown */}
+                            <div className="flex-shrink-0 space-y-3 mb-8">
+                                <p className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em] ml-2">Theme Preferences</p>
+                                <div className="flex items-center gap-3">
+                                    {/* Active Theme Preview Circle */}
+                                    {(() => {
+                                        const activeThemeObj = themes.find(t => t.id === theme) || themes[1];
+                                        return (
+                                            <div 
+                                                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10 shadow-sm relative overflow-hidden transition-all duration-300"
+                                                style={{ background: activeThemeObj.color }}
+                                                title={activeThemeObj.name}
+                                            >
+                                                <div className="w-4 h-4 rounded-full shadow-inner animate-pulse" style={{ background: activeThemeObj.accent }} />
+                                            </div>
+                                        );
+                                    })()}
+
+                                    <div className="relative flex-1">
+                                        <select
+                                            value={theme}
+                                            onChange={(e) => setTheme(e.target.value as any)}
+                                            className="w-full bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 text-foreground text-sm font-bold py-3 pl-4 pr-10 rounded-2xl appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/45 transition-all shadow-sm"
+                                        >
+                                            {themes.map((t) => (
+                                                <option key={t.id} value={t.id} className="bg-card text-foreground font-semibold">
+                                                    {t.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-muted-foreground font-bold">
+                                            <ChevronDown className="w-4 h-4" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Settings Form */}

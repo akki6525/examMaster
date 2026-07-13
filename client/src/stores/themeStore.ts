@@ -1,7 +1,18 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type Theme = 'light' | 'dark' | 'system';
+type Theme = 
+    | 'light' 
+    | 'dark' 
+    | 'system'
+    | 'cyberpunk'
+    | 'dracula'
+    | 'nord'
+    | 'onedark'
+    | 'monokai'
+    | 'solarized'
+    | 'tokyonight'
+    | 'rose';
 
 interface ThemeState {
     theme: Theme;

@@ -25,15 +25,31 @@ function App() {
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
+    root.classList.remove(
+      'light', 
+      'dark', 
+      'theme-cyberpunk', 
+      'theme-dracula', 
+      'theme-nord', 
+      'theme-onedark', 
+      'theme-monokai', 
+      'theme-solarized', 
+      'theme-tokyonight', 
+      'theme-rose'
+    );
 
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
       root.classList.add(systemTheme);
+    } else if (theme === 'light') {
+      root.classList.add('light');
+    } else if (theme === 'dark') {
+      root.classList.add('dark');
     } else {
-      root.classList.add(theme);
+      // Custom premium themes are dark-mode base
+      root.classList.add('dark', `theme-${theme}`);
     }
   }, [theme]);
 

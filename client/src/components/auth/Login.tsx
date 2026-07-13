@@ -130,7 +130,7 @@ export default function Login() {
                                     type="text"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    placeholder="Choose username"
+                                    placeholder={activeTab === 'register' ? "Choose username" : "Enter your username"}
                                     className="w-full pl-10 pr-4 py-3 bg-muted/30 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
                                     required
                                 />

@@ -49,6 +49,188 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 263 70% 50%;
   }
+
+  /* Cyberpunk Neon */
+  .theme-cyberpunk {
+    --background: 288 100% 3%;
+    --foreground: 74 100% 50%;
+    --card: 288 100% 5%;
+    --card-foreground: 74 100% 50%;
+    --popover: 288 100% 4%;
+    --popover-foreground: 74 100% 50%;
+    --primary: 326 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 288 100% 3%;
+    --muted: 288 50% 15%;
+    --muted-foreground: 180 50% 60%;
+    --accent: 326 100% 20%;
+    --accent-foreground: 74 100% 50%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 326 100% 40%;
+    --input: 326 100% 30%;
+    --ring: 326 100% 50%;
+  }
+
+  /* Dracula Vampire */
+  .theme-dracula {
+    --background: 231 15% 18%;
+    --foreground: 60 30% 96%;
+    --card: 231 15% 22%;
+    --card-foreground: 60 30% 96%;
+    --popover: 231 15% 18%;
+    --popover-foreground: 60 30% 96%;
+    --primary: 326 100% 74%;
+    --primary-foreground: 231 15% 18%;
+    --secondary: 135 94% 65%;
+    --secondary-foreground: 231 15% 18%;
+    --muted: 231 15% 30%;
+    --muted-foreground: 60 30% 70%;
+    --accent: 265 89% 78%;
+    --accent-foreground: 231 15% 18%;
+    --destructive: 0 10% 50%;
+    --destructive-foreground: 60 30% 96%;
+    --border: 265 60% 40%;
+    --input: 265 60% 30%;
+    --ring: 326 100% 74%;
+  }
+
+  /* Arctic Nord */
+  .theme-nord {
+    --background: 220 16% 16%;
+    --foreground: 218 22% 93%;
+    --card: 220 16% 22%;
+    --card-foreground: 218 22% 93%;
+    --popover: 220 16% 16%;
+    --popover-foreground: 218 22% 93%;
+    --primary: 193 43% 67%;
+    --primary-foreground: 220 16% 16%;
+    --secondary: 213 32% 52%;
+    --secondary-foreground: 218 22% 93%;
+    --muted: 220 16% 28%;
+    --muted-foreground: 218 10% 70%;
+    --accent: 193 43% 30%;
+    --accent-foreground: 218 22% 93%;
+    --destructive: 354 42% 56%;
+    --destructive-foreground: 218 22% 93%;
+    --border: 213 30% 30%;
+    --input: 213 30% 28%;
+    --ring: 193 43% 67%;
+  }
+
+  /* One Dark Pro */
+  .theme-onedark {
+    --background: 220 12% 14%;
+    --foreground: 220 14% 71%;
+    --card: 220 12% 18%;
+    --card-foreground: 220 14% 71%;
+    --popover: 220 12% 14%;
+    --popover-foreground: 220 14% 71%;
+    --primary: 207 82% 57%;
+    --primary-foreground: 220 12% 14%;
+    --secondary: 95 38% 62%;
+    --secondary-foreground: 220 12% 14%;
+    --muted: 220 12% 26%;
+    --muted-foreground: 220 10% 50%;
+    --accent: 187 47% 55%;
+    --accent-foreground: 220 12% 14%;
+    --destructive: 355 65% 65%;
+    --destructive-foreground: 220 14% 71%;
+    --border: 220 12% 24%;
+    --input: 220 12% 22%;
+    --ring: 207 82% 57%;
+  }
+
+  /* Monokai Retro */
+  .theme-monokai {
+    --background: 70 8% 15%;
+    --foreground: 60 30% 96%;
+    --card: 70 8% 19%;
+    --card-foreground: 60 30% 96%;
+    --popover: 70 8% 15%;
+    --popover-foreground: 60 30% 96%;
+    --primary: 82 85% 55%;
+    --primary-foreground: 70 8% 15%;
+    --secondary: 40 90% 60%;
+    --secondary-foreground: 70 8% 15%;
+    --muted: 70 8% 25%;
+    --muted-foreground: 60 20% 70%;
+    --accent: 190 90% 60%;
+    --accent-foreground: 70 8% 15%;
+    --destructive: 350 90% 60%;
+    --destructive-foreground: 60 30% 96%;
+    --border: 70 8% 28%;
+    --input: 70 8% 25%;
+    --ring: 82 85% 55%;
+  }
+
+  /* Solarized Ocean */
+  .theme-solarized {
+    --background: 192 100% 6%;
+    --foreground: 180 30% 85%;
+    --card: 192 100% 9%;
+    --card-foreground: 180 30% 85%;
+    --popover: 192 100% 6%;
+    --popover-foreground: 180 30% 85%;
+    --primary: 175 60% 45%;
+    --primary-foreground: 192 100% 6%;
+    --secondary: 45 100% 35%;
+    --secondary-foreground: 192 100% 6%;
+    --muted: 192 50% 15%;
+    --muted-foreground: 180 20% 60%;
+    --accent: 205 80% 45%;
+    --accent-foreground: 180 30% 85%;
+    --destructive: 18 80% 45%;
+    --destructive-foreground: 180 30% 85%;
+    --border: 175 60% 25%;
+    --input: 175 60% 20%;
+    --ring: 175 60% 45%;
+  }
+
+  /* Tokyo Night */
+  .theme-tokyonight {
+    --background: 235 24% 12%;
+    --foreground: 235 15% 90%;
+    --card: 235 24% 16%;
+    --card-foreground: 235 15% 90%;
+    --popover: 235 24% 14%;
+    --popover-foreground: 235 15% 90%;
+    --primary: 220 90% 70%;
+    --primary-foreground: 235 24% 12%;
+    --secondary: 290 80% 70%;
+    --secondary-foreground: 235 24% 12%;
+    --muted: 235 20% 22%;
+    --muted-foreground: 235 12% 65%;
+    --accent: 150 70% 60%;
+    --accent-foreground: 235 24% 12%;
+    --destructive: 355 85% 70%;
+    --destructive-foreground: 235 24% 12%;
+    --border: 235 20% 20%;
+    --input: 235 20% 18%;
+    --ring: 220 90% 70%;
+  }
+
+  /* Sweet Aura Rose */
+  .theme-rose {
+    --background: 340 40% 7%;
+    --foreground: 340 70% 93%;
+    --card: 340 40% 11%;
+    --card-foreground: 340 70% 93%;
+    --popover: 340 40% 7%;
+    --popover-foreground: 340 70% 93%;
+    --primary: 342 80% 65%;
+    --primary-foreground: 340 40% 7%;
+    --secondary: 275 60% 70%;
+    --secondary-foreground: 340 40% 7%;
+    --muted: 340 30% 16%;
+    --muted-foreground: 340 20% 70%;
+    --accent: 342 80% 25%;
+    --accent-foreground: 340 70% 93%;
+    --border: 342 40% 18%;
+    --input: 342 40% 15%;
+    --ring: 342 80% 65%;
+  }
 }
 
 @layer base {
