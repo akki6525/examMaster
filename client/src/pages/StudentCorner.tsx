@@ -41,6 +41,7 @@ interface Dream {
     userId: string;
     title: string;
     targetYear: string;
+    targetDate?: string;
     description: string;
     isAchieved: boolean;
     progress: number;
@@ -212,6 +213,7 @@ export default function StudentCorner() {
     // Form states
     const [title, setTitle] = useState("");
     const [targetYear, setTargetYear] = useState("2026");
+    const [targetDate, setTargetDate] = useState("");
     const [description, setDescription] = useState("");
     const [selectedEmoji, setSelectedEmoji] = useState("🎯");
     const [formMilestones, setFormMilestones] = useState<Milestone[]>([]);
@@ -235,6 +237,11 @@ export default function StudentCorner() {
             let parsed = JSON.parse(savedDreams) as Dream[];
             let migrated = false;
             parsed = parsed.map(d => {
+                if (!d.targetDate) {
+                    migrated = true;
+                    // Fallback to end of the targetYear
+                    d.targetDate = `${d.targetYear || "2026"}-12-31`;
+                }
                 if (!d.milestones || d.milestones.length === 0) {
                     migrated = true;
                     const defaultTexts = DEFAULT_MILESTONES[getDreamCategory(d.title)] || DEFAULT_MILESTONES["General"];
@@ -265,6 +272,7 @@ export default function StudentCorner() {
             setEditingDream(dream);
             setTitle(dream.title);
             setTargetYear(dream.targetYear);
+            setTargetDate(dream.targetDate || "");
             setDescription(dream.description);
             setSelectedEmoji(dream.emoji || "🎯");
             setFormMilestones(dream.milestones || []);
@@ -272,6 +280,7 @@ export default function StudentCorner() {
             setEditingDream(null);
             setTitle("");
             setTargetYear("2026");
+            setTargetDate("");
             setDescription("");
             setSelectedEmoji("🎯");
             setFormMilestones([]);
@@ -284,6 +293,7 @@ export default function StudentCorner() {
         setEditingDream(null);
         setTitle("");
         setTargetYear("2026");
+        setTargetDate("");
         setDescription("");
         setSelectedEmoji("🎯");
         setFormMilestones([]);
@@ -307,6 +317,7 @@ export default function StudentCorner() {
         const dreamData = {
             title,
             targetYear,
+            targetDate,
             description,
             emoji: selectedEmoji,
             userId: user?.username || "guest",
@@ -641,6 +652,26 @@ export default function StudentCorner() {
                                         <h3 className={cn("text-xl font-black mt-2 leading-tight", dream.isAchieved && "text-muted-foreground opacity-50")}>
                                             {POST_OPTIONS.find(o => o.value === dream.title)?.label || dream.title}
                                         </h3>
+                                        {dream.targetDate && !dream.isAchieved && (() => {
+                                            const today = new Date();
+                                            today.setHours(0,0,0,0);
+                                            const target = new Date(dream.targetDate);
+                                            target.setHours(0,0,0,0);
+                                            const diffTime = target.getTime() - today.getTime();
+                                            const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                                            return (
+                                                <div className="mt-2 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 bg-amber-500/10 dark:bg-amber-500/5 px-2.5 py-1 rounded-xl w-fit border border-amber-500/20 shadow-sm">
+                                                    <Clock className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
+                                                    <span>
+                                                        {daysLeft > 0 
+                                                            ? `${daysLeft} days left` 
+                                                            : daysLeft === 0 
+                                                                ? "Exam Day Today! ⚡" 
+                                                                : `${Math.abs(daysLeft)} days overdue`}
+                                                    </span>
+                                                </div>
+                                            );
+                                        })()}
                                     </div>
                                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <button onClick={() => handleOpenModal(dream)} className="p-2 hover:bg-muted rounded-xl transition-colors"><Edit2 className="w-4 h-4" /></button>
@@ -760,8 +791,13 @@ export default function StudentCorner() {
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="space-y-1.5"><label className="text-[10px] font-black uppercase text-muted-foreground ml-1">Target Year</label>
-                                        <input type="number" value={targetYear} onChange={(e) => setTargetYear(e.target.value)} className="input-field py-2 text-sm font-bold h-10 px-3" required />
+                                    <div className="space-y-1.5"><label className="text-[10px] font-black uppercase text-muted-foreground ml-1">Target Date</label>
+                                        <input type="date" value={targetDate} onChange={(e) => {
+                                            setTargetDate(e.target.value);
+                                            if (e.target.value) {
+                                                setTargetYear(new Date(e.target.value).getFullYear().toString());
+                                            }
+                                        }} className="input-field py-2 text-sm font-bold h-10 px-3" required />
                                     </div>
                                 </div>
                                 <div className="space-y-1.5"><label className="text-[10px] font-black uppercase text-muted-foreground ml-1">Quick Note</label>

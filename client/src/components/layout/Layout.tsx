@@ -16,13 +16,15 @@ import {
     FileText,
     Brain,
     ChevronDown,
-    User
+    User,
+    HelpCircle
 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useThemeStore } from '../../stores/themeStore';
 import { useAuthStore } from '../../stores/authStore';
 import { cn } from '../../lib/utils';
 import ProfilePanel from './ProfilePanel';
+import AurBhaiChatbot from './AurBhaiChatbot';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -42,6 +44,7 @@ const secondaryNav = [
     { path: '/flashcards', label: 'Flashcards', icon: Layers },
     { path: '/import', label: 'Import Questions', icon: FileUp },
     { path: '/import-pdf', label: 'Import PDF', icon: FileText },
+    { path: '/guide', label: 'User Guide', icon: HelpCircle },
 ];
 
 export default function Layout({ children }: LayoutProps) {
@@ -270,6 +273,7 @@ export default function Layout({ children }: LayoutProps) {
             </footer>
             {/* Profile Panel - Rendered at root level to avoid stacking context issues */}
             <ProfilePanel isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
+            <AurBhaiChatbot />
         </div>
     );
 }

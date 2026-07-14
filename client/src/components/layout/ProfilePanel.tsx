@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye, ChevronDown } from 'lucide-react';
+import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye, ChevronDown, HelpCircle } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { useToastStore } from '../../stores/toastStore';
 import { useThemeStore } from '../../stores/themeStore';
@@ -121,6 +121,11 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
 
     const handleNavigateToCorner = () => {
         navigate('/student-corner');
+        onClose();
+    };
+
+    const handleNavigateToGuide = () => {
+        navigate('/guide');
         onClose();
     };
 
@@ -310,16 +315,17 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                             </div>
 
                             {/* Key Actions Section */}
-                            <div className="flex-shrink-0 space-y-4 mb-8">
+                            <div className="flex-shrink-0 space-y-3 mb-8">
                                 <p className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em] ml-2">Personal Arena</p>
+                                
                                 <button
                                     onClick={handleNavigateToCorner}
-                                    className="w-full flex items-center justify-between p-5 rounded-3xl border border-slate-200/80 dark:border-white/10 bg-gradient-to-r from-violet-600/10 via-purple-600/5 to-transparent hover:from-violet-600/15 hover:via-purple-600/10 transition-all hover:border-primary/35 group active:scale-[0.98] shadow-[0_4px_20px_rgba(109,40,217,0.02)] dark:shadow-none relative overflow-hidden"
+                                    className="w-full flex items-center justify-between p-4.5 rounded-3xl border border-slate-200/80 dark:border-white/10 bg-gradient-to-r from-violet-600/10 via-purple-600/5 to-transparent hover:from-violet-600/15 hover:via-purple-600/10 transition-all hover:border-primary/35 group active:scale-[0.98] shadow-sm relative overflow-hidden"
                                 >
                                     <div className="absolute right-0 bottom-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none" />
                                     <div className="flex items-center gap-4 text-left relative z-10">
-                                        <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:rotate-6 transition-transform">
-                                            <Sparkles className="w-5 h-5" />
+                                        <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:rotate-6 transition-transform">
+                                            <Sparkles className="w-4.5 h-4.5" />
                                         </div>
                                         <div>
                                             <h4 className="font-black text-sm text-foreground tracking-tight">Your Dream Corner</h4>
@@ -329,6 +335,25 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                         </div>
                                     </div>
                                     <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform relative z-10" />
+                                </button>
+
+                                <button
+                                    onClick={handleNavigateToGuide}
+                                    className="w-full flex items-center justify-between p-4.5 rounded-3xl border border-slate-200/80 dark:border-white/10 bg-gradient-to-r from-emerald-600/5 via-teal-600/5 to-transparent hover:from-emerald-600/10 hover:via-teal-600/10 transition-all hover:border-emerald-500/35 group active:scale-[0.98] shadow-sm relative overflow-hidden"
+                                >
+                                    <div className="absolute right-0 bottom-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-xl pointer-events-none" />
+                                    <div className="flex items-center gap-4 text-left relative z-10">
+                                        <div className="w-10 h-10 rounded-2xl bg-emerald-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:rotate-6 transition-transform">
+                                            <HelpCircle className="w-4.5 h-4.5" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-black text-sm text-foreground tracking-tight">User Guide Handbook</h4>
+                                            <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider mt-0.5">
+                                                Learn App & Study Guides
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <ChevronRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform relative z-10" />
                                 </button>
                             </div>
 

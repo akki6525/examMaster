@@ -17,7 +17,8 @@ import {
     Sparkles,
     FolderOpen,
     HelpCircle,
-    BookOpen
+    BookOpen,
+    AlertCircle
 } from 'lucide-react';
 import { useDocumentStore } from '../stores/documentStore';
 import { cn } from '../lib/utils';
@@ -47,7 +48,7 @@ const imageModules = import.meta.glob('/src/assets/**/*.{png,jpg,jpeg,svg,webp,g
 
 export default function Flashcards() {
     const { documents, fetchDocuments } = useDocumentStore();
-    
+
     // Tab State
     const [activeTab, setActiveTab] = useState<'visual' | 'slides'>('visual');
 
@@ -67,6 +68,8 @@ export default function Flashcards() {
     const [visualScale, setVisualScale] = useState<number>(1.0);
     const [isVisualFullscreen, setIsVisualFullscreen] = useState<boolean>(false);
     const [learnedCards, setLearnedCards] = useState<string[]>([]);
+    const [revisionCards, setRevisionCards] = useState<string[]>([]);
+    const [progressFilter, setProgressFilter] = useState<'all' | 'learned' | 'revision' | 'unlearned'>('all');
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -76,6 +79,15 @@ export default function Flashcards() {
         if (saved) {
             try {
                 setLearnedCards(JSON.parse(saved));
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        // Load revision card records
+        const savedRevision = localStorage.getItem('revision_visual_cards');
+        if (savedRevision) {
+            try {
+                setRevisionCards(JSON.parse(savedRevision));
             } catch (e) {
                 console.error(e);
             }
@@ -117,9 +129,9 @@ export default function Flashcards() {
         return Object.entries(imageModules).map(([path, module]) => {
             const parts = path.split('/');
             const filename = parts[parts.length - 1] || 'Card';
-            
+
             const title = filename
-                .replace(/\.[^/.]+$/, "") 
+                .replace(/\.[^/.]+$/, "")
                 .replace(/[-_]/g, " ")
                 .replace(/\b\w/g, c => c.toUpperCase());
 
@@ -208,6 +220,12 @@ export default function Flashcards() {
         return topics.size > 0 ? ['All Topics', ...Array.from(topics)] : [];
     }, [scannedCards, mockCards, selectedSubject]);
 
+    // Reset visual index when switching progress filter
+    useEffect(() => {
+        setVisualIndex(0);
+        setVisualScale(1.0);
+    }, [progressFilter]);
+
     const cardsToDisplay = useMemo(() => {
         let list = scannedCards.length > 0 ? scannedCards : mockCards;
         if (selectedSubject !== 'All') {
@@ -216,8 +234,18 @@ export default function Flashcards() {
         if (selectedTopic !== 'All Topics') {
             list = list.filter(c => c.topic && c.topic.toLowerCase() === selectedTopic.toLowerCase());
         }
+
+        // Progress status filtering of cards:
+        if (progressFilter === 'learned') {
+            list = list.filter(c => learnedCards.includes(c.id));
+        } else if (progressFilter === 'revision') {
+            list = list.filter(c => revisionCards.includes(c.id));
+        } else if (progressFilter === 'unlearned') {
+            list = list.filter(c => !learnedCards.includes(c.id));
+        }
+
         return list;
-    }, [scannedCards, selectedSubject, selectedTopic, mockCards]);
+    }, [scannedCards, selectedSubject, selectedTopic, mockCards, progressFilter, learnedCards, revisionCards]);
 
     // Reset visual index when switching filter
     useEffect(() => {
@@ -251,6 +279,16 @@ export default function Flashcards() {
                 ? prev.filter(id => id !== cardId)
                 : [...prev, cardId];
             localStorage.setItem('learned_visual_cards', JSON.stringify(next));
+            return next;
+        });
+    };
+
+    const toggleRevision = (cardId: string) => {
+        setRevisionCards(prev => {
+            const next = prev.includes(cardId)
+                ? prev.filter(id => id !== cardId)
+                : [...prev, cardId];
+            localStorage.setItem('revision_visual_cards', JSON.stringify(next));
             return next;
         });
     };
@@ -363,13 +401,13 @@ export default function Flashcards() {
                                         </button>
                                     ))}
                                 </div>
-                                
+
                                 {/* Card Count & Revision Progress */}
                                 {cardsToDisplay.length > 0 && (
                                     <div className="text-sm font-bold text-muted-foreground flex items-center gap-3">
                                         <span>Card {visualIndex + 1} of {cardsToDisplay.length}</span>
                                         <div className="w-24 h-2 bg-muted rounded-full overflow-hidden border border-border/50">
-                                            <div 
+                                            <div
                                                 className="h-full bg-primary transition-all duration-300"
                                                 style={{ width: `${((visualIndex + 1) / cardsToDisplay.length) * 100}%` }}
                                             />
@@ -378,28 +416,51 @@ export default function Flashcards() {
                                 )}
                             </div>
 
-                            {/* Secondary Topic Selector Dropdown */}
-                            {availableTopics.length > 1 && (
-                                <div className="flex items-center gap-3 pt-2.5 border-t border-border/10">
-                                    <span className="text-[10px] uppercase font-black tracking-widest text-muted-foreground">Select Topic:</span>
-                                    <div className="relative inline-block w-48">
+                            {/* Option selection row */}
+                            <div className="flex flex-wrap items-center gap-4 pt-2.5 border-t border-border/10">
+                                {/* Topic Selector */}
+                                {availableTopics.length > 1 && (
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[10px] uppercase font-black tracking-widest text-muted-foreground">Topic:</span>
+                                        <div className="relative inline-block w-44">
+                                            <select
+                                                value={selectedTopic}
+                                                onChange={(e) => setSelectedTopic(e.target.value)}
+                                                className="w-full bg-card hover:bg-muted/50 border border-border/60 text-foreground text-xs font-bold py-2 px-3 pr-8 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/45 transition-all shadow-sm"
+                                            >
+                                                {availableTopics.map((topic) => (
+                                                    <option key={topic} value={topic} className="bg-card text-foreground">
+                                                        {topic}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <div className="absolute inset-y-0 right-2.5 flex items-center pointer-events-none text-muted-foreground">
+                                                <ChevronDown className="w-3.5 h-3.5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Progress Status Filter */}
+                                <div className="flex items-center gap-2">
+                                    <span className="text-[10px] uppercase font-black tracking-widest text-muted-foreground">Filter:</span>
+                                    <div className="relative inline-block w-48 font-semibold">
                                         <select
-                                            value={selectedTopic}
-                                            onChange={(e) => setSelectedTopic(e.target.value)}
-                                            className="w-full bg-card hover:bg-muted/50 border border-border/60 text-foreground text-xs font-bold py-2.5 pl-4.5 pr-10 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/45 transition-all shadow-sm"
+                                            value={progressFilter}
+                                            onChange={(e) => setProgressFilter(e.target.value as any)}
+                                            className="w-full bg-card hover:bg-muted/50 border border-border/60 text-foreground text-xs font-bold py-2 px-3 pr-8 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/45 transition-all shadow-sm"
                                         >
-                                            {availableTopics.map((topic) => (
-                                                <option key={topic} value={topic} className="bg-card text-foreground py-2">
-                                                    {topic}
-                                                </option>
-                                            ))}
+                                            <option value="all">All Study Cards</option>
+                                            <option value="learned">Learned Cards Only</option>
+                                            <option value="revision">Need Revision Only</option>
+                                            <option value="unlearned">Unlearned Cards Only</option>
                                         </select>
-                                        <div className="absolute inset-y-0 right-3.5 flex items-center pointer-events-none text-muted-foreground">
-                                            <ChevronDown className="w-4 h-4" />
+                                        <div className="absolute inset-y-0 right-2.5 flex items-center pointer-events-none text-muted-foreground">
+                                            <ChevronDown className="w-3.5 h-3.5" />
                                         </div>
                                     </div>
                                 </div>
-                            )}
+                            </div>
                         </div>
                     )}
 
@@ -432,9 +493,25 @@ export default function Flashcards() {
                                                 ? "bg-emerald-500/15 text-emerald-500 border-emerald-500/30"
                                                 : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
                                         )}
+                                        title="Mark this card as learned"
                                     >
                                         <CheckCircle className="w-3.5 h-3.5" />
                                         {learnedCards.includes(currentVisualCard.id) ? "Learned" : "Mark Learned"}
+                                    </button>
+
+                                    {/* Need Revision */}
+                                    <button
+                                        onClick={() => toggleRevision(currentVisualCard.id)}
+                                        className={cn(
+                                            "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all",
+                                            revisionCards.includes(currentVisualCard.id)
+                                                ? "bg-amber-500/15 text-amber-500 border-amber-500/30"
+                                                : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
+                                        )}
+                                        title="Flag this card for revision"
+                                    >
+                                        <AlertCircle className="w-3.5 h-3.5" />
+                                        {revisionCards.includes(currentVisualCard.id) ? "Needs Revision" : "Need Revision"}
                                     </button>
 
                                     <div className="h-6 w-px bg-border/80 mx-1.5" />
@@ -459,7 +536,7 @@ export default function Flashcards() {
                             </div>
 
                             {/* Card Body Display */}
-                            <div 
+                            <div
                                 ref={containerRef}
                                 className={cn(
                                     "relative rounded-3xl bg-muted/30 overflow-auto flex items-center justify-center border border-border/70 shadow-inner",
@@ -571,25 +648,15 @@ export default function Flashcards() {
                             <ImageIcon className="w-12 h-12 mx-auto text-muted-foreground opacity-50" />
                             <h3 className="text-lg font-bold">No Visual Cards Found</h3>
                             <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                                There are no visual cards matching the subject "{selectedSubject}". Change subject filter or add new content.
+                                {progressFilter !== 'all'
+                                    ? `There are no visual cards matching the status "${progressFilter === 'revision' ? 'need revision' : progressFilter}" for subject "${selectedSubject}".`
+                                    : `There are no visual cards matching the subject "${selectedSubject}". Change subject filter or add new content.`}
                             </p>
                         </div>
                     )}
 
                     {/* Interactive Guideline box for assets location */}
-                    {!(isFullscreen || isVisualFullscreen) && (
-                        <div className="mt-8 p-5 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col md:flex-row items-center gap-4 text-left">
-                            <div className="p-3 rounded-xl bg-primary/10 flex items-center justify-center">
-                                <FolderOpen className="w-6 h-6 text-primary" />
-                            </div>
-                            <div className="space-y-1">
-                                <h4 className="text-sm font-bold text-foreground">Aspirant Note: How to add your own Study Cards</h4>
-                                <p className="text-xs text-muted-foreground leading-relaxed">
-                                    Copy your study diagrams, memory charts, maps, or infographics (PNG, JPG, SVG, WebP) directly to <code className="bg-muted px-1.5 py-0.5 rounded text-primary font-bold">client/src/assets/geography</code>, <code className="bg-muted px-1.5 py-0.5 rounded text-primary font-bold">history</code>, or <code className="bg-muted px-1.5 py-0.5 rounded text-primary font-bold">polity</code> folders. They will load here in real time!
-                                </p>
-                            </div>
-                        </div>
-                    )}
+
                 </div>
             )}
 
