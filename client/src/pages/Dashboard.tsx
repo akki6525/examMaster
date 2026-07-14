@@ -299,37 +299,36 @@ export default function Dashboard() {
                                         key={num}
                                         type="button"
                                         onClick={() => setVisibleTestsCount(num)}
-                                        className={`px-3 py-1.5 text-[9px] font-black uppercase rounded-lg border transition-all ${
-                                            visibleTestsCount === num
+                                        className={`px-3 py-1.5 text-[9px] font-black uppercase rounded-lg border transition-all ${visibleTestsCount === num
                                                 ? "bg-primary text-white border-primary shadow-sm"
                                                 : "bg-background/50 text-muted-foreground border-transparent hover:bg-background"
-                                        }`}
+                                            }`}
                                     >
                                         {num === 0 ? "All Tests" : `Last ${num}`}
                                     </button>
                                 ))}
                             </div>
-                            
+
                             {/* Fast Select shortcuts */}
                             <div className="flex items-center gap-2 text-[10px] font-bold text-indigo-600 dark:text-indigo-400">
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     onClick={() => setSelectedTopics(sortedTopics.slice(0, 5))}
                                     className="hover:underline"
                                 >
                                     Reset to Top 5
                                 </button>
                                 <span className="opacity-40">•</span>
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     onClick={() => setSelectedTopics([])}
                                     className="hover:underline"
                                 >
                                     Clear All
                                 </button>
                                 <span className="opacity-40">•</span>
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     onClick={() => setSelectedTopics(uniqueTopics)}
                                     className="hover:underline"
                                 >
@@ -361,11 +360,10 @@ export default function Dashboard() {
                                                     setSelectedTopics([...selectedTopics, topic]);
                                                 }
                                             }}
-                                            className={`flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-extrabold uppercase rounded-xl transition-all border ${
-                                                isSelected
+                                            className={`flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-extrabold uppercase rounded-xl transition-all border ${isSelected
                                                     ? "text-white border-transparent"
                                                     : "bg-background/40 text-muted-foreground border-transparent hover:bg-background/80"
-                                            }`}
+                                                }`}
                                             style={isSelected ? { backgroundColor: color } : {}}
                                         >
                                             <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? "bg-white" : ""}`} style={!isSelected ? { backgroundColor: color } : {}} />
@@ -385,19 +383,19 @@ export default function Dashboard() {
                                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--muted-foreground) / 0.15)" />
-                                <XAxis 
-                                    dataKey="name" 
-                                    stroke="hsl(var(--muted-foreground))" 
-                                    fontSize={11} 
+                                <XAxis
+                                    dataKey="name"
+                                    stroke="hsl(var(--muted-foreground))"
+                                    fontSize={11}
                                     fontWeight={600}
                                     tickLine={false}
                                     axisLine={false}
                                     dy={10}
                                     interval={Math.max(0, Math.ceil(slicedChartData.length / 10) - 1)}
                                 />
-                                <YAxis 
-                                    stroke="hsl(var(--muted-foreground))" 
-                                    fontSize={11} 
+                                <YAxis
+                                    stroke="hsl(var(--muted-foreground))"
+                                    fontSize={11}
                                     fontWeight={600}
                                     tickLine={false}
                                     axisLine={false}
@@ -419,9 +417,9 @@ export default function Dashboard() {
                                     formatter={(value) => [`${value}% Accuracy`]}
                                 />
                                 {selectedTopics.length > 0 && (
-                                    <Legend 
-                                        verticalAlign="bottom" 
-                                        height={36} 
+                                    <Legend
+                                        verticalAlign="bottom"
+                                        height={36}
                                         iconType="circle"
                                         iconSize={8}
                                         wrapperStyle={{

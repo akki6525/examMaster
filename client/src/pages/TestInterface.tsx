@@ -15,7 +15,8 @@ import {
     Play,
     Menu,
     Info,
-    Lock
+    Lock,
+    RotateCcw
 } from 'lucide-react';
 import { useTestStore, Question } from '../stores/testStore';
 import { cn, formatTime, getDifficultyColor } from '../lib/utils';
@@ -46,6 +47,37 @@ export default function TestInterface() {
 
     const [activeSectionIdx, setActiveSectionIdx] = useState(0);
     const [sectionTimeLeft, setSectionTimeLeft] = useState(15 * 60 * 1000);
+
+    const [eliminatedOptions, setEliminatedOptions] = useState<Record<string, number[]>>({});
+
+    const handleToggleEliminated = (questionId: string, optIndex: number, e: React.MouseEvent) => {
+        e.stopPropagation();
+        
+        // If this option is currently selected, clear the selected answer first
+        const q = currentTest?.questions.find(item => item.id === questionId);
+        if (q && q.options) {
+            const optionVal = q.options[optIndex];
+            const ans = userAnswers.find(ua => ua.questionId === questionId);
+            if (ans && ans.answer === optionVal) {
+                setAnswer(questionId, '');
+            }
+        }
+
+        setEliminatedOptions(prev => {
+            const current = prev[questionId] || [];
+            const updated = current.includes(optIndex)
+                ? current.filter(idx => idx !== optIndex)
+                : [...current, optIndex];
+            return { ...prev, [questionId]: updated };
+        });
+    };
+
+    const handleResetEliminated = (questionId: string) => {
+        setEliminatedOptions(prev => {
+            const { [questionId]: _, ...rest } = prev;
+            return rest;
+        });
+    };
 
     const activeSectionQuestions = useMemo(() => {
         if (!currentTest || !currentTest.sections || currentTest.sections.length === 0) return [];
@@ -154,12 +186,12 @@ export default function TestInterface() {
 
     const handleSubmit = useCallback(async () => {
         try {
-            const result = await submitTest();
+            const result = await submitTest(eliminatedOptions);
             navigate(`/results/${result.resultId}`);
         } catch (err) {
             console.error('Submit error:', err);
         }
-    }, [submitTest, navigate]);
+    }, [submitTest, navigate, eliminatedOptions]);
 
     // Set initial time
     useEffect(() => {
@@ -439,28 +471,54 @@ export default function TestInterface() {
                                 {currentQuestion.options.map((option, index) => {
                                     const isSelected = currentAnswer?.answer === option;
                                     const optionLabel = String.fromCharCode(65 + index);
+                                    const isEliminated = (eliminatedOptions[currentQuestion.id] || []).includes(index);
 
                                     return (
-                                        <motion.button
-                                            key={option}
-                                            whileHover={{ scale: 1.01 }}
-                                            whileTap={{ scale: 0.99 }}
-                                            onClick={() => setAnswer(currentQuestion.id, option)}
-                                            className={cn(
-                                                "w-full p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-start gap-4",
-                                                isSelected
-                                                    ? "border-primary bg-primary/5"
-                                                    : "border-border hover:border-primary/50"
-                                            )}
-                                        >
-                                            <span className={cn(
-                                                "w-8 h-8 rounded-lg flex items-center justify-center font-semibold flex-shrink-0",
-                                                isSelected ? "bg-primary text-white" : "bg-muted"
-                                            )}>
-                                                {optionLabel}
-                                            </span>
-                                            <span className="pt-1">{option}</span>
-                                        </motion.button>
+                                        <div key={option} className="relative group">
+                                            <motion.button
+                                                whileHover={!isEliminated ? { scale: 1.01 } : undefined}
+                                                whileTap={!isEliminated ? { scale: 0.99 } : undefined}
+                                                onClick={() => {
+                                                    if (isEliminated) return;
+                                                    setAnswer(currentQuestion.id, option);
+                                                }}
+                                                disabled={isEliminated}
+                                                className={cn(
+                                                    "w-full p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-start gap-4 pr-12",
+                                                    isEliminated
+                                                        ? "border-border/30 bg-muted/10 opacity-30 line-through cursor-not-allowed text-muted-foreground/60"
+                                                        : isSelected
+                                                            ? "border-primary bg-primary/5"
+                                                            : "border-border hover:border-primary/50"
+                                                )}
+                                            >
+                                                <span className={cn(
+                                                    "w-8 h-8 rounded-lg flex items-center justify-center font-semibold flex-shrink-0 transition-colors",
+                                                    isEliminated
+                                                        ? "bg-muted/50 text-muted-foreground/45"
+                                                        : isSelected
+                                                            ? "bg-primary text-white"
+                                                            : "bg-muted"
+                                                )}>
+                                                    {optionLabel}
+                                                </span>
+                                                <span className="pt-1">{option}</span>
+                                            </motion.button>
+
+                                            <button
+                                                onClick={(e) => handleToggleEliminated(currentQuestion.id, index, e)}
+                                                className={cn(
+                                                    "absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg border transition-all duration-200 z-10",
+                                                    isEliminated
+                                                        ? "bg-red-500/10 border-red-500/30 text-red-500 opacity-100 hover:bg-red-500/20"
+                                                        : "bg-muted border-border text-muted-foreground opacity-0 group-hover:opacity-100 hover:bg-muted-foreground/10 hover:text-foreground"
+                                                )}
+                                                type="button"
+                                                title={isEliminated ? "Restore Option" : "Eliminate Option"}
+                                            >
+                                                <X className="w-3.5 h-3.5" />
+                                            </button>
+                                        </div>
                                     );
                                 })}
                             </div>
@@ -504,6 +562,16 @@ export default function TestInterface() {
 
                         {/* Question Action Bar */}
                         <div className="flex flex-wrap gap-3 mt-6 justify-end items-center">
+                            {((eliminatedOptions[currentQuestion.id] || []).length > 0) && (
+                                <button
+                                    onClick={() => handleResetEliminated(currentQuestion.id)}
+                                    className="px-4 py-2 bg-muted/40 hover:bg-muted/80 border border-border text-muted-foreground hover:text-foreground rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5"
+                                    type="button"
+                                >
+                                    <RotateCcw className="w-3.5 h-3.5" />
+                                    Reset Options
+                                </button>
+                            )}
                             {(currentAnswer?.answer && currentAnswer.answer !== '') && (
                                 <button
                                     onClick={() => setAnswer(currentQuestion.id, '')}

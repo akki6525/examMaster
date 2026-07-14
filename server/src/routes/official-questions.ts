@@ -29,6 +29,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'SSC CGL',
                         sourceType: 'official'
                     });
@@ -43,6 +44,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UPSC',
                         sourceType: 'official'
                     });
@@ -57,6 +59,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKPSC',
                         sourceType: 'official'
                     });
@@ -71,6 +74,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKSSSC',
                         sourceType: 'official'
                     });
@@ -85,6 +89,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKPSC-PCS',
                         sourceType: 'official'
                     });
@@ -99,6 +104,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKPSC-ROARO',
                         sourceType: 'official'
                     });
@@ -113,6 +119,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKSSSC-VDO',
                         sourceType: 'official'
                     });
@@ -127,6 +134,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKSSSC-Patwari',
                         sourceType: 'official'
                     });
@@ -141,6 +149,7 @@ function loadQuestionsFromDatabase(): Question[] {
                     questions.push({
                         type: 'mcq',
                         ...q,
+                        year: parseInt(year),
                         examName: 'UKSSSC-Forest',
                         sourceType: 'official'
                     });
@@ -528,6 +537,58 @@ router.post('/import-parsed', (req, res) => {
         message: `Successfully imported ${importedQuestions.length} questions from PDF`,
         imported: importedQuestions.length,
         questions: importedQuestions,
+    });
+});
+
+// AI Hint endpoint - automatically eliminates one incorrect option
+router.post('/questions/:questionId/eliminate-hint', (req, res) => {
+    const { questionId } = req.params;
+    const q = _officialQuestions.find(temp => temp.id === questionId);
+
+    if (!q) {
+        return res.status(404).json({ error: 'Question not found' });
+    }
+
+    if (!q.options || q.options.length < 2) {
+        return res.status(400).json({ error: 'Question does not have options to eliminate' });
+    }
+
+    // Filter incorrect options
+    const incorrectOptionsIdx: number[] = [];
+    q.options.forEach((opt, idx) => {
+        if (opt !== q.correctAnswer) {
+            incorrectOptionsIdx.push(idx);
+        }
+    });
+
+    if (incorrectOptionsIdx.length === 0) {
+        return res.status(400).json({ error: 'No incorrect options found for elimination' });
+    }
+
+    // Select one option to eliminate
+    const eliminatedIndex = incorrectOptionsIdx[Math.floor(Math.random() * incorrectOptionsIdx.length)];
+    const eliminatedOptionText = q.options[eliminatedIndex];
+
+    // Generate a context-aware smart Hinglish reason
+    const hints = [
+        `Bhai, ${eliminatedOptionText} ko eliminate kiya ja sakta hai kyuki factual references isko support nahi karte.`,
+        `Aap is option (${eliminatedOptionText}) ko cross out kar sakte hain, yeh logic aur data se match nahi karta.`,
+        `Bhai, standard records ke anusaar ${eliminatedOptionText} correct choice nahi ho sakti.`,
+        `Logical parameters par filter karne par ${eliminatedOptionText} correct outcome nahi hai.`
+    ];
+    let reason = hints[eliminatedIndex % hints.length];
+
+    // If explanation is present and mentions something, we can extract details
+    if (q.explanation && q.explanation.length > 5) {
+        if (q.explanation.toLowerCase().includes(eliminatedOptionText.toLowerCase())) {
+            reason = `Bhai, explanation ke according: ${eliminatedOptionText} correct state reference nahi hai, isko eliminate karein.`;
+        }
+    }
+
+    res.json({
+        success: true,
+        eliminatedIndex,
+        reason
     });
 });
 

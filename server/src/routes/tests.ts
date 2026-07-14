@@ -230,10 +230,28 @@ router.post('/:id/submit', (req: any, res) => {
     const { answers, timeTaken } = req.body;
     if (!answers || !Array.isArray(answers)) return res.status(400).json({ error: 'Answers array required' });
 
+    const db = loadDB();
     const userAnswers: UserAnswer[] = [];
     const topicScores: Map<string, { correct: number; total: number; attempted: number; totalTime: number }> = new Map();
     let totalCorrect = 0;
     let totalWrong = 0;
+    if (!db.practiceStats) db.practiceStats = {};
+    if (!db.practiceStats[req.userId]) {
+        db.practiceStats[req.userId] = {
+            totalAttempted: 0,
+            correct: 0,
+            incorrect: 0,
+            topicWiseScore: [],
+            answeredQuestions: {},
+            dailyStats: {},
+            lastUpdated: new Date().toISOString(),
+            eliminationStats: { skipped: 0, wrong: 0, correct: 0, questions: {} }
+        };
+    }
+    const practiceStats = db.practiceStats[req.userId];
+    if (!practiceStats.eliminationStats) {
+        practiceStats.eliminationStats = { skipped: 0, wrong: 0, correct: 0, questions: {} };
+    }
 
     for (const test_question of test.questions) {
         const userAnswer = answers.find((a: any) => a.questionId === test_question.id);
@@ -255,6 +273,28 @@ router.post('/:id/submit', (req: any, res) => {
             flagged: userAnswer?.flagged || false
         });
 
+        // Track elimination technique in mock tests
+        const eliminatedOptions = userAnswer?.eliminatedOptions || [];
+        if (eliminatedOptions.length > 0) {
+            const questionsMap = practiceStats.eliminationStats.questions || {};
+            const existing = questionsMap[test_question.id];
+            if (existing) {
+                if (existing.status === 'skipped') practiceStats.eliminationStats.skipped--;
+                else if (existing.status === 'wrong') practiceStats.eliminationStats.wrong--;
+                else if (existing.status === 'correct') practiceStats.eliminationStats.correct--;
+            }
+            const status = !isAttempted ? 'skipped' : (isCorrect ? 'correct' : 'wrong');
+            questionsMap[test_question.id] = {
+                eliminatedCount: eliminatedOptions.length,
+                userAnswer: providedAnswer || '',
+                isCorrect: !!isCorrect,
+                status
+            };
+            if (status === 'skipped') practiceStats.eliminationStats.skipped++;
+            else if (status === 'wrong') practiceStats.eliminationStats.wrong++;
+            else if (status === 'correct') practiceStats.eliminationStats.correct++;
+        }
+
         const topicScore = topicScores.get(test_question.topic) || { correct: 0, total: 0, attempted: 0, totalTime: 0 };
         topicScore.total++;
         topicScore.totalTime += (userAnswer?.timeTaken || 0);
@@ -262,6 +302,10 @@ router.post('/:id/submit', (req: any, res) => {
         if (isAttempted) topicScore.attempted++;
         topicScores.set(test_question.topic, topicScore);
     }
+
+    practiceStats.lastUpdated = new Date().toISOString();
+    db.practiceStats[req.userId] = practiceStats;
+    saveDB(db);
 
     const topicWiseScore: TopicScore[] = Array.from(topicScores.entries()).map(([topic, score]) => ({
         topic,

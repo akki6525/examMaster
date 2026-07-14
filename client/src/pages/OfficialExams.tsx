@@ -79,7 +79,8 @@ export default function OfficialExams() {
                 includeOfficial: true,
                 examTypes: [selectedExam],
                 questionCount,
-                duration
+                duration,
+                year: selectedYear || undefined
             });
             navigate(`/test/${response.data.testId}`);
         } catch (error) {
@@ -436,7 +437,7 @@ export default function OfficialExams() {
                                 <div className="relative">
                                     <select
                                         value={selectedYear || ''}
-                                        onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+                                        onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
                                         className="w-full appearance-none pl-4 pr-10 py-3 rounded-xl border border-border bg-background focus:border-primary focus:outline-none cursor-pointer"
                                     >
                                         <option value="">All Years</option>

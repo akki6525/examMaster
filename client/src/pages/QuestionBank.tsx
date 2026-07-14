@@ -13,7 +13,9 @@ import {
     RotateCcw,
     Eye,
     X,
-    Brain
+    Brain,
+    Sparkles,
+    Trash2
 } from 'lucide-react';
 import axios from 'axios';
 import { cn, getDifficultyColor } from '../lib/utils';
@@ -30,12 +32,6 @@ interface ExamType {
 // Persistence key for UI state only (not used for stats)
 const STORAGE_KEY = 'exammaster_questionbank_progress';
 
-interface SavedProgress {
-    userAnswers: Record<string, string>;
-    showAnswer: Record<string, boolean>;
-    attemptedQuestions: string[];
-}
-
 export default function QuestionBank() {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [examTypes, setExamTypes] = useState<ExamType[]>([]);
@@ -47,19 +43,23 @@ export default function QuestionBank() {
     const [selectedYear, setSelectedYear] = useState<string>('all');
     const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
     const [showAnswer, setShowAnswer] = useState<Record<string, boolean>>({});
-    const [attemptedQuestions, setAttemptedQuestions] = useState<Set<string>>(new Set());
     const [showReviewModal, setShowReviewModal] = useState(false);
 
+    // Option Elimination & AI Hint States
+    const [eliminatedOptions, setEliminatedOptions] = useState<Record<string, number[]>>({});
+    const [aiHints, setAiHints] = useState<Record<string, { index: number; reason: string }>>({});
+    const [loadingAiHint, setLoadingAiHint] = useState<Record<string, boolean>>({});
+
     // Load saved progress on mount (from localStorage for UI state)
-    // AND from server for answered questions
     useEffect(() => {
-        // Restore UI state from localStorage
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
             try {
-                const data: SavedProgress = JSON.parse(saved);
+                const data: any = JSON.parse(saved);
                 setUserAnswers(data.userAnswers || {});
                 setShowAnswer(data.showAnswer || {});
+                setEliminatedOptions(data.eliminatedOptions || {});
+                setAiHints(data.aiHints || {});
             } catch (e) {
                 console.error('Failed to load progress:', e);
             }
@@ -68,9 +68,9 @@ export default function QuestionBank() {
 
     // Save UI progress to localStorage only (stats go to server via checkAnswer)
     useEffect(() => {
-        const data = { userAnswers, showAnswer };
+        const data = { userAnswers, showAnswer, eliminatedOptions, aiHints };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    }, [userAnswers, showAnswer]);
+    }, [userAnswers, showAnswer, eliminatedOptions, aiHints]);
 
     useEffect(() => {
         async function fetchData() {
@@ -125,6 +125,7 @@ export default function QuestionBank() {
         acc[topicKey] = (acc[topicKey] || 0) + 1;
         return acc;
     }, {} as Record<string, number>);
+
     const topics = [...new Set(questionsForTopicCount.map(q => q.subtopic ? `${q.topic} - ${q.subtopic}` : q.topic))].sort((a, b) => (topicCounts[b] || 0) - (topicCounts[a] || 0));
 
     const filteredQuestions = questionsForTopicCount.filter(q => {
@@ -144,26 +145,102 @@ export default function QuestionBank() {
         setShowAnswer(prev => ({ ...prev, [questionId]: true }));
 
         // Persist this answer to the server DB
+        // Also pass eliminatedCount so the backend can atomically record elimination analytics
         const topic = (q as any).subtopic ? `${q.topic} - ${(q as any).subtopic}` : q.topic;
         const isCorrect = userAnswers[questionId] === q.correctAnswer;
+        const eliminatedCount = (eliminatedOptions[questionId] || []).length;
         axios.post(`${API_URL}/practice-stats/answer`, {
             questionId,
             topic,
             userAnswer: userAnswers[questionId],
             correctAnswer: q.correctAnswer,
-            isCorrect
+            isCorrect,
+            ...(eliminatedCount > 0 ? { eliminatedCount } : {})
         }).catch(err => console.error('Failed to save answer to server:', err));
     };
 
     const resetQuestion = (questionId: string) => {
+        axios.post(`${API_URL}/practice-stats/elimination`, {
+            questionId,
+            eliminatedCount: 0
+        }).catch(err => console.error('Failed to reset elimination status on server:', err));
         setUserAnswers(prev => { const { [questionId]: _, ...rest } = prev; return rest; });
         setShowAnswer(prev => { const { [questionId]: _, ...rest } = prev; return rest; });
+        setEliminatedOptions(prev => { const { [questionId]: _, ...rest } = prev; return rest; });
+        setAiHints(prev => { const { [questionId]: _, ...rest } = prev; return rest; });
     };
 
     const resetAllProgress = () => {
         setUserAnswers({});
         setShowAnswer({});
+        setEliminatedOptions({});
+        setAiHints({});
         localStorage.removeItem(STORAGE_KEY);
+    };
+
+    const handleToggleEliminated = (questionId: string, optIndex: number, e: React.MouseEvent) => {
+        e.stopPropagation();
+        const current = eliminatedOptions[questionId] || [];
+        const updated = current.includes(optIndex)
+            ? current.filter(idx => idx !== optIndex)
+            : [...current, optIndex];
+        setEliminatedOptions(prev => ({ ...prev, [questionId]: updated }));
+        const q = questions.find(item => item.id === questionId);
+        const topic = q ? (q.subtopic ? `${q.topic} - ${q.subtopic}` : q.topic) : 'General';
+        axios.post(`${API_URL}/practice-stats/elimination`, {
+            questionId,
+            topic,
+            eliminatedCount: updated.length
+        }).catch(err => console.error('Failed to update elimination status on server:', err));
+    };
+
+    const handleResetEliminated = (questionId: string) => {
+        axios.post(`${API_URL}/practice-stats/elimination`, {
+            questionId,
+            eliminatedCount: 0
+        }).catch(err => console.error('Failed to reset elimination status on server:', err));
+        setEliminatedOptions(prev => {
+            const { [questionId]: _, ...rest } = prev;
+            return rest;
+        });
+        setAiHints(prev => {
+            const { [questionId]: _, ...rest } = prev;
+            return rest;
+        });
+    };
+
+    const handleFetchAiHint = async (questionId: string) => {
+        setLoadingAiHint(prev => ({ ...prev, [questionId]: true }));
+        try {
+            const response = await axios.post(`${API_URL}/official-questions/questions/${questionId}/eliminate-hint`);
+            if (response.data && response.data.success) {
+                const { eliminatedIndex, reason } = response.data;
+                // Add to eliminated options
+                setEliminatedOptions(prev => {
+                    const current = prev[questionId] || [];
+                    if (current.includes(eliminatedIndex)) return prev;
+                    return { ...prev, [questionId]: [...current, eliminatedIndex] };
+                });
+                // Set AI hint reason
+                setAiHints(prev => ({
+                    ...prev,
+                    [questionId]: { index: eliminatedIndex, reason }
+                }));
+                // Also record the AI elimination on the server
+                const q = questions.find(item => item.id === questionId);
+                const topic = q ? (q.subtopic ? `${q.topic} - ${q.subtopic}` : q.topic) : 'General';
+                const newCount = (eliminatedOptions[questionId] || []).length + 1;
+                axios.post(`${API_URL}/practice-stats/elimination`, {
+                    questionId,
+                    topic,
+                    eliminatedCount: newCount
+                }).catch(err => console.error('Failed to record AI hint elimination:', err));
+            }
+        } catch (error) {
+            console.error('Failed to fetch AI Hint:', error);
+        } finally {
+            setLoadingAiHint(prev => ({ ...prev, [questionId]: false }));
+        }
     };
 
     // Get correct and incorrect questions
@@ -197,7 +274,7 @@ export default function QuestionBank() {
                 </p>
             </div>
 
-            {/* Stats Bar - Simplified */}
+            {/* Stats Bar */}
             {attemptedCount > 0 && (
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
@@ -529,68 +606,108 @@ export default function QuestionBank() {
 
                                 <p className="text-lg mb-4 whitespace-pre-wrap">{question.question}</p>
 
-                                {(question.type === 'mcq' || (!question.type && question.options)) && question.options && (
-                                    <div className="space-y-2 mb-4">
-                                        {question.options.map((option, optIndex) => {
-                                            const isSelected = userAnswer === option;
-                                            const isCorrectOption = option === question.correctAnswer;
-                                            const showCorrect = isAnswered && isCorrectOption;
-                                            const showWrong = isAnswered && isSelected && !isCorrectOption;
+                                 {(question.type === 'mcq' || (!question.type && question.options)) && question.options && (
+                                     <div className="space-y-2 mb-4">
+                                         {question.options.map((option, optIndex) => {
+                                             const isSelected = userAnswer === option;
+                                             const isCorrectOption = option === question.correctAnswer;
+                                             const showCorrect = isAnswered && isCorrectOption;
+                                             const showWrong = isAnswered && isSelected && !isCorrectOption;
+                                             const isEliminated = (eliminatedOptions[question.id] || []).includes(optIndex);
 
-                                            return (
-                                                <button
-                                                    key={optIndex}
-                                                    onClick={() => handleSelectOption(question.id, option)}
-                                                    disabled={isAnswered}
-                                                    className={cn(
-                                                        "w-full flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all duration-200",
-                                                        !isAnswered && isSelected && "border-primary bg-primary/10",
-                                                        !isAnswered && !isSelected && "border-border hover:border-primary/50 hover:bg-muted/50",
-                                                        showCorrect && "border-green-500 bg-green-500/10",
-                                                        showWrong && "border-red-500 bg-red-500/10",
-                                                        isAnswered && !showCorrect && !showWrong && "border-border opacity-60",
-                                                        isAnswered && "cursor-default"
-                                                    )}
-                                                >
-                                                    <span className={cn(
-                                                        "w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 transition-colors",
-                                                        !isAnswered && isSelected && "bg-primary text-white",
-                                                        !isAnswered && !isSelected && "bg-muted",
-                                                        showCorrect && "bg-green-500 text-white",
-                                                        showWrong && "bg-red-500 text-white"
-                                                    )}>
-                                                        {String.fromCharCode(65 + optIndex)}
-                                                    </span>
-                                                    <span className="pt-1 flex-1">{option}</span>
-                                                    {showCorrect && <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />}
-                                                    {showWrong && <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                )}
+                                             return (
+                                                 <div key={optIndex} className="relative group">
+                                                     <button
+                                                         onClick={() => {
+                                                             if (isEliminated) return;
+                                                             handleSelectOption(question.id, option);
+                                                         }}
+                                                         disabled={isAnswered || isEliminated}
+                                                         className={cn(
+                                                             "w-full flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all duration-200",
+                                                             !isAnswered && "pr-12",
+                                                             !isAnswered && isSelected && "border-primary bg-primary/10",
+                                                             !isAnswered && !isSelected && !isEliminated && "border-border hover:border-primary/50 hover:bg-muted/50",
+                                                             isEliminated && "border-border/30 bg-muted/10 opacity-30 line-through cursor-not-allowed",
+                                                             showCorrect && "border-green-500 bg-green-500/10",
+                                                             showWrong && "border-red-500 bg-red-500/10",
+                                                             isAnswered && !showCorrect && !showWrong && "border-border opacity-60",
+                                                             isAnswered && "cursor-default"
+                                                         )}
+                                                     >
+                                                         <span className={cn(
+                                                             "w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 transition-colors",
+                                                             !isAnswered && isSelected && "bg-primary text-white",
+                                                             !isAnswered && !isSelected && "bg-muted",
+                                                             isEliminated && "bg-muted/55 text-muted-foreground/35",
+                                                             showCorrect && "bg-green-500 text-white",
+                                                             showWrong && "bg-red-500 text-white"
+                                                         )}>
+                                                             {String.fromCharCode(65 + optIndex)}
+                                                         </span>
+                                                         <span className="pt-1 flex-1">{option}</span>
+                                                         {showCorrect && <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />}
+                                                         {showWrong && <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />}
+                                                     </button>
+                                                     
+                                                     {!isAnswered && (
+                                                         <button
+                                                             onClick={(e) => handleToggleEliminated(question.id, optIndex, e)}
+                                                             className={cn(
+                                                                 "absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg border transition-all duration-200",
+                                                                 isEliminated
+                                                                     ? "bg-red-500/10 border-red-500/30 text-red-500 opacity-100 hover:bg-red-500/20"
+                                                                     : "bg-muted border-border text-muted-foreground opacity-0 group-hover:opacity-100 hover:bg-muted-foreground/10 hover:text-foreground"
+                                                             )}
+                                                             title={isEliminated ? "Restore Option" : "Eliminate Option"}
+                                                         >
+                                                             <X className="w-3.5 h-3.5" />
+                                                         </button>
+                                                     )}
+                                                 </div>
+                                             );
+                                         })}
+                                     </div>
+                                 )}
 
-                                <div className="flex items-center gap-3">
-                                    {!isAnswered && userAnswer && (
-                                        <button
-                                            onClick={() => checkAnswer(question.id)}
-                                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
-                                        >
-                                            <CheckCircle className="w-4 h-4" />Check Answer
-                                        </button>
-                                    )}
-                                    {isAnswered && (
-                                        <button
-                                            onClick={() => resetQuestion(question.id)}
-                                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted hover:bg-muted/80 font-medium transition-colors"
-                                        >
-                                            <RotateCcw className="w-4 h-4" />Try Again
-                                        </button>
-                                    )}
-                                    {!userAnswer && !isAnswered && (
-                                        <p className="text-sm text-muted-foreground">👆 Click an option to select your answer</p>
-                                    )}
-                                </div>
+                                 {/* AI Hint section */}
+                                 {!isAnswered && aiHints[question.id] && (
+                                     <div className="mb-4 p-3 rounded-xl bg-amber-500/5 border border-amber-500/20 text-sm">
+                                         <span className="font-semibold text-amber-500 flex items-center gap-1.5 mb-1">
+                                             <Sparkles className="w-3.5 h-3.5" /> AI Elimination Hint
+                                         </span>
+                                         <p className="text-muted-foreground">{aiHints[question.id].reason}</p>
+                                     </div>
+                                 )}
+
+                                 <div className="flex flex-wrap items-center gap-3">
+                                     {!isAnswered && userAnswer && (
+                                         <button
+                                             onClick={() => checkAnswer(question.id)}
+                                             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
+                                         >
+                                             <CheckCircle className="w-4 h-4" />Check Answer
+                                         </button>
+                                     )}
+                                     {isAnswered && (
+                                         <button
+                                             onClick={() => resetQuestion(question.id)}
+                                             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted hover:bg-muted/80 font-medium transition-colors"
+                                         >
+                                             <RotateCcw className="w-4 h-4" />Try Again
+                                         </button>
+                                     )}
+                                     {!isAnswered && ((eliminatedOptions[question.id] || []).length > 0) && (
+                                          <button
+                                              onClick={() => handleResetEliminated(question.id)}
+                                              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold border bg-muted/40 hover:bg-muted/80 border-border text-muted-foreground hover:text-foreground transition-all duration-200"
+                                          >
+                                              <RotateCcw className="w-3.5 h-3.5" />
+                                              Reset Choices
+                                          </button>
+                                      )}
+
+                                 </div>
 
                                 <AnimatePresence>
                                     {isAnswered && question.explanation && (

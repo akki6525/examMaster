@@ -5,7 +5,7 @@ import {
     Brain, TrendingUp, TrendingDown, Target, Clock, Zap,
     CheckCircle, XCircle, BarChart2, Award,
     ChevronDown, ChevronUp, RefreshCw, Trash2, BookOpen,
-    Flame, ArrowRight, Activity, FileQuestion, FileText, Sparkles
+    Flame, ArrowRight, Activity, FileQuestion, FileText, Sparkles, Layers
 } from 'lucide-react';
 import axios from 'axios';
 import { cn } from '../lib/utils';
@@ -42,6 +42,17 @@ interface PracticeStats {
     topicWiseScore: TopicScore[];
     dailyStats: Record<string, { total: number; correct: number }>;
     lastUpdated: string;
+    eliminationStats?: {
+        skipped: number;
+        wrong: number;
+        correct: number;
+        questions: Record<string, {
+            eliminatedCount: number;
+            userAnswer?: string | string[];
+            isCorrect?: boolean;
+            status: 'skipped' | 'wrong' | 'correct';
+        }>;
+    };
 }
 
 interface TopicInsight {
@@ -177,7 +188,7 @@ export default function AIReport() {
     const [loading, setLoading] = useState(true);
     const [deleting, setDeleting] = useState<string | null>(null);
     const [expandedResult, setExpandedResult] = useState<string | null>(null);
-    const [activeTab, setActiveTab] = useState<'overview' | 'mock' | 'practice' | 'predictions'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'mock' | 'practice' | 'predictions' | 'elimination'>('overview');
     const [collapsedTopics, setCollapsedTopics] = useState<Record<string, boolean>>({}); // actually expanded Topics now if true
     const [detailedResults, setDetailedResults] = useState<Record<string, any[]>>({});
 
@@ -206,7 +217,7 @@ export default function AIReport() {
         // Read practice stats from server DB
         try {
             const res = await axios.get(`${API}/practice-stats`);
-            if (res.data && res.data.totalAttempted > 0) {
+            if (res.data) {
                 setPracticeStats(res.data);
             }
         } catch (e) { console.error(e); }
@@ -219,7 +230,7 @@ export default function AIReport() {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const tab = searchParams.get('tab');
-        if (tab === 'mock' || tab === 'practice' || tab === 'overview' || tab === 'predictions') {
+        if (tab === 'mock' || tab === 'practice' || tab === 'overview' || tab === 'predictions' || tab === 'elimination') {
             setActiveTab(tab as any);
         }
     }, [location.search]);
@@ -258,7 +269,10 @@ export default function AIReport() {
         ? Math.round((practiceStats.correct / practiceStats.totalAttempted) * 100) : 0;
 
     const hasMock = results.length > 0;
-    const hasPractice = practiceStats && practiceStats.totalAttempted > 0;
+    const hasPractice = practiceStats && (
+        practiceStats.totalAttempted > 0 || 
+        (practiceStats.eliminationStats && Object.keys(practiceStats.eliminationStats.questions || {}).length > 0)
+    );
     const hasAnyData = hasMock || hasPractice;
 
     const readinessScore = useMemo(() => {
@@ -293,8 +307,205 @@ export default function AIReport() {
         { id: 'overview', label: 'Overview', icon: Brain },
         { id: 'mock', label: `Mock Tests (${results.length})`, icon: Activity },
         { id: 'practice', label: 'Practice', icon: FileQuestion },
+        { id: 'elimination', label: 'Elimination Analytics', icon: Layers },
         { id: 'predictions', label: 'AI Expert', icon: Sparkles },
     ] as const;
+
+    const renderEliminationDashboard = () => {
+        const stats = practiceStats?.eliminationStats || { skipped: 0, wrong: 0, correct: 0, questions: {} };
+        const total = stats.skipped + stats.wrong + stats.correct;
+        const attempted = stats.wrong + stats.correct;
+        const successRate = attempted > 0 ? Math.round((stats.correct / attempted) * 100) : 0;
+
+        const pctA = total > 0 ? Math.round((stats.skipped / total) * 100) : 0;
+        const pctB = total > 0 ? Math.round((stats.wrong / total) * 100) : 0;
+        const pctC = total > 0 ? Math.round((stats.correct / total) * 100) : 0;
+
+        // Generate recommendations
+        let insight = "No data yet. Attempt questions in the Question Bank and use option elimination (the 'X' icon next to options) to view insights.";
+        let insightColor = "text-muted-foreground";
+        let insightTitle = "Ready to Begin";
+
+        if (total > 0) {
+            if (stats.correct > 0 && successRate >= 70) {
+                insightTitle = "High Precision Strategy";
+                insight = "Your option elimination strategy is highly effective! You are correctly identifying distractors and improving your chances. Keep using it when unsure.";
+                insightColor = "text-green-600 dark:text-green-400 border-green-500/20 bg-green-500/5";
+            } else if (stats.wrong > 0 && successRate < 50) {
+                insightTitle = "Confused Reasoning Detected";
+                insight = "You are eliminating options but still choosing the wrong final answer. You might be keying in on incorrect traps or eliminating the correct answer in the process. Double check your reasoning before making the final guess.";
+                insightColor = "text-red-600 dark:text-red-400 border-red-500/20 bg-red-500/5";
+            } else if (stats.skipped > attempted) {
+                insightTitle = "High Caution Trend";
+                insight = "You frequently eliminate options but skip the question. While this protects your score from negative marking, consider taking calculated risks when you have narrowed down to 2 options (50/50 chance).";
+                insightColor = "text-amber-600 dark:text-amber-400 border-amber-500/20 bg-amber-500/5";
+            } else {
+                insightTitle = "Balanced Progress";
+                insight = "Your elimination technique usage is yielding moderate results. Focus on refining your reasoning for the final choices to push your accuracy rate past 70%.";
+                insightColor = "text-blue-600 dark:text-blue-400 border-blue-500/20 bg-blue-500/5";
+            }
+        }
+
+        const elimCardData = [
+            { label: 'Total Eliminations', value: total, icon: Layers, color: '#8b5cf6' },
+            { label: 'Success Rate', value: `${successRate}%`, icon: Target, color: '#10b981' },
+            { label: 'Attempted', value: attempted, icon: Zap, color: '#3b82f6' },
+            { label: 'Skipped (Avoided Penalty)', value: stats.skipped, icon: Clock, color: '#f59e0b' }
+        ];
+
+        return (
+            <motion.div key="elimination" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-8">
+                {/* Header card */}
+                <div className="p-8 rounded-3xl bg-gradient-to-br from-primary/10 via-background to-background border border-primary/20 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                        <Layers className="w-32 h-32 text-primary" />
+                    </div>
+                    
+                    <div className="flex items-start justify-between gap-4 flex-wrap">
+                        <div>
+                            <h3 className="text-2xl font-bold flex items-center gap-3 mb-2 underline decoration-primary/30 underline-offset-8">
+                                <Layers className="w-6 h-6 text-primary animate-pulse" />
+                                Elimination Technique Analytics
+                            </h3>
+                            <p className="text-muted-foreground mb-2 max-w-lg">
+                                Analyze how effectively you eliminate incorrect options before guessing or answering.
+                            </p>
+                            <p className="text-xs text-muted-foreground/60">⟳ Data refreshes automatically each time you open this tab</p>
+                        </div>
+                        <button
+                            onClick={fetchData}
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary text-sm font-semibold transition-all duration-200 flex-shrink-0"
+                        >
+                            <RefreshCw className="w-4 h-4" />
+                            Sync Now
+                        </button>
+                    </div>
+                </div>
+
+                {/* Cards grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {elimCardData.map((stat, index) => (
+                        <motion.div
+                            key={stat.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.08 }}
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative cursor-default"
+                        >
+                            <div className="absolute -right-6 -top-6 opacity-[0.03] group-hover:scale-110 group-hover:opacity-[0.06] transition-all duration-500 pointer-events-none">
+                                <stat.icon className="w-32 h-32" style={{ color: stat.color }} />
+                            </div>
+                            <div className="mb-3 relative z-10">
+                                <stat.icon className="w-5 h-5" style={{ color: stat.color }} />
+                            </div>
+                            <p className="text-2xl font-bold mb-0.5 relative z-10">{stat.value}</p>
+                            <p className="text-sm text-muted-foreground relative z-10">{stat.label}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Stacks / Breakdown */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Visual Stacked Gauge Card */}
+                    <div className="md:col-span-2 p-6 md:p-8 rounded-[2rem] border border-border bg-card shadow-lg space-y-6">
+                        <div>
+                            <h3 className="font-extrabold text-xl mb-1">Scenario Distribution</h3>
+                            <p className="text-muted-foreground text-sm">
+                                Breakdown of your elimination usage across the three defined scenarios
+                            </p>
+                        </div>
+
+                        {total > 0 ? (
+                            <div className="space-y-6">
+                                {/* Stacked progress bar */}
+                                <div className="h-6 rounded-full w-full flex overflow-hidden border border-border bg-muted">
+                                    {stats.correct > 0 && (
+                                        <div 
+                                            style={{ width: `${pctC}%` }} 
+                                            className="bg-green-500 h-full transition-all duration-500 hover:opacity-90 animate-pulse-glow"
+                                            title={`Scenario C (Correct): ${stats.correct} (${pctC}%)`}
+                                        />
+                                    )}
+                                    {stats.wrong > 0 && (
+                                        <div 
+                                            style={{ width: `${pctB}%` }} 
+                                            className="bg-red-500 h-full transition-all duration-500 hover:opacity-90 animate-pulse-glow"
+                                            title={`Scenario B (Wrong): ${stats.wrong} (${pctB}%)`}
+                                        />
+                                    )}
+                                    {stats.skipped > 0 && (
+                                        <div 
+                                            style={{ width: `${pctA}%` }} 
+                                            className="bg-amber-500 h-full transition-all duration-500 hover:opacity-90 animate-pulse-glow"
+                                            title={`Scenario A (Skipped): ${stats.skipped} (${pctA}%)`}
+                                        />
+                                    )}
+                                </div>
+
+                                {/* Legend/Details */}
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div className="flex items-start gap-2.5 p-3 rounded-xl bg-green-500/5 border border-green-500/10">
+                                        <div className="w-3 h-3 rounded bg-green-500 mt-1 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">Scenario C</div>
+                                            <div className="font-extrabold text-green-500 text-sm">{stats.correct} Correct</div>
+                                            <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight">Narrowed options & answered correctly</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-2.5 p-3 rounded-xl bg-red-500/5 border border-red-500/10">
+                                        <div className="w-3 h-3 rounded bg-red-500 mt-1 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">Scenario B</div>
+                                            <div className="font-extrabold text-red-500 text-sm">{stats.wrong} Wrong</div>
+                                            <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight">Narrowed options but selected wrong answer</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-500/5 border border-amber-500/10">
+                                        <div className="w-3 h-3 rounded bg-amber-500 mt-1 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-wider text-muted-foreground">Scenario A</div>
+                                            <div className="font-extrabold text-amber-500 text-sm">{stats.skipped} Skipped</div>
+                                            <div className="text-[10px] text-muted-foreground mt-0.5 leading-tight">Eliminated options but chose to skip question</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="text-center py-12 border border-dashed rounded-2xl text-muted-foreground flex flex-col items-center justify-center">
+                                <Layers className="w-8 h-8 mb-2 text-muted-foreground/30 animate-bounce" />
+                                No scenario data available yet.
+                            </div>
+                        )}
+                    </div>
+
+                    {/* AI Recommendation Card */}
+                    <div className="p-6 md:p-8 rounded-[2rem] border border-border bg-card shadow-lg flex flex-col justify-between space-y-4">
+                        <div>
+                            <div className="flex items-center gap-2 mb-1">
+                                <Sparkles className="w-5 h-5 text-yellow-500" />
+                                <h3 className="font-extrabold text-xl">Tactical Advice</h3>
+                            </div>
+                            <p className="text-muted-foreground text-sm">
+                                AI-driven analysis of your option elimination tendencies
+                            </p>
+                        </div>
+                        {total > 0 && (
+                            <div className={`p-4 rounded-xl border text-sm font-medium leading-relaxed ${insightColor}`}>
+                                <div className="font-black uppercase tracking-wider text-[10px] mb-1.5 opacity-80">{insightTitle}</div>
+                                {insight}
+                            </div>
+                        )}
+                        {total === 0 && (
+                            <div className="p-4 rounded-xl border border-dashed text-xs text-muted-foreground leading-relaxed">
+                                {insight}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </motion.div>
+        );
+    };
 
     if (loading) {
         return (
@@ -374,7 +585,7 @@ export default function AIReport() {
                         {tabs.map(tab => {
                             const isActive = activeTab === tab.id;
                             return (
-                                <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+                                <button key={tab.id} onClick={() => { setActiveTab(tab.id); if (tab.id === 'elimination') fetchData(); }}
                                     className={cn('relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-colors z-10',
                                         isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                                     )}>
@@ -1135,6 +1346,9 @@ export default function AIReport() {
                                 </div>
                             </motion.div>
                         )}
+
+                        {/* === ELIMINATION METHOD === */}
+                        {activeTab === 'elimination' && renderEliminationDashboard()}
                     </AnimatePresence>
                 </>
             )}

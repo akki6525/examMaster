@@ -25,6 +25,17 @@ export interface PracticeStatsDB {
     answeredQuestions: Record<string, { userAnswer: string; isCorrect: boolean }>;
     dailyStats: Record<string, { total: number; correct: number }>;
     lastUpdated: string;
+    eliminationStats?: {
+        skipped: number;
+        wrong: number;
+        correct: number;
+        questions: Record<string, {
+            eliminatedCount: number;
+            userAnswer?: string | string[];
+            isCorrect?: boolean;
+            status: 'skipped' | 'wrong' | 'correct';
+        }>;
+    };
 }
 
 interface DB {
@@ -44,7 +55,13 @@ export const DEFAULT_PRACTICE_STATS: PracticeStatsDB = {
     topicWiseScore: [],
     answeredQuestions: {},
     dailyStats: {},
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
+    eliminationStats: {
+        skipped: 0,
+        wrong: 0,
+        correct: 0,
+        questions: {}
+    }
 };
 
 function ensureDataDir() {
@@ -92,7 +109,7 @@ export function saveDB(db: DB): void {
 export function getPracticeStats(userId: string): PracticeStatsDB {
     const db = loadDB();
     if (!db.practiceStats[userId]) {
-        db.practiceStats[userId] = { ...DEFAULT_PRACTICE_STATS };
+        db.practiceStats[userId] = JSON.parse(JSON.stringify(DEFAULT_PRACTICE_STATS));
         saveDB(db);
     }
     
@@ -101,6 +118,14 @@ export function getPracticeStats(userId: string): PracticeStatsDB {
     if (!stats.answeredQuestions) stats.answeredQuestions = {};
     if (!stats.dailyStats) stats.dailyStats = {};
     if (!stats.topicWiseScore) stats.topicWiseScore = [];
+    if (!stats.eliminationStats) {
+        stats.eliminationStats = {
+            skipped: 0,
+            wrong: 0,
+            correct: 0,
+            questions: {}
+        };
+    }
     
     return stats;
 }

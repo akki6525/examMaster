@@ -85,7 +85,7 @@ interface TestState {
     goToQuestion: (index: number) => void;
     nextQuestion: () => void;
     prevQuestion: () => void;
-    submitTest: () => Promise<TestResult>;
+    submitTest: (eliminatedOptions?: Record<string, number[]>) => Promise<TestResult>;
     clearTest: () => void;
 }
 
@@ -225,7 +225,7 @@ export const useTestStore = create<TestState>((set, get) => ({
         }
     },
 
-    submitTest: async () => {
+    submitTest: async (eliminatedOptions: Record<string, number[]> = {}) => {
         const state = get();
         if (!state.currentTest) throw new Error('No active test');
 
@@ -247,8 +247,12 @@ export const useTestStore = create<TestState>((set, get) => ({
 
         set({ isLoading: true });
         try {
+            const mappedAnswers = get().userAnswers.map(ua => ({
+                ...ua,
+                eliminatedOptions: eliminatedOptions[ua.questionId] || []
+            }));
             const response = await axios.post(`${API_URL}/tests/${state.currentTest.id}/submit`, {
-                answers: get().userAnswers,
+                answers: mappedAnswers,
                 timeTaken: totalTime
             });
 

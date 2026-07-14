@@ -7817,6 +7817,207 @@
       "totalMarks": 10,
       "createdAt": "2026-07-12T14:17:41.857Z",
       "userId": "982d20ce-301f-4ab0-8b95-921cec10cf9d"
+    },
+    "4895efcd-a06a-4413-a8fa-889c423b15fb": {
+      "id": "4895efcd-a06a-4413-a8fa-889c423b15fb",
+      "title": "UPSC Mock Test - 15 Jul 2026",
+      "description": "Test with 10 questions from UPSC",
+      "questions": [
+        {
+          "type": "mcq",
+          "id": "upsc-2025-economy-18-1419",
+          "question": "Consider the following statements regarding Economy in India:\n1. Priority Sector Lending requires commercial banks to allocate 40% of loans to priority sectors.\n2. World Trade Organization replaces GATT and regulates global trade agreements.\n3. Generally, Foreign Portfolio Investment represents long-term ownership and direct control of assets.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "1, 2 and 3",
+            "1 and 3 only",
+            "2 and 3 only"
+          ],
+          "correctAnswer": "1 and 2 only",
+          "explanation": "Statement 1 & 2 are correct. Statement 3 is false because: Foreign Portfolio Investment represents long-term ownership and direct control of assets..",
+          "difficulty": "hard",
+          "topic": "Economy",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-geography-22-1373",
+          "question": "Consider the following statements regarding Geography in India:\n1. The Godavari is the longest Peninsular river and is known to be the Southern Ganges.\n2. The Sundarbans are the largest coniferous forests in the world.\n3. Labrador Current is a cold ocean current flowing from north to south in North America.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1, 2 and 3",
+            "1 and 3 only",
+            "2 and 3 only",
+            "1 and 2 only"
+          ],
+          "correctAnswer": "1 and 3 only",
+          "explanation": "Statement 1 & 3 are correct. Statement 2 is false because: The Sundarbans are the largest mangrove (tidal) forests in the world, not coniferous forests.",
+          "difficulty": "medium",
+          "topic": "Geography",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-geography-23-1374",
+          "question": "Consider the following statements regarding Geography:\n1. Alluvial soil covers the largest area in the plain basins of northern India.\n2. Labrador Current is a cold ocean current flowing from north to south in North America.\n3. The Himalayas are young fold mountains formed by tectonic collision of plates.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1, 2 and 3",
+            "2 and 3 only",
+            "1 and 3 only",
+            "1 and 2 only"
+          ],
+          "correctAnswer": "1, 2 and 3",
+          "explanation": "All three statements are factually correct.",
+          "difficulty": "easy",
+          "topic": "Geography",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-polity-31-1282",
+          "question": "Consider the following statements regarding Indian Polity in India:\n1. The Preamble is non-justiciable and cannot override provisions of the Constitution.\n2. Generally, The Constitution explicitly lists qualifications, terms, and eligibility for Election Commissioners.\n3. Article 324 provides superintendence, direction, and control of elections in an independent commission.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 and 3 only",
+            "2 and 3 only",
+            "1, 2 and 3",
+            "1 and 2 only"
+          ],
+          "correctAnswer": "1 and 3 only",
+          "explanation": "Statement 1 & 3 are correct. Statement 2 is false because: The Constitution explicitly lists qualifications, terms, and eligibility for Election Commissioners..",
+          "difficulty": "medium",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-history-18-1319",
+          "question": "Consider the following statements regarding History in India:\n1. The Sangam literature depicts the socio-economic life of early south India.\n2. The Mansabdari system was a unique administrative grading scheme introduced by Akbar.\n3. Generally, The Indian National Congress actively supported and participated in the Simon Commission.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "2 and 3 only",
+            "1 and 3 only",
+            "1, 2 and 3"
+          ],
+          "correctAnswer": "1 and 2 only",
+          "explanation": "Statement 1 & 2 are correct. Statement 3 is false because: The Indian National Congress actively supported and participated in the Simon Commission..",
+          "difficulty": "hard",
+          "topic": "History",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-real-6cm80l",
+          "question": "The headquarters of the Reserve Bank of India (RBI) is located in:",
+          "options": [
+            "New Delhi",
+            "Mumbai",
+            "Chennai",
+            "Kolkata"
+          ],
+          "correctAnswer": "Mumbai",
+          "explanation": "The RBI headquarters is located in Mumbai, Maharashtra.",
+          "difficulty": "medium",
+          "topic": "Economy",
+          "source": "upsc 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-polity-0-1251",
+          "question": "Consider the following statements regarding Indian Polity in India:\n1. Article 324 provides superintendence, direction, and control of elections in an independent commission.\n2. The Union Public Service Commission conducts examinations for appointment to the services of the Union.\n3. Generally, The Constitution explicitly lists qualifications, terms, and eligibility for Election Commissioners.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "1, 2 and 3",
+            "2 and 3 only",
+            "1 and 3 only"
+          ],
+          "correctAnswer": "1 and 2 only",
+          "explanation": "Statement 1 & 2 are correct. Statement 3 is false because: The Constitution explicitly lists qualifications, terms, and eligibility for Election Commissioners..",
+          "difficulty": "hard",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-history-27-1328",
+          "question": "Consider the following statements regarding History in India:\n1. Ashoka's Dhamma was a moral code of conduct rather than a sectarian religion.\n2. The Battle of Buxar in 1764 established British supremacy over Bengal and Oudh.\n3. Generally, The Indian National Congress actively supported and participated in the Simon Commission.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1, 2 and 3",
+            "1 and 3 only",
+            "2 and 3 only",
+            "1 and 2 only"
+          ],
+          "correctAnswer": "1 and 2 only",
+          "explanation": "Statement 1 & 2 are correct. Statement 3 is false because: The Indian National Congress actively supported and participated in the Simon Commission..",
+          "difficulty": "hard",
+          "topic": "History",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-polity-23-1274",
+          "question": "Consider the following statements regarding Indian Polity:\n1. The Union Public Service Commission conducts examinations for appointment to the services of the Union.\n2. Article 14 guarantees equality before the law and equal protection of the laws.\n3. Article 280 requires the President to constitute a Finance Commission every fifth year.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "1 and 3 only",
+            "2 and 3 only",
+            "1, 2 and 3"
+          ],
+          "correctAnswer": "1, 2 and 3",
+          "explanation": "All three statements are factually correct.",
+          "difficulty": "easy",
+          "topic": "Indian Polity",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        },
+        {
+          "type": "mcq",
+          "id": "upsc-2025-economy-3-1404",
+          "question": "Consider the following statements regarding Economy in India:\n1. Consumer Price Index measures changes in prices of goods and services at retail level.\n2. Foreign Direct Investment is accounted for under the Capital Account of BoP.\n3. Generally, Foreign Portfolio Investment represents long-term ownership and direct control of assets.\nWhich of the statements given above is/are correct?",
+          "options": [
+            "1 and 2 only",
+            "2 and 3 only",
+            "1, 2 and 3",
+            "1 and 3 only"
+          ],
+          "correctAnswer": "1 and 2 only",
+          "explanation": "Statement 1 & 2 are correct. Statement 3 is false because: Foreign Portfolio Investment represents long-term ownership and direct control of assets..",
+          "difficulty": "hard",
+          "topic": "Economy",
+          "source": "UPSC CSE Prelims 2025",
+          "examName": "UPSC",
+          "year": 2025,
+          "sourceType": "official"
+        }
+      ],
+      "duration": 30,
+      "totalMarks": 10,
+      "createdAt": "2026-07-14T18:32:36.263Z",
+      "userId": "8e96859f-aaba-4089-beb1-a0550256cfe1"
     }
   },
   "testResults": {
@@ -8990,6 +9191,122 @@
       ],
       "completedAt": "2026-07-12T14:17:59.833Z",
       "userId": "982d20ce-301f-4ab0-8b95-921cec10cf9d"
+    },
+    "df630282-259d-4beb-8ca6-9c3bbbaf053f": {
+      "id": "df630282-259d-4beb-8ca6-9c3bbbaf053f",
+      "testId": "4895efcd-a06a-4413-a8fa-889c423b15fb",
+      "answers": [
+        {
+          "questionId": "upsc-2025-economy-18-1419",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 30227,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-geography-22-1373",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-geography-23-1374",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-polity-31-1282",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-history-18-1319",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-real-6cm80l",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-polity-0-1251",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-history-27-1328",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-polity-23-1274",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        },
+        {
+          "questionId": "upsc-2025-economy-3-1404",
+          "userAnswer": "",
+          "isCorrect": false,
+          "timeTaken": 0,
+          "flagged": false
+        }
+      ],
+      "score": 0,
+      "totalMarks": 10,
+      "percentage": 0,
+      "timeTaken": 30227,
+      "topicWiseScore": [
+        {
+          "topic": "Economy",
+          "correct": 0,
+          "total": 3,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 10076
+        },
+        {
+          "topic": "Geography",
+          "correct": 0,
+          "total": 2,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "Indian Polity",
+          "correct": 0,
+          "total": 3,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 0
+        },
+        {
+          "topic": "History",
+          "correct": 0,
+          "total": 2,
+          "attempted": 0,
+          "percentage": 0,
+          "avgTime": 0
+        }
+      ],
+      "completedAt": "2026-07-14T18:33:07.117Z",
+      "userId": "8e96859f-aaba-4089-beb1-a0550256cfe1"
     }
   },
   "importedQuestions": [],
@@ -9619,9 +9936,9 @@
       "lastUpdated": "2026-07-12T14:12:36.852Z"
     },
     "f62eb75b-c670-46ca-ae75-1ba5fe9a61df": {
-      "totalAttempted": 5,
-      "correct": 3,
-      "incorrect": 2,
+      "totalAttempted": 33,
+      "correct": 17,
+      "incorrect": 16,
       "topicWiseScore": [
         {
           "topic": "General Awareness",
@@ -9631,12 +9948,60 @@
         },
         {
           "topic": "Reasoning",
-          "correct": 2,
-          "total": 3,
-          "percentage": 67
+          "correct": 3,
+          "total": 6,
+          "percentage": 50
         },
         {
           "topic": "Indian History & National Movement",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0
+        },
+        {
+          "topic": "Geography",
+          "correct": 11,
+          "total": 15,
+          "percentage": 73
+        },
+        {
+          "topic": "Economy",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0
+        },
+        {
+          "topic": "English Comprehension",
+          "correct": 0,
+          "total": 2,
+          "percentage": 0
+        },
+        {
+          "topic": "Indian Polity",
+          "correct": 0,
+          "total": 1,
+          "percentage": 0
+        },
+        {
+          "topic": "Science & Environment",
+          "correct": 0,
+          "total": 2,
+          "percentage": 0
+        },
+        {
+          "topic": "History",
+          "correct": 1,
+          "total": 2,
+          "percentage": 50
+        },
+        {
+          "topic": "UK History",
+          "correct": 1,
+          "total": 1,
+          "percentage": 100
+        },
+        {
+          "topic": "Quantitative Aptitude",
           "correct": 0,
           "total": 1,
           "percentage": 0
@@ -9662,15 +10027,160 @@
         "upsc-2022-history-1784032083897-0": {
           "userAnswer": "2 and 3 only",
           "isCorrect": false
+        },
+        "upsc-2022-geography-0-601": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2022-geography-3-604": {
+          "userAnswer": "1 and 3 only",
+          "isCorrect": false
+        },
+        "upsc-2022-geography-12-613": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "ssc-cgl-t1-res-1775657680295-404415": {
+          "userAnswer": "92",
+          "isCorrect": false
+        },
+        "upsc-2024-geography-48-1149": {
+          "userAnswer": "1, 2 and 3",
+          "isCorrect": true
+        },
+        "upsc-2022-geography-6-607": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2022-geography-9-610": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2022-geography-15-616": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2022-geography-18-619": {
+          "userAnswer": "2 and 3 only",
+          "isCorrect": false
+        },
+        "upsc-2022-geography-21-622": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2025-geography-3-1354": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2025-geography-0-1351": {
+          "userAnswer": "2 and 3 only",
+          "isCorrect": false
+        },
+        "upsc-2025-geography-6-1357": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "upsc-2025-geography-1-1352": {
+          "userAnswer": "1 and 3 only",
+          "isCorrect": true
+        },
+        "upsc-2025-geography-4-1355": {
+          "userAnswer": "1 and 3 only",
+          "isCorrect": true
+        },
+        "upsc-2025-geography-7-1358": {
+          "userAnswer": "2 and 3 only",
+          "isCorrect": false
+        },
+        "upsc-2022-economy-0-651": {
+          "userAnswer": "2 and 3 only",
+          "isCorrect": false
+        },
+        "ssc-cgl-2022-eng-10-186": {
+          "userAnswer": "Reckless",
+          "isCorrect": false
+        },
+        "upsc-2022-polity-45-546": {
+          "userAnswer": "2 and 3 only",
+          "isCorrect": false
+        },
+        "ssc-cgl-2025-reason-24-450": {
+          "userAnswer": "3360",
+          "isCorrect": false
+        },
+        "upsc-2024-scitech-4-1205": {
+          "userAnswer": "1 and 3 only",
+          "isCorrect": false
+        },
+        "upsc-2025-history-45-1346": {
+          "userAnswer": "1 and 2 only",
+          "isCorrect": true
+        },
+        "ssc-cgl-2025-eng-8-484": {
+          "userAnswer": "to school",
+          "isCorrect": false
+        },
+        "upsc-2022-history-18-569": {
+          "userAnswer": "1 and 3 only",
+          "isCorrect": false
+        },
+        "ssc-cgl-2023-reason-21-247": {
+          "userAnswer": "1055",
+          "isCorrect": true
+        },
+        "upsc-2025-scitech-39-1490": {
+          "userAnswer": "1 and 3 only",
+          "isCorrect": false
+        },
+        "ukpsc-pcs-1000": {
+          "userAnswer": "9 Nov 2000",
+          "isCorrect": true
+        },
+        "ssc-cgl-2025-quant-2-403": {
+          "userAnswer": "27.27 days",
+          "isCorrect": false
         }
       },
       "dailyStats": {
         "2026-07-14": {
-          "total": 5,
-          "correct": 3
+          "total": 21,
+          "correct": 15
+        },
+        "2026-07-15": {
+          "total": 12,
+          "correct": 2
         }
       },
-      "lastUpdated": "2026-07-14T13:46:54.242Z"
+      "lastUpdated": "2026-07-14T19:44:38.384Z",
+      "eliminationStats": {
+        "skipped": 1,
+        "wrong": 2,
+        "correct": 1,
+        "questions": {
+          "upsc-2025-scitech-39-1490": {
+            "eliminatedCount": 2,
+            "status": "wrong",
+            "userAnswer": "1 and 3 only",
+            "isCorrect": false
+          },
+          "ukpsc-pcs-1000": {
+            "eliminatedCount": 2,
+            "status": "correct",
+            "userAnswer": "9 Nov 2000",
+            "isCorrect": true
+          },
+          "ukpsc-5075": {
+            "eliminatedCount": 2,
+            "status": "skipped"
+          },
+          "ssc-cgl-2025-quant-2-403": {
+            "eliminatedCount": 1,
+            "status": "wrong",
+            "userAnswer": "27.27 days",
+            "isCorrect": false
+          }
+        }
+      }
     },
     "8e96859f-aaba-4089-beb1-a0550256cfe1": {
       "totalAttempted": 0,
