@@ -21,7 +21,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Perform your duty without attachment to results.",
     "hinglish": "Karmanye vadhikaraste ma phaleshu kadachana.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_1.jpg"
   },
   {
     "id": 2,
@@ -31,7 +31,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The soul is eternal and does not die when the body dies.",
     "hinglish": "Ajo nityah shashvato'yam purano na hanyate...",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_2.jpg"
   },
   {
     "id": 3,
@@ -41,7 +41,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Pleasure and pain are temporary like winter and summer.",
     "hinglish": "Sitoshna-sukha-duhkha-dah. Agamapayino 'nityah...",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_3.jpg"
   },
   {
     "id": 4,
@@ -51,7 +51,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Contemplating sense objects leads to attachment.",
     "hinglish": "Dhyayato visayan runsah sangas tesupajayate.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_4.jpg"
   },
   {
     "id": 5,
@@ -61,7 +61,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Anger clouds judgment, leading to ruin of intellect.",
     "hinglish": "Krodhad bhavati sammohah sammohat smrti-vibhramah.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_5.jpg"
   },
   {
     "id": 6,
@@ -71,7 +71,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Whenever righteousness declines, I manifest Myself.",
     "hinglish": "Yada yada hi dharmasya glanir bhavati bharata.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_6.jpg"
   },
   {
     "id": 7,
@@ -81,7 +81,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "To protect the good and correct the wrong.",
     "hinglish": "Paritranaya sadhunam vinasaya ca duskrtam.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_7.jpg"
   },
   {
     "id": 8,
@@ -91,7 +91,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Perform work as a selfless sacrifice to avoid bondage.",
     "hinglish": "Yajnarthat karmano 'nyatra loko 'yam...",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_8.jpg"
   },
   {
     "id": 9,
@@ -101,7 +101,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Constantly perform your tasks with complete detachment.",
     "hinglish": "Tasmad asaktah satatam karyam karma samacara.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_9.jpg"
   },
   {
     "id": 10,
@@ -111,7 +111,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Elevate yourself by your own mind; do not degrade yourself.",
     "hinglish": "Uddhared atmanatmanam natmanam avasadayet.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_10.jpg"
   },
   {
     "id": 11,
@@ -121,7 +121,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The mind is your best friend when you conquer it.",
     "hinglish": "Bandhur atmatmanas tasya yenatmaiva-atmana...",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_11.jpg"
   },
   {
     "id": 12,
@@ -131,7 +131,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Bring back the unsteady mind to focus on the self.",
     "hinglish": "Yato yato niscalati manas cancalam asthiram.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_12.jpg"
   },
   {
     "id": 13,
@@ -141,7 +141,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "For dedicated souls, I carry and preserve what they have.",
     "hinglish": "Tesam nityabhiyuktanam yoga-ksemam vahamy aham.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row1_1.jpg"
   },
   {
     "id": 14,
@@ -151,7 +151,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Refuge in the highest truth relieves all fears.",
     "hinglish": "Sarva-dharman parityajya mam ekam saranam vraja.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row1_2.jpg"
   },
   {
     "id": 15,
@@ -161,7 +161,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Cast off this weak heart and stand up to perform your duty.",
     "hinglish": "Ksudram hrdaya-daurbalyam tyaktvottistha...",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row1_3.jpg"
   },
   {
     "id": 16,
@@ -171,7 +171,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Unshaken by adversity, free from yearnings for pleasure.",
     "hinglish": "Duhkesv anudvigna-manah sukhesu vigata-sprhah.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row2_1.jpg"
   },
   {
     "id": 17,
@@ -181,7 +181,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Three self-destructive gates: lust, anger, and greed.",
     "hinglish": "Tri-vidham narakasyedam dvaram kamah krodhah...",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row2_2.jpg"
   },
   {
     "id": 18,
@@ -191,7 +191,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Speak words that are truthful, pleasant, and helpful.",
     "hinglish": "Anudvega-karam vakyam satyam priya-hitam...",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row2_3.jpg"
   },
   {
     "id": 19,
@@ -201,7 +201,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Do not reject your natural duty, even if flawed.",
     "hinglish": "Sahajam karma kaunteya sa-dosam api na tyajet.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_1.jpg"
   },
   {
     "id": 20,
@@ -211,7 +211,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Yoga is excellence and harmony in action.",
     "hinglish": "Yogah karmasu kausalam.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_2.jpg"
   },
   {
     "id": 21,
@@ -221,7 +221,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Detachment from sense objects and freedom from ego.",
     "hinglish": "Indriyarthesu vairagyam anahamkara eva ca.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_3.jpg"
   },
   {
     "id": 22,
@@ -231,7 +231,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The wise look with equal eyes on all living beings.",
     "hinglish": "Vidya-vinaya-sampanne brahmane gavi hastini.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_4.jpg"
   },
   {
     "id": 23,
@@ -241,7 +241,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Conquer the cycle of birth by keeping the mind equal.",
     "hinglish": "Ihaiva tair jitah sargo yesam samye sthitam...",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_1.jpg"
   },
   {
     "id": 24,
@@ -251,7 +251,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "One detached from outer senses finds inner joy.",
     "hinglish": "Sa brahma-yoga-yuktatma sukham aksayam...",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_2.jpg"
   },
   {
     "id": 25,
@@ -261,7 +261,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "One who finds peace, joy, and light within.",
     "hinglish": "Yo 'ntah-sukho 'ntar-aramas tathantar-jyotir...",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_3.jpg"
   },
   {
     "id": 26,
@@ -271,7 +271,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Neutral to the three qualities of nature.",
     "hinglish": "Na dvesti sampravrttani na nivrttani kanksati.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_4.jpg"
   },
   {
     "id": 27,
@@ -281,7 +281,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Holding pain and pleasure, soil and gold, equal.",
     "hinglish": "Sama-duhkha-sukhah svasthah sama-lostasma...",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_5.jpg"
   },
   {
     "id": 28,
@@ -291,7 +291,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "All that you do, eat, or offer, do it for the divine.",
     "hinglish": "Yat karosi yad asnasi tat kurusva mad-arpanam.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_6.jpg"
   },
   {
     "id": 29,
@@ -301,7 +301,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "I am the Self seated in the hearts of all creatures.",
     "hinglish": "Aham atma gudakesa sarva-bhutasaya-stitah.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_7.jpg"
   },
   {
     "id": 30,
@@ -311,7 +311,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Free from worldly joy, impatience, fear, and worry.",
     "hinglish": "Harsamarsa-bhayodvegair mukto yah sa ca me...",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_8.jpg"
   },
   {
     "id": 31,
@@ -321,7 +321,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The Lord lives in the hearts of all living beings.",
     "hinglish": "Isvarah sarva-bhutanam hrd-dese 'rjuna tisthati.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_9.jpg"
   },
   {
     "id": 32,
@@ -331,7 +331,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Deliver yourself by casting aside pride, power, and ego.",
     "hinglish": "Ahankaram balam darpam kamam krodham vimucya.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_10.jpg"
   },
   {
     "id": 33,
@@ -341,7 +341,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Wherever there is divine guidance, victory is assured.",
     "hinglish": "Yatra yogesvarah krsno tatra srir vijayo...",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_11.jpg"
   },
   {
     "id": 34,
@@ -351,7 +351,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Content within the self alone, intellect becomes stable.",
     "hinglish": "Atmany evatmana tustah sthita-prajnas tadocyate.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_12.jpg"
   },
   {
     "id": 35,
@@ -361,7 +361,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Desire and anger born of passion are the worst enemies.",
     "hinglish": "Kama esa krodha esa rajo-guna-samudbhavah.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row1_1.jpg"
   },
   {
     "id": 36,
@@ -371,7 +371,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Scarcely one in thousands strives for perfection.",
     "hinglish": "Manushyanam sahasreshu kascid yatati siddhaye.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row1_2.jpg"
   },
   {
     "id": 37,
@@ -381,7 +381,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "After many births, the wise surrender to the truth.",
     "hinglish": "Bahunam janmanam ante jnanavan mam prapadyate.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row1_3.jpg"
   },
   {
     "id": 38,
@@ -391,7 +391,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "All beautiful creations stem from a spark of glory.",
     "hinglish": "Yad yad vibhutimat sattvam tat tad evagaccha...",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row2_1.jpg"
   },
   {
     "id": 39,
@@ -401,7 +401,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Never was there a time when you and I did not exist.",
     "hinglish": "Na tvevaham jatu nasam na tvam neme janadhipah.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row2_2.jpg"
   },
   {
     "id": 40,
@@ -411,7 +411,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The soul passes from childhood to youth and old age.",
     "hinglish": "Dehino 'smin yatha dehe kaumaram yauvanam...",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row2_3.jpg"
   },
   {
     "id": 41,
@@ -421,7 +421,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The soul discards worn-out bodies for new ones.",
     "hinglish": "Vasamsi jirnani yatha vihay navani grhnati.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_1.jpg"
   },
   {
     "id": 42,
@@ -431,7 +431,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Weapons cannot cut the soul, fire cannot burn it.",
     "hinglish": "Nainam chindanti sastrani nainam dahati pavakah.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_2.jpg"
   },
   {
     "id": 43,
@@ -441,7 +441,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The soul is unbreakable, insoluble, and eternal.",
     "hinglish": "Acchedyo 'yam adahyo 'yam akledyo 'sosya...",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_3.jpg"
   },
   {
     "id": 44,
@@ -451,7 +451,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "For one who is born, death is certain, as is rebirth.",
     "hinglish": "Jatasya hi dhruvo mrtyur dhruvam janma...",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_row3_4.jpg"
   },
   {
     "id": 45,
@@ -461,7 +461,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Better is one's own duty, though imperfect.",
     "hinglish": "Sreyan sva-dharmo vigunah paradharma-svanusthitat.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_1.jpg"
   },
   {
     "id": 46,
@@ -471,7 +471,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The senses are superior to body, mind is above senses.",
     "hinglish": "Indriyani parany ahur indriyebhyah param manah.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_2.jpg"
   },
   {
     "id": 47,
@@ -481,7 +481,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Learn the truth by submitting to a wise teacher.",
     "hinglish": "Tad viddhi pranipatena pariprasnena sevaya.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_3.jpg"
   },
   {
     "id": 48,
@@ -491,7 +491,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Nothing in this world is as purifying as knowledge.",
     "hinglish": "Na hi jnanena sadrsam pavitram iha vidyate.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_4.jpg"
   },
   {
     "id": 49,
@@ -501,7 +501,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "A faithful man of disciplined senses gains knowledge.",
     "hinglish": "Sraddhavan labhate jnanam tat-parah samyatendriyah.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_5.jpg"
   },
   {
     "id": 50,
@@ -511,7 +511,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Yoga is not for one who eats too much or starves.",
     "hinglish": "Natyasnatas tu yogo 'sti na caikantam anasnatah.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/gita_bg/gita_6.jpg"
   },
   {
     "id": 51,
@@ -521,7 +521,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Do tomorrow's work today, and today's work now.",
     "hinglish": "Kaal kare so aaj kar, aaj kare so ab.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/moh_maya_poster.png"
   },
   {
     "id": 52,
@@ -531,7 +531,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "I searched for evil, found none but myself.",
     "hinglish": "Bura jo dekhan main chala, bura na miliya koy.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/moh_maya_poster.png"
   },
   {
     "id": 53,
@@ -541,7 +541,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Remember truth in joy, and sorrow will never visit.",
     "hinglish": "Dukh mein sumiran sab kare, sukh mein kare na koy.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/moh_maya_poster.png"
   },
   {
     "id": 54,
@@ -551,7 +551,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "He who understands the word of love is truly wise.",
     "hinglish": "Dhai aakhar prem ka, padhe so pandit hoy.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/moh_maya_poster.png"
   },
   {
     "id": 55,
@@ -561,7 +561,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Worry is a thief that eats the peace of your heart.",
     "hinglish": "Chinta aisi dakini, kaati kareja khaay.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/moh_maya_poster.png"
   },
   {
     "id": 56,
@@ -1021,7 +1021,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Peace comes from within. Do not seek it outside.",
     "hinglish": "Shanti andar se aati hai. Ise bahar mat dhundho.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/360_F_701293196_1zLzOPS2axcdBl54xNKFgb5CEOsYkJMt.jpg"
   },
   {
     "id": 102,
@@ -1031,7 +1031,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "A disciplined mind brings true happiness.",
     "hinglish": "Anushasit mann hi sachi khushi lata hai.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/HD-wallpaper-●●●-mood-for-peace-●●●-candle-calm-water-buddha-peace-mood-meditation.jpg"
   },
   {
     "id": 103,
@@ -1041,7 +1041,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Anger is like holding hot coal to throw at others.",
     "hinglish": "Krodh ko paale rakhna garm koyla pakadne jaisa.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/ai-generated-meditative-buddha-statue-surrounded-by-blooming-lotuses-in-calm-waters-of-pond-photo.jpg"
   },
   {
     "id": 104,
@@ -1051,7 +1051,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "It is better to conquer yourself than to win a thousand battles.",
     "hinglish": "Hazar yuddh jeetne se behtar hai khud ko jeetna.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/buddha-4264589_1280.jpg"
   },
   {
     "id": 105,
@@ -1061,7 +1061,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Health is the greatest gift, contentment the greatest wealth.",
     "hinglish": "Swasthya sabse bada upahaar, santosh sabse bada dhan.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/cbb1bb00c1c8b65feecfb3b314fb4839.jpg"
   },
   {
     "id": 106,
@@ -1071,7 +1071,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "What we are today comes from our thoughts of yesterday.",
     "hinglish": "Aaj hum jo hain, vah hamare kal ke vicharo se bana hai.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (1).jpg"
   },
   {
     "id": 107,
@@ -1081,7 +1081,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Do not dwell in the past, do not dream of the future.",
     "hinglish": "Ateet mein mat uljho, bhavishya ka sapna mat dekho.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (2).jpg"
   },
   {
     "id": 108,
@@ -1091,7 +1091,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The true path is not in the sky; it is in the heart.",
     "hinglish": "Sacha maarg hava mein nahi, hriday mein hota hai.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (3).jpg"
   },
   {
     "id": 109,
@@ -1101,7 +1101,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Hatred does not cease by hatred, but by love alone.",
     "hinglish": "Ghrina kabhi ghrina se shant nahi hoti, prem se hoti hai.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (4).jpg"
   },
   {
     "id": 110,
@@ -1111,7 +1111,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Three things cannot be long hidden: the sun, moon, and truth.",
     "hinglish": "Teen cheezein nahi chip saktin: surya, chandra, satya.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (5).jpg"
   },
   {
     "id": 111,
@@ -1121,7 +1121,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "One can make two mistakes: not going all the way, or not starting.",
     "hinglish": "Satya ke maarg par do galtiyan: shuru na karna, ya pura na chalna.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images.jpg"
   },
   {
     "id": 112,
@@ -1131,7 +1131,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Every morning we are born again. What we do today matters.",
     "hinglish": "Har subah hum phir se paida hote hain. Aaj kaam karo.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/inline_image_preview.avif"
   },
   {
     "id": 113,
@@ -1141,7 +1141,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "A single candle can light thousands without shortening its life.",
     "hinglish": "Ek deepak hazaro deepak jala sakta hai.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/360_F_701293196_1zLzOPS2axcdBl54xNKFgb5CEOsYkJMt.jpg"
   },
   {
     "id": 114,
@@ -1151,7 +1151,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Purity or impurity depends on oneself; no one can purify another.",
     "hinglish": "Sachi pavitrata aur apavitrata swayam par nirbhar hai.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/HD-wallpaper-●●●-mood-for-peace-●●●-candle-calm-water-buddha-peace-mood-meditation.jpg"
   },
   {
     "id": 115,
@@ -1161,7 +1161,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The habit of doubt separates people and ruins friendships.",
     "hinglish": "Sandeh karne ki aadat sabse bhayanak bimari hai.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/ai-generated-meditative-buddha-statue-surrounded-by-blooming-lotuses-in-calm-waters-of-pond-photo.jpg"
   },
   {
     "id": 116,
@@ -1171,7 +1171,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Nothing is permanent except change.",
     "hinglish": "Parivartan ke alava kuch bhi sthayi nahi hai.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/buddha-4264589_1280.jpg"
   },
   {
     "id": 117,
@@ -1181,7 +1181,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The root of suffering is attachment.",
     "hinglish": "Dukh ki jad lagaav (moha) mein hai.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/cbb1bb00c1c8b65feecfb3b314fb4839.jpg"
   },
   {
     "id": 118,
@@ -1191,7 +1191,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "If you love a flower, water it; do not pluck it.",
     "hinglish": "Yadi aap phool pasand karte hain to todte nahi, seenche.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (1).jpg"
   },
   {
     "id": 119,
@@ -1201,7 +1201,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Control your thoughts, or they will control you.",
     "hinglish": "Apne vicharo par niyantran rakhein, nahi to ve aap par karenge.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (2).jpg"
   },
   {
     "id": 120,
@@ -1211,7 +1211,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Silence is the best answer when words lose value.",
     "hinglish": "Maun hi sarvashreshtha uttar hai jab shabd vyarth hon.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (3).jpg"
   },
   {
     "id": 121,
@@ -1221,7 +1221,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "A candle cannot burn without fire; man cannot live without wisdom.",
     "hinglish": "Mombatti bina aag ke nahi jalti, manushya gyan bina nahi jeeta.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (4).jpg"
   },
   {
     "id": 122,
@@ -1231,7 +1231,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Do not judge others' faults; watch your own deeds.",
     "hinglish": "Dusro ke dosho ko na dekhein, apne karmo ko sudharein.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (5).jpg"
   },
   {
     "id": 123,
@@ -1241,7 +1241,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "To avoid evil, start doing good immediately.",
     "hinglish": "Burai se bachne ke liye bhalai ko shuru karein.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images.jpg"
   },
   {
     "id": 124,
@@ -1251,7 +1251,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Impatience blocks the journey to peace.",
     "hinglish": "Adheerata lakshya tak pahunchne mein badha dalti hai.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/inline_image_preview.avif"
   },
   {
     "id": 125,
@@ -1261,7 +1261,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Purify your mind to find absolute tranquillity.",
     "hinglish": "Shanti ki khoj mein apne mann ko shuddh karein.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/360_F_701293196_1zLzOPS2axcdBl54xNKFgb5CEOsYkJMt.jpg"
   },
   {
     "id": 126,
@@ -1271,7 +1271,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "The tongue is like a sharp knife; it kills without blood.",
     "hinglish": "Jeebh ek tez churi ki tarah hai jo bina khoon bahaye maarti hai.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/HD-wallpaper-●●●-mood-for-peace-●●●-candle-calm-water-buddha-peace-mood-meditation.jpg"
   },
   {
     "id": 127,
@@ -1281,7 +1281,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Compassion is the soul of all living beings.",
     "hinglish": "Karuna sabhi jeevit praniyo ki aatma hai.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/ai-generated-meditative-buddha-statue-surrounded-by-blooming-lotuses-in-calm-waters-of-pond-photo.jpg"
   },
   {
     "id": 128,
@@ -1291,7 +1291,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "True happiness is found in seeing others happy.",
     "hinglish": "Sacha sukh dusro ko sukhi dekhkar milta hai.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/buddha-4264589_1280.jpg"
   },
   {
     "id": 129,
@@ -1301,7 +1301,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Greed blinds human understanding.",
     "hinglish": "Lobh manushya ko andha bana deta hai.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/cbb1bb00c1c8b65feecfb3b314fb4839.jpg"
   },
   {
     "id": 130,
@@ -1311,7 +1311,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Ego is the greatest obstacle to wisdom.",
     "hinglish": "Ahankar gyan ke maarg mein sabse bada pathar hai.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (1).jpg"
   },
   {
     "id": 131,
@@ -1321,7 +1321,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "A true friend stands by you in times of adversity.",
     "hinglish": "Ek sacha mitra vah hai jo sankat mein sath de.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (2).jpg"
   },
   {
     "id": 132,
@@ -1331,7 +1331,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Man is the creator of his own destiny.",
     "hinglish": "Manushya apne bhagya ka swayam nirmata hai.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (3).jpg"
   },
   {
     "id": 133,
@@ -1341,7 +1341,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Meditation brings wisdom; lack of it leaves ignorance.",
     "hinglish": "Dhyan se gyan ka uday hota hai.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (4).jpg"
   },
   {
     "id": 134,
@@ -1351,7 +1351,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "True prayer is the focus of the mind.",
     "hinglish": "Sachi prarthana mann ki ekagrata hai.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (5).jpg"
   },
   {
     "id": 135,
@@ -1361,7 +1361,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Difficulties make a person resilient and strong.",
     "hinglish": "Kathinaiyan manushya ko majboot banati hain.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images.jpg"
   },
   {
     "id": 136,
@@ -1371,7 +1371,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Wise use of time is the path to success.",
     "hinglish": "Samay ka sadupyog hi jeevan ki safalata hai.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/inline_image_preview.avif"
   },
   {
     "id": 137,
@@ -1381,7 +1381,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Humility is the foundation of all virtues.",
     "hinglish": "Vinamrata sabhi guno ka aadhar hai.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/360_F_701293196_1zLzOPS2axcdBl54xNKFgb5CEOsYkJMt.jpg"
   },
   {
     "id": 138,
@@ -1391,7 +1391,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Contentment is the highest comfort.",
     "hinglish": "Santushti hi sabse bada sukh hai.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/HD-wallpaper-●●●-mood-for-peace-●●●-candle-calm-water-buddha-peace-mood-meditation.jpg"
   },
   {
     "id": 139,
@@ -1401,7 +1401,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Patience is your greatest shield.",
     "hinglish": "Dhairya sabse bada hathiyar hai.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/ai-generated-meditative-buddha-statue-surrounded-by-blooming-lotuses-in-calm-waters-of-pond-photo.jpg"
   },
   {
     "id": 140,
@@ -1411,7 +1411,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "True knowledge dissolves arrogance.",
     "hinglish": "Sacha gyan ahankar ko samapt karta hai.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/buddha-4264589_1280.jpg"
   },
   {
     "id": 141,
@@ -1421,7 +1421,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Helping others is the highest service.",
     "hinglish": "Dusro ki madad karna hi sachi seva hai.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/cbb1bb00c1c8b65feecfb3b314fb4839.jpg"
   },
   {
     "id": 142,
@@ -1431,7 +1431,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Truth always triumphs, untruth fails.",
     "hinglish": "Satya hamesha vijayi hota hai.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (1).jpg"
   },
   {
     "id": 143,
@@ -1441,7 +1441,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Calming the mind makes everything clear.",
     "hinglish": "Mann ko shant rakhne se sab clear ho jata hai.",
     "bg": "from-zinc-950 via-slate-900 to-slate-900",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (2).jpg"
   },
   {
     "id": 144,
@@ -1451,7 +1451,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Staying away from greed is the ultimate goodness.",
     "hinglish": "Lobh aur laalach se door rehna hi bhalai hai.",
     "bg": "from-indigo-950 via-slate-900 to-pink-955",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (3).jpg"
   },
   {
     "id": 145,
@@ -1461,7 +1461,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "True strength is mental, not physical.",
     "hinglish": "Sacha bal shareerik nahi, maansik hota hai.",
     "bg": "from-purple-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (4).jpg"
   },
   {
     "id": 146,
@@ -1471,7 +1471,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Conquering anger is the mark of greatness.",
     "hinglish": "Krodh par vijay paana hi mahaanata hai.",
     "bg": "from-blue-950 via-slate-900 to-indigo-950",
-    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images (5).jpg"
   },
   {
     "id": 147,
@@ -1481,7 +1481,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Good thoughts pave the way for a bright future.",
     "hinglish": "Achhe vichar achha bhavishya banate hain.",
     "bg": "from-amber-955 via-slate-900 to-orange-955",
-    "img": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/images.jpg"
   },
   {
     "id": 148,
@@ -1491,7 +1491,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Life is a journey, not a destination.",
     "hinglish": "Jeevan ek yatra hai, manjil nahi.",
     "bg": "from-emerald-950 via-slate-900 to-teal-950",
-    "img": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/inline_image_preview.avif"
   },
   {
     "id": 149,
@@ -1501,7 +1501,7 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "Joy and sorrow are two sides of the same coin.",
     "hinglish": "Sukh aur dukh ek hi sikke ke do pehlu hain.",
     "bg": "from-red-955 via-slate-950 to-rose-955",
-    "img": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/360_F_701293196_1zLzOPS2axcdBl54xNKFgb5CEOsYkJMt.jpg"
   },
   {
     "id": 150,
@@ -1511,6 +1511,6 @@ export const WISDOM_QUOTES: WisdomQuote[] = [
     "english": "True liberation is freedom from mental bonds.",
     "hinglish": "Sachi mukti mann ke bandhano se mukt hona hai.",
     "bg": "from-cyan-950 via-slate-900 to-sky-956",
-    "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop"
+    "img": "/buddha_bg/HD-wallpaper-●●●-mood-for-peace-●●●-candle-calm-water-buddha-peace-mood-meditation.jpg"
   }
 ];

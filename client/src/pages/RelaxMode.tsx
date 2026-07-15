@@ -879,15 +879,17 @@ export default function RelaxMode() {
                                                 : 'min-h-[360px] max-w-2xl'
                                                 }`}
                                         >
-                                            <div className="absolute inset-0 bg-black/45" />
-                                            {/* Image Overlay */}
-                                            <div className="absolute inset-0 opacity-[0.25] mix-blend-overlay group-hover/poster:scale-105 transition-transform duration-[4000ms] pointer-events-none">
+                                            {/* Background Image Overlay */}
+                                            <div className="absolute inset-0 opacity-75 group-hover/poster:scale-105 transition-transform duration-[4000ms] pointer-events-none">
                                                 <img src={activeQuote.img} alt="poster" className="w-full h-full object-cover" />
                                             </div>
 
+                                            {/* Premium Gradient Overlay to ensure readability & depth */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
+
                                             {/* Top Control Bar inside poster */}
                                             <div className="relative z-10 flex justify-between items-center gap-2">
-                                                <span className="px-2 py-0.5 bg-white/10 backdrop-blur-md rounded-lg text-[9px] font-black uppercase tracking-wider text-amber-200">Sutras of peace</span>
+                                                <span className="px-2.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-200 text-[9px] font-black uppercase tracking-wider rounded-lg">Sutras of peace</span>
 
                                                 <div className="flex items-center gap-2">
                                                     {/* Language Switcher */}
@@ -929,29 +931,36 @@ export default function RelaxMode() {
 
                                             {/* Quote Text */}
                                             <div className="relative z-10 text-center my-6 max-w-xl mx-auto space-y-4">
-                                                <p className={`font-bold leading-relaxed text-white drop-shadow-md transition-all ${posterSize === 'small' ? 'text-xs md:text-sm' : 'text-base md:text-lg lg:text-xl'
+                                                <p className={`font-extrabold leading-relaxed text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)] filter transition-all tracking-wide ${posterSize === 'small' ? 'text-xs md:text-sm' : 'text-base md:text-lg lg:text-xl'
                                                     }`}>
                                                     "{quoteText}"
                                                 </p>
-                                                <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest leading-none">
-                                                    — {activeQuote.author} {activeQuote.ref && `(${activeQuote.ref})`}
+                                                <p className="text-[10px] md:text-[11px] font-black text-amber-400 uppercase tracking-widest leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+                                                    — {activeQuote.author.toUpperCase()} {activeQuote.ref && `(${activeQuote.ref.toUpperCase()})`}
                                                 </p>
                                             </div>
 
                                             {/* Footer / Controls */}
-                                            <div className="relative z-10 flex justify-between items-center transition-all">
+                                            <div className="relative mt-auto pt-6 flex justify-center items-center min-h-[50px] z-30">
+                                                {/* Navigation Arrows - Left (Circular Floating) - z-30 */}
                                                 <button
                                                     onClick={() => setDetachmentIndex(prev => prev === 0 ? filteredQuotes.length - 1 : prev - 1)}
-                                                    className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
+                                                    className="absolute bottom-2 left-2 z-30 w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all shadow-xl backdrop-blur-md active:scale-95"
                                                 >
-                                                    <ArrowLeft className="w-4 h-4" />
+                                                    <ArrowLeft className="w-5 h-5" />
                                                 </button>
-                                                <p className="text-[9px] text-white/40 uppercase font-black tracking-wider">Reflect on this truth</p>
+
+                                                {/* Central Text */}
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/40 animate-pulse mb-2">
+                                                    Reflect on this truth
+                                                </span>
+
+                                                {/* Navigation Arrows - Right (Circular Floating) - z-30 */}
                                                 <button
-                                                    onClick={() => setDetachmentIndex(prev => prev === filteredQuotes.length - 1 ? 0 : prev + 1)}
-                                                    className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
+                                                    onClick={() => setDetachmentIndex(prev => (prev === filteredQuotes.length - 1 ? 0 : prev + 1))}
+                                                    className="absolute bottom-2 right-2 z-30 w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all shadow-xl backdrop-blur-md active:scale-95"
                                                 >
-                                                    <ArrowRight className="w-4 h-4" />
+                                                    <ArrowRight className="w-5 h-5" />
                                                 </button>
                                             </div>
                                         </div>
