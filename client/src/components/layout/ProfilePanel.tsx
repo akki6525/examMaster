@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye, ChevronDown, HelpCircle } from 'lucide-react';
+import { X, User, Mail, Phone, Lock, Save, LogOut, Settings, Sparkles, ChevronRight, Rocket, Check, Camera, Eye, ChevronDown, HelpCircle, Clock, Coffee } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { useToastStore } from '../../stores/toastStore';
 import { useThemeStore } from '../../stores/themeStore';
@@ -40,6 +40,33 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
     const [showToast, setShowToast] = useState(false);
     const [dreamProgress, setDreamProgress] = useState({ total: 0, achieved: 0, avg: 0 });
     const [showLightbox, setShowLightbox] = useState(false);
+    const [relaxSeconds, setRelaxSeconds] = useState(0);
+    const [sessionSeconds, setSessionSeconds] = useState(0);
+    const [sessionStart, setSessionStart] = useState<number>(() => user?.individual_user_logged_in_time || Date.now());
+
+    React.useEffect(() => {
+        if (user?.individual_user_logged_in_time) {
+            setSessionStart(user.individual_user_logged_in_time);
+        }
+    }, [user?.individual_user_logged_in_time]);
+
+    React.useEffect(() => {
+        const updateSecs = () => {
+            setSessionSeconds(Math.max(0, Math.floor((Date.now() - sessionStart) / 1000)));
+        };
+        updateSecs();
+        const interval = setInterval(updateSecs, 1000);
+        return () => clearInterval(interval);
+    }, [sessionStart, isOpen]);
+
+    const formatSessionDuration = (totalSeconds: number) => {
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+        
+        const pad = (num: number) => String(num).padStart(2, '0');
+        return `${pad(h)}:${pad(m)}:${pad(s)}`;
+    };
 
     React.useEffect(() => {
         if (!isOpen) return;
@@ -60,6 +87,17 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                 avg: dreams.length ? Math.round(dreams.reduce((acc: number, d: any) => acc + d.progress, 0) / dreams.length) : 0
             });
         }
+
+        // Fetch relax time from localStorage
+        const relaxKey = `relax_time_${userId}`;
+        setRelaxSeconds(parseInt(localStorage.getItem(relaxKey) || '0', 10));
+
+        // Setup a live updates timer while the profile hub remains open
+        const interval = setInterval(() => {
+            setRelaxSeconds(parseInt(localStorage.getItem(relaxKey) || '0', 10));
+        }, 1000);
+
+        return () => clearInterval(interval);
     }, [isOpen, user]);
 
     const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,6 +164,11 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
 
     const handleNavigateToGuide = () => {
         navigate('/guide');
+        onClose();
+    };
+
+    const handleNavigateToRelaxMode = () => {
+        navigate('/relax-mode');
         onClose();
     };
 
@@ -247,10 +290,11 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                     <div className="absolute -bottom-1.5 -right-1.5 px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 text-[8px] font-black uppercase shadow-[0_4px_12px_rgba(245,158,11,0.3)] tracking-wider border border-white/15 pointer-events-none">Pro</div>
                                 </div>
                                 <h3 className="text-2xl font-black text-foreground tracking-tight">{user?.username}</h3>
-                                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1 flex items-center gap-1.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                                    Official Aspirant
-                                </p>
+                                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1 flex items-center gap-1.5">
+                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                                     Official Aspirant
+                                 </p>
+                                 {/* Session tracking field implicit */}
                                 
                                 {avatar ? (
                                     <div className="flex items-center gap-2 mt-3 relative z-10">
@@ -297,21 +341,45 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                     onChange={handleAvatarChange} 
                                 />
 
-                                {/* Micro stat numbers */}
-                                <div className="w-full grid grid-cols-3 gap-2 mt-6 pt-5 border-t border-slate-200/80 dark:border-white/5">
-                                    <div className="text-center">
-                                        <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Goals</p>
-                                        <p className="text-sm font-black text-foreground">{dreamProgress.total}</p>
-                                    </div>
-                                    <div className="text-center border-x border-slate-200/80 dark:border-white/5 px-2">
-                                        <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Achieved</p>
-                                        <p className="text-sm font-black text-emerald-500 dark:text-emerald-400">{dreamProgress.achieved}</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Avg Progress</p>
-                                        <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">{dreamProgress.avg}%</p>
-                                    </div>
-                                </div>
+                                 {/* Micro stat numbers */}
+                                 <div className="w-full grid grid-cols-3 gap-2 mt-6 pt-5 border-t border-slate-200/80 dark:border-white/5">
+                                     <div className="text-center">
+                                         <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Goals</p>
+                                         <p className="text-sm font-black text-foreground">{dreamProgress.total}</p>
+                                     </div>
+                                     <div className="text-center border-x border-slate-200/80 dark:border-white/5 px-2">
+                                         <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Achieved</p>
+                                         <p className="text-sm font-black text-emerald-500 dark:text-emerald-400">{dreamProgress.achieved}</p>
+                                     </div>
+                                     <div className="text-center">
+                                         <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Avg Progress</p>
+                                         <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">{dreamProgress.avg}%</p>
+                                     </div>
+                                 </div>
+
+                                 {/* Live Session & Relax Mode Stats */}
+                                 {user && (
+                                     <div className="w-full grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200/80 dark:border-white/5">
+                                         <div className="flex flex-col items-center p-3 rounded-2xl bg-white/40 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 shadow-inner">
+                                             <div className="flex items-center gap-1.5 mb-1 text-violet-600 dark:text-violet-400 font-bold">
+                                                 <Clock className="w-3.5 h-3.5" />
+                                                 <span className="text-[9px] font-black uppercase tracking-wider">Aspirant Online</span>
+                                             </div>
+                                             <p className="text-sm font-black text-foreground">{formatSessionDuration(sessionSeconds)}</p>
+                                             <p className="text-[8px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">
+                                                 Logged At {new Date(sessionStart).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                             </p>
+                                         </div>
+                                         <div className="flex flex-col items-center p-3 rounded-2xl bg-white/40 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 shadow-inner">
+                                             <div className="flex items-center gap-1.5 mb-1 text-amber-500 font-bold">
+                                                 <Coffee className="w-3.5 h-3.5" />
+                                                 <span className="text-[9px] font-black uppercase tracking-wider">Relaxed State</span>
+                                             </div>
+                                             <p className="text-sm font-black text-foreground">{formatSessionDuration(relaxSeconds)}</p>
+                                             <p className="text-[8px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Total Relax Time</p>
+                                         </div>
+                                     </div>
+                                 )}
                             </div>
 
                             {/* Key Actions Section */}
@@ -336,6 +404,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                     </div>
                                     <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform relative z-10" />
                                 </button>
+
 
                                 <button
                                     onClick={handleNavigateToGuide}

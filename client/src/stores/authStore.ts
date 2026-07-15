@@ -11,6 +11,7 @@ export interface User {
     email: string;
     phone: string;
     avatar?: string;
+    individual_user_logged_in_time?: number;
 }
 
 interface AuthState {
@@ -21,7 +22,9 @@ interface AuthState {
     register: (username: string, name: string, password: string) => Promise<{ success: boolean; error?: string }>;
     logout: () => void;
     updateProfile: (data: Partial<User>) => Promise<{ success: boolean; error?: string }>;
-    resetPassword: (username: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
+    resetPassword: (username: string, verificationName: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
+    requestOtp: (username: string) => Promise<{ success: boolean; message?: string; mockOtp?: string; previewUrl?: string; error?: string }>;
+    verifyOtpReset: (username: string, otp: string, newPassword: string) => Promise<{ success: boolean; message?: string; error?: string }>;
     clearAuthData: () => void;
 }
 
@@ -30,7 +33,14 @@ interface AuthState {
     try {
         const stored = localStorage.getItem('exammaster-auth-storage');
         if (stored) {
-            const parsed = JSON.parse(stored);
+            let parsed;
+            try {
+                // Try reading Base64 obfuscated storage first
+                parsed = JSON.parse(atob(stored));
+            } catch {
+                // Fallback to plain JSON read for backward compatibility (first load)
+                parsed = JSON.parse(stored);
+            }
             if (parsed?.state?.token) {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${parsed.state.token}`;
             }
@@ -106,14 +116,41 @@ export const useAuthStore = create<AuthState>()(
                     };
                 }
             },
-            resetPassword: async (username, newPassword) => {
+            resetPassword: async (username, verificationName, newPassword) => {
                 try {
-                    const res = await axios.post(`${API_BASE}/auth/reset-password`, { username, newPassword });
+                    const res = await axios.post(`${API_BASE}/auth/reset-password`, { username, verificationName, newPassword });
                     return { success: true, message: res.data.message };
                 } catch (err: any) {
                     return {
                         success: false,
                         error: err.response?.data?.error || 'Failed to reset password.'
+                    };
+                }
+            },
+            requestOtp: async (username) => {
+                try {
+                    const res = await axios.post(`${API_BASE}/auth/request-otp`, { username });
+                    return { 
+                        success: true, 
+                        message: res.data.message, 
+                        mockOtp: res.data.mockOtp,
+                        previewUrl: res.data.previewUrl
+                    };
+                } catch (err: any) {
+                    return {
+                        success: false,
+                        error: err.response?.data?.error || 'Failed to request OTP.'
+                    };
+                }
+            },
+            verifyOtpReset: async (username, otp, newPassword) => {
+                try {
+                    const res = await axios.post(`${API_BASE}/auth/verify-otp-reset`, { username, otp, newPassword });
+                    return { success: true, message: res.data.message };
+                } catch (err: any) {
+                    return {
+                        success: false,
+                        error: err.response?.data?.error || 'Failed to verify OTP and reset password.'
                     };
                 }
             },
@@ -124,6 +161,31 @@ export const useAuthStore = create<AuthState>()(
         }),
         {
             name: 'exammaster-auth-storage',
+            storage: {
+                getItem: (name) => {
+                    const str = localStorage.getItem(name);
+                    if (!str) return null;
+                    try {
+                        // Decode Base64 obfuscated storage for client-side local cache security
+                        const decrypted = atob(str);
+                        return JSON.parse(decrypted);
+                    } catch {
+                        // Fallback support for migrating previous plain JSON cache
+                        try {
+                            return JSON.parse(str);
+                        } catch {
+                            return null;
+                        }
+                    }
+                },
+                setItem: (name, value) => {
+                    const str = JSON.stringify(value);
+                    // Encode Base64 obfuscated storage for client-side local cache security
+                    const encrypted = btoa(str);
+                    localStorage.setItem(name, encrypted);
+                },
+                removeItem: (name) => localStorage.removeItem(name),
+            }
         }
     )
 );

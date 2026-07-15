@@ -188,7 +188,7 @@ export default function AIReport() {
     const [loading, setLoading] = useState(true);
     const [deleting, setDeleting] = useState<string | null>(null);
     const [expandedResult, setExpandedResult] = useState<string | null>(null);
-    const [activeTab, setActiveTab] = useState<'overview' | 'mock' | 'practice' | 'predictions' | 'elimination'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'mock' | 'practice' | 'elimination'>('overview');
     const [collapsedTopics, setCollapsedTopics] = useState<Record<string, boolean>>({}); // actually expanded Topics now if true
     const [detailedResults, setDetailedResults] = useState<Record<string, any[]>>({});
 
@@ -230,7 +230,7 @@ export default function AIReport() {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const tab = searchParams.get('tab');
-        if (tab === 'mock' || tab === 'practice' || tab === 'overview' || tab === 'predictions' || tab === 'elimination') {
+        if (tab === 'mock' || tab === 'practice' || tab === 'overview' || tab === 'elimination') {
             setActiveTab(tab as any);
         }
     }, [location.search]);
@@ -270,7 +270,7 @@ export default function AIReport() {
 
     const hasMock = results.length > 0;
     const hasPractice = practiceStats && (
-        practiceStats.totalAttempted > 0 || 
+        practiceStats.totalAttempted > 0 ||
         (practiceStats.eliminationStats && Object.keys(practiceStats.eliminationStats.questions || {}).length > 0)
     );
     const hasAnyData = hasMock || hasPractice;
@@ -278,10 +278,10 @@ export default function AIReport() {
     const readinessScore = useMemo(() => {
         const mockWeight = 0.7;
         const practiceWeight = 0.3;
-        
+
         const mScore = hasMock ? overallAvg : 0;
         const pScore = hasPractice ? practiceAccuracy : 0;
-        
+
         let score = 0;
         if (hasMock && hasPractice) {
             score = (mScore * mockWeight) + (pScore * practiceWeight);
@@ -290,7 +290,7 @@ export default function AIReport() {
         } else if (hasPractice) {
             score = pScore * 0.8; // harder to predict without mocks
         }
-        
+
         // Volume bonus: more data = higher confidence/bonus
         const volumeBonus = Math.min(8, (results.length * 1) + ((practiceStats?.totalAttempted || 0) / 50));
         return Math.min(100, Math.round(score + volumeBonus));
@@ -308,7 +308,6 @@ export default function AIReport() {
         { id: 'mock', label: `Mock Tests (${results.length})`, icon: Activity },
         { id: 'practice', label: 'Practice', icon: FileQuestion },
         { id: 'elimination', label: 'Elimination Analytics', icon: Layers },
-        { id: 'predictions', label: 'AI Expert', icon: Sparkles },
     ] as const;
 
     const renderEliminationDashboard = () => {
@@ -360,7 +359,7 @@ export default function AIReport() {
                     <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
                         <Layers className="w-32 h-32 text-primary" />
                     </div>
-                    
+
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                         <div>
                             <h3 className="text-2xl font-bold flex items-center gap-3 mb-2 underline decoration-primary/30 underline-offset-8">
@@ -421,22 +420,22 @@ export default function AIReport() {
                                 {/* Stacked progress bar */}
                                 <div className="h-6 rounded-full w-full flex overflow-hidden border border-border bg-muted">
                                     {stats.correct > 0 && (
-                                        <div 
-                                            style={{ width: `${pctC}%` }} 
+                                        <div
+                                            style={{ width: `${pctC}%` }}
                                             className="bg-green-500 h-full transition-all duration-500 hover:opacity-90 animate-pulse-glow"
                                             title={`Scenario C (Correct): ${stats.correct} (${pctC}%)`}
                                         />
                                     )}
                                     {stats.wrong > 0 && (
-                                        <div 
-                                            style={{ width: `${pctB}%` }} 
+                                        <div
+                                            style={{ width: `${pctB}%` }}
                                             className="bg-red-500 h-full transition-all duration-500 hover:opacity-90 animate-pulse-glow"
                                             title={`Scenario B (Wrong): ${stats.wrong} (${pctB}%)`}
                                         />
                                     )}
                                     {stats.skipped > 0 && (
-                                        <div 
-                                            style={{ width: `${pctA}%` }} 
+                                        <div
+                                            style={{ width: `${pctA}%` }}
                                             className="bg-amber-500 h-full transition-all duration-500 hover:opacity-90 animate-pulse-glow"
                                             title={`Scenario A (Skipped): ${stats.skipped} (${pctA}%)`}
                                         />
@@ -562,11 +561,11 @@ export default function AIReport() {
                             { label: 'Questions Practiced', value: hasPractice ? practiceStats!.totalAttempted : '—', icon: FileQuestion, color: '#34d399', show: true },
                             { label: 'Practice Accuracy', value: hasPractice ? `${practiceAccuracy}%` : '—', icon: CheckCircle, color: practiceAccuracy >= 70 ? '#22c55e' : '#f97316', show: true },
                         ].filter(s => s.show).map((stat, i) => (
-                            <motion.div 
-                                key={stat.label} 
-                                initial={{ opacity: 0, y: 20 }} 
-                                animate={{ opacity: 1, y: 0 }} 
-                                transition={{ delay: i * 0.08 }} 
+                            <motion.div
+                                key={stat.label}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.08 }}
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative cursor-default"
                             >
@@ -693,23 +692,23 @@ export default function AIReport() {
                                     <div className="text-center py-12 space-y-3">
                                         <Activity className="w-12 h-12 text-muted-foreground mx-auto" />
                                         <p className="text-muted-foreground">No mock tests taken yet.</p>
-                                        <a href="/upload" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white text-sm" style={{ background: 'linear-gradient(to right, #f97316, #ec4899)' }}>
+                                        <a href="/smart-mock-tests" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white text-sm" style={{ background: 'linear-gradient(to right, #f97316, #ec4899)' }}>
                                             Start a Mock Test <ArrowRight className="w-4 h-4" />
                                         </a>
                                     </div>
                                 ) : results.map((result, i) => {
                                     const isExpanded = expandedResult === result.id;
-                                    
+
                                     const totalCorrect = result.topicWiseScore.reduce((acc, t) => acc + t.correct, 0);
                                     const totalAttempted = result.topicWiseScore.reduce((acc, t) => acc + (t.attempted !== undefined ? t.attempted : t.total), 0);
                                     const totalIncorrect = totalAttempted - totalCorrect;
                                     const negativeMarks = totalIncorrect * 0.25;
                                     const unattemptedQs = Math.max(0, result.totalMarks - totalAttempted);
                                     const isHighNegative = totalIncorrect > (Math.max(1, totalCorrect) / 4);
-                                    
+
                                     // Advanced simulated AI metrics
                                     const avgTimeSecs = totalAttempted > 0 ? (result.timeTaken / 1000) / totalAttempted : 0;
-                                    
+
                                     // Professional Pacing Algorithm
                                     let pacingStatus = 'Perfect';
                                     let pacingColor = 'text-green-500';
@@ -784,7 +783,7 @@ export default function AIReport() {
                                     }
 
                                     const percentile = Math.min(99.9, Math.max(1.0, (result.percentage * 1.15) - (totalIncorrect * 0.5))).toFixed(1);
-                                    
+
                                     // Professional Strategy Algorithm
                                     let strategyAdvice = "";
                                     const negativeValue = Math.abs(negativeMarks);
@@ -813,7 +812,7 @@ export default function AIReport() {
                                     }
 
                                     return (
-                                        <motion.div key={result.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} 
+                                        <motion.div key={result.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
                                             className="rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all overflow-hidden">
                                             <div className="flex items-center gap-4 p-4 cursor-pointer hover:bg-muted/30 transition-colors" onClick={() => setExpandedResult(isExpanded ? null : result.id)}>
                                                 <ScoreRing pct={result.percentage} />
@@ -838,7 +837,7 @@ export default function AIReport() {
                                                 {isExpanded && (
                                                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="border-t border-border/50 bg-muted/10 overflow-hidden">
                                                         <div className="p-6 md:p-8 space-y-8">
-                                                            
+
                                                             {/* Mini Test Analytics */}
                                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                                 <div className="relative overflow-hidden bg-blue-500/10 border border-blue-500/20 p-5 rounded-2xl shadow-sm flex flex-col justify-center items-center hover:scale-105 transition-all duration-300 group">
@@ -846,7 +845,7 @@ export default function AIReport() {
                                                                     <span className="text-sm text-blue-400 font-medium mb-1 relative z-10">Time Spent</span>
                                                                     <div className="flex flex-col items-center relative z-10">
                                                                         <span className="text-3xl font-bold flex items-baseline gap-2">
-                                                                            <Clock className="w-5 h-5 text-blue-500" /> 
+                                                                            <Clock className="w-5 h-5 text-blue-500" />
                                                                             {formatTime(result.timeTaken)}
                                                                             {result.duration ? <span className="text-xl text-blue-500/50">/ {result.duration}m</span> : null}
                                                                         </span>
@@ -920,7 +919,7 @@ export default function AIReport() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                                     <div className="bg-green-500/5 border border-green-500/20 p-5 rounded-2xl space-y-3">
                                                                         <h4 className="flex items-center gap-2 font-bold text-green-500"><CheckCircle className="w-4 h-4" /> Strong Topics</h4>
@@ -942,7 +941,7 @@ export default function AIReport() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                            
+
 
                                                             <div className="space-y-4">
                                                                 <h4 className="font-bold flex items-center gap-2"><BarChart2 className="w-5 h-5 text-primary" /> Detailed Topic Breakdown</h4>
@@ -950,78 +949,79 @@ export default function AIReport() {
                                                                     {result.topicWiseScore.sort((a, b) => b.percentage - a.percentage).map((ts, tIndex) => {
                                                                         const topicQuestions = detailedResults[result.id]?.filter((q: any) => q.topic === ts.topic) || [];
                                                                         const isExpanded = collapsedTopics[`${result.id}-${ts.topic}`];
-                                                                        
+
                                                                         return (
-                                                                        <div key={ts.topic} className="flex flex-col">
-                                                                            <div onClick={() => toggleTopic(`${result.id}-${ts.topic}`)} className="p-4 cursor-pointer md:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-muted/10 transition-colors">
-                                                                                <div className="flex-1">
-                                                                                    <div className="flex items-center gap-2">
-                                                                                        <span className="font-bold text-lg">{ts.topic}</span>
-                                                                                        {topicQuestions.length > 0 && <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform duration-300", isExpanded && "rotate-180")} />}
-                                                                                    </div>
-                                                                                    <div className="flex gap-4 mt-2 text-xs text-muted-foreground font-medium">
-                                                                                        <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-green-500" /> {ts.correct} Correct</span>
-                                                                                        <span className="flex items-center gap-1.5"><XCircle className="w-4 h-4 text-red-500" /> {ts.total - ts.correct} Incorrect</span>
-                                                                                        {(ts.avgTime !== undefined && ts.avgTime > 0) && <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-blue-400" /> {formatTime(ts.avgTime)} avg.</span>}
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="w-full md:w-56 space-y-2 flex-shrink-0 bg-muted/20 p-3 rounded-xl border border-border/50">
-                                                                                    <div className="flex justify-between text-sm">
-                                                                                        <span className="font-bold" style={{ color: ts.percentage >= 70 ? '#22c55e' : ts.percentage >= 50 ? '#f97316' : '#ef4444' }}>{ts.percentage}% Score</span>
-                                                                                        <span className="text-muted-foreground font-medium">{ts.correct} / {ts.total}</span>
-                                                                                    </div>
-                                                                                    <ProgressBar value={ts.percentage} max={100} color={ts.percentage >= 70 ? '#22c55e' : ts.percentage >= 50 ? '#f97316' : '#ef4444'} />
-                                                                                </div>
-                                                                            </div>
-                                                                            
-                                                                            {/* QUESTIONS FOR THIS TOPIC */}
-                                                                            <AnimatePresence>
-                                                                            {isExpanded && topicQuestions.length > 0 && (
-                                                                                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="px-4 pb-5 space-y-3 pt-2 border-t border-border/30 bg-muted/5 overflow-hidden">
-                                                                                    {topicQuestions.map((q: any, qIndex: number) => (
-                                                                                        <div key={q.id} className={cn("p-5 rounded-2xl border transition-colors", q.isCorrect ? "bg-green-500/5 border-green-500/20" : "bg-red-500/5 border-red-500/20")}>
-                                                                                            <div className="flex items-start gap-4">
-                                                                                                <span className={cn("w-8 h-8 rounded-full text-white flex items-center justify-center font-bold flex-shrink-0 shadow-sm", q.isCorrect ? "bg-green-500" : "bg-red-500")}>
-                                                                                                    {qIndex + 1}
-                                                                                                </span>
-                                                                                                <div className="flex-1 min-w-0">
-                                                                                                    <p className="font-medium mb-4 whitespace-pre-wrap text-foreground">{q.question}</p>
-                                                                                                    <div className="space-y-2 mb-3">
-                                                                                                        {q.options?.map((opt: string, optIdx: number) => {
-                                                                                                            const isSelected = q.userAnswer === opt;
-                                                                                                            const isCorrectResponse = opt === q.correctAnswer;
-                                                                                                            const isWrongSelected = isSelected && !isCorrectResponse;
-                                                                                                            
-                                                                                                            return (
-                                                                                                                <div key={optIdx} className={cn("p-2.5 rounded-xl border flex items-center gap-3 transition-colors", isCorrectResponse ? "bg-green-500/10 border-green-500/30" : isWrongSelected ? "bg-red-500/10 border-red-500/30" : "bg-card border-border/50 opacity-80")}>
-                                                                                                                    <span className={cn("w-6 h-6 flex items-center justify-center rounded-lg font-bold text-xs text-white flex-shrink-0", isCorrectResponse ? "bg-green-500" : isWrongSelected ? "bg-red-500" : "bg-muted-foreground")}>{String.fromCharCode(65 + optIdx)}</span>
-                                                                                                                    <span className={cn("flex-1 text-sm font-medium", isCorrectResponse ? "text-green-700 dark:text-green-400" : isWrongSelected ? "text-red-700 dark:text-red-400" : "text-muted-foreground")}>{opt}</span>
-                                                                                                                    {isCorrectResponse && <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />}
-                                                                                                                    {isWrongSelected && <XCircle className="w-4 h-4 text-red-500 flex-shrink-0" />}
-                                                                                                                </div>
-                                                                                                            );
-                                                                                                        })}
-                                                                                                    </div>
-                                                                                                    {q.userAnswer && !q.isCorrect ? (
-                                                                                                        <p className="text-sm text-red-500 mt-2 font-medium">Your answer: {q.userAnswer}</p>
-                                                                                                    ) : !q.userAnswer && (
-                                                                                                        <p className="text-sm text-muted-foreground mt-2 italic">Not attempted</p>
-                                                                                                    )}
-                                                                                                    {!q.isCorrect && q.explanation && (
-                                                                                                        <div className="mt-3 p-4 bg-muted border border-border shadow-inner rounded-xl">
-                                                                                                            <strong className="text-primary text-sm flex items-center gap-1.5 mb-1.5"><Brain className="w-4 h-4" />Explanation</strong>
-                                                                                                            <p className="text-sm text-muted-foreground leading-relaxed">{q.explanation}</p>
-                                                                                                        </div>
-                                                                                                    )}
-                                                                                                </div>
-                                                                                            </div>
+                                                                            <div key={ts.topic} className="flex flex-col">
+                                                                                <div onClick={() => toggleTopic(`${result.id}-${ts.topic}`)} className="p-4 cursor-pointer md:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-muted/10 transition-colors">
+                                                                                    <div className="flex-1">
+                                                                                        <div className="flex items-center gap-2">
+                                                                                            <span className="font-bold text-lg">{ts.topic}</span>
+                                                                                            {topicQuestions.length > 0 && <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform duration-300", isExpanded && "rotate-180")} />}
                                                                                         </div>
-                                                                                    ))}
-                                                                                </motion.div>
-                                                                            )}
-                                                                            </AnimatePresence>
-                                                                        </div>
-                                                                    )})}
+                                                                                        <div className="flex gap-4 mt-2 text-xs text-muted-foreground font-medium">
+                                                                                            <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-green-500" /> {ts.correct} Correct</span>
+                                                                                            <span className="flex items-center gap-1.5"><XCircle className="w-4 h-4 text-red-500" /> {ts.total - ts.correct} Incorrect</span>
+                                                                                            {(ts.avgTime !== undefined && ts.avgTime > 0) && <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-blue-400" /> {formatTime(ts.avgTime)} avg.</span>}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className="w-full md:w-56 space-y-2 flex-shrink-0 bg-muted/20 p-3 rounded-xl border border-border/50">
+                                                                                        <div className="flex justify-between text-sm">
+                                                                                            <span className="font-bold" style={{ color: ts.percentage >= 70 ? '#22c55e' : ts.percentage >= 50 ? '#f97316' : '#ef4444' }}>{ts.percentage}% Score</span>
+                                                                                            <span className="text-muted-foreground font-medium">{ts.correct} / {ts.total}</span>
+                                                                                        </div>
+                                                                                        <ProgressBar value={ts.percentage} max={100} color={ts.percentage >= 70 ? '#22c55e' : ts.percentage >= 50 ? '#f97316' : '#ef4444'} />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                {/* QUESTIONS FOR THIS TOPIC */}
+                                                                                <AnimatePresence>
+                                                                                    {isExpanded && topicQuestions.length > 0 && (
+                                                                                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="px-4 pb-5 space-y-3 pt-2 border-t border-border/30 bg-muted/5 overflow-hidden">
+                                                                                            {topicQuestions.map((q: any, qIndex: number) => (
+                                                                                                <div key={q.id} className={cn("p-5 rounded-2xl border transition-colors", q.isCorrect ? "bg-green-500/5 border-green-500/20" : "bg-red-500/5 border-red-500/20")}>
+                                                                                                    <div className="flex items-start gap-4">
+                                                                                                        <span className={cn("w-8 h-8 rounded-full text-white flex items-center justify-center font-bold flex-shrink-0 shadow-sm", q.isCorrect ? "bg-green-500" : "bg-red-500")}>
+                                                                                                            {qIndex + 1}
+                                                                                                        </span>
+                                                                                                        <div className="flex-1 min-w-0">
+                                                                                                            <p className="font-medium mb-4 whitespace-pre-wrap text-foreground">{q.question}</p>
+                                                                                                            <div className="space-y-2 mb-3">
+                                                                                                                {q.options?.map((opt: string, optIdx: number) => {
+                                                                                                                    const isSelected = q.userAnswer === opt;
+                                                                                                                    const isCorrectResponse = opt === q.correctAnswer;
+                                                                                                                    const isWrongSelected = isSelected && !isCorrectResponse;
+
+                                                                                                                    return (
+                                                                                                                        <div key={optIdx} className={cn("p-2.5 rounded-xl border flex items-center gap-3 transition-colors", isCorrectResponse ? "bg-green-500/10 border-green-500/30" : isWrongSelected ? "bg-red-500/10 border-red-500/30" : "bg-card border-border/50 opacity-80")}>
+                                                                                                                            <span className={cn("w-6 h-6 flex items-center justify-center rounded-lg font-bold text-xs text-white flex-shrink-0", isCorrectResponse ? "bg-green-500" : isWrongSelected ? "bg-red-500" : "bg-muted-foreground")}>{String.fromCharCode(65 + optIdx)}</span>
+                                                                                                                            <span className={cn("flex-1 text-sm font-medium", isCorrectResponse ? "text-green-700 dark:text-green-400" : isWrongSelected ? "text-red-700 dark:text-red-400" : "text-muted-foreground")}>{opt}</span>
+                                                                                                                            {isCorrectResponse && <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />}
+                                                                                                                            {isWrongSelected && <XCircle className="w-4 h-4 text-red-500 flex-shrink-0" />}
+                                                                                                                        </div>
+                                                                                                                    );
+                                                                                                                })}
+                                                                                                            </div>
+                                                                                                            {q.userAnswer && !q.isCorrect ? (
+                                                                                                                <p className="text-sm text-red-500 mt-2 font-medium">Your answer: {q.userAnswer}</p>
+                                                                                                            ) : !q.userAnswer && (
+                                                                                                                <p className="text-sm text-muted-foreground mt-2 italic">Not attempted</p>
+                                                                                                            )}
+                                                                                                            {!q.isCorrect && q.explanation && (
+                                                                                                                <div className="mt-3 p-4 bg-muted border border-border shadow-inner rounded-xl">
+                                                                                                                    <strong className="text-primary text-sm flex items-center gap-1.5 mb-1.5"><Brain className="w-4 h-4" />Explanation</strong>
+                                                                                                                    <p className="text-sm text-muted-foreground leading-relaxed">{q.explanation}</p>
+                                                                                                                </div>
+                                                                                                            )}
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            ))}
+                                                                                        </motion.div>
+                                                                                    )}
+                                                                                </AnimatePresence>
+                                                                            </div>
+                                                                        )
+                                                                    })}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1155,10 +1155,10 @@ export default function AIReport() {
                                                             const isLegacy = typeof data === 'number';
                                                             const stats = isLegacy ? { total: data, correct: 0 } : data;
                                                             const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
-                                                            
+
                                                             return (
-                                                                <div 
-                                                                    key={date} 
+                                                                <div
+                                                                    key={date}
                                                                     className={cn(
                                                                         "p-4 rounded-2xl border transition-all hover:-translate-y-1 shadow-sm relative overflow-hidden",
                                                                         isToday ? "bg-primary/5 border-primary/30" : "bg-card border-border/50 hover:border-border"
@@ -1175,7 +1175,7 @@ export default function AIReport() {
                                                                         </div>
                                                                         <div className="text-right">
                                                                             {isLegacy ? (
-                                                                                <p className="text-[10px] text-muted-foreground italic leading-tight pt-1">Accuracy not<br/>tracked yet</p>
+                                                                                <p className="text-[10px] text-muted-foreground italic leading-tight pt-1">Accuracy not<br />tracked yet</p>
                                                                             ) : (
                                                                                 <>
                                                                                     <p className={cn("text-sm font-black", accuracy >= 70 ? "text-green-500" : accuracy >= 40 ? "text-orange-500" : "text-red-500")}>
@@ -1198,154 +1198,6 @@ export default function AIReport() {
                         )}
 
 
-                        {/* === PREDICTIONS === */}
-                        {activeTab === 'predictions' && (
-                            <motion.div key="predictions" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-6">
-                                <div className="p-8 rounded-3xl bg-gradient-to-br from-primary/10 via-background to-background border border-primary/20 relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-                                        <Sparkles className="w-32 h-32 text-primary" />
-                                    </div>
-                                    
-                                    <h3 className="text-2xl font-bold flex items-center gap-3 mb-2 underline decoration-primary/30 underline-offset-8">
-                                        <Sparkles className="w-6 h-6 text-primary animate-pulse" />
-                                        AI Score Expert
-                                    </h3>
-                                    <p className="text-muted-foreground mb-8 max-w-lg">
-                                        Our Advanced AI engine analyzes your mock trends and practice efficiency to predict your final exam performance. Update data frequently for better accuracy!
-                                    </p>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-                                        {/* Probability card */}
-                                        <div className="p-6 rounded-2xl bg-card border border-border/50 shadow-xl hover:shadow-primary/5 transition-all">
-                                            <h4 className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">Exam Success Probability</h4>
-                                            <div className="flex items-center gap-6">
-                                                <div className="relative w-24 h-24">
-                                                    <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                                                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="8" className="text-muted/10" />
-                                                        <motion.circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray="283" initial={{ strokeDashoffset: 283 }} animate={{ strokeDashoffset: 283 - (283 * readinessScore) / 100 }} className="text-primary" />
-                                                    </svg>
-                                                    <div className="absolute inset-0 flex items-center justify-center font-bold text-xl">
-                                                        {readinessScore}%
-                                                    </div>
-                                                </div>
-                                                <div className="flex-1 space-y-1">
-                                                    <p className="font-bold text-lg">{readinessScore >= 80 ? 'Elite Candidate' : readinessScore >= 60 ? 'Strong Contender' : 'Developing'}</p>
-                                                    <p className="text-xs text-muted-foreground">Combined analysis of {results.length} mocks & {practiceStats?.totalAttempted || 0} practice Qs.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Expected Score Range */}
-                                        <div className="p-6 rounded-2xl bg-card border border-border/50 shadow-xl hover:shadow-primary/5 transition-all">
-                                            <h4 className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">Estimated Final Score</h4>
-                                            <div className="space-y-4">
-                                                <div className="flex justify-between items-end">
-                                                    <span className="text-3xl font-black text-foreground">
-                                                        {Math.max(0, readinessScore - 4)} - {Math.min(100, readinessScore + 6)}
-                                                    </span>
-                                                    <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-lg">AI Predicted</span>
-                                                </div>
-                                                <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
-                                                    <div className="h-full bg-primary" style={{ width: `${readinessScore}%` }} />
-                                                </div>
-                                                <p className="text-[10px] text-muted-foreground italic">AI prediction models allow for 10% variance based on current difficulty levels.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {(() => {
-                                        // Dynamic AI Expert Logic
-                                        const excellentCount = topicInsights.filter(t => t.priority === 'excellent').length;
-                                        const totalTopics = topicInsights.length;
-                                        const avgAccuracy = topicInsights.length > 0 ? topicInsights.reduce((a, b) => a + b.accuracy, 0) / topicInsights.length : 0;
-                                        
-                                        // 1. Revision Speed Calculation
-                                        let revSpeed = "Moderate";
-                                        let revDetail = "Start practicing more topics to get a speed analysis.";
-                                        let revColor = "#f59e0b";
-                                        
-                                        if (totalTopics > 5) {
-                                            const excellentRatio = excellentCount / totalTopics;
-                                            if (excellentRatio > 0.4) {
-                                                revSpeed = "High";
-                                                revDetail = `You cover weak areas ${ (1.8 + excellentRatio).toFixed(1) }x faster than average users.`;
-                                                revColor = "#22c55e";
-                                            } else if (excellentRatio > 0.2) {
-                                                revSpeed = "Consistent";
-                                                revDetail = "Your progress is steady across all active subjects.";
-                                                revColor = "#3b82f6";
-                                            } else {
-                                                revSpeed = "Focused";
-                                                revDetail = "You are spending quality time on foundational concepts.";
-                                            }
-                                        }
-
-                                        // 2. Error Pattern Analysis
-                                        let errorPattern = "Analyzing";
-                                        let errorDetail = "Need more test data to identify your mistake patterns.";
-                                        let errorIcon = Target;
-                                        let errorColor = "#6b7280";
-
-                                        if (hasMock || hasPractice) {
-                                            const criticalCount = topicInsights.filter(t => t.priority === 'critical').length;
-                                            if (criticalCount > 3) {
-                                                errorPattern = "Conceptual";
-                                                errorDetail = "Mistakes are grouped in specific topics. Focus on theory.";
-                                                errorColor = "#ef4444";
-                                            } else if (avgAccuracy > 75) {
-                                                errorPattern = "Silly Errors";
-                                                errorDetail = "High accuracy but scattered mistakes. Stay focused!";
-                                                errorColor = "#f59e0b";
-                                            } else {
-                                                errorPattern = "Logical";
-                                                errorDetail = "Mistakes are mostly in complex, high-level questions.";
-                                                errorColor = "#3b82f6";
-                                            }
-                                        }
-
-                                        // 3. Mock Readiness
-                                        let readiness = "Not Ready";
-                                        let readinessDetail = "Complete at least 3 full mock tests first.";
-                                        if (results.length >= 5) {
-                                            readiness = readinessScore >= 80 ? "Exam Ready" : "Building Up";
-                                            readinessDetail = readinessScore >= 80 ? "You have built peak performance stamina." : "Maintain your streak for 5 more days.";
-                                        } else if (results.length > 0) {
-                                            readiness = "In Progress";
-                                            readinessDetail = `Take ${5 - results.length} more tests for full analysis.`;
-                                        }
-
-                                        return [
-                                            { title: "Revision Speed", value: revSpeed, detail: revDetail, icon: Zap, color: revColor },
-                                            { title: "Error Pattern", value: errorPattern, detail: errorDetail, icon: errorIcon, color: errorColor },
-                                            { title: "Mock Readiness", value: readiness, detail: readinessDetail, icon: Award, color: "#8b5cf6" }
-                                        ].map((metric, i) => (
-                                            <div key={i} className="p-5 rounded-2xl bg-card border border-border/50 shadow-sm hover:shadow-md transition-all">
-                                                <div className="flex items-center gap-3 mb-3">
-                                                    <div className="p-2 rounded-lg" style={{ backgroundColor: `${metric.color}15` }}>
-                                                        <metric.icon className="w-4 h-4" style={{ color: metric.color }} />
-                                                    </div>
-                                                    <h5 className="font-bold text-sm">{metric.title}</h5>
-                                                </div>
-                                                <p className="text-xl font-bold mb-1" style={{ color: metric.color }}>{metric.value}</p>
-                                                <p className="text-xs text-muted-foreground">{metric.detail}</p>
-                                            </div>
-                                        ));
-                                    })()}
-                                </div>
-
-                                <div className="p-6 rounded-2xl bg-muted/20 border border-dashed border-border flex flex-col items-center text-center gap-3">
-                                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                                        <Sparkles className="w-6 h-6" />
-                                    </div>
-                                    <h4 className="font-bold">Expert Tip: Syllabus Completion</h4>
-                                    <p className="text-sm text-muted-foreground max-w-md">
-                                        Your performance in Science and Geography is fluctuating. Revising these two specifically before your next mock could boost your percentile by up to 12 points.
-                                    </p>
-                                </div>
-                            </motion.div>
-                        )}
 
                         {/* === ELIMINATION METHOD === */}
                         {activeTab === 'elimination' && renderEliminationDashboard()}

@@ -17,12 +17,22 @@ export default function Login() {
     // States for custom Reset Password form
     const [resetUsername, setResetUsername] = useState('');
     const [resetPasswordVal, setResetPasswordVal] = useState('');
+    const [resetVerification, setResetVerification] = useState('');
     const [resetError, setResetError] = useState('');
     const [resetLoading, setResetLoading] = useState(false);
+
+    // OTP Recovery states
+    const [recoveryMode, setRecoveryMode] = useState<'otp' | 'credentials'>('otp');
+    const [otpVal, setOtpVal] = useState('');
+    const [otpSent, setOtpSent] = useState(false);
+    const [otpFeedback, setOtpFeedback] = useState('');
+    const [otpPreviewUrl, setOtpPreviewUrl] = useState('');
 
     const login = useAuthStore((state) => state.login);
     const register = useAuthStore((state) => state.register);
     const resetPassword = useAuthStore((state) => state.resetPassword);
+    const requestOtp = useAuthStore((state) => state.requestOtp);
+    const verifyOtpReset = useAuthStore((state) => state.verifyOtpReset);
     const clearAuthData = useAuthStore((state) => state.clearAuthData);
     const showToast = useToastStore((state) => state.show);
 
@@ -238,85 +248,320 @@ export default function Login() {
                                 <Lock className="w-10 h-10 text-primary mb-3" />
                                 <h3 className="text-xl font-bold mb-1">Reset Password</h3>
                                 <p className="text-[11px] text-muted-foreground text-center mb-4">
-                                    Recover access by setting a new password for your username.
+                                    Recover access by verifying your mobile OTP or profile credentials.
                                 </p>
                                 
+                                {/* Recovery Option Selector Tab */}
+                                <div className="flex bg-muted/60 p-1 rounded-xl mb-4 w-full relative">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setRecoveryMode('otp');
+                                            setResetError('');
+                                        }}
+                                        className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                                            recoveryMode === 'otp' 
+                                                ? 'bg-background text-foreground shadow-sm' 
+                                                : 'text-muted-foreground hover:text-foreground'
+                                        }`}
+                                    >
+                                        📱 Mobile OTP
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setRecoveryMode('credentials');
+                                            setResetError('');
+                                        }}
+                                        className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                                            recoveryMode === 'credentials' 
+                                                ? 'bg-background text-foreground shadow-sm' 
+                                                : 'text-muted-foreground hover:text-foreground'
+                                        }`}
+                                    >
+                                        🛡️ Credentials
+                                    </button>
+                                </div>
+
                                 {resetError && (
                                     <div className="w-full mb-3 p-2 bg-red-500/10 border border-red-500/20 text-red-500 text-[11px] rounded-lg text-center font-medium">
                                         {resetError}
                                     </div>
                                 )}
 
-                                <form onSubmit={async (e) => {
-                                    e.preventDefault();
-                                    setResetError('');
-                                    if (!resetUsername || !resetPasswordVal) {
-                                        setResetError('Username and password are required.');
-                                        return;
-                                    }
-                                    setResetLoading(true);
-                                    const res = await resetPassword(resetUsername, resetPasswordVal);
-                                    setResetLoading(false);
-                                    if (res.success) {
-                                        showToast('Password reset successfully! Try signing in.', 'success');
-                                        setShowForgot(false);
-                                        setResetUsername('');
-                                        setResetPasswordVal('');
-                                    } else {
-                                        setResetError(res.error || 'Failed to reset password.');
-                                    }
-                                }} className="space-y-3 w-full text-left">
-                                    <div className="space-y-1">
-                                        <label className="text-[10px] font-semibold text-muted-foreground ml-1">Username</label>
-                                        <div className="relative group">
-                                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
-                                            <input
-                                                type="text"
-                                                value={resetUsername}
-                                                onChange={(e) => setResetUsername(e.target.value)}
-                                                placeholder="Enter username to reset"
-                                                className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="text-[10px] font-semibold text-muted-foreground ml-1">New Password</label>
-                                        <div className="relative group">
-                                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
-                                            <input
-                                                type="password"
-                                                value={resetPasswordVal}
-                                                onChange={(e) => setResetPasswordVal(e.target.value)}
-                                                placeholder="••••••••"
-                                                className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-2 pt-2 w-full">
-                                        <button
-                                            type="submit"
-                                            disabled={resetLoading}
-                                            className="w-full py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold hover:opacity-90 transition-all text-xs disabled:opacity-50"
-                                        >
-                                            {resetLoading ? 'Resetting...' : 'Save New Password'}
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => {
+                                {recoveryMode === 'otp' ? (
+                                    !otpSent ? (
+                                        <form onSubmit={async (e) => {
+                                            e.preventDefault();
+                                            setResetError('');
+                                            if (!resetUsername) {
+                                                setResetError('Username is required.');
+                                                return;
+                                            }
+                                            setResetLoading(true);
+                                            const res = await requestOtp(resetUsername);
+                                            setResetLoading(false);
+                                            if (res.success) {
+                                                showToast(res.message || 'OTP sent successfully!', 'success');
+                                                setOtpSent(true);
+                                                if (res.previewUrl) {
+                                                    setOtpPreviewUrl(res.previewUrl);
+                                                } else {
+                                                    setOtpPreviewUrl('');
+                                                }
+                                                if (res.mockOtp) {
+                                                    setOtpFeedback(`[Demo Code: ${res.mockOtp}]`);
+                                                } else {
+                                                    setOtpFeedback('');
+                                                }
+                                            } else {
+                                                setResetError(res.error || 'Failed to request OTP. Make sure you have a registered email address.');
+                                            }
+                                        }} className="space-y-3 w-full text-left">
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-semibold text-muted-foreground ml-1">Username</label>
+                                                <div className="relative group">
+                                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                                                    <input
+                                                        type="text"
+                                                        value={resetUsername}
+                                                        onChange={(e) => setResetUsername(e.target.value)}
+                                                        placeholder="Enter username to receive OTP"
+                                                        className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
+                                                        required
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="space-y-2 pt-2 w-full">
+                                                <button
+                                                    type="submit"
+                                                    disabled={resetLoading}
+                                                    className="w-full py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold hover:opacity-90 transition-all text-xs disabled:opacity-50"
+                                                >
+                                                    {resetLoading ? 'Requesting OTP...' : 'Send Verification OTP'}
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setShowForgot(false);
+                                                        setResetUsername('');
+                                                        setResetVerification('');
+                                                        setResetPasswordVal('');
+                                                        setOtpVal('');
+                                                        setOtpSent(false);
+                                                        setOtpFeedback('');
+                                                        setOtpPreviewUrl('');
+                                                        setResetError('');
+                                                    }}
+                                                    className="w-full py-2.5 bg-muted text-muted-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all text-xs"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
+                                    ) : (
+                                        <form onSubmit={async (e) => {
+                                            e.preventDefault();
+                                            setResetError('');
+                                            if (!otpVal || !resetPasswordVal) {
+                                                setResetError('OTP value and new password are required.');
+                                                return;
+                                            }
+                                            setResetLoading(true);
+                                            const res = await verifyOtpReset(resetUsername, otpVal, resetPasswordVal);
+                                            setResetLoading(false);
+                                            if (res.success) {
+                                                showToast('Password reset successfully! Try signing in.', 'success');
                                                 setShowForgot(false);
                                                 setResetUsername('');
+                                                setResetVerification('');
                                                 setResetPasswordVal('');
-                                                setResetError('');
-                                            }}
-                                            className="w-full py-2.5 bg-muted text-muted-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all text-xs"
-                                        >
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </form>
+                                                setOtpVal('');
+                                                setOtpSent(false);
+                                                setOtpFeedback('');
+                                                setOtpPreviewUrl('');
+                                            } else {
+                                                setResetError(res.error || 'Failed to verify OTP.');
+                                            }
+                                        }} className="space-y-3 w-full text-left">
+                                            <div className="text-center bg-primary/10 border border-primary/20 rounded-xl p-2.5 mb-2">
+                                                <span className="text-[10px] text-primary font-medium block">
+                                                    OTP verification code sent.
+                                                </span>
+                                                {otpPreviewUrl ? (
+                                                    <a 
+                                                        href={otpPreviewUrl} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-primary-foreground font-semibold rounded-lg text-[10px] hover:opacity-90 transition-all shadow-sm"
+                                                    >
+                                                        📧 Open Mock Inbox
+                                                    </a>
+                                                ) : otpFeedback ? (
+                                                    <span className="text-[11px] font-bold text-foreground bg-primary/20 px-2 py-0.5 rounded inline-block mt-1 animate-pulse">
+                                                        {otpFeedback}
+                                                    </span>
+                                                ) : null}
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-semibold text-muted-foreground ml-1">Enter 6-Digit OTP</label>
+                                                <div className="relative group">
+                                                    <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                                                    <input
+                                                        type="text"
+                                                        value={otpVal}
+                                                        onChange={(e) => setOtpVal(e.target.value)}
+                                                        placeholder="Enter OTP code"
+                                                        className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs text-center font-bold tracking-wider"
+                                                        required
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-semibold text-muted-foreground ml-1">New Password</label>
+                                                <div className="relative group">
+                                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                                                    <input
+                                                        type="password"
+                                                        value={resetPasswordVal}
+                                                        onChange={(e) => setResetPasswordVal(e.target.value)}
+                                                        placeholder="••••••••"
+                                                        className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
+                                                        required
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="space-y-2 pt-2 w-full">
+                                                <button
+                                                    type="submit"
+                                                    disabled={resetLoading}
+                                                    className="w-full py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold hover:opacity-90 transition-all text-xs disabled:opacity-50"
+                                                >
+                                                    {resetLoading ? 'Verifying...' : 'Verify OTP & Reset'}
+                                                </button>
+                                                <div className="flex gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setOtpSent(false)}
+                                                        className="flex-1 py-2 bg-muted text-muted-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all text-xs"
+                                                    >
+                                                        Back / Edit
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setShowForgot(false);
+                                                            setResetUsername('');
+                                                            setResetVerification('');
+                                                            setResetPasswordVal('');
+                                                            setOtpVal('');
+                                                            setOtpSent(false);
+                                                            setOtpFeedback('');
+                                                            setOtpPreviewUrl('');
+                                                            setResetError('');
+                                                        }}
+                                                        className="flex-1 py-2 bg-muted text-muted-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all text-xs"
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    )
+                                ) : (
+                                    <form onSubmit={async (e) => {
+                                        e.preventDefault();
+                                        setResetError('');
+                                        if (!resetUsername || !resetVerification || !resetPasswordVal) {
+                                            setResetError('Username, verification info, and new password are required.');
+                                            return;
+                                        }
+                                        setResetLoading(true);
+                                        const res = await resetPassword(resetUsername, resetVerification, resetPasswordVal);
+                                        setResetLoading(false);
+                                        if (res.success) {
+                                            showToast('Password reset successfully! Try signing in.', 'success');
+                                            setShowForgot(false);
+                                            setResetUsername('');
+                                            setResetVerification('');
+                                            setResetPasswordVal('');
+                                            setOtpVal('');
+                                            setOtpSent(false);
+                                            setOtpFeedback('');
+                                        } else {
+                                            setResetError(res.error || 'Failed to reset password.');
+                                        }
+                                    }} className="space-y-3 w-full text-left">
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-semibold text-muted-foreground ml-1">Username</label>
+                                            <div className="relative group">
+                                                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                                                <input
+                                                    type="text"
+                                                    value={resetUsername}
+                                                    onChange={(e) => setResetUsername(e.target.value)}
+                                                    placeholder="Enter username to reset"
+                                                    className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-semibold text-muted-foreground ml-1">Verification Name or Email</label>
+                                            <div className="relative group">
+                                                <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                                                <input
+                                                    type="text"
+                                                    value={resetVerification}
+                                                    onChange={(e) => setResetVerification(e.target.value)}
+                                                    placeholder="Registered Full Name or Email"
+                                                    className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-semibold text-muted-foreground ml-1">New Password</label>
+                                            <div className="relative group">
+                                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                                                <input
+                                                    type="password"
+                                                    value={resetPasswordVal}
+                                                    onChange={(e) => setResetPasswordVal(e.target.value)}
+                                                    placeholder="••••••••"
+                                                    className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-xs"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2 pt-2 w-full">
+                                            <button
+                                                type="submit"
+                                                disabled={resetLoading}
+                                                className="w-full py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold hover:opacity-90 transition-all text-xs disabled:opacity-50"
+                                            >
+                                                {resetLoading ? 'Resetting...' : 'Save New Password'}
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setShowForgot(false);
+                                                    setResetUsername('');
+                                                    setResetVerification('');
+                                                    setResetPasswordVal('');
+                                                    setOtpVal('');
+                                                    setOtpSent(false);
+                                                    setOtpFeedback('');
+                                                    setResetError('');
+                                                }}
+                                                className="w-full py-2.5 bg-muted text-muted-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all text-xs"
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </form>
+                                )}
                             </motion.div>
                         )}
                     </AnimatePresence>

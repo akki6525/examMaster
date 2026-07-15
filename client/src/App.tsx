@@ -14,6 +14,7 @@ import PDFImport from './pages/PDFImport';
 import AIReport from './pages/AIReport';
 import StudentCorner from './pages/StudentCorner';
 import SmartMockTests from './pages/SmartMockTests';
+import RelaxMode from './pages/RelaxMode';
 import Guide from './pages/Guide';
 
 import { useAuthStore } from './stores/authStore';
@@ -79,6 +80,7 @@ function App() {
           <Route path="/ai-report" element={<AIReport />} />
           <Route path="/student-corner" element={<StudentCorner />} />
           <Route path="/smart-mock-tests" element={<SmartMockTests />} />
+          <Route path="/relax-mode" element={<RelaxMode />} />
           <Route path="/guide" element={<Guide />} />
         </Routes>
       </Layout>

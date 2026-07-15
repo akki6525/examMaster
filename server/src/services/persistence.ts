@@ -15,6 +15,7 @@ export interface UserRecord {
     email: string;
     phone: string;
     avatar?: string;
+    individual_user_logged_in_time?: number;
 }
 
 export interface PracticeStatsDB {
@@ -64,6 +65,8 @@ export const DEFAULT_PRACTICE_STATS: PracticeStatsDB = {
     }
 };
 
+import { encrypt, decrypt } from '../utils/crypto.js';
+
 function ensureDataDir() {
     if (!existsSync(DATA_DIR)) {
         mkdirSync(DATA_DIR, { recursive: true });
@@ -87,6 +90,17 @@ export function loadDB(): DB {
         if (!parsed.flashcards) parsed.flashcards = {};
         if (!parsed.practiceStats) parsed.practiceStats = {};
 
+        // Decrypt user records transparently
+        for (const userId in parsed.users) {
+            const u = parsed.users[userId];
+            if (u) {
+                u.username = decrypt(u.username);
+                u.name = decrypt(u.name);
+                u.email = decrypt(u.email);
+                u.phone = decrypt(u.phone);
+            }
+        }
+
         // Restore Date objects for MockTest and TestResult
         for (const id in parsed.mockTests) {
             parsed.mockTests[id].createdAt = new Date(parsed.mockTests[id].createdAt);
@@ -103,7 +117,28 @@ export function loadDB(): DB {
 
 export function saveDB(db: DB): void {
     ensureDataDir();
-    writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
+    
+    // Create serialized users copies with encrypted credentials to write to file
+    const serializedUsers: Record<string, UserRecord> = {};
+    for (const userId in db.users) {
+        const u = db.users[userId];
+        if (u) {
+            serializedUsers[userId] = {
+                ...u,
+                username: encrypt(u.username),
+                name: encrypt(u.name),
+                email: encrypt(u.email),
+                phone: encrypt(u.phone)
+            };
+        }
+    }
+    
+    const dbToSave = {
+        ...db,
+        users: serializedUsers
+    };
+    
+    writeFileSync(DB_PATH, JSON.stringify(dbToSave, null, 2), 'utf-8');
 }
 
 export function getPracticeStats(userId: string): PracticeStatsDB {

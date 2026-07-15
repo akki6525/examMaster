@@ -44,6 +44,7 @@ const secondaryNav = [
     { path: '/flashcards', label: 'Flashcards', icon: Layers },
     { path: '/import', label: 'Import Questions', icon: FileUp },
     { path: '/import-pdf', label: 'Import PDF', icon: FileText },
+    { path: '/relax-mode', label: 'Relax Mode', icon: Sparkles },
     { path: '/guide', label: 'User Guide', icon: HelpCircle },
 ];
 

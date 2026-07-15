@@ -109,6 +109,11 @@ export default function Guide() {
                     highlight: 'You can delete outdated or incorrect questions here using the trash icon.'
                 },
                 {
+                    title: 'Option Elimination Technique',
+                    details: 'Dealing with a difficult question? Hover over options and click the red cross icon ("X") next to them to physically strike it through and narrow down your choices. If you want to undo your eliminations, click the "Reset Choices" button.',
+                    highlight: 'Striking off options helps you narrow down to the correct answer, improving your educated guesses.'
+                },
+                {
                     title: 'Create Quizzes from Text Books',
                     details: 'Got a paragraph or mock questions from a website? Go to the "Upload" section and paste it. The application reads the text and automatically formats them into individual quizzes with multiple choices.',
                     highlight: 'Ideal for building quick custom question lists from textbook pages.'
@@ -121,7 +126,39 @@ export default function Guide() {
             ],
             tips: [
                 'When pasting text from books, write "Answer: A/B/C/D" clearly so the upload program matches the key accurately.',
-                'Filter by "Unsolved" in the Question Bank to find questions you have not practiced yet.'
+                'Filter by "Unsolved" in the Question Bank to find questions you have not practiced yet.',
+                'Hovering over option cards reveals the "X" button to mark or unmark exclusions instantly.'
+            ]
+        },
+        {
+            id: 'elimination',
+            title: 'Option Elimination Strategy',
+            description: 'Learn how to cross out wrong options systematically, select answers with better probability, and review guess choices metrics.',
+            icon: Sparkles,
+            color: 'text-amber-500 dark:text-amber-400',
+            bgColor: 'bg-amber-500/10',
+            gradient: 'from-amber-600/20 to-orange-500/20 border-amber-500/30',
+            steps: [
+                {
+                    title: 'Hover and Cross Out Options',
+                    details: 'When practicing questions in the Question Bank, hover over any option card. Click the red "X" icon that appears at the right corner of the option card to strike it through.',
+                    highlight: 'Striking off options visually reduces noise and lets your brain focus heavily on remaining choices.'
+                },
+                {
+                    title: 'Take Educated Guesses',
+                    details: 'Eliminating 1 or 2 options increases your probability of guessing the correct answer from 25% to 50% or 100%. After crossing choices, click your chosen option and select "Check Answer".',
+                    highlight: 'The system automatically links your answer submission with your crossed choices.'
+                },
+                {
+                    title: 'Check Elimination Analytics',
+                    details: 'Open the "AI Report" page and switch to the "Elimination Analytics" tab. The system updates live data showing your guestimate success rate, saved margin totals (by skipping after crossing), and correctness ratios.',
+                    highlight: 'Refreshes automatically whenever you click on the tab, with no page reload required.'
+                }
+            ],
+            tips: [
+                'Try to cross off at least 2 options before guessing to push your probability to 50%.',
+                'If you eliminate options but are unsure of the final two, you can leave it skipped. It will be recorded as "Avoided Penalty" in your reports.',
+                'Use "Reset Choices" under any option box to clear the exclusions and start fresh.'
             ]
         },
         {
@@ -161,7 +198,7 @@ export default function Guide() {
             icon: Layers,
             color: 'text-pink-500 dark:text-pink-400',
             bgColor: 'bg-pink-500/10',
-            gradient: 'from-pink-600/20 to-rose-500/20 border-pink-500/30',
+            gradient: 'from-pink-605/20 to-rose-500/20 border-pink-500/30',
             steps: [
                 {
                     title: 'Browse Visual Topics',
@@ -199,6 +236,11 @@ export default function Guide() {
                     highlight: 'Includes interactive charts showing your average test scores.'
                 },
                 {
+                    title: 'Check Elimination Technique Analytics',
+                    details: 'Switch to the "Elimination Analytics" tab inside the AI Report. Here you can see a breakdown of how well your option elimination choices are working, including your success rate, total attempted versus skipped questions, and accuracy metrics.',
+                    highlight: 'Data is synced automatically when you view the tab, keeping your reports fresh.'
+                },
+                {
                     title: 'Find Your Strong & Weak Areas',
                     details: 'The AI reviews your test history to build a color-coded subject heatmap. It shows which subjects you are doing great in, and which specific topics you need to work harder on to raise your score.',
                     highlight: 'Updates automatically with every mock test you submit.'
@@ -212,6 +254,37 @@ export default function Guide() {
             tips: [
                 'Check the AI diagnostic report every weekend to plan your study schedule for the upcoming week.',
                 'Focus on practicing the recommended question suggestions first to boost your mock test scores.'
+            ]
+        },
+        {
+            id: 'relax',
+            title: 'Relax Mode (Mindfulness & Comics)',
+            description: 'Unwind and recharge with authentic calming sounds, voice-guided meditations, and retro superhero comics.',
+            icon: Sparkles,
+            color: 'text-amber-500 dark:text-amber-400',
+            bgColor: 'bg-amber-500/10',
+            gradient: 'from-amber-600/20 to-orange-500/20 border-amber-500/30',
+            steps: [
+                {
+                    title: 'Access Relax Mode via Chatbot',
+                    details: 'Simply open the study chatbot ("Aur Bhai") and type requests like "relax", "meditate", "play music", or click chatbot Relax Mode links to instantly enter the Zen Zone.',
+                    highlight: 'Perfect for quick, structured breaks to restore cognitive agility.'
+                },
+                {
+                    title: 'Choose Soundscapes & Guided Mediation',
+                    details: 'Listen to pure Zen Frequencies (528Hz Solfeggio, Alpha waves), Voice-Guided Meditations (authentic Yoga Nidra sessions and body scans), orPt. Pannalal Ghosh\'s peaceful Bansuri flute recitals. The "Detached Forest Reflection" track automatically layers realistic synthesized background rain.',
+                    highlight: 'Use the Offline Trigger Synth button on Zen Frequencies if you want key soundwaves offline.'
+                },
+                {
+                    title: 'Read Vintage Indian Superhero Comics',
+                    details: 'Open the "Comics" tab to view classic hand-drawn superhero narratives (The Iron Vigilante, Cosmic Defender, or The Scholar Owl). Tap the comic covers to open a fullscreen zoom lightbox and read detailed panels designed for mental detachment.',
+                    highlight: 'Click anywhere outside the zoomed panel or tap Escape to close the overlay.'
+                }
+            ],
+            tips: [
+                'Use the 528Hz focus frequency during breaks to soothe mental fatigue and reduce stress.',
+                'The Offline Synth status is strictly exclusive to Zen Frequencies (soothing tones and beats) to avoid noisy overlap on voice-guided files.',
+                'Total Relax Mode time spent is stored on your profile card, so you can track your mental recovery log.'
             ]
         }
     ];
