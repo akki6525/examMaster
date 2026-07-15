@@ -6,6 +6,7 @@ import {
     ArrowLeft, ArrowRight, Info, Heart, X, RotateCcw, Maximize2
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
+import { WISDOM_QUOTES } from '../data/wisdomQuotes';
 
 // Define structures of sub-modes
 type SubMode = 'zen' | 'meditation' | 'detachment' | 'comics';
@@ -61,30 +62,7 @@ const DETACHMENT_TRACKS: AudioTrack[] = [
     }
 ];
 
-// Predefined detachment posters with motivating quotes
-const DETACHMENT_POSTERS = [
-    {
-        title: "Moh Maya Se Door",
-        quote: "चिंताएं उतनी ही करो कि काम हो जाए, इतनी नहीं कि जिंदगी तमाम हो जाए।",
-        author: "Kabir Das",
-        image: "/moh_maya_poster.png",
-        bgGradient: "from-amber-950 via-slate-900 to-indigo-950"
-    },
-    {
-        title: "The Ultimate Peace",
-        quote: "Desire is the root cause of all suffering. When you master your desires, you master your destiny.",
-        author: "Gautama Buddha",
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop",
-        bgGradient: "from-emerald-950 via-slate-900 to-teal-950"
-    },
-    {
-        title: "Divine Detachment",
-        quote: "Perform your duty equipoised, O Arjuna, abandoning all attachment to success or failure.",
-        author: "Bhagavad Gita",
-        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1000&auto=format&fit=crop",
-        bgGradient: "from-purple-950 via-slate-900 to-pink-950"
-    }
-];
+// Predefined detachment posters are now loaded from the wisdomQuotes.ts database module
 
 // Superhero comics array
 const HERO_COMICS = [
@@ -153,6 +131,34 @@ export default function RelaxMode() {
 
     // Detachment state
     const [detachmentIndex, setDetachmentIndex] = useState(0);
+    const [selectedAuthorFilter, setSelectedAuthorFilter] = useState<'Bhagavad Gita' | 'Kabir Das' | 'Gautama Buddha'>('Bhagavad Gita');
+    const [selectedLanguage, setSelectedLanguage] = useState<'hindi' | 'english' | 'hinglish'>('hindi');
+    const [posterSize, setPosterSize] = useState<'small' | 'large'>('large');
+    const [enable3D, setEnable3D] = useState(true);
+
+    const [rotateX, setRotateX] = useState(0);
+    const [rotateY, setRotateY] = useState(0);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!enable3D) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const x = e.clientX - rect.left - width / 2;
+        const y = e.clientY - rect.top - height / 2;
+        setRotateX(-(y / height) * 24);
+        setRotateY((x / width) * 24);
+    };
+
+    const handleMouseLeave = () => {
+        setRotateX(0);
+        setRotateY(0);
+    };
+
+    // Reset index when author filter changes
+    useEffect(() => {
+        setDetachmentIndex(0);
+    }, [selectedAuthorFilter]);
 
     // Comic book gallery states (PDF style reader)
     const [comicIndex, setComicIndex] = useState(0);
@@ -264,7 +270,7 @@ export default function RelaxMode() {
             const bufferSize = 4 * ctx.sampleRate; // 4 seconds loop
             const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
             const output = noiseBuffer.getChannelData(0);
-            
+
             let lastOut = 0.0;
             for (let i = 0; i < bufferSize; i++) {
                 const white = Math.random() * 2 - 1;
@@ -320,14 +326,14 @@ export default function RelaxMode() {
             const scheduleNextDrop = () => {
                 // If stopped in main state, exit loop
                 if (!rainIntervalRef.current) return;
-                
+
                 try {
                     const dropCtx = rainAudioCtx.current;
                     if (dropCtx && dropCtx.state !== 'suspended') {
                         // Create transient droplet oscillator
                         const osc = dropCtx.createOscillator();
                         const shapeGain = dropCtx.createGain();
-                        
+
                         osc.type = 'sine';
                         // Random high-pitched water plop sound
                         const baseFreq = 700 + Math.random() * 1100;
@@ -343,7 +349,7 @@ export default function RelaxMode() {
                         osc.start();
                         osc.stop(dropCtx.currentTime + 0.05);
                     }
-                } catch (e) {}
+                } catch (e) { }
 
                 // Schedule next droplet at random interval (40ms - 150ms) to ensure it doesn't sound mechanical
                 const nextDelay = 40 + Math.random() * 110;
@@ -367,14 +373,14 @@ export default function RelaxMode() {
 
         // Stop wind LFO
         if (rainLfoRef.current) {
-            try { rainLfoRef.current.stop(); } catch (e) {}
+            try { rainLfoRef.current.stop(); } catch (e) { }
             rainLfoRef.current.disconnect();
             rainLfoRef.current = null;
         }
 
         // Stop brown noise source loop
         if (rainSource.current) {
-            try { rainSource.current.stop(); } catch (e) {}
+            try { rainSource.current.stop(); } catch (e) { }
             rainSource.current.disconnect();
             rainSource.current = null;
         }
@@ -510,7 +516,7 @@ export default function RelaxMode() {
                 const osc = ctx.createOscillator();
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(60, ctx.currentTime); // low rumble frequency
-                
+
                 // Add a lowpass filter to make it sound like smooth rain
                 const filter = ctx.createBiquadFilter();
                 filter.type = 'lowpass';
@@ -625,7 +631,7 @@ export default function RelaxMode() {
                 clearTimeout(rainIntervalRef.current);
             }
             if (rainLfoRef.current) {
-                try { rainLfoRef.current.stop(); } catch (e) {}
+                try { rainLfoRef.current.stop(); } catch (e) { }
                 rainLfoRef.current.disconnect();
             }
             if (rainSource.current) {
@@ -680,8 +686,8 @@ export default function RelaxMode() {
                     <button
                         onClick={() => setActiveTab('zen')}
                         className={`px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${activeTab === 'zen'
-                                ? 'bg-amber-500 border-amber-400 text-slate-950 shadow-md shadow-amber-500/20 scale-103'
-                                : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
+                            ? 'bg-amber-500 border-amber-400 text-slate-950 shadow-md shadow-amber-500/20 scale-103'
+                            : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
                             }`}
                     >
                         <Volume2 className="w-4 h-4" /> Zen Frequencies
@@ -689,8 +695,8 @@ export default function RelaxMode() {
                     <button
                         onClick={() => setActiveTab('meditation')}
                         className={`px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${activeTab === 'meditation'
-                                ? 'bg-teal-500 border-teal-400 text-slate-950 shadow-md shadow-teal-500/20 scale-103'
-                                : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
+                            ? 'bg-teal-500 border-teal-400 text-slate-950 shadow-md shadow-teal-500/20 scale-103'
+                            : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
                             }`}
                     >
                         <Compass className="w-4 h-4" /> Meditation Guides
@@ -698,17 +704,17 @@ export default function RelaxMode() {
                     <button
                         onClick={() => setActiveTab('detachment')}
                         className={`px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${activeTab === 'detachment'
-                                ? 'bg-indigo-600 border-indigo-500 text-white shadow-md shadow-indigo-500/20 scale-103'
-                                : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
+                            ? 'bg-indigo-600 border-indigo-500 text-white shadow-md shadow-indigo-500/20 scale-103'
+                            : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
                             }`}
                     >
-                        <ImageIcon className="w-4 h-4" /> Moh Maya Se Door
+                        <ImageIcon className="w-4 h-4" />Bhagvad Gita/Kabir/Buddha
                     </button>
                     <button
                         onClick={() => setActiveTab('comics')}
                         className={`px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${activeTab === 'comics'
-                                ? 'bg-pink-650 border-pink-550 text-white shadow-md shadow-pink-500/20 scale-103'
-                                : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
+                            ? 'bg-pink-650 border-pink-550 text-white shadow-md shadow-pink-500/20 scale-103'
+                            : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
                             }`}
                     >
                         <BookOpen className="w-4 h-4" /> Comic Strip Slider
@@ -750,8 +756,8 @@ export default function RelaxMode() {
                                             key={track.title}
                                             onClick={() => selectTrack(track)}
                                             className={`w-full flex items-center justify-between p-4 rounded-2xl border text-left transition-all ${currentTrack.title === track.title
-                                                    ? 'bg-amber-500/10 border-amber-550/40 text-amber-400 font-bold'
-                                                    : 'bg-muted/15 border-border/40 hover:bg-muted/30 text-foreground'
+                                                ? 'bg-amber-500/10 border-amber-550/40 text-amber-400 font-bold'
+                                                : 'bg-muted/15 border-border/40 hover:bg-muted/30 text-foreground'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-4">
@@ -796,8 +802,8 @@ export default function RelaxMode() {
                                             key={track.title}
                                             onClick={() => selectTrack(track)}
                                             className={`w-full flex items-center justify-between p-4 rounded-2xl border text-left transition-all ${currentTrack.title === track.title
-                                                    ? 'bg-teal-500/10 border-teal-555/40 text-teal-400 font-bold'
-                                                    : 'bg-muted/15 border-border/40 hover:bg-muted/30 text-foreground'
+                                                ? 'bg-teal-500/10 border-teal-555/40 text-teal-400 font-bold'
+                                                : 'bg-muted/15 border-border/40 hover:bg-muted/30 text-foreground'
                                                 }`}
                                         >
                                             <div className="flex items-center gap-4">
@@ -825,46 +831,132 @@ export default function RelaxMode() {
                                 exit={{ opacity: 0 }}
                                 className="space-y-6"
                             >
-                                {/* Active Quote Poster card */}
-                                <div className={`p-6 rounded-3xl bg-gradient-to-br ${DETACHMENT_POSTERS[detachmentIndex].bgGradient} border border-white/5 shadow-2xl relative overflow-hidden transition-all duration-700 min-h-[300px] flex flex-col justify-between group/poster`}>
-                                    <div className="absolute inset-0 bg-black/40" />
-                                    {/* Image Overlay */}
-                                    <div className="absolute inset-0 opacity-20 mix-blend-overlay group-hover/poster:scale-105 transition-transform duration-[4000ms] pointer-events-none">
-                                        <img src={DETACHMENT_POSTERS[detachmentIndex].image} alt="poster" className="w-full h-full object-cover" />
-                                    </div>
-
-                                    <div className="relative z-10 flex justify-between items-start">
-                                        <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-xl text-[9px] font-black uppercase tracking-wider text-slate-205">Sutras of peace</span>
-                                        <span className="text-xs font-mono text-white/50">{detachmentIndex + 1} / {DETACHMENT_POSTERS.length}</span>
-                                    </div>
-
-                                    {/* Quote Text */}
-                                    <div className="relative z-10 text-center my-6 max-w-xl mx-auto space-y-4">
-                                        <p className="text-lg md:text-xl font-bold leading-relaxed text-white drop-shadow-md">
-                                            "{DETACHMENT_POSTERS[detachmentIndex].quote}"
-                                        </p>
-                                        <p className="text-xs font-bold text-amber-400 uppercase tracking-widest leading-none">
-                                            — {DETACHMENT_POSTERS[detachmentIndex].author}
-                                        </p>
-                                    </div>
-
-                                    {/* Footer / Controls */}
-                                    <div className="relative z-10 flex justify-between items-center transition-all">
-                                        <button
-                                            onClick={() => setDetachmentIndex(prev => prev === 0 ? DETACHMENT_POSTERS.length - 1 : prev - 1)}
-                                            className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
-                                        >
-                                            <ArrowLeft className="w-4 h-4" />
-                                        </button>
-                                        <p className="text-[10px] text-white/40 uppercase font-black tracking-wider">Reflect on this truth</p>
-                                        <button
-                                            onClick={() => setDetachmentIndex(prev => prev === DETACHMENT_POSTERS.length - 1 ? 0 : prev + 1)}
-                                            className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
-                                        >
-                                            <ArrowRight className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                {/* Category Selectors for Gita, Kabir, Buddha */}
+                                <div className="flex justify-center items-center gap-2 mb-4 bg-muted/20 p-1.5 rounded-2xl border border-border/40 w-fit mx-auto shadow-sm">
+                                    <button
+                                        onClick={() => setSelectedAuthorFilter('Bhagavad Gita')}
+                                        className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${selectedAuthorFilter === 'Bhagavad Gita' ? 'bg-amber-500 text-slate-950 font-black shadow-md' : 'text-muted-foreground hover:text-foreground'}`}
+                                    >
+                                        Bhagavad Gita 🕉️
+                                    </button>
+                                    <button
+                                        onClick={() => setSelectedAuthorFilter('Kabir Das')}
+                                        className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${selectedAuthorFilter === 'Kabir Das' ? 'bg-amber-500 text-slate-950 font-black shadow-md' : 'text-muted-foreground hover:text-foreground'}`}
+                                    >
+                                        Kabir Das ✍️
+                                    </button>
+                                    <button
+                                        onClick={() => setSelectedAuthorFilter('Gautama Buddha')}
+                                        className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${selectedAuthorFilter === 'Gautama Buddha' ? 'bg-amber-500 text-slate-950 font-black shadow-md' : 'text-muted-foreground hover:text-foreground'}`}
+                                    >
+                                        Gautama Buddha ☸️
+                                    </button>
                                 </div>
+
+                                {/* Active Quote Poster card */}
+                                {(() => {
+                                    const filteredQuotes = WISDOM_QUOTES.filter(q => q.author === selectedAuthorFilter);
+                                    if (filteredQuotes.length === 0) return null;
+                                    const activeQuote = filteredQuotes[detachmentIndex] || filteredQuotes[0];
+
+                                    let quoteText = activeQuote.hindi;
+                                    if (selectedLanguage === 'english') quoteText = activeQuote.english;
+                                    else if (selectedLanguage === 'hinglish') quoteText = activeQuote.hinglish;
+
+                                    return (
+                                        <div
+                                            onMouseMove={handleMouseMove}
+                                            onMouseLeave={handleMouseLeave}
+                                            style={enable3D ? {
+                                                transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.025)`,
+                                                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                                                transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out'
+                                            } : {
+                                                transition: 'all 0.5s ease-in-out'
+                                            }}
+                                            className={`p-6 rounded-3xl bg-gradient-to-br ${activeQuote.bg} border border-white/5 relative overflow-hidden flex flex-col justify-between group/poster mx-auto ${posterSize === 'small'
+                                                ? 'min-h-[220px] max-w-md py-4 px-5'
+                                                : 'min-h-[360px] max-w-2xl'
+                                                }`}
+                                        >
+                                            <div className="absolute inset-0 bg-black/45" />
+                                            {/* Image Overlay */}
+                                            <div className="absolute inset-0 opacity-[0.25] mix-blend-overlay group-hover/poster:scale-105 transition-transform duration-[4000ms] pointer-events-none">
+                                                <img src={activeQuote.img} alt="poster" className="w-full h-full object-cover" />
+                                            </div>
+
+                                            {/* Top Control Bar inside poster */}
+                                            <div className="relative z-10 flex justify-between items-center gap-2">
+                                                <span className="px-2 py-0.5 bg-white/10 backdrop-blur-md rounded-lg text-[9px] font-black uppercase tracking-wider text-amber-200">Sutras of peace</span>
+
+                                                <div className="flex items-center gap-2">
+                                                    {/* Language Switcher */}
+                                                    <select
+                                                        value={selectedLanguage}
+                                                        onChange={(e) => setSelectedLanguage(e.target.value as any)}
+                                                        className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-lg text-[9px] font-bold text-white px-2 py-0.5 focus:outline-none cursor-pointer transition-colors"
+                                                    >
+                                                        <option value="hindi" className="bg-slate-900 text-white font-semibold">Hindi</option>
+                                                        <option value="hinglish" className="bg-slate-900 text-white font-semibold">Hinglish</option>
+                                                        <option value="english" className="bg-slate-900 text-white font-semibold">English</option>
+                                                    </select>
+
+                                                    {/* Size Toggler */}
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setPosterSize(prev => prev === 'large' ? 'small' : 'large');
+                                                        }}
+                                                        className="p-1 px-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-lg text-[8px] font-black uppercase text-white transition-all"
+                                                    >
+                                                        {posterSize === 'large' ? 'Compact' : 'Expand'}
+                                                    </button>
+
+                                                    {/* 3D Toggler */}
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setEnable3D(prev => !prev);
+                                                        }}
+                                                        className={`p-1 px-2 ${enable3D ? 'bg-amber-500/20 border-amber-500/40 text-amber-300 font-extrabold' : 'bg-white/10 border-white/20 text-white'} hover:bg-white/20 backdrop-blur-md border rounded-lg text-[8px] uppercase transition-all`}
+                                                    >
+                                                        {enable3D ? '3D' : '2D'}
+                                                    </button>
+                                                </div>
+
+                                                <span className="text-[10px] font-mono text-white/50">{detachmentIndex + 1} / {filteredQuotes.length}</span>
+                                            </div>
+
+                                            {/* Quote Text */}
+                                            <div className="relative z-10 text-center my-6 max-w-xl mx-auto space-y-4">
+                                                <p className={`font-bold leading-relaxed text-white drop-shadow-md transition-all ${posterSize === 'small' ? 'text-xs md:text-sm' : 'text-base md:text-lg lg:text-xl'
+                                                    }`}>
+                                                    "{quoteText}"
+                                                </p>
+                                                <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest leading-none">
+                                                    — {activeQuote.author} {activeQuote.ref && `(${activeQuote.ref})`}
+                                                </p>
+                                            </div>
+
+                                            {/* Footer / Controls */}
+                                            <div className="relative z-10 flex justify-between items-center transition-all">
+                                                <button
+                                                    onClick={() => setDetachmentIndex(prev => prev === 0 ? filteredQuotes.length - 1 : prev - 1)}
+                                                    className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
+                                                >
+                                                    <ArrowLeft className="w-4 h-4" />
+                                                </button>
+                                                <p className="text-[9px] text-white/40 uppercase font-black tracking-wider">Reflect on this truth</p>
+                                                <button
+                                                    onClick={() => setDetachmentIndex(prev => prev === filteredQuotes.length - 1 ? 0 : prev + 1)}
+                                                    className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors"
+                                                >
+                                                    <ArrowRight className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    );
+                                })()}
 
                                 {/* Woodwind Ambient track selector */}
                                 <div className="p-6 rounded-3xl bg-card border border-border/80 shadow-md space-y-4">
@@ -877,8 +969,8 @@ export default function RelaxMode() {
                                                 key={track.title}
                                                 onClick={() => selectTrack(track)}
                                                 className={`p-4 rounded-2xl border text-left transition-all flex items-center justify-between ${currentTrack.title === track.title
-                                                        ? 'bg-indigo-500/10 border-indigo-500/35 text-indigo-400 font-bold'
-                                                        : 'bg-muted/10 border-border/40 hover:bg-muted/20 text-foreground'
+                                                    ? 'bg-indigo-500/10 border-indigo-500/35 text-indigo-400 font-bold'
+                                                    : 'bg-muted/10 border-border/40 hover:bg-muted/20 text-foreground'
                                                     }`}
                                             >
                                                 <div className="min-w-0 pr-2">
@@ -1001,7 +1093,7 @@ export default function RelaxMode() {
                                                     onClick={() => { setPageIndex(idx); setZoomScale(1.0); }}
                                                     className={`w-16 h-20 rounded-lg overflow-hidden border-2 transition-all relative group flex-shrink-0 ${pageIndex === idx ? 'border-pink-500 shadow-md shadow-pink-500/10' : 'border-slate-800 hover:border-slate-600'}`}
                                                 >
-                                                    <img src={page} alt={`page-${idx+1}`} className="w-full h-full object-cover" />
+                                                    <img src={page} alt={`page-${idx + 1}`} className="w-full h-full object-cover" />
                                                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                                                         <span className="text-[10px] font-mono font-black text-white">{idx + 1}</span>
                                                     </div>
@@ -1011,19 +1103,19 @@ export default function RelaxMode() {
 
                                         {/* Scrollable Center Canvas Viewport */}
                                         <div className="flex-1 bg-zinc-900 border border-transparent rounded-r-2xl overflow-auto relative p-6 flex justify-center items-center min-h-[500px]">
-                                            <div 
+                                            <div
                                                 className="transition-transform duration-200 ease-out origin-center"
                                                 style={{ transform: `scale(${zoomScale})` }}
                                             >
                                                 <div className="relative rounded-xl border-4 border-slate-950 bg-black shadow-2xl max-w-[380px] md:max-w-[420px] aspect-[3/4] overflow-hidden group">
-                                                    <img 
-                                                        src={HERO_COMICS[comicIndex].pages[pageIndex]} 
-                                                        alt="running page" 
+                                                    <img
+                                                        src={HERO_COMICS[comicIndex].pages[pageIndex]}
+                                                        alt="running page"
                                                         className="w-full h-full object-cover"
                                                     />
                                                     {/* Halftone print visual design */}
                                                     <div className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle, #000 20%, transparent 20%)', backgroundSize: '6px 6px' }} />
-                                                    
+
                                                     {/* Page Number corner index tag */}
                                                     <div className="absolute bottom-3 right-3 bg-yellow-100 border-2 border-black text-slate-950 font-mono text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded shadow-[2px_2px_0px_rgba(0,0,0,1)]">
                                                         PG {pageIndex + 1}
@@ -1077,8 +1169,8 @@ export default function RelaxMode() {
                                 <button
                                     onClick={triggerManualSynth}
                                     className={`px-3 py-1.5 rounded-xl border text-[9px] font-black uppercase tracking-wider transition-all active:scale-95 ${isSynthEnabled
-                                            ? 'bg-amber-500 border-amber-400 text-slate-950'
-                                            : 'bg-card border-border hover:bg-muted text-muted-foreground'
+                                        ? 'bg-amber-500 border-amber-400 text-slate-950'
+                                        : 'bg-card border-border hover:bg-muted text-muted-foreground'
                                         }`}
                                 >
                                     {isSynthEnabled ? 'Stop Synth' : 'Trigger Synth'}
@@ -1169,7 +1261,7 @@ export default function RelaxMode() {
                                 <span className="text-xs font-mono font-bold text-pink-400 bg-pink-400/10 px-3 py-1 rounded-lg border border-pink-400/20">
                                     PAGE {pageIndex + 1} OF {HERO_COMICS[comicIndex].pages.length}
                                 </span>
-                                
+
                                 {/* Zoom Controls */}
                                 <div className="flex items-center gap-2">
                                     <button
@@ -1199,13 +1291,13 @@ export default function RelaxMode() {
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <button 
+                                    <button
                                         onClick={handlePrevPage}
                                         className="px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs rounded-lg transition-all"
                                     >
                                         Prev
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={handleNextPage}
                                         className="px-3 py-1 bg-pink-650 hover:bg-pink-700 text-white text-xs rounded-lg transition-all"
                                     >
@@ -1216,7 +1308,7 @@ export default function RelaxMode() {
 
                             {/* Canvas Viewport */}
                             <div className="flex-1 overflow-auto flex items-center justify-center p-6 bg-zinc-900/50">
-                                <div 
+                                <div
                                     className="transition-transform duration-200 ease-out origin-center"
                                     style={{ transform: `scale(${zoomScale})` }}
                                 >
