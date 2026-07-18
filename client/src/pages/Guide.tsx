@@ -193,8 +193,8 @@ export default function Guide() {
         },
         {
             id: 'flashcards',
-            title: 'Infographics & Slide Revision',
-            description: 'Revise from visual diagrams, river maps, timelines, and slide decks using interactive tools.',
+            title: 'Infographics, Slides & Study Notes',
+            description: 'Revise from visual diagrams, slide decks, and comprehensive Uttarakhand History & Geography notes with interactive readers.',
             icon: Layers,
             color: 'text-pink-500 dark:text-pink-400',
             bgColor: 'bg-pink-500/10',
@@ -211,14 +211,19 @@ export default function Guide() {
                     highlight: 'Allows reading small font keys, labels, and legends clearly.'
                 },
                 {
-                    title: 'Mark Cards as Learned or Need Revision',
-                    details: 'Keep track of your revision progress by marking cards: click "Mark Learned" for content you have mastered, or "Need Revision" to flag complex diagrams. You can then use the status drop-down filter to see only your revision list, unlearned list, or learned cards.',
-                    highlight: 'Use left and right arrow keys on your keyboard to quickly flip through cards.'
+                    title: 'Uttarakhand Study Notes Reader',
+                    details: 'Switch to the "Notes" tab inside Flashcards to access comprehensive structured notes on Uttarakhand Geography and History. Select your subject from the dropdown to experience custom-themed interactive dashboards (earthy-blue rivers for Geography, and warm golden emblems for History).',
+                    highlight: 'Features direct topic completion tracking, contextual emojis, and custom bulleted layouts.'
+                },
+                {
+                    title: 'Mark Cards & Topics as Completed',
+                    details: 'Mark visual slides as Learned/Needs Revision, and mark whole text-based study topics as "Completed". The application automatically updates the completion counter at the top of the header.',
+                    highlight: 'Keyboard navigation (Left/Right Arrows) works seamlessly to browse topics/cards.'
                 }
             ],
             tips: [
                 'Simply put images in new folders inside the "assets" folder, they will show up in the dropdown menu right away.',
-                'Use the zoom-scroll tool on your trackpad or mouse whenever reading intricate graphics.'
+                'Use the Notes section to quickly check off completed Uttarakhand chapters before taking mock exams.'
             ]
         },
         {
