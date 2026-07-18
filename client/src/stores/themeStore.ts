@@ -7,9 +7,10 @@ type Theme =
     | 'system'
     | 'cyberpunk'
     | 'dracula'
-    | 'nord'
+    | 'peach'
+    | 'mint'
+    | 'solarizedlight'
     | 'onedark'
-    | 'monokai'
     | 'solarized'
     | 'tokyonight'
     | 'rose';

@@ -96,27 +96,73 @@
     --ring: 326 100% 74%;
   }
 
-  /* Arctic Nord */
-  .theme-nord {
-    --background: 220 16% 16%;
-    --foreground: 218 22% 93%;
-    --card: 220 16% 22%;
-    --card-foreground: 218 22% 93%;
-    --popover: 220 16% 16%;
-    --popover-foreground: 218 22% 93%;
-    --primary: 193 43% 67%;
-    --primary-foreground: 220 16% 16%;
-    --secondary: 213 32% 52%;
-    --secondary-foreground: 218 22% 93%;
-    --muted: 220 16% 28%;
-    --muted-foreground: 218 10% 70%;
-    --accent: 193 43% 30%;
-    --accent-foreground: 218 22% 93%;
-    --destructive: 354 42% 56%;
-    --destructive-foreground: 218 22% 93%;
-    --border: 213 30% 30%;
-    --input: 213 30% 28%;
-    --ring: 193 43% 67%;
+  /* Peach Warmth (Light) */
+  .theme-peach {
+    --background: 30 100% 98%;
+    --foreground: 20 40% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 40% 12%;
+    --popover: 30 100% 98%;
+    --popover-foreground: 20 40% 12%;
+    --primary: 24 95% 58%;
+    --primary-foreground: 30 100% 98%;
+    --secondary: 36 90% 94%;
+    --secondary-foreground: 20 40% 12%;
+    --muted: 36 30% 94%;
+    --muted-foreground: 20 20% 50%;
+    --accent: 36 90% 70%;
+    --accent-foreground: 20 40% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 24 30% 90%;
+    --input: 24 30% 90%;
+    --ring: 24 95% 58%;
+  }
+
+  /* Forest Mint (Light) */
+  .theme-mint {
+    --background: 153 38% 97%;
+    --foreground: 165 45% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 165 45% 10%;
+    --popover: 153 38% 97%;
+    --popover-foreground: 165 45% 10%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 153 38% 97%;
+    --secondary: 150 40% 92%;
+    --secondary-foreground: 165 45% 10%;
+    --muted: 150 30% 92%;
+    --muted-foreground: 165 20% 45%;
+    --accent: 150 40% 85%;
+    --accent-foreground: 165 45% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 160 20% 90%;
+    --input: 160 20% 90%;
+    --ring: 160 84% 39%;
+  }
+
+  /* Solarized Light (Light) */
+  .theme-solarizedlight {
+    --background: 44 35% 97%;
+    --foreground: 201 24% 20%;
+    --card: 44 30% 99%;
+    --card-foreground: 201 24% 20%;
+    --popover: 44 35% 97%;
+    --popover-foreground: 201 24% 20%;
+    --primary: 175 59% 40%;
+    --primary-foreground: 44 35% 97%;
+    --secondary: 44 20% 90%;
+    --secondary-foreground: 201 24% 20%;
+    --muted: 44 20% 90%;
+    --muted-foreground: 201 10% 45%;
+    --accent: 205 60% 45%;
+    --accent-foreground: 44 35% 97%;
+    --destructive: 18 80% 45%;
+    --destructive-foreground: 44 35% 97%;
+    --border: 44 20% 88%;
+    --input: 44 20% 88%;
+    --ring: 175 59% 40%;
   }
 
   /* One Dark Pro */
@@ -140,29 +186,6 @@
     --border: 220 12% 24%;
     --input: 220 12% 22%;
     --ring: 207 82% 57%;
-  }
-
-  /* Monokai Retro */
-  .theme-monokai {
-    --background: 70 8% 15%;
-    --foreground: 60 30% 96%;
-    --card: 70 8% 19%;
-    --card-foreground: 60 30% 96%;
-    --popover: 70 8% 15%;
-    --popover-foreground: 60 30% 96%;
-    --primary: 82 85% 55%;
-    --primary-foreground: 70 8% 15%;
-    --secondary: 40 90% 60%;
-    --secondary-foreground: 70 8% 15%;
-    --muted: 70 8% 25%;
-    --muted-foreground: 60 20% 70%;
-    --accent: 190 90% 60%;
-    --accent-foreground: 70 8% 15%;
-    --destructive: 350 90% 60%;
-    --destructive-foreground: 60 30% 96%;
-    --border: 70 8% 28%;
-    --input: 70 8% 25%;
-    --ring: 82 85% 55%;
   }
 
   /* Solarized Ocean */

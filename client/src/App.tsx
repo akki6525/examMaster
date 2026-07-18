@@ -32,13 +32,16 @@ function App() {
       'dark', 
       'theme-cyberpunk', 
       'theme-dracula', 
-      'theme-nord', 
+      'theme-peach', 
+      'theme-mint', 
+      'theme-solarizedlight', 
       'theme-onedark', 
-      'theme-monokai', 
       'theme-solarized', 
       'theme-tokyonight', 
       'theme-rose'
     );
+
+    const isLightCustomTheme = ['peach', 'mint', 'solarizedlight'].includes(theme);
 
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -47,10 +50,13 @@ function App() {
       root.classList.add(systemTheme);
     } else if (theme === 'light') {
       root.classList.add('light');
+    } else if (isLightCustomTheme) {
+      // Light custom themes are light-mode base
+      root.classList.add('light', `theme-${theme}`);
     } else if (theme === 'dark') {
       root.classList.add('dark');
     } else {
-      // Custom premium themes are dark-mode base
+      // Dark custom themes are dark-mode base
       root.classList.add('dark', `theme-${theme}`);
     }
   }, [theme]);
