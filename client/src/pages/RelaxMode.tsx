@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Sparkles, Compass, Play, Pause, Volume2, SkipForward,
     Image as ImageIcon, BookOpen, VolumeX, RefreshCw, ZoomIn, ZoomOut,
-    ArrowLeft, ArrowRight, Info, Heart, X, RotateCcw, Maximize2
+    ArrowLeft, ArrowRight, Info, Heart, X, RotateCcw, Maximize2, Minimize2
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
 import { WISDOM_QUOTES } from '../data/wisdomQuotes';
 
 // Define structures of sub-modes
-type SubMode = 'zen' | 'meditation' | 'detachment' | 'comics';
+type SubMode = 'zen' | 'meditation' | 'detachment' | 'songs';
 
 interface AudioTrack {
     title: string;
@@ -64,40 +64,33 @@ const DETACHMENT_TRACKS: AudioTrack[] = [
 
 // Predefined detachment posters are now loaded from the wisdomQuotes.ts database module
 
-// Superhero comics array
-const HERO_COMICS = [
+// Devotional songs playlist array
+const DEVOTIONAL_TRACKS = [
     {
         id: 1,
-        title: "Nagraj & Dhruva: Forest Reflection",
-        issue: "Raj Comics Special #1",
-        description: "Classic vintage Indian superheroes find an ancient calming frequency deep inside the Forest of Detachment.",
-        pages: [
-            "/forest_reflection_comic.png",
-            "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop"
-        ]
+        title: "Shiv Kailash Live (Sitar for Mental Health)",
+        artist: "Rishab Rikhiram Sharma",
+        videoId: "Onb6_bRJ0Bw",
+        start: 149,
+        thumbnail: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=400&auto=format&fit=crop", // Elegant Indian Mandala/Sitar motif
+        tags: ["Shiv Kailash", "Sitar Recital", "Calm Focus"]
     },
     {
         id: 2,
-        title: "Chacha Chaudhary: Brain Power",
-        issue: "Diamond Comics Classic #150",
-        description: "Chacha Chaudhary solves student exam stress using mental computation and option elimination.",
-        pages: [
-            "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop"
-        ]
+        title: "Achyutam Keshavam Instrumental (Peaceful Flute)",
+        artist: "Traditional Healing Sounds",
+        videoId: "6OUwJZ0CMwk",
+        start: 11,
+        thumbnail: "https://images.unsplash.com/photo-1544790181-36ba9657ddd0?q=80&w=400&auto=format&fit=crop", // Golden sunrise temple
+        tags: ["Krishna", "Flute Recital", "Inner Peace"]
     },
     {
         id: 3,
-        title: "Devi: Guarding the Mind",
-        issue: "Graphic India Edition #04",
-        description: "The divine guardian warrior Devi enters the subconscious to eliminate exam anxiety.",
-        pages: [
-            "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?q=80&w=1000&auto=format&fit=crop",
-            "/forest_reflection_comic.png"
-        ]
+        title: "Ganga Ke Kinare (Divine Soothing Raga)",
+        artist: "Ganga Recital",
+        videoId: "ocRzt5NvI7A",
+        thumbnail: "https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?q=80&w=400&auto=format&fit=crop", // Meditative morning lotus
+        tags: ["Ganga", "Guitar", "Divine Calm"]
     }
 ];
 
@@ -112,6 +105,7 @@ export default function RelaxMode() {
     const [isMuted, setIsMuted] = useState(false);
     const [duration, setDuration] = useState('0:00');
     const [currentTimeText, setCurrentTimeText] = useState('0:00');
+    const [zenTime, setZenTime] = useState(0);
 
     // Synth / Frequency Audio state
     const [isSynthEnabled, setIsSynthEnabled] = useState(false);
@@ -160,17 +154,225 @@ export default function RelaxMode() {
         setDetachmentIndex(0);
     }, [selectedAuthorFilter]);
 
-    // Comic book gallery states (PDF style reader)
-    const [comicIndex, setComicIndex] = useState(0);
-    const [pageIndex, setPageIndex] = useState(0);
-    const [zoomScale, setZoomScale] = useState(1.0);
-    const [isComicZoomed, setIsComicZoomed] = useState(false);
+    // Devotional song playlist active index state
+    const [activeSongIndex, setActiveSongIndex] = useState(0);
+    const [isYtPlaying, setIsYtPlaying] = useState(false);
+    const [ytCurrentTime, setYtCurrentTime] = useState(0);
+    const [ytDuration, setYtDuration] = useState(0);
+    const [isYtFullscreen, setIsYtFullscreen] = useState(false);
+    const [controlsVisible, setControlsVisible] = useState(true);
+    const [ytVolume, setYtVolume] = useState(70);
+    const [isYtMuted, setIsYtMuted] = useState(false);
 
-    // Reset page index and zoom when comic changes
+    const playerRef = useRef<any>(null);
+    const ytContainerRef = useRef<HTMLDivElement>(null);
+    const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    // Sync YT Volume
     useEffect(() => {
-        setPageIndex(0);
-        setZoomScale(1.0);
-    }, [comicIndex]);
+        if (playerRef.current && typeof playerRef.current.setVolume === 'function') {
+            if (isYtMuted) {
+                playerRef.current.mute();
+            } else {
+                playerRef.current.unMute();
+                playerRef.current.setVolume(ytVolume);
+            }
+        }
+    }, [ytVolume, isYtMuted]);
+
+    // Injection of YouTube Iframe Player API script
+    useEffect(() => {
+        if (!(window as any).YT) {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+        }
+    }, []);
+
+    // Helper to format track seconds into MM:SS
+    const formatTimeSeconds = (secs: number) => {
+        if (isNaN(secs)) return "0:00";
+        const minutes = Math.floor(secs / 60);
+        const remainingSeconds = Math.floor(secs % 60);
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    };
+
+    // Auto-hide controls when playing and mouse is idle
+    const resetControlsTimeout = () => {
+        setControlsVisible(true);
+        if (controlsTimeoutRef.current) {
+            clearTimeout(controlsTimeoutRef.current);
+        }
+        if (isYtPlaying) {
+            controlsTimeoutRef.current = setTimeout(() => {
+                setControlsVisible(false);
+            }, 3000);
+        }
+    };
+
+    useEffect(() => {
+        resetControlsTimeout();
+        return () => {
+            if (controlsTimeoutRef.current) {
+                clearTimeout(controlsTimeoutRef.current);
+            }
+        };
+    }, [isYtPlaying]);
+
+    // Handle play/pause toggling
+    const handleTogglePlay = () => {
+        if (playerRef.current) {
+            if (isYtPlaying) {
+                playerRef.current.pauseVideo();
+            } else {
+                playerRef.current.playVideo();
+            }
+        }
+    };
+
+    // Handle progress bar drag/change
+    const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = parseFloat(e.target.value);
+        if (playerRef.current) {
+            playerRef.current.seekTo(val, true);
+            setYtCurrentTime(val);
+        }
+    };
+
+    // Toggle container custom fullscreen
+    const toggleYtFullscreen = () => {
+        const el = ytContainerRef.current;
+        if (!el) return;
+
+        if (!document.fullscreenElement) {
+            el.requestFullscreen().then(() => {
+                setIsYtFullscreen(true);
+            }).catch((err) => {
+                console.error("Fullscreen request failed:", err);
+            });
+        } else {
+            document.exitFullscreen().then(() => {
+                setIsYtFullscreen(false);
+            }).catch((err) => {
+                console.error("Exit fullscreen failed:", err);
+            });
+        }
+    };
+
+    // Track fullscreen status changes via listener
+    useEffect(() => {
+        const onFullscreenChange = () => {
+            setIsYtFullscreen(document.fullscreenElement === ytContainerRef.current);
+        };
+        document.addEventListener('fullscreenchange', onFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+        return () => {
+            document.removeEventListener('fullscreenchange', onFullscreenChange);
+            document.removeEventListener('webkitfullscreenchange', onFullscreenChange);
+        };
+    }, []);
+
+    // Create / Rebuild YouTube player instance
+    useEffect(() => {
+        if (activeTab !== 'songs') {
+            if (playerRef.current) {
+                try {
+                    playerRef.current.destroy();
+                } catch (e) { }
+                playerRef.current = null;
+                setIsYtPlaying(false);
+            }
+            return;
+        }
+
+        let playerInstance: any = null;
+        let isMounted = true;
+
+        const loadPlayer = () => {
+            if (!(window as any).YT || !(window as any).YT.Player) {
+                setTimeout(loadPlayer, 100);
+                return;
+            }
+
+            // Cleanup previous instantiations if any
+            if (playerRef.current) {
+                try {
+                    playerRef.current.destroy();
+                } catch (e) { }
+                playerRef.current = null;
+            }
+
+            const activeTrack = DEVOTIONAL_TRACKS[activeSongIndex];
+            playerInstance = new (window as any).YT.Player("devotional-yt-iframe", {
+                videoId: activeTrack.videoId,
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    disablekb: 1,
+                    fs: 0,
+                    rel: 0,
+                    modestbranding: 1,
+                    start: activeTrack.start || 0,
+                    origin: window.location.origin
+                },
+                events: {
+                    onReady: (event: any) => {
+                        if (!isMounted) return;
+                        playerRef.current = event.target;
+                        setYtDuration(event.target.getDuration() || 0);
+                        if (typeof event.target.setVolume === 'function') {
+                            if (isYtMuted) {
+                                event.target.mute();
+                            } else {
+                                event.target.unMute();
+                                event.target.setVolume(ytVolume);
+                            }
+                        }
+                    },
+                    onStateChange: (event: any) => {
+                        if (!isMounted) return;
+                        const state = event.data;
+                        if (state === 1) { // playing
+                            setIsYtPlaying(true);
+                            // Auto stop other ambient audios in RelaxMode
+                            setIsPlaying(false);
+                            stopSynth();
+                            stopBackgroundRain();
+                        } else if (state === 2 || state === 0) { // paused or ended
+                            setIsYtPlaying(false);
+                        }
+                    }
+                }
+            });
+        };
+
+        loadPlayer();
+
+        // Progress polling loop
+        const progressTimer = setInterval(() => {
+            if (playerRef.current && typeof playerRef.current.getCurrentTime === 'function') {
+                const currentSecs = playerRef.current.getCurrentTime() || 0;
+                setYtCurrentTime(currentSecs);
+                const totalDur = playerRef.current.getDuration() || 0;
+                if (totalDur && totalDur !== ytDuration) {
+                    setYtDuration(totalDur);
+                }
+            }
+        }, 333);
+
+        return () => {
+            isMounted = false;
+            clearInterval(progressTimer);
+            if (playerInstance) {
+                try {
+                    playerInstance.destroy();
+                } catch (e) { }
+            }
+            playerRef.current = null;
+            setIsYtPlaying(false);
+        };
+    }, [activeTab, activeSongIndex]);
 
     // Track relax mode time spent dynamically in localStorage based on active username
     useEffect(() => {
@@ -199,6 +401,42 @@ export default function RelaxMode() {
         // Stop audio when changing track type
         stopAllAudio();
     }, [activeTab]);
+
+    // Simulated progress for silent Zen Frequencies
+    useEffect(() => {
+        if (activeTab !== 'zen' || !isPlaying) return;
+
+        const totalSecs = (() => {
+            const parts = currentTrack.duration.split(':');
+            if (parts.length === 2) {
+                return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+            }
+            return 300;
+        })();
+
+        // Set duration initially
+        setDuration(currentTrack.duration);
+
+        const interval = setInterval(() => {
+            setZenTime(prev => {
+                const nextSecs = prev + 1;
+                if (nextSecs >= totalSecs) {
+                    setIsPlaying(false);
+                    setProgress(0);
+                    setCurrentTimeText('0:00');
+                    return 0;
+                }
+                const pct = (nextSecs / totalSecs) * 100;
+                setProgress(pct);
+                const mins = Math.floor(nextSecs / 60);
+                const secs = nextSecs % 60;
+                setCurrentTimeText(`${mins}:${secs.toString().padStart(2, '0')}`);
+                return nextSecs;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [isPlaying, activeTab, currentTrack]);
 
     // Handle standard audio callbacks
     useEffect(() => {
@@ -396,6 +634,7 @@ export default function RelaxMode() {
         setIsPlaying(false);
         setProgress(0);
         setCurrentTimeText('0:00');
+        setZenTime(0);
 
         // Stop standard HTML Audio
         if (audioRef.current) {
@@ -409,41 +648,7 @@ export default function RelaxMode() {
         stopBackgroundRain();
     };
 
-    const handleZoomIn = () => {
-        setZoomScale(prev => Math.min(2.5, prev + 0.2));
-    };
 
-    const handleZoomOut = () => {
-        setZoomScale(prev => Math.max(0.5, prev - 0.2));
-    };
-
-    const handleResetZoom = () => {
-        setZoomScale(1.0);
-    };
-
-    const handleNextPage = () => {
-        const currentComic = HERO_COMICS[comicIndex];
-        if (pageIndex < currentComic.pages.length - 1) {
-            setPageIndex(prev => prev + 1);
-        } else {
-            // Next comic
-            setComicIndex(prev => (prev === HERO_COMICS.length - 1 ? 0 : prev + 1));
-            setPageIndex(0);
-        }
-        setZoomScale(1.0);
-    };
-
-    const handlePrevPage = () => {
-        if (pageIndex > 0) {
-            setPageIndex(prev => prev - 1);
-        } else {
-            // Go to previous comic
-            const prevComicIdx = comicIndex === 0 ? HERO_COMICS.length - 1 : comicIndex - 1;
-            setComicIndex(prevComicIdx);
-            setPageIndex(HERO_COMICS[prevComicIdx].pages.length - 1);
-        }
-        setZoomScale(1.0);
-    };
 
     // Synthesizer focus frequencies generator using Web Audio API
     const startSynth = (track: AudioTrack) => {
@@ -461,7 +666,9 @@ export default function RelaxMode() {
             stopSynth();
 
             const gainNode = ctx.createGain();
-            gainNode.connect(ctx.destination);
+            if (activeTab !== 'zen') {
+                gainNode.connect(ctx.destination);
+            }
             gainNode.gain.setValueAtTime(isMuted ? 0 : volume * 0.15, ctx.currentTime); // Soft volume
             synthGain.current = gainNode;
 
@@ -568,21 +775,26 @@ export default function RelaxMode() {
                 startBackgroundRain();
             }
 
-            // Try playing standard audio element first
-            if (audioRef.current) {
-                audioRef.current.src = currentTrack.url;
+            if (activeTab !== 'zen') {
+                // Try playing standard audio element first
+                if (audioRef.current) {
+                    audioRef.current.src = currentTrack.url;
 
-                // Fallback: If network is offline, synthesize the backing sounds
-                audioRef.current.play().catch(err => {
-                    console.log("Audio URL load blocked or offline, starting synthesized frequency: ", err);
-                    startSynth(currentTrack);
-                });
+                    // Fallback: If network is offline, synthesize the backing sounds
+                    audioRef.current.play().catch(err => {
+                        console.log("Audio URL load blocked or offline, starting synthesized frequency: ", err);
+                        startSynth(currentTrack);
+                    });
+                }
+            } else {
+                setIsSynthEnabled(true);
             }
         }
     };
 
     const selectTrack = (track: AudioTrack) => {
         stopAllAudio();
+        setZenTime(0);
         setCurrentTrack(track);
 
         // Auto play on select
@@ -590,14 +802,19 @@ export default function RelaxMode() {
         if (track.title === 'Detached Forest Reflection') {
             startBackgroundRain();
         }
-        setTimeout(() => {
-            if (audioRef.current) {
-                audioRef.current.src = track.url;
-                audioRef.current.play().catch(e => {
-                    startSynth(track);
-                });
-            }
-        }, 100);
+
+        if (activeTab !== 'zen') {
+            setTimeout(() => {
+                if (audioRef.current) {
+                    audioRef.current.src = track.url;
+                    audioRef.current.play().catch(e => {
+                        startSynth(track);
+                    });
+                }
+            }, 100);
+        } else {
+            setIsSynthEnabled(true);
+        }
     };
 
     const triggerManualSynth = () => {
@@ -652,14 +869,14 @@ export default function RelaxMode() {
         zen: 'from-amber-600/10 via-zinc-900 to-zinc-950 border-amber-500/25',
         meditation: 'from-teal-605/10 via-slate-900 to-zinc-950 border-teal-500/25',
         detachment: 'from-indigo-600/10 via-slate-900 to-zinc-950 border-indigo-500/25',
-        comics: 'from-pink-600/10 via-slate-900 to-zinc-950 border-pink-500/25'
+        songs: 'from-amber-600/10 via-slate-900 to-zinc-950 border-amber-500/25'
     };
 
     const activeCoverGlow = {
         zen: 'shadow-amber-500/10 border-amber-500/20',
         meditation: 'shadow-teal-500/10 border-teal-500/20',
         detachment: 'shadow-indigo-500/10 border-indigo-500/20',
-        comics: 'shadow-pink-500/10 border-pink-500/20'
+        songs: 'shadow-amber-500/10 border-amber-500/20'
     };
 
     return (
@@ -711,13 +928,13 @@ export default function RelaxMode() {
                         <ImageIcon className="w-4 h-4" />Bhagvad Gita/Kabir/Buddha
                     </button>
                     <button
-                        onClick={() => setActiveTab('comics')}
-                        className={`px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${activeTab === 'comics'
-                            ? 'bg-pink-650 border-pink-550 text-white shadow-md shadow-pink-500/20 scale-103'
+                        onClick={() => setActiveTab('songs')}
+                        className={`px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${activeTab === 'songs'
+                            ? 'bg-amber-600 border-amber-500 text-white shadow-md shadow-amber-500/25 scale-103'
                             : 'bg-card border-border hover:bg-muted text-muted-foreground hover:text-foreground'
                             }`}
                     >
-                        <BookOpen className="w-4 h-4" /> Comic Strip Slider
+                        <Volume2 className="w-4 h-4" /> Devotional Songs
                     </button>
                 </div>
             </div>
@@ -726,7 +943,7 @@ export default function RelaxMode() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                 {/* Mode Layout Renderer */}
-                <div className="lg:col-span-2 space-y-6">
+                <div className={`${activeTab === 'songs' ? 'lg:col-span-3' : 'lg:col-span-2'} space-y-6`}>
                     <AnimatePresence mode="wait">
 
                         {/* ZEN MODE */}
@@ -999,138 +1216,179 @@ export default function RelaxMode() {
                             </motion.div>
                         )}
 
-                        {/* COMICS CAROUSEL */}
-                        {activeTab === 'comics' && (
+                        {/* DEVOTIONAL SONGS BOARD */}
+                        {activeTab === 'songs' && (
                             <motion.div
-                                key="comics"
+                                key="songs"
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
                                 className="space-y-6"
                             >
-                                <div className="p-6 rounded-3xl bg-card border border-border/80 shadow-md space-y-6">
+                                <div className="p-4 md:p-6 rounded-3xl bg-card border border-border/80 shadow-md space-y-6">
                                     <div className="flex justify-between items-center">
                                         <div>
                                             <h3 className="text-lg font-bold flex items-center gap-2">
-                                                <BookOpen className="text-pink-500 w-5 h-5" />
-                                                Comic PDF Reader
+                                                <Volume2 className="text-amber-500 w-5 h-5 animate-pulse" />
+                                                Devotional Songs & Ragas
                                             </h3>
-                                            <p className="text-xs text-muted-foreground mt-0.5">{HERO_COMICS[comicIndex].title} - {HERO_COMICS[comicIndex].issue}</p>
+                                            <p className="text-xs text-muted-foreground mt-0.5">Soothing traditional musical recitals curated for mental clarity and peaceful study breaks (YouTube Controls Disabled)</p>
                                         </div>
                                     </div>
 
-                                    {/* PDF Viewer toolbar */}
-                                    <div className="flex flex-wrap gap-4 items-center justify-between bg-zinc-900/90 dark:bg-black/40 border border-slate-700/50 p-3 rounded-2xl">
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-xs font-mono font-bold text-pink-400 bg-pink-400/10 px-3 py-1.5 rounded-lg border border-pink-400/20">
-                                                PAGE {pageIndex + 1} OF {HERO_COMICS[comicIndex].pages.length}
-                                            </span>
-                                            <div className="h-6 w-[1px] bg-slate-700/50" />
-                                            {/* Selector of comics dropdown */}
-                                            <select
-                                                value={comicIndex}
-                                                onChange={(e) => setComicIndex(Number(e.target.value))}
-                                                className="bg-transparent border border-slate-755 text-xs font-sans font-black uppercase text-foreground px-2 py-1 rounded-lg focus:outline-none focus:ring-1 focus:ring-pink-500"
-                                            >
-                                                {HERO_COMICS.map((c, i) => (
-                                                    <option key={c.id} value={i} className="dark:bg-zinc-950 font-black">
-                                                        {c.title}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
+                                    {/* Custom YouTube Player Wrapper */}
+                                    <div className="flex flex-col gap-6">
+                                        <div
+                                            ref={ytContainerRef}
+                                            className={`bg-zinc-950 border border-border shadow-lg shadow-amber-500/5 transition-all duration-300 relative ${isYtFullscreen
+                                                    ? 'fixed inset-0 z-[2800] w-screen h-screen flex flex-col items-center justify-center bg-black border-none'
+                                                    : 'w-full aspect-video rounded-3xl overflow-hidden'
+                                                }`}
+                                            onMouseMove={resetControlsTimeout}
+                                            onTouchStart={resetControlsTimeout}
+                                        >
+                                            {/* YouTube player element inside iframe */}
+                                            <div className={`pointer-events-none select-none ${isYtFullscreen ? 'w-full h-full max-w-5xl aspect-video relative' : 'absolute inset-0 w-full h-full'}`}>
+                                                <div id="devotional-yt-iframe" className="w-full h-full" />
+                                            </div>
 
-                                        {/* Zoom Controls */}
-                                        <div className="flex items-center gap-2.5">
-                                            <button
-                                                onClick={handleZoomOut}
-                                                className="p-2 bg-muted/65 hover:bg-muted text-foreground border border-border/80 rounded-xl transition-all active:scale-95"
-                                                title="Zoom Out"
-                                            >
-                                                <ZoomOut className="w-4 h-4" />
-                                            </button>
-                                            <span className="text-xs font-mono font-bold w-12 text-center text-foreground">
-                                                {Math.round(zoomScale * 100)}%
-                                            </span>
-                                            <button
-                                                onClick={handleZoomIn}
-                                                className="p-2 bg-muted/65 hover:bg-muted text-foreground border border-border/80 rounded-xl transition-all active:scale-95"
-                                                title="Zoom In"
-                                            >
-                                                <ZoomIn className="w-4 h-4" />
-                                            </button>
-                                            <button
-                                                onClick={handleResetZoom}
-                                                className="p-2 bg-muted/65 hover:bg-muted text-foreground border border-border/80 rounded-xl transition-all active:scale-95"
-                                                title="Reset Zoom"
-                                            >
-                                                <RotateCcw className="w-3.5 h-3.5" />
-                                            </button>
-                                        </div>
-
-                                        {/* Navigation page controls */}
-                                        <div className="flex items-center gap-2">
-                                            <button
-                                                onClick={handlePrevPage}
-                                                className="px-3.5 py-2 bg-muted/65 hover:bg-muted border border-border/80 rounded-xl text-xs font-bold transition-all"
-                                            >
-                                                Prev Page
-                                            </button>
-                                            <button
-                                                onClick={handleNextPage}
-                                                className="px-3.5 py-2 bg-pink-650 hover:bg-pink-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-pink-500/10"
-                                            >
-                                                Next Page
-                                            </button>
-                                            <button
-                                                onClick={() => setIsComicZoomed(true)}
-                                                className="p-2 bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/20 rounded-xl transition-all active:scale-95"
-                                                title="Expand View"
-                                            >
-                                                <Maximize2 className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    {/* Main PDF Content Board */}
-                                    <div className="flex flex-col md:flex-row gap-4 min-h-[550px] border border-border/60 rounded-2xl overflow-hidden bg-zinc-950/20">
-                                        {/* Thumbnails Sidebar */}
-                                        <div className="w-full md:w-24 bg-zinc-900/50 p-3 flex md:flex-col gap-3 justify-center md:justify-start items-center border-b md:border-b-0 md:border-r border-border/60 overflow-y-auto">
-                                            {HERO_COMICS[comicIndex].pages.map((page, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => { setPageIndex(idx); setZoomScale(1.0); }}
-                                                    className={`w-16 h-20 rounded-lg overflow-hidden border-2 transition-all relative group flex-shrink-0 ${pageIndex === idx ? 'border-pink-500 shadow-md shadow-pink-500/10' : 'border-slate-800 hover:border-slate-600'}`}
-                                                >
-                                                    <img src={page} alt={`page-${idx + 1}`} className="w-full h-full object-cover" />
-                                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                                        <span className="text-[10px] font-mono font-black text-white">{idx + 1}</span>
-                                                    </div>
-                                                </button>
-                                            ))}
-                                        </div>
-
-                                        {/* Scrollable Center Canvas Viewport */}
-                                        <div className="flex-1 bg-zinc-900 border border-transparent rounded-r-2xl overflow-auto relative p-6 flex justify-center items-center min-h-[500px]">
+                                            {/* Video click-to-pause/play overlay */}
                                             <div
-                                                className="transition-transform duration-200 ease-out origin-center"
-                                                style={{ transform: `scale(${zoomScale})` }}
-                                            >
-                                                <div className="relative rounded-xl border-4 border-slate-950 bg-black shadow-2xl max-w-[380px] md:max-w-[420px] aspect-[3/4] overflow-hidden group">
-                                                    <img
-                                                        src={HERO_COMICS[comicIndex].pages[pageIndex]}
-                                                        alt="running page"
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                    {/* Halftone print visual design */}
-                                                    <div className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle, #000 20%, transparent 20%)', backgroundSize: '6px 6px' }} />
+                                                className="absolute inset-0 z-10 cursor-pointer"
+                                                onClick={handleTogglePlay}
+                                            />
 
-                                                    {/* Page Number corner index tag */}
-                                                    <div className="absolute bottom-3 right-3 bg-yellow-100 border-2 border-black text-slate-950 font-mono text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                                                        PG {pageIndex + 1}
+                                            {/* Floating Play Indicator overlay (when paused) */}
+                                            <div className={`absolute z-20 pointer-events-none transition-all duration-300 p-4 rounded-full bg-black/60 border border-white/20 text-white ${isYtPlaying ? 'scale-75 opacity-0 bg-transparent' : 'scale-100 opacity-100'}`}>
+                                                <Play className="w-8 h-8 text-amber-500 fill-current ml-1" />
+                                            </div>
+
+                                            {/* Custom Controls HUD overlay */}
+                                            <div
+                                                className={`absolute bottom-0 inset-x-0 z-30 p-4 bg-gradient-to-t from-black/95 via-black/60 to-transparent transition-opacity duration-300 flex flex-col gap-3 ${controlsVisible || !isYtPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                                            >
+                                                {/* Progress Seeker Bar */}
+                                                <div className="flex items-center gap-3">
+                                                    <span className="text-[10px] font-mono text-white/90 select-none">
+                                                        {formatTimeSeconds(ytCurrentTime)}
+                                                    </span>
+                                                    <input
+                                                        type="range"
+                                                        min="0"
+                                                        max={ytDuration || 100}
+                                                        step="1"
+                                                        value={ytCurrentTime}
+                                                        onChange={handleSeekChange}
+                                                        className="flex-1 h-1.5 rounded-lg appearance-none cursor-pointer bg-white/25 accent-amber-500 hover:h-2 transition-all relative z-40"
+                                                        onClick={(e) => e.stopPropagation()} // Prevent triggering play/pause
+                                                    />
+                                                    <span className="text-[10px] font-mono text-white/90 select-none">
+                                                        {formatTimeSeconds(ytDuration)}
+                                                    </span>
+                                                </div>
+
+                                                {/* Action icons bar */}
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-4 relative z-45">
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleTogglePlay();
+                                                            }}
+                                                            className="p-1.5 hover:bg-white/10 rounded-lg text-white transition-colors"
+                                                            type="button"
+                                                        >
+                                                            {isYtPlaying ? <Pause className="w-5 h-5 text-amber-400 fill-current" /> : <Play className="w-5 h-5 text-amber-400 fill-current" />}
+                                                        </button>
+
+                                                        {/* Subtitle / text info */}
+                                                        <div className="pr-4 select-none">
+                                                            <p className="text-xs font-black text-white truncate max-w-[160px] md:max-w-xs">{DEVOTIONAL_TRACKS[activeSongIndex].title}</p>
+                                                            <p className="text-[9px] text-white/60 truncate">{DEVOTIONAL_TRACKS[activeSongIndex].artist}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex items-center gap-3 relative z-45">
+                                                        {/* Volume controls inside YT Player */}
+                                                        <div className="flex items-center gap-2 mr-2">
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setIsYtMuted(prev => !prev);
+                                                                }}
+                                                                className="p-1.5 hover:bg-white/10 rounded-lg text-white transition-colors"
+                                                                type="button"
+                                                                title={isYtMuted ? "Unmute" : "Mute"}
+                                                            >
+                                                                {isYtMuted || ytVolume === 0 ? (
+                                                                    <VolumeX className="w-4 h-4 text-rose-455 fill-none" />
+                                                                ) : (
+                                                                    <Volume2 className="w-4 h-4 text-amber-500 fill-none" />
+                                                                )}
+                                                            </button>
+                                                            <input
+                                                                type="range"
+                                                                min="0"
+                                                                max="100"
+                                                                value={isYtMuted ? 0 : ytVolume}
+                                                                onChange={(e) => {
+                                                                    const val = parseInt(e.target.value);
+                                                                    setYtVolume(val);
+                                                                    if (val > 0) setIsYtMuted(false);
+                                                                }}
+                                                                className="w-16 md:w-20 h-1 bg-white/20 accent-amber-550 rounded-lg appearance-none cursor-pointer hover:h-1.5 transition-all text-amber-500"
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            />
+                                                        </div>
+
+                                                        {/* Fullscreen control */}
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                toggleYtFullscreen();
+                                                            }}
+                                                            className="p-1.5 hover:bg-white/10 rounded-lg text-white transition-colors"
+                                                            type="button"
+                                                        >
+                                                            {isYtFullscreen ? <Minimize2 className="w-4 h-4 text-emerald-400" /> : <Maximize2 className="w-4 h-4 text-amber-400" />}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        {/* Songs Playlist Grid */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                            {DEVOTIONAL_TRACKS.map((song, i) => (
+                                                <button
+                                                    key={song.id}
+                                                    onClick={() => setActiveSongIndex(i)}
+                                                    className={`p-4 text-left rounded-2xl border transition-all duration-300 flex gap-4 ${activeSongIndex === i
+                                                        ? 'bg-amber-500/10 border-amber-500/40 shadow-sm'
+                                                        : 'bg-zinc-950/20 border-border/85 hover:bg-zinc-950/40 hover:border-slate-700/60'
+                                                        }`}
+                                                >
+                                                    <div className="w-16 h-16 rounded-xl overflow-hidden relative flex-shrink-0 bg-zinc-900 border border-border/50">
+                                                        <img src={song.thumbnail} alt={song.title} className="w-full h-full object-cover" />
+                                                        <div className="absolute inset-0 bg-black/35 flex items-center justify-center">
+                                                            <Play className={`w-5 h-5 text-white ${activeSongIndex === i ? 'animate-pulse text-amber-400' : ''}`} />
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+                                                        <div>
+                                                            <h4 className="text-sm font-bold truncate text-foreground">{song.title}</h4>
+                                                            <p className="text-xs text-muted-foreground truncate">{song.artist}</p>
+                                                        </div>
+                                                        <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                                                            {song.tags.map((tag, tIdx) => (
+                                                                <span key={tIdx} className="text-[9px] font-mono px-2 py-0.5 rounded bg-foreground/5 text-muted-foreground border border-border/40">
+                                                                    {tag}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -1140,198 +1398,116 @@ export default function RelaxMode() {
                 </div>
 
                 {/* SHARED RIGHT SIDE: ACTIVE AUDIO DECK & FREQUENCY MIXER */}
-                <div className="lg:col-span-1 space-y-6">
+                {activeTab !== 'songs' && (
+                    <div className="lg:col-span-1 space-y-6">
 
-                    {/* Audio controller deck */}
-                    <div className={`p-6 rounded-3xl bg-card border ${isPlaying ? activeCoverGlow[activeTab] : 'border-border/80'} shadow-xl space-y-6 transition-all duration-500`}>
-                        <div className="text-center font-black uppercase text-[10px] text-muted-foreground tracking-widest border-b border-border/40 pb-3">
-                            Now Channeling
-                        </div>
+                        {/* Audio controller deck */}
+                        <div className={`p-6 rounded-3xl bg-card border ${isPlaying ? activeCoverGlow[activeTab] : 'border-border/80'} shadow-xl space-y-6 transition-all duration-500`}>
+                            <div className="text-center font-black uppercase text-[10px] text-muted-foreground tracking-widest border-b border-border/40 pb-3">
+                                Now Channeling
+                            </div>
 
-                        {/* Disc Spinning illustration */}
-                        <div className="flex justify-center my-2">
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse pointer-events-none" />
-                                <div className={`w-28 h-28 rounded-full border-4 border-slate-800/80 bg-zinc-950 flex items-center justify-center shadow-2xl relative overflow-hidden group ${isPlaying ? 'animate-spin' : ''
-                                    }`} style={{ animationDuration: '8s' }}>
-                                    <div className="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center z-10 shadow-inner">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-                                    </div>
-                                    <div className="absolute top-0 right-0 w-full h-full opacity-35 bg-gradient-to-tr from-primary via-transparent to-primary-foreground pointer-events-none" />
+                                                    {/* Catchy animated audio waves replacing the spinning disc */}
+                            <div className="flex items-end justify-center gap-1.5 h-28 w-28 mx-auto relative select-none my-2">
+                                {/* Glow backdrops */}
+                                <div className="absolute inset-0 bg-primary/10 rounded-full blur-2xl animate-pulse pointer-events-none" />
+                                
+                                {/* Active visualizer bars */}
+                                {[...Array(9)].map((_, i) => {
+                                    const heights = [
+                                        [20, 60, 30, 90, 45, 20],
+                                        [30, 90, 40, 70, 50, 30],
+                                        [15, 45, 25, 80, 35, 15],
+                                        [40, 80, 50, 95, 60, 40],
+                                        [25, 70, 35, 85, 45, 25],
+                                        [35, 90, 40, 75, 45, 35],
+                                        [20, 50, 30, 80, 40, 20],
+                                        [45, 95, 55, 85, 60, 45],
+                                        [15, 60, 25, 75, 35, 15]
+                                    ][i % 9];
+                                    
+                                    const delay = i * 0.08;
+                                    const colorClass = i % 2 === 0 ? "from-amber-400 to-amber-500" : "from-amber-500 to-amber-600";
+                                    
+                                    return (
+                                        <motion.div
+                                            key={i}
+                                            className={`w-2 rounded-full bg-gradient-to-t ${colorClass} shadow-[0_0_10px_rgba(245,158,11,0.2)]`}
+                                            animate={{
+                                                height: (isPlaying || isYtPlaying) ? heights : 8
+                                            }}
+                                            transition={{
+                                                duration: 1.0,
+                                                repeat: Infinity,
+                                                repeatType: "reverse",
+                                                ease: "easeInOut",
+                                                delay: delay
+                                            }}
+                                        />
+                                    );
+                                })}
+                            </div>
+
+    {/* Track specifications */}
+                            <div className="text-center space-y-1.5">
+                                <h4 className="font-bold text-base truncate px-2">{currentTrack.title}</h4>
+                                <p className="text-xs text-muted-foreground px-2 line-clamp-2 min-h-[2rem] leading-normal">{currentTrack.description}</p>
+                            </div>
+
+                            {/* Seek bar */}
+                            <div className="space-y-1.5">
+                                <div className="w-full h-1 bg-muted rounded-full overflow-hidden relative">
+                                    <div className="h-full bg-primary rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+                                </div>
+                                <div className="flex justify-between items-center text-[10px] text-muted-foreground font-mono">
+                                    <span>{currentTimeText}</span>
+                                    <span>{(isSynthEnabled && activeTab !== 'zen') ? '∞' : duration}</span>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Track specifications */}
-                        <div className="text-center space-y-1.5">
-                            <h4 className="font-bold text-base truncate px-2">{currentTrack.title}</h4>
-                            <p className="text-xs text-muted-foreground px-2 line-clamp-2 min-h-[2rem] leading-normal">{currentTrack.description}</p>
-                        </div>
-
-                        {/* Custom Synth generator status option */}
-                        {activeTab === 'zen' && currentTrack.synthType && (
-                            <div className="bg-primary/5 rounded-2xl border border-primary/20 p-3.5 flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-amber-400 to-primary animate-ping" />
-                                    <span className="text-[10px] font-black text-primary uppercase tracking-wider">Offline Synth Ready</span>
-                                </div>
+                            {/* Controls bar */}
+                            <div className="flex justify-center items-center gap-6">
                                 <button
-                                    onClick={triggerManualSynth}
-                                    className={`px-3 py-1.5 rounded-xl border text-[9px] font-black uppercase tracking-wider transition-all active:scale-95 ${isSynthEnabled
-                                        ? 'bg-amber-500 border-amber-400 text-slate-950'
-                                        : 'bg-card border-border hover:bg-muted text-muted-foreground'
-                                        }`}
+                                    onClick={stopAllAudio}
+                                    className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground border border-transparent hover:border-border"
+                                    title="Reset Track"
                                 >
-                                    {isSynthEnabled ? 'Stop Synth' : 'Trigger Synth'}
+                                    <RefreshCw className="w-4 h-4" />
+                                </button>
+                                <button
+                                    onClick={togglePlay}
+                                    className="w-14 h-14 rounded-full gradient-primary hover:shadow-lg hover:shadow-primary/20 flex items-center justify-center text-white transition-all active:scale-95 shadow-md"
+                                >
+                                    {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current translate-x-0.5" />}
+                                </button>
+                                <button
+                                    onClick={() => setIsMuted(!isMuted)}
+                                    className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground border border-transparent hover:border-border"
+                                >
+                                    {isMuted ? <VolumeX className="w-4 h-4 text-red-500" /> : <Volume2 className="w-4 h-4" />}
                                 </button>
                             </div>
-                        )}
 
-                        {/* Seek bar */}
-                        <div className="space-y-1.5">
-                            <div className="w-full h-1 bg-muted rounded-full overflow-hidden relative">
-                                <div className="h-full bg-primary rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+                            {/* Volume bar */}
+                            <div className="flex items-center gap-3 bg-muted/20 p-3 rounded-2xl border border-border/40">
+                                <Volume2 className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.05"
+                                    value={volume}
+                                    onChange={(e) => setVolume(parseFloat(e.target.value))}
+                                    className="w-full h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                                />
                             </div>
-                            <div className="flex justify-between items-center text-[10px] text-muted-foreground font-mono">
-                                <span>{currentTimeText}</span>
-                                <span>{isSynthEnabled ? '∞' : duration}</span>
-                            </div>
-                        </div>
-
-                        {/* Controls bar */}
-                        <div className="flex justify-center items-center gap-6">
-                            <button
-                                onClick={stopAllAudio}
-                                className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground border border-transparent hover:border-border"
-                                title="Reset Track"
-                            >
-                                <RefreshCw className="w-4 h-4" />
-                            </button>
-                            <button
-                                onClick={togglePlay}
-                                className="w-14 h-14 rounded-full gradient-primary hover:shadow-lg hover:shadow-primary/20 flex items-center justify-center text-white transition-all active:scale-95 shadow-md"
-                            >
-                                {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current translate-x-0.5" />}
-                            </button>
-                            <button
-                                onClick={() => setIsMuted(!isMuted)}
-                                className="p-3 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground border border-transparent hover:border-border"
-                            >
-                                {isMuted ? <VolumeX className="w-4 h-4 text-red-500" /> : <Volume2 className="w-4 h-4" />}
-                            </button>
-                        </div>
-
-                        {/* Volume bar */}
-                        <div className="flex items-center gap-3 bg-muted/20 p-3 rounded-2xl border border-border/40">
-                            <Volume2 className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                            <input
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.05"
-                                value={volume}
-                                onChange={(e) => setVolume(parseFloat(e.target.value))}
-                                className="w-full h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
-                            />
                         </div>
                     </div>
-                </div>
+                )}
 
             </div>
 
-            {/* COMIC ZOOM LIGHTBOX VIEW */}
-            <AnimatePresence>
-                {isComicZoomed && (
-                    <div className="fixed inset-0 z-[2800] flex items-center justify-center p-4">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsComicZoomed(false)}
-                            className="absolute inset-0 bg-black/95 backdrop-blur-md"
-                        />
 
-                        <button
-                            onClick={() => setIsComicZoomed(false)}
-                            className="absolute top-6 right-6 p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/10 z-[2850]"
-                        >
-                            <X className="w-5 h-5" />
-                        </button>
-
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                            className="relative w-[90vw] h-[85vh] bg-zinc-950 border border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col justify-between"
-                        >
-                            {/* Toolbar */}
-                            <div className="bg-black/60 border-b border-white/10 p-4 flex justify-between items-center backdrop-blur-md">
-                                <span className="text-xs font-mono font-bold text-pink-400 bg-pink-400/10 px-3 py-1 rounded-lg border border-pink-400/20">
-                                    PAGE {pageIndex + 1} OF {HERO_COMICS[comicIndex].pages.length}
-                                </span>
-
-                                {/* Zoom Controls */}
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        onClick={handleZoomOut}
-                                        className="p-1.5 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-transform active:scale-95 animate-none"
-                                        title="Zoom Out"
-                                    >
-                                        <ZoomOut className="w-4 h-4" />
-                                    </button>
-                                    <span className="text-xs font-mono text-white/80 w-12 text-center">
-                                        {Math.round(zoomScale * 100)}%
-                                    </span>
-                                    <button
-                                        onClick={handleZoomIn}
-                                        className="p-1.5 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-transform active:scale-95 animate-none"
-                                        title="Zoom In"
-                                    >
-                                        <ZoomIn className="w-4 h-4" />
-                                    </button>
-                                    <button
-                                        onClick={handleResetZoom}
-                                        className="p-1.5 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-transform active:scale-95 animate-none"
-                                        title="Reset Zoom"
-                                    >
-                                        <RotateCcw className="w-3.5 h-3.5" />
-                                    </button>
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        onClick={handlePrevPage}
-                                        className="px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs rounded-lg transition-all"
-                                    >
-                                        Prev
-                                    </button>
-                                    <button
-                                        onClick={handleNextPage}
-                                        className="px-3 py-1 bg-pink-650 hover:bg-pink-700 text-white text-xs rounded-lg transition-all"
-                                    >
-                                        Next
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Canvas Viewport */}
-                            <div className="flex-1 overflow-auto flex items-center justify-center p-6 bg-zinc-900/50">
-                                <div
-                                    className="transition-transform duration-200 ease-out origin-center"
-                                    style={{ transform: `scale(${zoomScale})` }}
-                                >
-                                    <img
-                                        src={HERO_COMICS[comicIndex].pages[pageIndex]}
-                                        alt="comic-full"
-                                        className="max-h-[60vh] object-contain rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] border-4 border-black"
-                                    />
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                )}
-            </AnimatePresence>
         </div>
     );
 }

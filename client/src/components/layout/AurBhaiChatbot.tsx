@@ -104,7 +104,7 @@ export default function AurBhaiChatbot() {
             if (query.includes("relax") || query.includes("meditat") || query.includes("zen") || query.includes("peace") || query.includes("flute") || query.includes("music")) {
                 return {
                     sender: 'bot',
-                    text: "Bhai, dimag ko shaant karne, guided Yoga Nidra, flute music sun-ne ya superhero comics padhne ke liye 'Relax Mode' open karein. Kya vahan chalein?",
+                    text: "Bhai, dimag ko shaant karne, guided Yoga Nidra, flute music sun-ne ya devotional songs ke liye 'Relax Mode' open karein. Kya vahan chalein?",
                     choices: [{ label: "Relax Mode", path: "/relax-mode" }]
                 };
             }

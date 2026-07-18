@@ -249,16 +249,16 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                             </AnimatePresence>
 
                             {/* Profile Hero */}
-                            <div className="flex-shrink-0 flex flex-col items-center text-center p-6 border border-slate-200/80 dark:border-white/10 rounded-[2.5rem] bg-gradient-to-br from-indigo-50/60 via-slate-100/70 to-purple-50/50 dark:from-indigo-950/40 dark:via-slate-900/50 dark:to-purple-950/30 mb-8 relative overflow-hidden group shadow-lg shadow-indigo-950/5 dark:shadow-indigo-950/20">
+                            <div className="flex-shrink-0 flex flex-col items-center text-center p-4 border border-slate-200/80 dark:border-white/10 rounded-3xl bg-gradient-to-br from-indigo-50/60 via-slate-100/70 to-purple-50/50 dark:from-indigo-950/40 dark:via-slate-900/50 dark:to-purple-950/30 mb-5 relative overflow-hidden group shadow-md shadow-indigo-950/5 dark:shadow-indigo-950/20">
                                 {/* Ambient glow light inside card */}
                                 <div className="absolute -top-12 -left-12 w-32 h-32 bg-indigo-500/20 dark:bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
                                 <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-fuchsia-500/20 dark:bg-fuchsia-500/10 rounded-full blur-2xl pointer-events-none" />
                                 
-                                <div className="absolute top-0 right-0 p-4 opacity-10 dark:opacity-10 group-hover:rotate-12 transition-transform duration-500">
-                                    <Rocket className="w-16 h-16 text-primary animate-pulse" />
+                                <div className="absolute top-0 right-0 p-3 opacity-10 dark:opacity-10 group-hover:rotate-12 transition-transform duration-500">
+                                    <Rocket className="w-12 h-12 text-primary animate-pulse" />
                                 </div>
                                 <div 
-                                    className="relative mb-4 group/avatar cursor-pointer" 
+                                    className="relative mb-2.5 group/avatar cursor-pointer" 
                                     onClick={() => {
                                         if (avatar) {
                                             setShowLightbox(true);
@@ -267,47 +267,47 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                         }
                                     }}
                                 >
-                                    <div className="w-20 h-20 rounded-[1.758rem] bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center shadow-xl ring-4 ring-indigo-100 dark:ring-indigo-950/40 border border-white/30 dark:border-white/20 group-hover/avatar:scale-105 transition-all duration-300 overflow-hidden relative">
+                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center shadow-xl ring-4 ring-indigo-100 dark:ring-indigo-950/40 border border-white/30 dark:border-white/20 group-hover/avatar:scale-105 transition-all duration-300 overflow-hidden relative">
                                         {avatar ? (
                                             <img src={avatar} alt="Avatar" className="w-full h-full object-cover" />
                                         ) : (
-                                            <User className="w-8 h-8 text-white" />
+                                            <User className="w-6 h-6 text-white" />
                                         )}
                                         {/* Hover Upload Overlay */}
                                         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-200 text-center">
                                             {avatar ? (
                                                 <>
-                                                    <Eye className="w-5 h-5 text-white mb-0.5" />
+                                                    <Eye className="w-4 h-4 text-white mb-0.5" />
                                                     <span className="text-[7px] font-black uppercase text-white/90 tracking-wider">View Photo</span>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <Camera className="w-5 h-5 text-white mb-0.5" />
+                                                    <Camera className="w-4 h-4 text-white mb-0.5" />
                                                     <span className="text-[7px] font-black uppercase text-white/90 tracking-wider">Add Photo</span>
                                                 </>
                                             )}
                                         </div>
                                     </div>
-                                    <div className="absolute -bottom-1.5 -right-1.5 px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 text-[8px] font-black uppercase shadow-[0_4px_12px_rgba(245,158,11,0.3)] tracking-wider border border-white/15 pointer-events-none">Pro</div>
+                                    <div className="absolute -bottom-0.5 -right-0.5 px-2 py-0.5 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 text-[7px] font-black uppercase shadow-[0_4px_12px_rgba(245,158,11,0.3)] tracking-wider border border-white/15 pointer-events-none">Pro</div>
                                 </div>
-                                <h3 className="text-2xl font-black text-foreground tracking-tight">{user?.username}</h3>
-                                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1 flex items-center gap-1.5">
+                                <h3 className="text-[1.2rem] font-black text-foreground tracking-tight">{user?.username}</h3>
+                                 <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5 flex items-center gap-1.5">
                                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                                      Official Aspirant
                                  </p>
                                  {/* Session tracking field implicit */}
                                 
                                 {avatar ? (
-                                    <div className="flex items-center gap-2 mt-3 relative z-10">
+                                    <div className="flex items-center gap-1.5 mt-2.5 relative z-10">
                                         <button 
                                             type="button"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 document.getElementById('avatar-upload')?.click();
                                             }} 
-                                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-white hover:bg-slate-50 dark:bg-white/5 dark:hover:bg-white/10 rounded-full border border-slate-200/80 dark:border-white/10 text-[9px] font-extrabold uppercase text-primary tracking-wider transition-all hover:scale-103 active:scale-97"
+                                            className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white hover:bg-slate-50 dark:bg-white/5 dark:hover:bg-white/10 rounded-full border border-slate-200/80 dark:border-white/10 text-[8px] font-extrabold uppercase text-primary tracking-wider transition-all hover:scale-103 active:scale-97"
                                         >
-                                            <Camera className="w-3.5 h-3.5" /> Edit Photo
+                                            <Camera className="w-3 h-3" /> Edit Photo
                                         </button>
                                         <button 
                                             type="button"
@@ -316,7 +316,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                                 setAvatar(undefined);
                                                 updateProfile({ avatar: undefined });
                                             }} 
-                                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/10 hover:bg-red-500/15 rounded-full border border-red-200/30 dark:border-red-500/20 text-[9px] font-extrabold uppercase text-red-500 dark:text-red-400 tracking-wider transition-all hover:scale-103 active:scale-97"
+                                            className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-red-500/10 hover:bg-red-500/15 rounded-full border border-red-200/30 dark:border-red-500/20 text-[8px] font-extrabold uppercase text-red-500 dark:text-red-400 tracking-wider transition-all hover:scale-103 active:scale-97"
                                         >
                                             Remove
                                         </button>
@@ -328,9 +328,9 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                             e.stopPropagation();
                                             document.getElementById('avatar-upload')?.click();
                                         }} 
-                                        className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-white hover:bg-slate-50 dark:bg-white/5 dark:hover:bg-white/10 rounded-full border border-slate-200/80 dark:border-white/10 text-[9px] font-extrabold uppercase text-primary tracking-wider transition-all hover:scale-103 active:scale-97"
+                                        className="mt-2.5 inline-flex items-center gap-1 px-2.5 py-0.5 bg-white hover:bg-slate-50 dark:bg-white/5 dark:hover:bg-white/10 rounded-full border border-slate-200/80 dark:border-white/10 text-[8px] font-extrabold uppercase text-primary tracking-wider transition-all hover:scale-103 active:scale-97"
                                     >
-                                        <Camera className="w-3.5 h-3.5" /> Add Photo
+                                        <Camera className="w-3 h-3" /> Add Photo
                                     </button>
                                 )}
 
@@ -343,41 +343,41 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                 />
 
                                  {/* Micro stat numbers */}
-                                 <div className="w-full grid grid-cols-3 gap-2 mt-6 pt-5 border-t border-slate-200/80 dark:border-white/5">
+                                 <div className="w-full grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-200/80 dark:border-white/5">
                                      <div className="text-center">
-                                         <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Goals</p>
-                                         <p className="text-sm font-black text-foreground">{dreamProgress.total}</p>
+                                         <p className="text-[8px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Goals</p>
+                                         <p className="text-xs font-black text-foreground">{dreamProgress.total}</p>
                                      </div>
                                      <div className="text-center border-x border-slate-200/80 dark:border-white/5 px-2">
-                                         <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Achieved</p>
-                                         <p className="text-sm font-black text-emerald-500 dark:text-emerald-400">{dreamProgress.achieved}</p>
+                                         <p className="text-[8px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Achieved</p>
+                                         <p className="text-xs font-black text-emerald-500 dark:text-emerald-400">{dreamProgress.achieved}</p>
                                      </div>
                                      <div className="text-center">
-                                         <p className="text-[9px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Avg Progress</p>
-                                         <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">{dreamProgress.avg}%</p>
+                                         <p className="text-[8px] font-bold uppercase text-muted-foreground tracking-wider mb-0.5">Avg Progress</p>
+                                         <p className="text-xs font-black text-indigo-600 dark:text-indigo-400">{dreamProgress.avg}%</p>
                                      </div>
                                  </div>
 
                                  {/* Live Session & Relax Mode Stats */}
                                  {user && (
-                                     <div className="w-full grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200/80 dark:border-white/5">
-                                         <div className="flex flex-col items-center p-3 rounded-2xl bg-white/40 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 shadow-inner">
-                                             <div className="flex items-center gap-1.5 mb-1 text-violet-600 dark:text-violet-400 font-bold">
-                                                 <Clock className="w-3.5 h-3.5" />
-                                                 <span className="text-[9px] font-black uppercase tracking-wider">Aspirant Online</span>
+                                     <div className="w-full grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-200/80 dark:border-white/5">
+                                         <div className="flex flex-col items-center p-2 rounded-xl bg-white/40 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 shadow-inner">
+                                             <div className="flex items-center gap-1 mb-0.5 text-violet-600 dark:text-violet-400 font-bold">
+                                                 <Clock className="w-3 h-3" />
+                                                 <span className="text-[8px] font-black uppercase tracking-wider">Aspirant Online</span>
                                              </div>
-                                             <p className="text-sm font-black text-foreground">{formatSessionDuration(sessionSeconds)}</p>
-                                             <p className="text-[8px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">
+                                             <p className="text-xs font-black text-foreground">{formatSessionDuration(sessionSeconds)}</p>
+                                             <p className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">
                                                  Logged At {new Date(sessionStart).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                              </p>
                                          </div>
-                                         <div className="flex flex-col items-center p-3 rounded-2xl bg-white/40 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 shadow-inner">
-                                             <div className="flex items-center gap-1.5 mb-1 text-amber-500 font-bold">
-                                                 <Coffee className="w-3.5 h-3.5" />
-                                                 <span className="text-[9px] font-black uppercase tracking-wider">Relaxed State</span>
+                                         <div className="flex flex-col items-center p-2 rounded-xl bg-white/40 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 shadow-inner">
+                                             <div className="flex items-center gap-1 mb-0.5 text-amber-500 font-bold">
+                                                 <Coffee className="w-3 h-3" />
+                                                 <span className="text-[8px] font-black uppercase tracking-wider">Relaxed State</span>
                                              </div>
-                                             <p className="text-sm font-black text-foreground">{formatSessionDuration(relaxSeconds)}</p>
-                                             <p className="text-[8px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Total Relax Time</p>
+                                             <p className="text-xs font-black text-foreground">{formatSessionDuration(relaxSeconds)}</p>
+                                             <p className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Total Relax Time</p>
                                          </div>
                                      </div>
                                  )}

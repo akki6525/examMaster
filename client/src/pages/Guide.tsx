@@ -263,8 +263,8 @@ export default function Guide() {
         },
         {
             id: 'relax',
-            title: 'Relax Mode (Mindfulness & Comics)',
-            description: 'Unwind and recharge with authentic calming sounds, voice-guided meditations, and retro superhero comics.',
+            title: 'Relax Mode (Mindfulness & Devotional Songs)',
+            description: 'Unwind and recharge with authentic calming sounds, voice-guided meditations, and soothing devotional sitar and flute tracks.',
             icon: Sparkles,
             color: 'text-amber-500 dark:text-amber-400',
             bgColor: 'bg-amber-500/10',
@@ -276,14 +276,14 @@ export default function Guide() {
                     highlight: 'Perfect for quick, structured breaks to restore cognitive agility.'
                 },
                 {
-                    title: 'Choose Soundscapes & Guided Mediation',
-                    details: 'Listen to pure Zen Frequencies (528Hz Solfeggio, Alpha waves), Voice-Guided Meditations (authentic Yoga Nidra sessions and body scans), orPt. Pannalal Ghosh\'s peaceful Bansuri flute recitals. The "Detached Forest Reflection" track automatically layers realistic synthesized background rain.',
+                    title: 'Choose Soundscapes & Guided Meditation',
+                    details: 'Listen to pure Zen Frequencies (528Hz Solfeggio, Alpha waves), Voice-Guided Meditations (authentic Yoga Nidra sessions and body scans), or Pt. Pannalal Ghosh\'s peaceful Bansuri flute recitals. The "Detached Forest Reflection" track automatically layers realistic synthesized background rain.',
                     highlight: 'Use the Offline Trigger Synth button on Zen Frequencies if you want key soundwaves offline.'
                 },
                 {
-                    title: 'Read Vintage Indian Superhero Comics',
-                    details: 'Open the "Comics" tab to view classic hand-drawn superhero narratives (The Iron Vigilante, Cosmic Defender, or The Scholar Owl). Tap the comic covers to open a fullscreen zoom lightbox and read detailed panels designed for mental detachment.',
-                    highlight: 'Click anywhere outside the zoomed panel or tap Escape to close the overlay.'
+                    title: 'Listen to Devotional Songs & Meditative Ragas',
+                    details: 'Open the "Devotional Songs" tab to stream peaceful traditional sitar recitals and flutes, including a dedicated 2:29 curated focus start of Shiv Kailash (Live Sitar for Mental Health) by Rishab Rikhiram Sharma.',
+                    highlight: 'Listen inline directly using the premium embedded video layout.'
                 }
             ],
             tips: [
