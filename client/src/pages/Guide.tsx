@@ -96,8 +96,8 @@ export default function Guide() {
         },
         {
             id: 'questions',
-            title: 'Question Bank & Import Tools',
-            description: 'Manage your study questions, paste notes to convert them to quizzes, or upload PDFs to extract questions.',
+            title: 'Question Bank & Document Annotator',
+            description: 'Manage practice sheets, paste notes to convert to quizzes, or open uploaded PDFs with the interactive Pen/Marker tool.',
             icon: FileQuestion,
             color: 'text-emerald-500 dark:text-emerald-400',
             bgColor: 'bg-emerald-500/10',
@@ -105,29 +105,29 @@ export default function Guide() {
             steps: [
                 {
                     title: 'Search & Filter Practice Sheets',
-                    details: 'Go to the "Question Bank" page to view all questions loaded on your device. You can filter them by year, subject, difficulty, or solved status. Click on a question to see the options and correct answer explanation.',
-                    highlight: 'You can delete outdated or incorrect questions here using the trash icon.'
+                    details: 'Go to the "Question Bank" page to view all questions loaded on your device. Filter them by year, subject, difficulty, or solved status, and click on any question for detailed explanations.',
+                    highlight: 'Delete outdated or incorrect questions using the trash icon.'
+                },
+                {
+                    title: 'In-App PDF Viewer & Pen/Marker Tool',
+                    details: 'Inside the Upload / Documents page, open any uploaded PDF or document. Use the integrated Pen / Marker tool to draw, tick, underline, and practice directly on the PDF pages in real time.',
+                    highlight: 'Perfect for active practice and marking key points right on your PDF materials.'
+                },
+                {
+                    title: 'Create Quizzes from Text Notes',
+                    details: 'Paste any text, notes, or chapter paragraphs in the Upload section. The application automatically extracts and formats them into multiple-choice quizzes.',
+                    highlight: 'Ideal for converting digital notes into custom practice questions.'
                 },
                 {
                     title: 'Option Elimination Technique',
-                    details: 'Dealing with a difficult question? Hover over options and click the red cross icon ("X") next to them to physically strike it through and narrow down your choices. If you want to undo your eliminations, click the "Reset Choices" button.',
-                    highlight: 'Striking off options helps you narrow down to the correct answer, improving your educated guesses.'
-                },
-                {
-                    title: 'Create Quizzes from Text Books',
-                    details: 'Got a paragraph or mock questions from a website? Go to the "Upload" section and paste it. The application reads the text and automatically formats them into individual quizzes with multiple choices.',
-                    highlight: 'Ideal for building quick custom question lists from textbook pages.'
-                },
-                {
-                    title: 'Import Questions from PDF Files',
-                    details: 'If you have PDF files of past papers, click "Import PDF" in the More menu. Upload your PDF and the app will extract all multiple-choice questions, options, and correct answers automatically.',
-                    highlight: 'Extracted questions are directly added to your global practice bank.'
+                    details: 'Hover over options in questions and click the red "X" to strike out choices. This physically narrows down your options and tracks your elimination strategy.',
+                    highlight: 'Striking choices improves educated guessing accuracy.'
                 }
             ],
             tips: [
-                'When pasting text from books, write "Answer: A/B/C/D" clearly so the upload program matches the key accurately.',
-                'Filter by "Unsolved" in the Question Bank to find questions you have not practiced yet.',
-                'Hovering over option cards reveals the "X" button to mark or unmark exclusions instantly.'
+                'Use the Pen/Marker tool in the Document Viewer to tick correct options directly on past paper PDFs.',
+                'Filter by "Unsolved" in the Question Bank to practice fresh questions.',
+                'Write "Answer: A/B/C/D" clearly when pasting text to auto-generate answer keys accurately.'
             ]
         },
         {
@@ -193,72 +193,68 @@ export default function Guide() {
         },
         {
             id: 'flashcards',
-            title: 'Infographics, Slides & Study Notes',
-            description: 'Revise from visual diagrams, slide decks, and comprehensive Uttarakhand History & Geography notes with interactive readers.',
+            title: 'Visual Infographics & Study Notes',
+            description: 'Revise with interactive visual diagrams, zoom controls, and comprehensive Uttarakhand History & Geography notes.',
             icon: Layers,
             color: 'text-pink-500 dark:text-pink-400',
             bgColor: 'bg-pink-500/10',
             gradient: 'from-pink-605/20 to-rose-500/20 border-pink-500/30',
             steps: [
                 {
-                    title: 'Browse Visual Topics',
-                    details: 'Go to the "Flashcards" page, choose a subject, and click the Topic Dropdown. You can select specific categories (like Rivers or Climates) to load studying infographics.',
-                    highlight: 'Adding subfolders inside assets/geography/ automatically adds them to the dropdown.'
+                    title: 'Browse Visual Topic Cards',
+                    details: 'Go to the "Flashcards" page, select a subject, and use the Topic Dropdown to load studying infographics (e.g. Rivers, Climate, Historical Eras).',
+                    highlight: 'Subfolders added to assets/ reflect automatically in the dropdown.'
                 },
                 {
-                    title: 'Zoom In on Maps & Charts',
-                    details: 'If an infographic or diagram has tiny text, hover your mouse over the card and scroll your mouse wheel up to zoom in (up to 300%) or down to zoom back out.',
-                    highlight: 'Allows reading small font keys, labels, and legends clearly.'
+                    title: 'Zoom In on Maps & Diagrams',
+                    details: 'Hover your mouse over any infographic card and scroll your wheel up/down to zoom in (up to 300%) or out for clear inspection of small text and keys.',
+                    highlight: 'Helps read small legends and detailed maps effortlessly.'
                 },
                 {
                     title: 'Uttarakhand Study Notes Reader',
-                    details: 'Switch to the "Notes" tab inside Flashcards to access comprehensive structured notes on Uttarakhand Geography and History. Select your subject from the dropdown to experience custom-themed interactive dashboards (earthy-blue rivers for Geography, and warm golden emblems for History).',
-                    highlight: 'Features direct topic completion tracking, contextual emojis, and custom bulleted layouts.'
+                    details: 'Switch to the "Notes" tab inside Flashcards for structured notes on Uttarakhand Geography and History. Experience custom themed dashboards (earthy-blue rivers for Geography, warm golden emblems for History).',
+                    highlight: 'Features direct topic completion tracking, contextual emojis, and clean bulleted layouts.'
                 },
                 {
-                    title: 'Mark Cards & Topics as Completed',
-                    details: 'Mark visual slides as Learned/Needs Revision, and mark whole text-based study topics as "Completed". The application automatically updates the completion counter at the top of the header.',
-                    highlight: 'Keyboard navigation (Left/Right Arrows) works seamlessly to browse topics/cards.'
+                    title: 'Track Completion',
+                    details: 'Mark visual topic cards as Learned / Needs Revision, and check off completed Uttarakhand chapters in the Notes tab. Progress is tracked automatically at the header.',
+                    highlight: 'Use Left/Right arrow keys for keyboard navigation across flashcard topics.'
                 }
             ],
             tips: [
-                'Simply put images in new folders inside the "assets" folder, they will show up in the dropdown menu right away.',
-                'Use the Notes section to quickly check off completed Uttarakhand chapters before taking mock exams.'
+                'Use the Notes section to check off completed chapters before attempting mock tests.',
+                'Zoom in on historical timeline cards to review dates clearly.'
             ]
         },
         {
             id: 'analytics',
-            title: 'AI Diagnostic Reports',
-            description: 'Check your AI-powered performance report to find out where you need to focus next.',
+            title: 'AI Diagnostic Reports & Interactive Voice',
+            description: 'Check AI performance summaries, collapsible topic breakdowns, and interactive male voice feedback tooltips.',
             icon: Brain,
             color: 'text-cyan-500 dark:text-cyan-400',
             bgColor: 'bg-cyan-500/10',
             gradient: 'from-cyan-600/20 to-blue-500/20 border-cyan-500/30',
             steps: [
                 {
-                    title: 'Your AI Practice Report',
-                    details: 'Go to the "AI Report" page to see a personalized summary of how you are studying. The AI tracks your scores over time and estimates how much of the syllabus you have covered.',
-                    highlight: 'Includes interactive charts showing your average test scores.'
+                    title: 'Interactive Male Voice Feedback Tooltips',
+                    details: 'Hover over practice statistics cards and action buttons in the AI Report to trigger playful, context-aware male voice prompts (e.g., Ashneer Grover meme voice "Padh le bhai!", "Keep going bhai!", and double-confirmation prompt "Pakka delete kar doon bhai?").',
+                    highlight: 'Uses browser speech synthesis with deep male pitch tuning for an engaging study experience.'
                 },
                 {
-                    title: 'Check Elimination Technique Analytics',
-                    details: 'Switch to the "Elimination Analytics" tab inside the AI Report. Here you can see a breakdown of how well your option elimination choices are working, including your success rate, total attempted versus skipped questions, and accuracy metrics.',
-                    highlight: 'Data is synced automatically when you view the tab, keeping your reports fresh.'
+                    title: 'Collapsible Topics Breakdown',
+                    details: 'View subject-wise progress under the AI Report. Topic breakdowns are organized in expandable accordion sections showing topic count, accuracy percentages, and focus recommendations for your active subject.',
+                    highlight: 'Click any subject to filter topics specifically for that domain.'
                 },
                 {
-                    title: 'Find Your Strong & Weak Areas',
-                    details: 'The AI reviews your test history to build a color-coded subject heatmap. It shows which subjects you are doing great in, and which specific topics you need to work harder on to raise your score.',
-                    highlight: 'Updates automatically with every mock test you submit.'
+                    title: 'Elimination Strategy Analytics',
+                    details: 'Switch to the "Elimination Analytics" tab inside the AI Report to evaluate your option cross-out performance, including guestimate accuracy, total attempted vs skipped questions, and score margin saved.',
+                    highlight: 'Updates automatically without needing page reloads.'
                 },
-                {
-                    title: 'Daily Task Suggestions',
-                    details: 'To save you planning time, the AI lists recommended topics or questions to practice today based on your weakest performance sectors.',
-                    highlight: 'Follow these recommendations daily to raise your score fast.'
-                }
+
             ],
             tips: [
-                'Check the AI diagnostic report every weekend to plan your study schedule for the upcoming week.',
-                'Focus on practicing the recommended question suggestions first to boost your mock test scores.'
+                'Hover over practice overview cards to listen to motivating voice tooltips.',
+                'Use the collapsible History Topics Breakdown to focus on weak subject chapters first.'
             ]
         },
         {
@@ -317,11 +313,11 @@ export default function Guide() {
 
             {/* Layout Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-                
+
                 {/* Left Side Navigation (Desktop Navigation Panel) */}
                 <div className="lg:col-span-1 space-y-2.5">
                     <p className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em] ml-2 hidden lg:block">Handbook Chapters</p>
-                    
+
                     {/* Mobile Selector */}
                     <div className="lg:hidden relative">
                         <select
@@ -400,8 +396,8 @@ export default function Guide() {
                                 <h3 className="text-xs font-black uppercase text-muted-foreground tracking-[0.2em] ml-2">How It Works</h3>
                                 <div className="grid grid-cols-1 gap-4">
                                     {currentSection.steps.map((st, i) => (
-                                        <div 
-                                            key={i} 
+                                        <div
+                                            key={i}
                                             className="p-5 sm:p-6 bg-card border border-border/60 rounded-3xl space-y-3 group hover:border-primary/20 transition-all card-hover"
                                         >
                                             <div className="flex items-center gap-3">

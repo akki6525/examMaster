@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { cn } from '../../lib/utils';
+import axios from 'axios';
 
 // --- Types ---
 interface Milestone {
@@ -103,16 +104,30 @@ export default function DreamBoard() {
     const [description, setDescription] = useState("");
     const [selectedEmoji, setSelectedEmoji] = useState("🎯");
 
+    const syncGoalsToBackend = (goalsList: Dream[]) => {
+        const token = useAuthStore.getState().token;
+        if (token) {
+            axios.post('http://localhost:3001/api/auth/goals', { goals: goalsList }, {
+                headers: { Authorization: `Bearer ${token}` }
+            }).catch(() => {});
+        }
+    };
+
     useEffect(() => {
         const userId = user?.username || "guest";
         const savedDreams = localStorage.getItem(`dreams_${userId}`);
-        if (savedDreams) setDreams(JSON.parse(savedDreams));
+        if (savedDreams) {
+            const parsed = JSON.parse(savedDreams);
+            setDreams(parsed);
+            syncGoalsToBackend(parsed);
+        }
     }, [user]);
 
     const saveDreams = (updatedDreams: Dream[]) => {
         const userId = user?.username || "guest";
         localStorage.setItem(`dreams_${userId}`, JSON.stringify(updatedDreams));
         setDreams(updatedDreams);
+        syncGoalsToBackend(updatedDreams);
     };
 
     const handleOpenModal = (dream?: Dream) => {

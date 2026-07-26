@@ -16,6 +16,11 @@ export interface UserRecord {
     phone: string;
     avatar?: string;
     individual_user_logged_in_time?: number;
+    last_active_time?: number;
+    last_logout_time?: number;
+    is_online?: boolean;
+    total_logged_in_duration_ms?: number;
+    goals?: any[];
 }
 
 export interface PracticeStatsDB {

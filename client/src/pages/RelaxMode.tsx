@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    Sparkles, Compass, Play, Pause, Volume2, SkipForward,
+    Sparkles, Compass, Play, Pause, Volume2, SkipForward, SkipBack,
     Image as ImageIcon, BookOpen, VolumeX, RefreshCw, ZoomIn, ZoomOut,
     ArrowLeft, ArrowRight, Info, Heart, X, RotateCcw, Maximize2, Minimize2
 } from 'lucide-react';
@@ -72,25 +72,107 @@ const DEVOTIONAL_TRACKS = [
         artist: "Rishab Rikhiram Sharma",
         videoId: "Onb6_bRJ0Bw",
         start: 149,
-        thumbnail: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=400&auto=format&fit=crop", // Elegant Indian Mandala/Sitar motif
-        tags: ["Shiv Kailash", "Sitar Recital", "Calm Focus"]
+        thumbnail: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=400&auto=format&fit=crop",
+        tags: ["Shiv", "Sitar", "Calm Focus"]
     },
     {
         id: 2,
+        title: "Shiv Tandav Stotram (Divine Meditative Sitar & Drums)",
+        artist: "Traditional Spiritual Vibrations",
+        videoId: "Y2F89jASt6U",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400&auto=format&fit=crop",
+        tags: ["Shiv", "Sitar", "Energy"]
+    },
+    {
+        id: 3,
+        title: "Maha Mrityunjaya Mantra (108 Times Peace Chant)",
+        artist: "Shankar Sahney",
+        videoId: "73_1biulkYk",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=400&auto=format&fit=crop",
+        tags: ["Shiv", "Chant", "Inner Peace"]
+    },
+    {
+        id: 4,
+        title: "Shri Ram Siya Ram Instrumental (Flute & Sitar Meditation)",
+        artist: "Traditional Healing Sounds",
+        videoId: "p_5x6b4gX1E",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=400&auto=format&fit=crop",
+        tags: ["Ram", "Flute", "Divine"]
+    },
+    {
+        id: 5,
+        title: "Ram Aayenge Instrumental (Peaceful Meditative Flute)",
+        artist: "Divine Sacred Flute",
+        videoId: "bNfWJjQ_zN8",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400&auto=format&fit=crop",
+        tags: ["Ram", "Flute", "Calm"]
+    },
+    {
+        id: 6,
+        title: "Hanuman Chalisa Instrumental (Peaceful Flute & Veena)",
+        artist: "Traditional Sacred Recitals",
+        videoId: "AETFvQonfzc",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=400&auto=format&fit=crop",
+        tags: ["Hanuman", "Flute", "Protection"]
+    },
+    {
+        id: 7,
         title: "Achyutam Keshavam Instrumental (Peaceful Flute)",
         artist: "Traditional Healing Sounds",
         videoId: "6OUwJZ0CMwk",
         start: 11,
-        thumbnail: "https://images.unsplash.com/photo-1544790181-36ba9657ddd0?q=80&w=400&auto=format&fit=crop", // Golden sunrise temple
-        tags: ["Krishna", "Flute Recital", "Inner Peace"]
+        thumbnail: "https://images.unsplash.com/photo-1544790181-36ba9657ddd0?q=80&w=400&auto=format&fit=crop",
+        tags: ["Krishna", "Flute", "Inner Peace"]
     },
     {
-        id: 3,
+        id: 8,
+        title: "Shree Krishna Govind Hare Murari (Relaxing Flute)",
+        artist: "Sacred Flute Ensemble",
+        videoId: "g8u4q8WvO1w",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=400&auto=format&fit=crop",
+        tags: ["Krishna", "Flute", "Meditation"]
+    },
+    {
+        id: 9,
+        title: "Radhe Radhe Barsane Wali Radhe (Soothing Flute)",
+        artist: "Divine Soundscape",
+        videoId: "S8z1M53o8B0",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=400&auto=format&fit=crop",
+        tags: ["Krishna", "Flute", "Bhakti"]
+    },
+    {
+        id: 10,
         title: "Ganga Ke Kinare (Divine Soothing Raga)",
         artist: "Ganga Recital",
         videoId: "ocRzt5NvI7A",
-        thumbnail: "https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?q=80&w=400&auto=format&fit=crop", // Meditative morning lotus
-        tags: ["Ganga", "Guitar", "Divine Calm"]
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?q=80&w=400&auto=format&fit=crop",
+        tags: ["Ganga", "Sitar", "Divine Calm"]
+    },
+    {
+        id: 11,
+        title: "Raga Yaman - Evening Mindful Meditation (Sitar)",
+        artist: "Pt. Ravi Shankar",
+        videoId: "42-Xy6gH_Bw",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=400&auto=format&fit=crop",
+        tags: ["Sitar", "Raga", "Focus"]
+    },
+    {
+        id: 12,
+        title: "Gayatri Mantra 108 Times (Calming Mind Chants)",
+        artist: "Sacred Chants",
+        videoId: "gPqW65R38X0",
+        start: 0,
+        thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400&auto=format&fit=crop",
+        tags: ["Chant", "Peace", "Mindfulness"]
     }
 ];
 
@@ -156,6 +238,7 @@ export default function RelaxMode() {
 
     // Devotional song playlist active index state
     const [activeSongIndex, setActiveSongIndex] = useState(0);
+    const [songFilterTag, setSongFilterTag] = useState<string>('All');
     const [isYtPlaying, setIsYtPlaying] = useState(false);
     const [ytCurrentTime, setYtCurrentTime] = useState(0);
     const [ytDuration, setYtDuration] = useState(0);
@@ -163,6 +246,10 @@ export default function RelaxMode() {
     const [controlsVisible, setControlsVisible] = useState(true);
     const [ytVolume, setYtVolume] = useState(70);
     const [isYtMuted, setIsYtMuted] = useState(false);
+
+    const filteredDevotionalTracks = songFilterTag === 'All'
+        ? DEVOTIONAL_TRACKS
+        : DEVOTIONAL_TRACKS.filter(song => song.tags.some(t => t.toLowerCase() === songFilterTag.toLowerCase() || t.toLowerCase().includes(songFilterTag.toLowerCase())));
 
     const playerRef = useRef<any>(null);
     const ytContainerRef = useRef<HTMLDivElement>(null);
@@ -1289,7 +1376,19 @@ export default function RelaxMode() {
 
                                                 {/* Action icons bar */}
                                                 <div className="flex items-center justify-between">
-                                                    <div className="flex items-center gap-4 relative z-45">
+                                                    <div className="flex items-center gap-3 relative z-45">
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setActiveSongIndex((prev) => (prev > 0 ? prev - 1 : DEVOTIONAL_TRACKS.length - 1));
+                                                            }}
+                                                            className="p-1.5 hover:bg-white/10 rounded-lg text-white/80 hover:text-white transition-colors"
+                                                            type="button"
+                                                            title="Previous Track"
+                                                        >
+                                                            <SkipBack className="w-4 h-4" />
+                                                        </button>
+
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
@@ -1301,8 +1400,20 @@ export default function RelaxMode() {
                                                             {isYtPlaying ? <Pause className="w-5 h-5 text-amber-400 fill-current" /> : <Play className="w-5 h-5 text-amber-400 fill-current" />}
                                                         </button>
 
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setActiveSongIndex((prev) => (prev + 1) % DEVOTIONAL_TRACKS.length);
+                                                            }}
+                                                            className="p-1.5 hover:bg-white/10 rounded-lg text-white/80 hover:text-white transition-colors"
+                                                            type="button"
+                                                            title="Next Track"
+                                                        >
+                                                            <SkipForward className="w-4 h-4" />
+                                                        </button>
+
                                                         {/* Subtitle / text info */}
-                                                        <div className="pr-4 select-none">
+                                                        <div className="pr-4 select-none ml-1">
                                                             <p className="text-xs font-black text-white truncate max-w-[160px] md:max-w-xs">{DEVOTIONAL_TRACKS[activeSongIndex].title}</p>
                                                             <p className="text-[9px] text-white/60 truncate">{DEVOTIONAL_TRACKS[activeSongIndex].artist}</p>
                                                         </div>
@@ -1357,38 +1468,74 @@ export default function RelaxMode() {
                                             </div>
                                         </div>
 
-                                        {/* Songs Playlist Grid */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                            {DEVOTIONAL_TRACKS.map((song, i) => (
+                                        {/* Category Filter Pills (Shiv, Ram, Krishna, Hanuman, Sitar, Flute, Chant, etc.) */}
+                                        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+                                            {['All', 'Shiv', 'Ram', 'Krishna', 'Hanuman', 'Sitar', 'Flute', 'Raga', 'Chant'].map((tag) => (
                                                 <button
-                                                    key={song.id}
-                                                    onClick={() => setActiveSongIndex(i)}
-                                                    className={`p-4 text-left rounded-2xl border transition-all duration-300 flex gap-4 ${activeSongIndex === i
-                                                        ? 'bg-amber-500/10 border-amber-500/40 shadow-sm'
-                                                        : 'bg-zinc-950/20 border-border/85 hover:bg-zinc-950/40 hover:border-slate-700/60'
-                                                        }`}
+                                                    key={tag}
+                                                    onClick={() => setSongFilterTag(tag)}
+                                                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+                                                        songFilterTag === tag
+                                                            ? 'bg-amber-500 text-zinc-950 shadow-md shadow-amber-500/20 scale-105 font-bold'
+                                                            : 'bg-zinc-900/80 text-muted-foreground hover:bg-zinc-800 hover:text-foreground border border-border/40'
+                                                    }`}
                                                 >
-                                                    <div className="w-16 h-16 rounded-xl overflow-hidden relative flex-shrink-0 bg-zinc-900 border border-border/50">
-                                                        <img src={song.thumbnail} alt={song.title} className="w-full h-full object-cover" />
-                                                        <div className="absolute inset-0 bg-black/35 flex items-center justify-center">
-                                                            <Play className={`w-5 h-5 text-white ${activeSongIndex === i ? 'animate-pulse text-amber-400' : ''}`} />
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
-                                                        <div>
-                                                            <h4 className="text-sm font-bold truncate text-foreground">{song.title}</h4>
-                                                            <p className="text-xs text-muted-foreground truncate">{song.artist}</p>
-                                                        </div>
-                                                        <div className="flex gap-1.5 mt-1.5 flex-wrap">
-                                                            {song.tags.map((tag, tIdx) => (
-                                                                <span key={tIdx} className="text-[9px] font-mono px-2 py-0.5 rounded bg-foreground/5 text-muted-foreground border border-border/40">
-                                                                    {tag}
-                                                                </span>
-                                                            ))}
-                                                        </div>
-                                                    </div>
+                                                    #{tag}
                                                 </button>
                                             ))}
+                                        </div>
+
+                                        {/* Songs Playlist Grid */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                                            {filteredDevotionalTracks.map((song) => {
+                                                const originalIndex = DEVOTIONAL_TRACKS.findIndex(s => s.id === song.id);
+                                                const isActive = activeSongIndex === originalIndex;
+
+                                                return (
+                                                    <button
+                                                        key={song.id}
+                                                        onClick={() => setActiveSongIndex(originalIndex)}
+                                                        className={`p-3.5 text-left rounded-2xl border transition-all duration-300 flex gap-3.5 relative overflow-hidden group ${
+                                                            isActive
+                                                                ? 'bg-amber-500/10 border-amber-500/60 shadow-md shadow-amber-500/5 ring-1 ring-amber-500/30'
+                                                                : 'bg-muted/10 border-border/60 hover:bg-muted/30 hover:border-amber-500/30'
+                                                        }`}
+                                                    >
+                                                        <div className="w-14 h-14 rounded-xl overflow-hidden relative flex-shrink-0 bg-zinc-900 border border-border/50">
+                                                            <img src={song.thumbnail} alt={song.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                                            <div className={`absolute inset-0 flex items-center justify-center transition-opacity ${
+                                                                isActive ? 'bg-black/50 opacity-100' : 'bg-black/30 opacity-60 group-hover:opacity-100'
+                                                            }`}>
+                                                                <Play className={`w-5 h-5 text-white transition-all ${
+                                                                    isActive ? 'text-amber-400 fill-amber-400 scale-110 animate-pulse' : 'group-hover:scale-110'
+                                                                }`} />
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+                                                            <div>
+                                                                <h4 className={`text-xs font-bold truncate transition-colors ${
+                                                                    isActive ? 'text-amber-400' : 'text-foreground group-hover:text-amber-400'
+                                                                }`}>
+                                                                    {song.title}
+                                                                </h4>
+                                                                <p className="text-[11px] text-muted-foreground truncate">{song.artist}</p>
+                                                            </div>
+                                                            <div className="flex gap-1 mt-1.5 flex-wrap">
+                                                                {song.tags.map((tag, tIdx) => (
+                                                                    <span key={tIdx} className="text-[9px] font-medium px-2 py-0.5 rounded-md bg-foreground/5 text-muted-foreground border border-border/40">
+                                                                        #{tag}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                );
+                                            })}
+                                            {filteredDevotionalTracks.length === 0 && (
+                                                <div className="col-span-full py-8 text-center text-xs text-muted-foreground">
+                                                    No songs found for #{songFilterTag}. Select another category above.
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

@@ -164,8 +164,17 @@ router.post('/quick-practice', async (req: any, res) => {
 // Get ALL results for authenticated user (for AI report) - must be before /:id to avoid shadowing
 router.get('/results', (req: any, res) => {
     const currentUserId = req.userId || 'default-user';
+    const db = loadDB();
+    const dbUser = db.users[currentUserId];
+    const username = dbUser ? dbUser.username : '';
+
     const results = Array.from(testResults.values())
-        .filter(r => !r.userId || r.userId === currentUserId || (currentUserId === 'default-user'))
+        .filter(r => {
+            if (currentUserId === 'default-user') {
+                return !r.userId || r.userId === 'default-user';
+            }
+            return r.userId === currentUserId || (username && r.userId === username);
+        })
         .map(r => {
             const test = mockTests.get(r.testId);
             return {

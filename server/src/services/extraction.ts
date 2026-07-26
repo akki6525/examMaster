@@ -71,14 +71,16 @@ async function extractFromPDF(filePath: string, options: ExtractionOptions): Pro
         const pdf = await loadingTask.promise;
 
         let fullText = '';
+        const maxPagesToRead = Math.min(pdf.numPages, 200);
 
-        for (let i = 1; i <= pdf.numPages; i++) {
+        for (let i = 1; i <= maxPagesToRead; i++) {
             const page = await pdf.getPage(i);
             const textContent = await page.getTextContent();
             const pageText = textContent.items
                 .map((item: any) => item.str)
                 .join(' ');
             fullText += pageText + '\n\n';
+            if (fullText.length >= 400_000) break;
         }
 
         // Check if text is garbled (non-standard font encoding)

@@ -35,6 +35,8 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
 
     const [email, setEmail] = useState(user?.email || '');
     const [phone, setPhone] = useState(user?.phone || '');
+    const [emailError, setEmailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
     const [avatar, setAvatar] = useState<string | undefined>(user?.avatar);
     const [isSaving, setIsSaving] = useState(false);
     const [saved, setSaved] = useState(false);
@@ -44,6 +46,29 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
     const [relaxSeconds, setRelaxSeconds] = useState(0);
     const [sessionSeconds, setSessionSeconds] = useState(0);
     const [sessionStart, setSessionStart] = useState<number>(() => user?.individual_user_logged_in_time || Date.now());
+
+    const validateEmail = (val: string): string => {
+        if (!val || !val.trim()) {
+            return "Email address is required";
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(val.trim())) {
+            return "Invalid email format (e.g. name@example.com)";
+        }
+        return "";
+    };
+
+    const validatePhone = (val: string): string => {
+        if (!val || !val.trim()) {
+            return "Phone number is required";
+        }
+        const cleanPhone = val.replace(/[\s\-\(\)]/g, '');
+        const phoneRegex = /^(\+91|91|0)?[6-9]\d{9}$/;
+        if (!phoneRegex.test(cleanPhone)) {
+            return "Enter a valid 10-digit mobile number (e.g. 9876543210)";
+        }
+        return "";
+    };
 
     React.useEffect(() => {
         if (user?.individual_user_logged_in_time) {
@@ -75,6 +100,8 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
         // Sync local states with store
         setEmail(user?.email || '');
         setPhone(user?.phone || '');
+        setEmailError('');
+        setPhoneError('');
         setAvatar(user?.avatar);
 
         // Fetch dreams from localStorage
@@ -100,6 +127,20 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
 
         return () => clearInterval(interval);
     }, [isOpen, user]);
+
+    const handleEmailChange = (val: string) => {
+        setEmail(val);
+        if (emailError) {
+            setEmailError(validateEmail(val));
+        }
+    };
+
+    const handlePhoneChange = (val: string) => {
+        setPhone(val);
+        if (phoneError) {
+            setPhoneError(validatePhone(val));
+        }
+    };
 
     const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -144,10 +185,21 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
     };
 
     const handleSave = () => {
+        const eErr = validateEmail(email);
+        const pErr = validatePhone(phone);
+
+        setEmailError(eErr);
+        setPhoneError(pErr);
+
+        if (eErr || pErr) {
+            useToastStore.getState().show(eErr || pErr, 'error');
+            return;
+        }
+
         setIsSaving(true);
         setSaved(false);
         setTimeout(() => {
-            updateProfile({ email, phone, avatar });
+            updateProfile({ email: email.trim(), phone: phone.trim(), avatar });
             setIsSaving(false);
             setSaved(true);
             setShowToast(true);
@@ -155,7 +207,7 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                 setSaved(false);
                 setShowToast(false);
             }, 3000);
-        }, 800);
+        }, 600);
     };
 
     const handleNavigateToCorner = () => {
@@ -459,17 +511,50 @@ export default function ProfilePanel({ isOpen, onClose }: ProfilePanelProps) {
                                     <div className="space-y-1.5">
                                         <label className="text-[10px] font-black uppercase text-muted-foreground tracking-wider ml-1">Email Address</label>
                                         <div className="relative">
-                                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 text-foreground focus:border-primary/50 focus:bg-white dark:focus:bg-transparent rounded-2xl font-bold text-sm outline-none transition-all focus:ring-1 focus:ring-primary/30" />
-                                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary" />
+                                            <input 
+                                                type="email" 
+                                                value={email} 
+                                                onChange={(e) => handleEmailChange(e.target.value)} 
+                                                className={cn(
+                                                    "w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-black/20 border text-foreground rounded-2xl font-bold text-sm outline-none transition-all focus:ring-1",
+                                                    emailError 
+                                                        ? "border-red-500/80 bg-red-500/5 focus:border-red-500 focus:ring-red-500/30 text-red-500 dark:text-red-400" 
+                                                        : "border-slate-200 dark:border-white/10 focus:border-primary/50 focus:bg-white dark:focus:bg-transparent focus:ring-primary/30"
+                                                )} 
+                                                placeholder="golu@example.com"
+                                            />
+                                            <Mail className={cn("absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", emailError ? "text-red-500" : "text-primary")} />
                                         </div>
+                                        {emailError && (
+                                            <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="text-[11px] font-bold text-red-500 dark:text-red-400 flex items-center gap-1 mt-1 ml-1">
+                                                <span>⚠️</span> {emailError}
+                                            </motion.p>
+                                        )}
                                     </div>
 
                                     <div className="space-y-1.5">
                                         <label className="text-[10px] font-black uppercase text-muted-foreground tracking-wider ml-1">Phone Number</label>
                                         <div className="relative">
-                                            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 text-foreground focus:border-primary/50 focus:bg-white dark:focus:bg-transparent rounded-2xl font-bold text-sm outline-none transition-all focus:ring-1 focus:ring-primary/30" />
-                                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary" />
+                                            <input 
+                                                type="text" 
+                                                value={phone} 
+                                                onChange={(e) => handlePhoneChange(e.target.value)} 
+                                                className={cn(
+                                                    "w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-black/20 border text-foreground rounded-2xl font-bold text-sm outline-none transition-all focus:ring-1",
+                                                    phoneError 
+                                                        ? "border-red-500/80 bg-red-500/5 focus:border-red-500 focus:ring-red-500/30 text-red-500 dark:text-red-400" 
+                                                        : "border-slate-200 dark:border-white/10 focus:border-primary/50 focus:bg-white dark:focus:bg-transparent focus:ring-primary/30"
+                                                )} 
+                                                placeholder="10-digit phone number"
+                                                maxLength={15}
+                                            />
+                                            <Phone className={cn("absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", phoneError ? "text-red-500" : "text-primary")} />
                                         </div>
+                                        {phoneError && (
+                                            <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="text-[11px] font-bold text-red-500 dark:text-red-400 flex items-center gap-1 mt-1 ml-1">
+                                                <span>⚠️</span> {phoneError}
+                                            </motion.p>
+                                        )}
                                     </div>
                                 </div>
 

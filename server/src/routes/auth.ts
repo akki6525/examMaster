@@ -39,7 +39,10 @@ router.post('/register', async (req, res) => {
             email: email || `${username.toLowerCase()}@example.com`,
             phone: phone || '',
             avatar: '',
-            individual_user_logged_in_time: Date.now()
+            individual_user_logged_in_time: Date.now(),
+            last_active_time: Date.now(),
+            is_online: true,
+            total_logged_in_duration_ms: 0
         };
 
         db.users[userId] = newUser;
@@ -79,7 +82,11 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ error: 'Invalid username or password' });
         }
 
-        user.individual_user_logged_in_time = Date.now();
+        const now = Date.now();
+        user.individual_user_logged_in_time = now;
+        user.last_active_time = now;
+        user.is_online = true;
+        user.total_logged_in_duration_ms = user.total_logged_in_duration_ms || 0;
         db.users[user.id] = user;
         saveDB(db);
 
@@ -91,6 +98,24 @@ router.post('/login', async (req, res) => {
             token,
             user: userWithoutPassword
         });
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Save user goals
+router.post('/goals', authMiddleware, (req: any, res) => {
+    try {
+        const { goals } = req.body;
+        const db = loadDB();
+        const userId = req.userId;
+
+        if (userId && db.users[userId]) {
+            db.users[userId].goals = goals || [];
+            saveDB(db);
+            return res.json({ success: true, goals: db.users[userId].goals });
+        }
+        res.status(404).json({ error: 'User not found' });
     } catch (err: any) {
         res.status(500).json({ error: err.message });
     }
@@ -260,6 +285,54 @@ router.patch('/profile', authMiddleware, async (req: any, res) => {
 
         const { passwordHash: _, ...userWithoutPassword } = user;
         res.json(userWithoutPassword);
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.post('/logout', authMiddleware, async (req: any, res) => {
+    try {
+        const db = loadDB();
+        const user = db.users[req.userId];
+        if (user) {
+            const now = Date.now();
+            user.last_logout_time = now;
+            user.is_online = false;
+            const startTime = user.last_active_time || user.individual_user_logged_in_time;
+            if (startTime) {
+                const sessionDelta = Math.max(0, now - startTime);
+                user.total_logged_in_duration_ms = (user.total_logged_in_duration_ms || 0) + sessionDelta;
+            }
+            user.last_active_time = now;
+            db.users[req.userId] = user;
+            saveDB(db);
+        }
+        res.json({ success: true, message: 'Logged out successfully' });
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.post('/heartbeat', authMiddleware, async (req: any, res) => {
+    try {
+        const db = loadDB();
+        const user = db.users[req.userId];
+        if (user) {
+            const now = Date.now();
+            user.is_online = true;
+            const lastTick = user.last_active_time || user.individual_user_logged_in_time || now;
+            const diff = now - lastTick;
+            if (diff > 0 && diff < 300000) { // Max 5 mins single delta
+                user.total_logged_in_duration_ms = (user.total_logged_in_duration_ms || 0) + diff;
+            }
+            user.last_active_time = now;
+            if (!user.individual_user_logged_in_time) {
+                user.individual_user_logged_in_time = now;
+            }
+            db.users[req.userId] = user;
+            saveDB(db);
+        }
+        res.json({ success: true });
     } catch (err: any) {
         res.status(500).json({ error: err.message });
     }

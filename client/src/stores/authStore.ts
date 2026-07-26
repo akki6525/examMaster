@@ -12,6 +12,10 @@ export interface User {
     phone: string;
     avatar?: string;
     individual_user_logged_in_time?: number;
+    last_active_time?: number;
+    last_logout_time?: number;
+    is_online?: boolean;
+    total_logged_in_duration_ms?: number;
 }
 
 interface AuthState {
@@ -108,7 +112,12 @@ export const useAuthStore = create<AuthState>()(
                     };
                 }
             },
-            logout: () => {
+            logout: async () => {
+                try {
+                    await axios.post(`${API_BASE}/auth/logout`);
+                } catch {
+                    // Ignore backend logout network errors
+                }
                 delete axios.defaults.headers.common['Authorization'];
                 set({
                     user: null,

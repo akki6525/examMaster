@@ -767,38 +767,57 @@ export default function DocumentViewer({ docId, fileName, fileType, onClose }: D
                                         </div>
                                     }
                                 >
-                                    {numPages > 0 && Array.from({ length: numPages }, (_, i) => i + 1).map(pageNum => (
-                                        <div
-                                            key={pageNum}
-                                            data-page={pageNum}
-                                            ref={el => { pageRefs.current[pageNum - 1] = el; }}
-                                            className="mb-4 relative shadow-2xl"
-                                        >
-                                            <Page
-                                                pageNumber={pageNum}
-                                                scale={scale}
-                                                renderTextLayer
-                                                renderAnnotationLayer
-                                                loading={
-                                                    <div
-                                                        className="flex items-center justify-center bg-white"
-                                                        style={{ width: Math.round(595 * scale), height: Math.round(842 * scale) }}
+                                    {numPages > 0 && Array.from({ length: numPages }, (_, i) => i + 1).map(pageNum => {
+                                        const isNearVisible = Math.abs(pageNum - currentPage) <= 3;
+                                        const estimatedWidth = Math.round(595 * scale);
+                                        const estimatedHeight = Math.round(842 * scale);
+
+                                        return (
+                                            <div
+                                                key={pageNum}
+                                                data-page={pageNum}
+                                                ref={el => { pageRefs.current[pageNum - 1] = el; }}
+                                                className="mb-4 relative shadow-2xl bg-white rounded-sm overflow-hidden"
+                                                style={{ width: estimatedWidth, minHeight: estimatedHeight }}
+                                            >
+                                                {isNearVisible ? (
+                                                    <>
+                                                        <Page
+                                                            pageNumber={pageNum}
+                                                            scale={scale}
+                                                            renderTextLayer
+                                                            renderAnnotationLayer
+                                                            loading={
+                                                                <div
+                                                                    className="flex items-center justify-center bg-white"
+                                                                    style={{ width: estimatedWidth, height: estimatedHeight }}
+                                                                >
+                                                                    <Loader2 className="w-7 h-7 animate-spin text-gray-300" />
+                                                                </div>
+                                                            }
+                                                        />
+                                                        <PageCanvasOverlay
+                                                            pageNum={pageNum}
+                                                            activeTool={activeTool}
+                                                            color={activeTool === 'highlighter' ? highlighterColor : penColor}
+                                                            size={activeTool === 'highlighter' ? highlighterSize : penSize}
+                                                            strokes={annotations[pageNum] || []}
+                                                            onAddStroke={addStroke}
+                                                            onEraseStroke={eraseStroke}
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <div 
+                                                        className="flex flex-col items-center justify-center bg-white text-gray-400 font-semibold text-sm select-none"
+                                                        style={{ width: estimatedWidth, height: estimatedHeight }}
                                                     >
-                                                        <Loader2 className="w-7 h-7 animate-spin text-gray-300" />
+                                                        <Loader2 className="w-6 h-6 animate-spin mb-2 text-primary/40" />
+                                                        <span>Page {pageNum}</span>
                                                     </div>
-                                                }
-                                            />
-                                            <PageCanvasOverlay
-                                                pageNum={pageNum}
-                                                activeTool={activeTool}
-                                                color={activeTool === 'highlighter' ? highlighterColor : penColor}
-                                                size={activeTool === 'highlighter' ? highlighterSize : penSize}
-                                                strokes={annotations[pageNum] || []}
-                                                onAddStroke={addStroke}
-                                                onEraseStroke={eraseStroke}
-                                            />
-                                        </div>
-                                    ))}
+                                                )}
+                                            </div>
+                                        );
+                                    })}
                                 </Document>
                             </div>
                         )}

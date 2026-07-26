@@ -45,6 +45,7 @@ import { practiceStatsRouter } from './routes/practice-stats.js';
 import { insightsRouter } from './routes/ai-insights.js';
 import { smartTestsRouter } from './routes/smart-tests.js';
 import { authRouter } from './routes/auth.js';
+import { adminRouter } from './routes/admin.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -56,6 +57,7 @@ app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 
 // Routes
 app.use('/api/auth', authRouter);
+app.use('/api/admin', adminRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/documents', documentsRouter);
 app.use('/api/tests', testsRouter);

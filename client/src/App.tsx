@@ -15,6 +15,7 @@ import StudentCorner from './pages/StudentCorner';
 import SmartMockTests from './pages/SmartMockTests';
 import RelaxMode from './pages/RelaxMode';
 import Guide from './pages/Guide';
+import AdminPanel from './pages/AdminPanel';
 
 import { useAuthStore } from './stores/authStore';
 import Login from './components/auth/Login';
@@ -86,6 +87,7 @@ function App() {
           <Route path="/smart-mock-tests" element={<SmartMockTests />} />
           <Route path="/relax-mode" element={<RelaxMode />} />
           <Route path="/guide" element={<Guide />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </Layout>
       <ToastContainer />

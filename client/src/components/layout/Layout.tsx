@@ -17,7 +17,8 @@ import {
     Brain,
     ChevronDown,
     User,
-    HelpCircle
+    HelpCircle,
+    Shield
 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useThemeStore } from '../../stores/themeStore';
@@ -51,6 +52,7 @@ export default function Layout({ children }: LayoutProps) {
     const location = useLocation();
     const { theme, setTheme } = useThemeStore();
     const { user } = useAuthStore();
+    const isAdmin = user?.username?.toLowerCase() === 'admin';
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [moreOpen, setMoreOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
@@ -172,6 +174,19 @@ export default function Layout({ children }: LayoutProps) {
                                                     </Link>
                                                 );
                                             })}
+                                            {isAdmin && (
+                                                <Link
+                                                    to="/admin"
+                                                    onClick={() => setMoreOpen(false)}
+                                                    className={cn(
+                                                        'flex items-center gap-3 px-4 py-3 text-sm font-semibold transition-colors border-t border-border/40 mt-1',
+                                                        location.pathname === '/admin' ? 'bg-red-500/10 text-red-400' : 'hover:bg-red-500/10 text-red-400/70 hover:text-red-400'
+                                                    )}
+                                                >
+                                                    <Shield className="w-4 h-4" />
+                                                    Admin Panel
+                                                </Link>
+                                            )}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -196,6 +211,9 @@ export default function Layout({ children }: LayoutProps) {
                                     <div className="hidden lg:flex flex-col items-end leading-none">
                                         <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-0.5">Profile</span>
                                         <span className="text-sm font-black text-foreground">{user.username}</span>
+                                        {isAdmin && (
+                                            <span className="text-[9px] font-bold px-1.5 py-0.5 mt-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30 tracking-wider">ADMIN</span>
+                                        )}
                                     </div>
                                     <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-650 to-indigo-650 flex items-center justify-center shadow-lg shadow-primary/20 border border-white/10 group-hover:scale-105 transition-transform overflow-hidden">
                                         {user.avatar ? (
@@ -249,6 +267,19 @@ export default function Layout({ children }: LayoutProps) {
                                         </Link>
                                     );
                                 })}
+                                {isAdmin && (
+                                    <Link
+                                        to="/admin"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className={cn(
+                                            'flex items-center gap-2 px-3 py-2.5 rounded-xl transition-all duration-200 text-sm font-bold col-span-2 border border-red-500/30',
+                                            location.pathname === '/admin' ? 'bg-red-500/15 text-red-400' : 'hover:bg-red-500/10 text-red-400/80 hover:text-red-400'
+                                        )}
+                                    >
+                                        <Shield className="w-4 h-4" />
+                                        <span>Admin Panel</span>
+                                    </Link>
+                                )}
                             </nav>
                         </motion.div>
                     )}
