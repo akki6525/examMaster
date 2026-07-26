@@ -285,7 +285,7 @@ export default function TestInterface() {
     return (
         <div className="fixed inset-0 bg-background flex flex-col">
             {/* Header */}
-            <header className="h-16 border-b bg-card flex items-center justify-between px-4 flex-shrink-0 relative">
+            <header className="h-auto min-h-[4rem] border-b bg-card flex items-center justify-between px-3 md:px-4 py-2 flex-shrink-0 relative gap-2 flex-wrap">
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => navigate('/')}
@@ -294,8 +294,8 @@ export default function TestInterface() {
                         <X className="w-5 h-5" />
                     </button>
                     <div>
-                        <h1 className="font-semibold flex items-center gap-2">
-                            <span>{currentTest.title}</span>
+                        <h1 className="font-semibold flex items-center gap-2 text-sm md:text-base">
+                            <span className="truncate max-w-[120px] md:max-w-none">{currentTest.title}</span>
                             {isSSCTest && currentTest.sections && currentTest.sections[activeSectionIdx] && (
                                 <span className="text-xs px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-bold whitespace-nowrap">
                                     {currentTest.sections[activeSectionIdx].name}
@@ -316,7 +316,7 @@ export default function TestInterface() {
                     </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-4 flex-shrink-0 flex-wrap">
                     {/* Timer */}
                     {isSSCTest ? (
                         <div className="flex flex-col items-end gap-0.5 justify-center">
@@ -335,7 +335,7 @@ export default function TestInterface() {
                     ) : (
                         currentTest.duration > 0 && (
                             <div className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-lg font-semibold",
+                                "flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-xl font-mono text-sm md:text-lg font-semibold",
                                 timeLeft < 300000 ? "bg-red-500/10 text-red-500 timer-warning" : "bg-muted"
                             )}>
                                 <Clock className="w-5 h-5" />
@@ -384,10 +384,10 @@ export default function TestInterface() {
                     {/* Submit Button */}
                     <button
                         onClick={() => setShowSubmitModal(true)}
-                        className="btn-primary flex items-center gap-2"
+                        className="btn-primary flex items-center gap-2 text-xs md:text-sm px-3 md:px-6 py-2 md:py-3"
                     >
                         <Send className="w-4 h-4" />
-                        Submit
+                        <span className="hidden sm:inline">Submit</span>
                     </button>
                 </div>
             </header>

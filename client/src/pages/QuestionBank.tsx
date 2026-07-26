@@ -111,9 +111,13 @@ export default function QuestionBank() {
 
     // Pre-filter questions by everything EXCEPT topic — used for accurate per-topic counts
     const questionsForTopicCount = questions.filter(q => {
-        const matchesSearch = q.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            q.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (q.subtopic?.toLowerCase().includes(searchQuery.toLowerCase()));
+        if (!q) return false;
+        const qText = q.question || '';
+        const qTopic = q.topic || '';
+        const qSubtopic = q.subtopic || '';
+        const matchesSearch = qText.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            qTopic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            qSubtopic.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesDifficulty = selectedDifficulty === 'all' || q.difficulty === selectedDifficulty;
         const matchesExam = selectedExam === 'all' || q.examName === selectedExam;
         const matchesYear = selectedYear === 'all' || q.year?.toString() === selectedYear;
@@ -147,7 +151,15 @@ export default function QuestionBank() {
         // Persist this answer to the server DB
         // Also pass eliminatedCount so the backend can atomically record elimination analytics
         const topic = (q as any).subtopic ? `${q.topic} - ${(q as any).subtopic}` : q.topic;
-        const isCorrect = userAnswers[questionId] === q.correctAnswer;
+        const normUser = String(userAnswers[questionId] || '').trim().toLowerCase();
+        const normCorr = String(q.correctAnswer || '').trim().toLowerCase();
+        let isCorrect = normUser === normCorr;
+        if (!isCorrect && typeof q.correctAnswer === 'string' && q.correctAnswer.length === 1 && q.options) {
+            const charCode = q.correctAnswer.toUpperCase().charCodeAt(0) - 65;
+            if (charCode >= 0 && charCode < q.options.length) {
+                isCorrect = String(q.options[charCode]).trim().toLowerCase() === normUser;
+            }
+        }
         const eliminatedCount = (eliminatedOptions[questionId] || []).length;
         axios.post(`${API_URL}/practice-stats/answer`, {
             questionId,

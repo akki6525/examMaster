@@ -1,5 +1,4 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
-import { pdfjs, Document, Page } from 'react-pdf';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     FileText,
@@ -28,9 +27,6 @@ import ukHistoryFlashcards from '../data/ukHistoryFlashcards.json';
 import kailashImg from '../assets/kailash.png';
 import historyImg from '../assets/gandhi.png';
 
-
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const isImage = (text: string) => {
     return text.trim().startsWith('![') && text.includes('](') && text.trim().endsWith(')');
@@ -165,7 +161,7 @@ export default function Flashcards() {
     const { documents, fetchDocuments } = useDocumentStore();
 
     // Tab State
-    const [activeTab, setActiveTab] = useState<'visual' | 'slides' | 'notes'>('visual');
+    const [activeTab, setActiveTab] = useState<'visual' | 'notes'>('visual');
 
     // PDF Slider State
     const [selectedDoc, setSelectedDoc] = useState<ViewerDocument | null>(null);
@@ -574,7 +570,7 @@ export default function Flashcards() {
                     </div>
 
                     {/* Mode Tabs */}
-                    <div className="flex p-1 bg-muted rounded-2xl border border-border/50 max-w-md w-full mt-2">
+                    <div className="flex p-1 bg-muted rounded-2xl border border-border/50 max-w-sm w-full mt-2">
                         <button
                             onClick={() => { setActiveTab('visual'); setSelectedDoc(null); }}
                             className={cn(
@@ -598,18 +594,6 @@ export default function Flashcards() {
                         >
                             <BookOpen className="w-4 h-4" />
                             Notes
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('slides')}
-                            className={cn(
-                                "flex-1 flex items-center justify-center gap-2 py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200",
-                                activeTab === 'slides'
-                                    ? "bg-card text-foreground shadow-sm"
-                                    : "text-muted-foreground hover:text-foreground"
-                            )}
-                        >
-                            <FileText className="w-4 h-4" />
-                            PDF Slides
                         </button>
                     </div>
                 </div>
@@ -891,182 +875,10 @@ export default function Flashcards() {
                             </p>
                         </div>
                     )}
-
-                    {/* Interactive Guideline box for assets location */}
-
                 </div>
             )}
 
-            {/* TAB 2: PDF DOCUMENT SLIDES (Original implementation retained) */}
-            {activeTab === 'slides' && (
-                <div className="space-y-6">
-                    {/* Document Selection */}
-                    {!selectedDoc && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-                        >
-                            {pdfDocuments.length > 0 ? (
-                                pdfDocuments.map((doc) => (
-                                    <button
-                                        key={doc.id}
-                                        onClick={() => selectDocument(doc)}
-                                        className="p-6 rounded-2xl bg-card border border-border hover:border-primary hover:bg-primary/5 transition-all text-left group"
-                                    >
-                                        <FileText className="w-10 h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                                        <h3 className="font-semibold truncate">{doc.fileName}</h3>
-                                        <p className="text-sm text-muted-foreground mt-1">
-                                            Click to view
-                                        </p>
-                                    </button>
-                                ))
-                            ) : (
-                                <div className="col-span-full text-center py-16">
-                                    <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                                    <h3 className="text-xl font-semibold mb-2">No PDF Documents</h3>
-                                    <p className="text-muted-foreground mb-4">
-                                        Upload PDF documents to view them here
-                                    </p>
-                                    <a href="/upload" className="btn-primary inline-flex items-center gap-2">
-                                        Upload Documents
-                                    </a>
-                                </div>
-                            )}
-                        </motion.div>
-                    )}
-
-                    {/* Document Viewer */}
-                    {selectedDoc && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="space-y-4"
-                        >
-                            {/* Toolbar */}
-                            <div className="flex items-center justify-between p-4 rounded-xl bg-card border border-border">
-                                <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={() => setSelectedDoc(null)}
-                                        className="p-2 rounded-lg hover:bg-muted transition-colors"
-                                    >
-                                        <ChevronLeft className="w-5 h-5" />
-                                    </button>
-                                    <span className="font-medium truncate max-w-xs">{selectedDoc.fileName}</span>
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm text-muted-foreground">
-                                        Page {currentPage} of {numPages}
-                                    </span>
-
-                                    <div className="h-6 w-px bg-border mx-2" />
-
-                                    <button onClick={zoomOut} className="p-2 hover:bg-muted rounded-lg" title="Zoom out">
-                                        <ZoomOut className="w-5 h-5" />
-                                    </button>
-                                    <span className="text-sm w-14 text-center">{Math.round(scale * 100)}%</span>
-                                    <button onClick={zoomIn} className="p-2 hover:bg-muted rounded-lg" title="Zoom in">
-                                        <ZoomIn className="w-5 h-5" />
-                                    </button>
-
-                                    <div className="h-6 w-px bg-border mx-2" />
-
-                                    <button onClick={toggleFullscreen} className="p-2 hover:bg-muted rounded-lg" title="Fullscreen">
-                                        {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* PDF Display */}
-                            <div className={cn(
-                                "relative rounded-xl bg-muted/50 overflow-auto flex justify-center",
-                                isFullscreen ? "flex-1 h-[calc(100vh-180px)]" : "h-[70vh]"
-                            )}>
-                                {loading && (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
-                                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                                    </div>
-                                )}
-
-                                {error ? (
-                                    <div className="flex items-center justify-center h-full text-center p-8">
-                                        <div>
-                                            <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                                            <p className="text-muted-foreground">{error}</p>
-                                            <button
-                                                onClick={() => setSelectedDoc(null)}
-                                                className="mt-4 btn-primary"
-                                            >
-                                                Go Back
-                                            </button>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <Document
-                                        file={`http://localhost:3001/api/documents/${selectedDoc.id}/file`}
-                                        onLoadSuccess={onDocumentLoadSuccess}
-                                        onLoadError={onDocumentLoadError}
-                                        loading=""
-                                    >
-                                        <Page
-                                            pageNumber={currentPage}
-                                            scale={scale}
-                                            renderTextLayer={false}
-                                            renderAnnotationLayer={false}
-                                            className="shadow-lg"
-                                        />
-                                    </Document>
-                                )}
-                            </div>
-
-                            {/* Navigation */}
-                            <div className="flex items-center justify-between">
-                                <button
-                                    onClick={() => goToPage(currentPage - 1)}
-                                    disabled={currentPage <= 1}
-                                    className={cn(
-                                        "flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-colors",
-                                        currentPage <= 1
-                                            ? "text-muted-foreground cursor-not-allowed"
-                                            : "hover:bg-muted"
-                                    )}
-                                >
-                                    <ChevronLeft className="w-5 h-5" />
-                                    Previous
-                                </button>
-
-                                <div className="flex-1 mx-4">
-                                    <input
-                                        type="range"
-                                        min={1}
-                                        max={numPages || 1}
-                                        value={currentPage}
-                                        onChange={(e) => goToPage(Number(e.target.value))}
-                                        className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer"
-                                    />
-                                </div>
-
-                                <button
-                                    onClick={() => goToPage(currentPage + 1)}
-                                    disabled={currentPage >= numPages}
-                                    className={cn(
-                                        "flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-colors",
-                                        currentPage >= numPages
-                                            ? "text-muted-foreground cursor-not-allowed"
-                                            : "btn-primary"
-                                    )}
-                                >
-                                    Next
-                                    <ChevronRight className="w-5 h-5" />
-                                </button>
-                            </div>
-                        </motion.div>
-                    )}
-                </div>
-            )}
-
-            {/* TAB 3: NOTES INSIDE FLASHCARDS */}
+            {/* TAB 2: NOTES INSIDE FLASHCARDS */}
             {activeTab === 'notes' && (() => {
                 const theme = selectedNotesSubject === 'UK Geography' ? {
                     gradient: "from-sky-500/10 via-cyan-500/5 to-card dark:from-cyan-950/20 dark:via-indigo-950/10 dark:to-card",
@@ -1107,12 +919,6 @@ export default function Flashcards() {
                                     </div>
                                 </div>
 
-                                {/* Sub-section label */}
-                                <div className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border", theme.bgBadge)}>
-                                    <Award className="w-3.5 h-3.5" />
-                                    New Section Notes
-                                </div>
-
                                 {/* Category badge */}
                                 <div className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border", theme.bgBadge)}>
                                     {theme.category}
@@ -1134,11 +940,11 @@ export default function Flashcards() {
                                 <span className="text-xs uppercase font-black tracking-widest text-muted-foreground whitespace-nowrap">
                                     Selected Topic ({notesTopics.indexOf(selectedNotesTopic) + 1}/{notesTopics.length}):
                                 </span>
-                                <div className="relative flex-1 min-w-[200px]">
+                                <div className="relative flex-1 min-w-0">
                                     <select
                                         value={selectedNotesTopic}
                                         onChange={(e) => setSelectedNotesTopic(e.target.value)}
-                                        className="w-full bg-card hover:bg-muted/50 border border-border/60 text-foreground text-xs font-bold py-2.5 px-4 pr-10 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/45 transition-all shadow-sm"
+                                        className="w-full bg-card hover:bg-muted/50 border border-border/60 text-foreground text-xs font-bold py-2.5 px-4 pr-10 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/45 transition-all shadow-sm truncate"
                                     >
                                         {notesTopics.map((topic, i) => (
                                             <option key={topic} value={topic}>
@@ -1153,19 +959,36 @@ export default function Flashcards() {
                             </div>
 
                             {/* Topic navigation buttons */}
-                            <div className="flex items-center justify-between border-t border-border/20 pt-3">
-                                <button
-                                    onClick={() => {
-                                        const idx = notesTopics.indexOf(selectedNotesTopic);
-                                        if (idx > 0) {
-                                            setSelectedNotesTopic(notesTopics[idx - 1]);
-                                        }
-                                    }}
-                                    disabled={notesTopics.indexOf(selectedNotesTopic) <= 0}
-                                    className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-xl border hover:bg-muted/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed text-foreground"
-                                >
-                                    <ChevronLeft className="w-3.5 h-3.5" /> Previous Topic
-                                </button>
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 border-t border-border/20 pt-3">
+                                <div className="flex items-center justify-between gap-2 w-full sm:w-auto">
+                                    <button
+                                        onClick={() => {
+                                            const idx = notesTopics.indexOf(selectedNotesTopic);
+                                            if (idx > 0) {
+                                                setSelectedNotesTopic(notesTopics[idx - 1]);
+                                            }
+                                        }}
+                                        disabled={notesTopics.indexOf(selectedNotesTopic) <= 0}
+                                        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border hover:bg-muted/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed text-foreground"
+                                    >
+                                        <ChevronLeft className="w-4 h-4" />
+                                        <span>Previous <span className="hidden sm:inline">Topic</span></span>
+                                    </button>
+
+                                    <button
+                                        onClick={() => {
+                                            const idx = notesTopics.indexOf(selectedNotesTopic);
+                                            if (idx < notesTopics.length - 1) {
+                                                setSelectedNotesTopic(notesTopics[idx + 1]);
+                                            }
+                                        }}
+                                        disabled={notesTopics.indexOf(selectedNotesTopic) >= notesTopics.length - 1}
+                                        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border hover:bg-muted/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed text-foreground"
+                                    >
+                                        <span>Next <span className="hidden sm:inline">Topic</span></span>
+                                        <ChevronRight className="w-4 h-4" />
+                                    </button>
+                                </div>
 
                                 {/* Mark Topic Completed */}
                                 <button
@@ -1174,27 +997,14 @@ export default function Flashcards() {
                                         toggleNotesLearned(topicKey);
                                     }}
                                     className={cn(
-                                        "flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all border",
+                                        "w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all border",
                                         notesLearnedCards.includes(`topic_learned_${selectedNotesTopic}`)
                                             ? "bg-emerald-500/15 text-emerald-500 border-emerald-500/30"
                                             : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
                                     )}
                                 >
-                                    <CheckCircle className="w-3.5 h-3.5" />
+                                    <CheckCircle className="w-4 h-4" />
                                     {notesLearnedCards.includes(`topic_learned_${selectedNotesTopic}`) ? "Topic Completed" : "Mark Topic Completed"}
-                                </button>
-
-                                <button
-                                    onClick={() => {
-                                        const idx = notesTopics.indexOf(selectedNotesTopic);
-                                        if (idx < notesTopics.length - 1) {
-                                            setSelectedNotesTopic(notesTopics[idx + 1]);
-                                        }
-                                    }}
-                                    disabled={notesTopics.indexOf(selectedNotesTopic) >= notesTopics.length - 1}
-                                    className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-xl border hover:bg-muted/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed text-foreground"
-                                >
-                                    Next Topic <ChevronRight className="w-3.5 h-3.5" />
                                 </button>
                             </div>
                         </div>

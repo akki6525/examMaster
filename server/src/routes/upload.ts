@@ -136,52 +136,51 @@ router.post('/multiple', upload.array('files', 10), async (req, res) => {
             return res.status(400).json({ error: 'No files uploaded' });
         }
 
-        const results = await Promise.all(
-            files.map(async (file) => {
-                try {
-                    const extractionOptions: ExtractionOptions = {
-                        language: 'eng+hin',
-                        translateToEnglish: true
-                    };
-                    const rawText = await extractText(file.path, file.mimetype, extractionOptions);
-                    const nlpResult = await processWithNLP(rawText);
+        const results = [];
+        for (const file of files) {
+            try {
+                const extractionOptions: ExtractionOptions = {
+                    language: 'eng+hin',
+                    translateToEnglish: true
+                };
+                const rawText = await extractText(file.path, file.mimetype, extractionOptions);
+                const nlpResult = await processWithNLP(rawText);
 
-                    const docId = uuidv4();
-                    const extractedContent: ExtractedContent & { userId?: string } = {
-                        id: docId,
-                        fileName: file.originalname,
-                        fileType: file.mimetype,
-                        filePath: file.path,
-                        rawText,
-                        topics: nlpResult.topics,
-                        definitions: nlpResult.definitions,
-                        keyTerms: nlpResult.keyTerms,
-                        formulas: nlpResult.formulas,
-                        questionableContent: nlpResult.questionableContent,
-                        extractedQuestions: nlpResult.extractedQuestions,
-                        createdAt: new Date(),
-                        userId: (req as any).userId
-                    };
+                const docId = uuidv4();
+                const extractedContent: ExtractedContent & { userId?: string } = {
+                    id: docId,
+                    fileName: file.originalname,
+                    fileType: file.mimetype,
+                    filePath: file.path,
+                    rawText,
+                    topics: nlpResult.topics,
+                    definitions: nlpResult.definitions,
+                    keyTerms: nlpResult.keyTerms,
+                    formulas: nlpResult.formulas,
+                    questionableContent: nlpResult.questionableContent,
+                    extractedQuestions: nlpResult.extractedQuestions,
+                    createdAt: new Date(),
+                    userId: (req as any).userId
+                };
 
-                    documents.set(docId, extractedContent);
-                    persistDocuments();
+                documents.set(docId, extractedContent);
+                persistDocuments();
 
-                    return {
-                        success: true,
-                        documentId: docId,
-                        fileName: file.originalname,
-                        topics: nlpResult.topics.length,
-                        definitions: nlpResult.definitions.length
-                    };
-                } catch (err) {
-                    return {
-                        success: false,
-                        fileName: file.originalname,
-                        error: (err as Error).message
-                    };
-                }
-            })
-        );
+                results.push({
+                    success: true,
+                    documentId: docId,
+                    fileName: file.originalname,
+                    topics: nlpResult.topics.length,
+                    definitions: nlpResult.definitions.length
+                });
+            } catch (err) {
+                results.push({
+                    success: false,
+                    fileName: file.originalname,
+                    error: (err as Error).message
+                });
+            }
+        }
 
         res.json({ results });
     } catch (error) {

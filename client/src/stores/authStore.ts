@@ -28,6 +28,18 @@ interface AuthState {
     clearAuthData: () => void;
 }
 
+// Setup dynamic Axios request interceptor to always attach current auth token
+axios.interceptors.request.use(
+    (config) => {
+        const token = useAuthStore.getState()?.token;
+        if (token && !config.headers['Authorization']) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
 // Automatically load token on application start for Axios defaults
 (() => {
     try {

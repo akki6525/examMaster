@@ -12,25 +12,29 @@ interface NLPResult {
 }
 
 export async function processWithNLP(text: string): Promise<NLPResult> {
-    const doc = nlp(text);
+    // If the text is massive (e.g., a whole textbook of 2M+ characters), cap it to a sensible limit (250k chars / ~100 pages).
+    // This prevents compromise NLP parser from blocking the Node event loop and causing server hangs or timeouts.
+    const cappedText = text.length > 250000 ? text.substring(0, 250000) : text;
+    
+    const doc = nlp(cappedText);
 
     // First, try to extract existing questions from the document
-    const extractedQuestions = extractExistingQuestions(text);
+    const extractedQuestions = extractExistingQuestions(cappedText);
 
     // Extract topics from headings and key sentences
-    const topics = extractTopics(text, doc);
+    const topics = extractTopics(cappedText, doc);
 
     // Extract definitions (skip if document contains many questions)
-    const definitions = extractedQuestions.length > 5 ? [] : extractDefinitions(text, doc);
+    const definitions = extractedQuestions.length > 5 ? [] : extractDefinitions(cappedText, doc);
 
     // Extract key terms (nouns, proper nouns, technical terms)
     const keyTerms = extractKeyTerms(doc);
 
     // Extract formulas and equations
-    const formulas = extractFormulas(text);
+    const formulas = extractFormulas(cappedText);
 
     // Identify question-worthy content
-    const questionableContent = identifyQuestionableContent(text, doc);
+    const questionableContent = identifyQuestionableContent(cappedText, doc);
 
     return {
         topics,

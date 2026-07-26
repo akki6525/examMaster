@@ -179,7 +179,6 @@ Kya vahan chal kar analytics dekhna chahoge, Bhai?`,
                     { label: "AI Report", path: "/ai-report" },
                     { label: "Official Exams", path: "/official-exams" },
                     { label: "Flashcards", path: "/flashcards" },
-                    { label: "Import Questions", path: "/import" },
                     { label: "Import PDF", path: "/import-pdf" },
                     { label: "Student Corner", path: "/student-corner" },
                     { label: "Smart Mock Tests", path: "/smart-mock-tests" },
@@ -329,7 +328,7 @@ Kya guide me aur details dekhna chahoge, Bhai?`,
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-[999] font-sans">
+        <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[999] font-sans" style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}>
             {/* Chat Bubble Toggle Button */}
             <AnimatePresence>
                 {!isOpen && (
@@ -358,7 +357,7 @@ Kya guide me aur details dekhna chahoge, Bhai?`,
                 {isOpen && (
                     <motion.div
                         key="chat-window"
-                        className="absolute bottom-0 right-0 w-[340px] md:w-[380px] h-[500px] bg-slate-950/95 dark:bg-black/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl flex flex-col overflow-hidden text-white font-medium origin-bottom-right"
+                        className="fixed inset-3 md:inset-auto md:absolute md:bottom-0 md:right-0 md:w-[380px] md:h-[500px] bg-slate-950/95 dark:bg-black/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl flex flex-col overflow-hidden text-white font-medium md:origin-bottom-right"
                         initial={{ opacity: 0, scale: 0.8, y: 50 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 50 }}
@@ -491,7 +490,7 @@ Kya guide me aur details dekhna chahoge, Bhai?`,
                                 e.preventDefault();
                                 handleSendMessage(inputValue);
                             }}
-                            className="bg-black/60 p-3.5 border-t border-white/5 flex gap-2 items-center"
+                            className="bg-black/60 p-3.5 border-t border-white/5 flex gap-2 items-center" style={{ paddingBottom: 'calc(0.875rem + env(safe-area-inset-bottom, 0px))' }}
                         >
                             <input
                                 type="text"

@@ -467,7 +467,7 @@ export default function Dashboard() {
                     <Zap className="w-5 h-5 text-amber-500" />
                     Quick Actions
                 </h2>
-                <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
                     {quickActions.map((action, index) => (
                         <motion.div
                             key={action.title}

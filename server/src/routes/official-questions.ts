@@ -157,6 +157,23 @@ function loadQuestionsFromDatabase(): Question[] {
             });
         }
 
+        const knownKeys = ['ssc_cgl', 'upsc', 'ukpsc', 'uksssc', 'ukpsc-pcs', 'ukpsc-roaro', 'uksssc-vdo', 'uksssc-patwari', 'uksssc-forest'];
+        Object.keys(data).forEach(key => {
+            if (!knownKeys.includes(key)) {
+                Object.entries(data[key]).forEach(([year, yearQuestions]: [string, any]) => {
+                    yearQuestions.forEach((q: any) => {
+                        questions.push({
+                            type: 'mcq',
+                            ...q,
+                            year: parseInt(year),
+                            examName: q.examName || key.toUpperCase(),
+                            sourceType: 'official'
+                        });
+                    });
+                });
+            }
+        });
+
         console.log(`Loaded ${questions.length} official questions from database`);
         return questions;
     } catch (error) {
@@ -186,6 +203,13 @@ function persistImported() {
 const examTypes = [
     { id: 'SSC CGL', name: 'SSC CGL', years: [2026, 2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'SSC CGL').length },
     { id: 'UPSC', name: 'UPSC Civil Services', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UPSC').length },
+    { id: 'UPSC-EPFO', name: 'UPSC EPFO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UPSC-EPFO').length },
+    { id: 'IBPS-CLERK', name: 'IBPS Clerk', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'IBPS-CLERK').length },
+    { id: 'IBPS-PO', name: 'IBPS PO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'IBPS-PO').length },
+    { id: 'SBI-CLERK', name: 'SBI Clerk', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'SBI-CLERK').length },
+    { id: 'SBI-PO', name: 'SBI PO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'SBI-PO').length },
+    { id: 'LIC-AAO', name: 'LIC AAO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'LIC-AAO').length },
+    { id: 'LIC-ADO', name: 'LIC ADO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'LIC-ADO').length },
     { id: 'UKPSC', name: 'UKPSC (Uttarakhand PCS)', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKPSC').length },
     { id: 'UKPSC-PCS', name: 'UKPSC PCS Prelims/Mains', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKPSC-PCS').length },
     { id: 'UKPSC-ROARO', name: 'UKPSC RO/ARO', years: [2025, 2024, 2023, 2022], questionCount: _officialQuestions.filter(q => q.examName === 'UKPSC-ROARO').length },

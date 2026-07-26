@@ -1,17 +1,28 @@
 import fs from 'fs/promises';
 import path from 'path';
-import * as pdfjsLib from 'pdfjs-dist';
+import { createRequire } from 'module';
+import { pathToFileURL } from 'url';
+// Use the legacy build for Node.js compatibility
+import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
 import mammoth from 'mammoth';
 import Tesseract from 'tesseract.js';
 
-// Initialize PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
+// In pdfjs-dist v4, the workerSrc must be a valid file:// URL on Windows.
+// require.resolve() gives a native path (C:\...) — pathToFileURL converts it.
+const _require = createRequire(import.meta.url);
+const workerPath = _require.resolve('pdfjs-dist/legacy/build/pdf.worker.mjs');
+pdfjsLib.GlobalWorkerOptions.workerSrc = pathToFileURL(workerPath).href;
+
 
 // Language configuration
 export interface ExtractionOptions {
     language?: 'eng' | 'hin' | 'eng+hin';
     translateToEnglish?: boolean;
 }
+
+// Maximum characters to process for NLP/translation (approx. 120 pages).
+// The full extracted text is stored as rawText; only analysis is capped.
+const MAX_ANALYSIS_CHARS = 300_000;
 
 export async function extractText(
     filePath: string,
@@ -33,13 +44,20 @@ export async function extractText(
             throw new Error(`Unsupported file type: ${mimeType}`);
         }
 
-        // Translate Hindi to English if detected
-        if (options.translateToEnglish && containsHindi(text)) {
+        // Cap text BEFORE translation to avoid processing >300k chars of Hindi
+        const isCapped = text.length > MAX_ANALYSIS_CHARS;
+        const analysisPart = isCapped ? text.substring(0, MAX_ANALYSIS_CHARS) : text;
+        const remainderPart = isCapped ? text.substring(MAX_ANALYSIS_CHARS) : '';
+
+        // Translate Hindi to English if detected (only on capped portion)
+        let processedPart = analysisPart;
+        if (options.translateToEnglish && containsHindi(analysisPart)) {
             console.log('Hindi text detected, translating to English...');
-            text = await translateHindiToEnglish(text);
+            processedPart = await translateHindiToEnglish(analysisPart);
         }
 
-        return text;
+        // Re-join with the unprocessed remainder
+        return processedPart + remainderPart;
     } catch (error) {
         console.error('Extraction error:', error);
         throw error;
@@ -49,7 +67,8 @@ export async function extractText(
 async function extractFromPDF(filePath: string, options: ExtractionOptions): Promise<string> {
     try {
         const data = new Uint8Array(await fs.readFile(filePath));
-        const pdf = await pdfjsLib.getDocument({ data }).promise;
+        const loadingTask = pdfjsLib.getDocument({ data });
+        const pdf = await loadingTask.promise;
 
         let fullText = '';
 
@@ -312,11 +331,7 @@ function transliterateHindi(text: string): string {
         '।': '.', '॥': '.'
     };
 
-    let result = '';
-    for (const char of text) {
-        result += translitMap[char] || char;
-    }
-    return result;
+    return text.replace(/[\u0900-\u097F]/g, char => translitMap[char] || char);
 }
 
 export async function extractMetadata(filePath: string, mimeType: string): Promise<any> {

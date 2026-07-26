@@ -9,7 +9,6 @@ import Results from './pages/Results';
 import QuestionBank from './pages/QuestionBank';
 import Flashcards from './pages/Flashcards';
 import OfficialExams from './pages/OfficialExams';
-import QuestionImport from './pages/QuestionImport';
 import PDFImport from './pages/PDFImport';
 import AIReport from './pages/AIReport';
 import StudentCorner from './pages/StudentCorner';
@@ -81,7 +80,6 @@ function App() {
           <Route path="/question-bank" element={<QuestionBank />} />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/official-exams" element={<OfficialExams />} />
-          <Route path="/import" element={<QuestionImport />} />
           <Route path="/import-pdf" element={<PDFImport />} />
           <Route path="/ai-report" element={<AIReport />} />
           <Route path="/student-corner" element={<StudentCorner />} />

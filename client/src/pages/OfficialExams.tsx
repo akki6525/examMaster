@@ -32,6 +32,13 @@ const API_URL = 'http://localhost:3001/api';
 // UK exam IDs
 const UK_EXAM_IDS = ['UKPSC', 'UKPSC-PCS', 'UKPSC-ROARO', 'UKSSSC', 'UKSSSC-VDO', 'UKSSSC-Patwari', 'UKSSSC-Forest'];
 
+
+// Banking exam IDs
+const BANK_EXAM_IDS = ['IBPS-CLERK', 'IBPS-PO', 'SBI-CLERK', 'SBI-PO', 'LIC-AAO', 'LIC-ADO'];
+
+// UPSC exam IDs
+const UPSC_EXAM_IDS = ['UPSC', 'UPSC-EPFO'];
+
 // Sub-category metadata
 const UK_EXAM_META: Record<string, { color: string; gradient: string; badge: string }> = {
     'UKPSC':           { color: 'from-violet-500 to-purple-600',  gradient: 'from-violet-500/10 to-purple-600/10',  badge: 'PCS' },
@@ -52,6 +59,9 @@ export default function OfficialExams() {
     const [duration, setDuration] = useState(30);
     const [generating, setGenerating] = useState(false);
     const [showUKPanel, setShowUKPanel] = useState(false);
+    const [showBankingPanel, setShowBankingPanel] = useState(false);
+    const [showUPSCPanel, setShowUPSCPanel] = useState(false);
+
 
     useTestStore();
     const navigate = useNavigate();
@@ -97,8 +107,12 @@ export default function OfficialExams() {
 
     const selectedExamData = examTypes.find(e => e.id === selectedExam);
 
-    const nonUKExams = examTypes.filter(e => !UK_EXAM_IDS.includes(e.id));
+    
+    const bankExams = examTypes.filter(e => BANK_EXAM_IDS.includes(e.id));
+    const upscExams = examTypes.filter(e => UPSC_EXAM_IDS.includes(e.id));
     const ukExams = examTypes.filter(e => UK_EXAM_IDS.includes(e.id));
+    const otherExams = examTypes.filter(e => !UK_EXAM_IDS.includes(e.id) && !BANK_EXAM_IDS.includes(e.id) && !UPSC_EXAM_IDS.includes(e.id));
+
     if (loading) {
         return (
             <div className="flex items-center justify-center min-h-[60vh]">
@@ -129,13 +143,13 @@ export default function OfficialExams() {
                 animate={{ opacity: 1, y: 0 }}
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
             >
-                {/* Non-UK Exam Cards */}
-                {nonUKExams.map((exam, index) => (
+                {/* Other Exam Cards */}
+                {otherExams.map((exam, index) => (
                     <motion.button
                         key={exam.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
+                        transition={{ delay: index * 0.05 }}
                         onClick={() => selectExam(exam)}
                         className={cn(
                             "p-6 rounded-2xl border-2 text-left transition-all duration-200 card-hover",
@@ -166,12 +180,102 @@ export default function OfficialExams() {
                     </motion.button>
                 ))}
 
+                
+                {/* Banking Exams Parent Card */}
+                {bankExams.length > 0 && (
+                    <motion.button
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: (otherExams.length + 1) * 0.05 }}
+                        onClick={() => setShowBankingPanel(true)}
+                        className={cn(
+                            "p-6 rounded-2xl border-2 text-left transition-all duration-200 card-hover relative overflow-hidden group",
+                            BANK_EXAM_IDS.includes(selectedExam)
+                                ? "border-blue-500 bg-blue-500/5"
+                                : "border-border bg-card hover:border-blue-500/60"
+                        )}
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                        <div className="relative z-10">
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                                    <GraduationCap className="w-7 h-7 text-white" />
+                                </div>
+                                <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                                    <Sparkles className="w-3 h-3 text-blue-400" />
+                                    <span className="text-xs font-semibold text-blue-400">{bankExams.length} Exams</span>
+                                </div>
+                            </div>
+                            <h3 className="text-xl font-bold mb-1">
+                                <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">Banking & Insurance</span>
+                            </h3>
+                            <p className="text-xs font-medium text-blue-500/80 mb-2">IBPS, SBI, LIC</p>
+                            <p className="text-sm text-muted-foreground mb-3">Clerk, PO, AAO, ADO</p>
+                            <div className="flex flex-wrap gap-1 mb-3">
+                                {['IBPS', 'SBI', 'LIC'].map(tag => (
+                                    <span key={tag} className="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-xs border border-blue-500/20">{tag}</span>
+                                ))}
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-blue-400 font-medium">
+                                <MapPin className="w-3 h-3" />
+                                <span>Click to explore</span>
+                                <ChevronRight className="w-3 h-3 ml-auto group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </div>
+                    </motion.button>
+                )}
+
+
+                {/* UPSC Exams Parent Card */}
+                {upscExams.length > 0 && (
+                    <motion.button
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: (otherExams.length + 2) * 0.05 }}
+                        onClick={() => setShowUPSCPanel(true)}
+                        className={cn(
+                            "p-6 rounded-2xl border-2 text-left transition-all duration-200 card-hover relative overflow-hidden group",
+                            UPSC_EXAM_IDS.includes(selectedExam)
+                                ? "border-orange-500 bg-orange-500/5"
+                                : "border-border bg-card hover:border-orange-500/60"
+                        )}
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                        <div className="relative z-10">
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                    <Trophy className="w-7 h-7 text-white" />
+                                </div>
+                                <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-orange-500/10 border border-orange-500/20">
+                                    <Sparkles className="w-3 h-3 text-orange-400" />
+                                    <span className="text-xs font-semibold text-orange-400">{upscExams.length} Exams</span>
+                                </div>
+                            </div>
+                            <h3 className="text-xl font-bold mb-1">
+                                <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">UPSC Exams</span>
+                            </h3>
+                            <p className="text-xs font-medium text-orange-500/80 mb-2">Union Public Service Commission</p>
+                            <p className="text-sm text-muted-foreground mb-3">Civil Services, EPFO & more</p>
+                            <div className="flex flex-wrap gap-1 mb-3">
+                                {['CSE', 'EPFO'].map(tag => (
+                                    <span key={tag} className="px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 text-xs border border-orange-500/20">{tag}</span>
+                                ))}
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-orange-400 font-medium">
+                                <MapPin className="w-3 h-3" />
+                                <span>Click to explore</span>
+                                <ChevronRight className="w-3 h-3 ml-auto group-hover:translate-x-1 transition-transform" />
+                            </div>
+                        </div>
+                    </motion.button>
+                )}
+
                 {/* UK Exams Parent Card */}
                 {ukExams.length > 0 && (
                     <motion.button
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: nonUKExams.length * 0.1 }}
+                        transition={{ delay: otherExams.length * 0.05 }}
                         onClick={() => setShowUKPanel(true)}
                         className={cn(
                             "p-6 rounded-2xl border-2 text-left transition-all duration-200 card-hover relative overflow-hidden group",
@@ -406,6 +510,120 @@ export default function OfficialExams() {
                                                 );
                                             })}
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
+            
+            {/* Banking Exams Popup Panel */}
+            <AnimatePresence>
+                {showBankingPanel && (
+                    <>
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm" onClick={() => setShowBankingPanel(false)} />
+                        <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                            <div className="pointer-events-auto w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-border bg-card shadow-2xl shadow-blue-500/10" onClick={e => e.stopPropagation()}>
+                                <div className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-6 pt-6 pb-4 border-b border-border">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                                                <GraduationCap className="w-6 h-6 text-white" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">Banking & Insurance</h2>
+                                                <p className="text-sm text-muted-foreground">IBPS, SBI & LIC Exams</p>
+                                            </div>
+                                        </div>
+                                        <button onClick={() => setShowBankingPanel(false)} className="w-9 h-9 rounded-xl flex items-center justify-center bg-muted hover:bg-muted/80 transition-colors text-muted-foreground hover:text-foreground">
+                                            <X className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="p-6 space-y-6">
+                                    <div className="grid sm:grid-cols-2 gap-3">
+                                        {bankExams.map((exam, index) => {
+                                            const isSelected = selectedExam === exam.id;
+                                            return (
+                                                <motion.button key={exam.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.06 }} onClick={() => { selectExam(exam); setShowBankingPanel(false); }} className={cn("p-4 rounded-2xl border-2 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg group", isSelected ? "border-blue-500 bg-gradient-to-br from-blue-500/10 to-indigo-600/10" : "border-border bg-muted/30 hover:border-blue-500/50")}>
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 flex-shrink-0 shadow-md">
+                                                            <GraduationCap className="w-5 h-5 text-white" />
+                                                        </div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="flex items-center gap-2 mb-0.5">
+                                                                <h4 className="font-bold text-sm leading-tight">{exam.name}</h4>
+                                                                {isSelected && <span className="flex-shrink-0 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-500 text-white">Selected</span>}
+                                                            </div>
+                                                            <p className="text-xs text-muted-foreground mb-2">{exam.years.length} years of questions</p>
+                                                            <div className="flex flex-wrap gap-1">
+                                                                {exam.years.slice(0, 4).map(year => <span key={year} className="px-1.5 py-0.5 rounded bg-muted text-[10px]">{year}</span>)}
+                                                            </div>
+                                                        </div>
+                                                        <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1 group-hover:translate-x-0.5 transition-transform" />
+                                                    </div>
+                                                </motion.button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
+
+            {/* UPSC Exams Popup Panel */}
+            <AnimatePresence>
+                {showUPSCPanel && (
+                    <>
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm" onClick={() => setShowUPSCPanel(false)} />
+                        <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                            <div className="pointer-events-auto w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-border bg-card shadow-2xl shadow-orange-500/10" onClick={e => e.stopPropagation()}>
+                                <div className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-6 pt-6 pb-4 border-b border-border">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                                <Trophy className="w-6 h-6 text-white" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">UPSC Exams</h2>
+                                                <p className="text-sm text-muted-foreground">Union Public Service Commission</p>
+                                            </div>
+                                        </div>
+                                        <button onClick={() => setShowUPSCPanel(false)} className="w-9 h-9 rounded-xl flex items-center justify-center bg-muted hover:bg-muted/80 transition-colors text-muted-foreground hover:text-foreground">
+                                            <X className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="p-6 space-y-6">
+                                    <div className="grid sm:grid-cols-2 gap-3">
+                                        {upscExams.map((exam, index) => {
+                                            const isSelected = selectedExam === exam.id;
+                                            return (
+                                                <motion.button key={exam.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.06 }} onClick={() => { selectExam(exam); setShowUPSCPanel(false); }} className={cn("p-4 rounded-2xl border-2 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg group", isSelected ? "border-orange-500 bg-gradient-to-br from-orange-500/10 to-red-600/10" : "border-border bg-muted/30 hover:border-orange-500/50")}>
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 flex-shrink-0 shadow-md">
+                                                            <Trophy className="w-5 h-5 text-white" />
+                                                        </div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="flex items-center gap-2 mb-0.5">
+                                                                <h4 className="font-bold text-sm leading-tight">{exam.name}</h4>
+                                                                {isSelected && <span className="flex-shrink-0 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-orange-500 text-white">Selected</span>}
+                                                            </div>
+                                                            <p className="text-xs text-muted-foreground mb-2">{exam.years.length} years of questions</p>
+                                                            <div className="flex flex-wrap gap-1">
+                                                                {exam.years.slice(0, 4).map(year => <span key={year} className="px-1.5 py-0.5 rounded bg-muted text-[10px]">{year}</span>)}
+                                                            </div>
+                                                        </div>
+                                                        <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1 group-hover:translate-x-0.5 transition-transform" />
+                                                    </div>
+                                                </motion.button>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             </div>

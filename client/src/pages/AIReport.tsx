@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Brain, TrendingUp, TrendingDown, Target, Clock, Zap,
-    CheckCircle, XCircle, BarChart2, Award,
+    CheckCircle, XCircle, BarChart2, Award, PieChart,
     ChevronDown, ChevronUp, RefreshCw, Trash2, BookOpen,
     Flame, ArrowRight, Activity, FileQuestion, FileText, Sparkles, Layers
 } from 'lucide-react';
@@ -109,40 +109,129 @@ function generateAIInsights(results: TestResultSummary[], topicInsights: TopicIn
     return insights;
 }
 
+function getConsolidatedSubject(topicName: string): string {
+    const t = topicName.toLowerCase();
+    if (t.includes('history') || t.includes('freedom struggle') || t.includes('national movement')) {
+        return 'History';
+    }
+    if (t.includes('geography') || t.includes('geo')) {
+        return 'Geography';
+    }
+    if (t.includes('polity') || t.includes('constitution') || t.includes('governance')) {
+        return 'Indian Polity';
+    }
+    if (t.includes('economy') || t.includes('economic')) {
+        return 'Economy';
+    }
+    if (t.includes('science') || t.includes('environment') || t.includes('physics') || t.includes('chemistry') || t.includes('biology')) {
+        return 'Science & Tech';
+    }
+    if (t.includes('aptitude') || t.includes('reasoning') || t.includes('math') || t.includes('quant')) {
+        return 'Aptitude & Reasoning';
+    }
+    if (t.includes('english') || t.includes('comprehension')) {
+        return 'English';
+    }
+    if (t.includes('computer') || t.includes('it ') || t.includes('technology')) {
+        return 'Computer & IT';
+    }
+    return topicName;
+}
+
 function computeTopicInsights(results: TestResultSummary[], practiceStats: PracticeStats | null): TopicInsight[] {
-    const topicMap: Record<string, { mockAttempts: number; mockCorrect: number; practiceAttempts: number; practiceCorrect: number; times: number[] }> = {};
+    const subjectMap: Record<string, { mockAttempts: number; mockCorrect: number; practiceAttempts: number; practiceCorrect: number }> = {};
 
     // From mock tests
     results.forEach(result => {
         result.topicWiseScore.forEach(ts => {
-            if (!topicMap[ts.topic]) topicMap[ts.topic] = { mockAttempts: 0, mockCorrect: 0, practiceAttempts: 0, practiceCorrect: 0, times: [] };
-            topicMap[ts.topic].mockAttempts += ts.total;
-            topicMap[ts.topic].mockCorrect += ts.correct;
-            if (ts.avgTime) topicMap[ts.topic].times.push(ts.avgTime);
+            const attemptedCount = ts.attempted !== undefined ? ts.attempted : ts.total;
+            if (attemptedCount > 0) {
+                const subject = getConsolidatedSubject(ts.topic);
+                if (!subjectMap[subject]) subjectMap[subject] = { mockAttempts: 0, mockCorrect: 0, practiceAttempts: 0, practiceCorrect: 0 };
+                subjectMap[subject].mockAttempts += attemptedCount;
+                subjectMap[subject].mockCorrect += ts.correct;
+            }
         });
     });
 
     // From practice
     if (practiceStats?.topicWiseScore) {
         practiceStats.topicWiseScore.forEach(ts => {
-            if (!topicMap[ts.topic]) topicMap[ts.topic] = { mockAttempts: 0, mockCorrect: 0, practiceAttempts: 0, practiceCorrect: 0, times: [] };
-            topicMap[ts.topic].practiceAttempts += ts.total;
-            topicMap[ts.topic].practiceCorrect += ts.correct;
+            const attemptedCount = ts.attempted !== undefined ? ts.attempted : ts.total;
+            if (attemptedCount > 0) {
+                const subject = getConsolidatedSubject(ts.topic);
+                if (!subjectMap[subject]) subjectMap[subject] = { mockAttempts: 0, mockCorrect: 0, practiceAttempts: 0, practiceCorrect: 0 };
+                subjectMap[subject].practiceAttempts += attemptedCount;
+                subjectMap[subject].practiceCorrect += ts.correct;
+            }
         });
     }
 
-    return Object.entries(topicMap).map(([topic, data]) => {
-        const totalAttempted = data.mockAttempts + data.practiceAttempts;
-        const totalCorrect = data.mockCorrect + data.practiceCorrect;
-        const accuracy = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
-        const avgTime = data.times.length > 0 ? Math.round(data.times.reduce((a, b) => a + b, 0) / data.times.length) : 0;
-        const source: TopicInsight['source'] = data.mockAttempts > 0 && data.practiceAttempts > 0 ? 'both' : data.mockAttempts > 0 ? 'mock' : 'practice';
+    return Object.entries(subjectMap)
+        .map(([topic, data]) => {
+            const totalAttempted = data.mockAttempts + data.practiceAttempts;
+            const totalCorrect = data.mockCorrect + data.practiceCorrect;
+            const accuracy = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
+            const source: TopicInsight['source'] = data.mockAttempts > 0 && data.practiceAttempts > 0 ? 'both' : data.mockAttempts > 0 ? 'mock' : 'practice';
 
-        const priority: TopicInsight['priority'] = accuracy < 40 ? 'critical' : accuracy < 60 ? 'needs-work' : accuracy < 80 ? 'good' : 'excellent';
+            const priority: TopicInsight['priority'] = accuracy < 50 ? 'critical' : accuracy < 75 ? 'needs-work' : accuracy < 85 ? 'good' : 'excellent';
 
-        const trend: TopicInsight['trend'] = 'stable';
-        return { topic, totalAttempted, totalCorrect, accuracy, avgTime, trend, priority, source };
-    }).sort((a, b) => a.accuracy - b.accuracy);
+            return {
+                topic,
+                totalAttempted,
+                totalCorrect,
+                accuracy,
+                avgTime: 0,
+                trend: 'stable' as const,
+                priority,
+                source
+            };
+        })
+        .filter(t => t.totalAttempted > 0)
+        .sort((a, b) => a.accuracy - b.accuracy);
+}
+
+interface SubtopicInsight {
+    subtopic: string;
+    totalAttempted: number;
+    totalCorrect: number;
+    accuracy: number;
+}
+
+function computeSubtopicsForSubject(
+    subjectName: string,
+    results: TestResultSummary[],
+    practiceStats: PracticeStats | null
+): SubtopicInsight[] {
+    const subtopicMap: Record<string, { attempted: number; correct: number }> = {};
+
+    const processItem = (ts: TopicScore) => {
+        const parentSubject = getConsolidatedSubject(ts.topic);
+        if (parentSubject === subjectName) {
+            const attemptedCount = ts.attempted !== undefined ? ts.attempted : ts.total;
+            if (attemptedCount > 0) {
+                const name = ts.topic;
+                if (!subtopicMap[name]) subtopicMap[name] = { attempted: 0, correct: 0 };
+                subtopicMap[name].attempted += attemptedCount;
+                subtopicMap[name].correct += ts.correct;
+            }
+        }
+    };
+
+    results.forEach(r => r.topicWiseScore?.forEach(processItem));
+    if (practiceStats?.topicWiseScore) {
+        practiceStats.topicWiseScore.forEach(processItem);
+    }
+
+    return Object.entries(subtopicMap)
+        .map(([subtopic, data]) => ({
+            subtopic,
+            totalAttempted: data.attempted,
+            totalCorrect: data.correct,
+            accuracy: data.attempted > 0 ? Math.round((data.correct / data.attempted) * 100) : 0
+        }))
+        .filter(t => t.totalAttempted > 0)
+        .sort((a, b) => a.accuracy - b.accuracy);
 }
 
 const PRIORITY_STYLES = {
@@ -152,6 +241,40 @@ const PRIORITY_STYLES = {
     excellent: 'bg-green-500/10 border-green-500/30 text-green-600 dark:text-green-400',
 };
 const PRIORITY_LABEL: Record<string, string> = { critical: 'Critical', 'needs-work': 'Needs Work', good: 'Good', excellent: 'Excellent' };
+
+const playTooltipVoice = (phrase: string, pitch = 0.75, rate = 1.0) => {
+    try {
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(phrase);
+            utterance.rate = rate;
+            utterance.pitch = Math.min(pitch, 0.85); // Cap pitch to ensure deep male voice
+
+            const voices = window.speechSynthesis.getVoices();
+            const maleKeywords = ['male', 'hemant', 'kushal', 'ravi', 'rishi', 'david', 'mark', 'george', 'alex', 'guy', 'google हिन्दी'];
+            const femaleKeywords = ['female', 'swara', 'heera', 'kalpana', 'neerja', 'zira', 'hazel', 'samantha', 'victoria', 'karen', 'zira'];
+
+            // Find male voice in Indian English/Hindi first, or any male voice
+            const maleVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                const isInd = v.lang.includes('hi') || v.lang.includes('IN');
+                const matchesMale = maleKeywords.some(k => name.includes(k));
+                const notFemale = !femaleKeywords.some(k => name.includes(k));
+                return isInd && (matchesMale || notFemale);
+            }) || voices.find(v => maleKeywords.some(k => v.name.toLowerCase().includes(k)))
+                || voices.find(v => v.lang.includes('hi') || v.lang.includes('IN'));
+
+            if (maleVoice) {
+                utterance.voice = maleVoice;
+            } else {
+                utterance.lang = 'hi-IN';
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+    } catch (e) {
+        console.warn('Speech synthesis error:', e);
+    }
+};
 
 function ProgressBar({ value, max, color = '#f97316' }: { value: number; max: number; color?: string }) {
     const pct = Math.min((value / max) * 100, 100);
@@ -191,13 +314,16 @@ export default function AIReport() {
     const [activeTab, setActiveTab] = useState<'overview' | 'mock' | 'practice' | 'elimination'>('overview');
     const [collapsedTopics, setCollapsedTopics] = useState<Record<string, boolean>>({}); // actually expanded Topics now if true
     const [detailedResults, setDetailedResults] = useState<Record<string, any[]>>({});
+    const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+    const [showSubjectList, setShowSubjectList] = useState<boolean>(false);
+    const [isSubtopicsExpanded, setIsSubtopicsExpanded] = useState<boolean>(true);
+    const [showClearConfirmModal, setShowClearConfirmModal] = useState<boolean>(false);
 
     const formatTime = (ms: number) => {
         const totalSeconds = Math.round(ms / 1000);
         const mins = Math.floor(totalSeconds / 60);
         const secs = totalSeconds % 60;
         if (mins > 0) return `${mins}m ${secs}s`;
-        if (ms > 0 && totalSeconds === 0) return `<1s`;
         return `${secs}s`;
     };
 
@@ -210,16 +336,12 @@ export default function AIReport() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`${API}/tests/results`);
-            setResults(res.data || []);
-        } catch (e) { console.error(e); }
-
-        // Read practice stats from server DB
-        try {
-            const res = await axios.get(`${API}/practice-stats`);
-            if (res.data) {
-                setPracticeStats(res.data);
-            }
+            const [resTest, resPractice] = await Promise.all([
+                axios.get(`${API}/tests/results`),
+                axios.get(`${API}/practice-stats`)
+            ]);
+            setResults(resTest.data || []);
+            setPracticeStats(resPractice.data || null);
         } catch (e) { console.error(e); }
 
         setLoading(false);
@@ -254,11 +376,18 @@ export default function AIReport() {
         finally { setDeleting(null); }
     };
 
-    const clearPracticeHistory = async () => {
+    const handleOpenClearModal = () => {
+        playTooltipVoice("Pakka delete kar doon bhai?", 0.65, 1.05);
+        setShowClearConfirmModal(true);
+    };
+
+    const handleConfirmClearHistory = async () => {
         try {
             await axios.delete(`${API}/practice-stats`);
+            playTooltipVoice("Lao kar diya delete!", 0.7, 1.1);
         } catch (e) { console.error(e); }
         setPracticeStats(null);
+        setShowClearConfirmModal(false);
     };
 
     const topicInsights = useMemo(() => computeTopicInsights(results, practiceStats), [results, practiceStats]);
@@ -662,24 +791,242 @@ export default function AIReport() {
                                     </div>
                                 </div>
 
-                                {/* Priority queue */}
-                                {topicInsights.length > 0 && (
-                                    <div className="p-6 rounded-2xl bg-card border border-border">
-                                        <h3 className="font-bold mb-4 flex items-center gap-2"><Flame className="w-5 h-5 text-red-400" /> Study Priority Queue</h3>
-                                        <div className="space-y-3">
-                                            {topicInsights.slice(0, 6).map(ti => (
-                                                <div key={ti.topic} className="flex items-center gap-3">
-                                                    <span className={cn('text-xs font-bold px-2 py-0.5 rounded-full border flex-shrink-0', PRIORITY_STYLES[ti.priority])}>{PRIORITY_LABEL[ti.priority]}</span>
-                                                    <span className="flex-1 text-sm truncate">{ti.topic}</span>
-                                                    <span className="text-xs text-muted-foreground flex-shrink-0">{ti.source === 'both' ? '📋+🎯' : ti.source === 'mock' ? '📋' : '🎯'}</span>
-                                                    <span className="text-sm font-semibold flex-shrink-0" style={{ color: ti.accuracy >= 70 ? '#22c55e' : ti.accuracy >= 50 ? '#f97316' : '#ef4444' }}>{ti.accuracy}%</span>
-                                                    <div className="w-20 hidden sm:block flex-shrink-0"><ProgressBar value={ti.accuracy} max={100} color={ti.accuracy >= 70 ? '#22c55e' : ti.accuracy >= 50 ? '#f97316' : '#ef4444'} /></div>
-                                                </div>
-                                            ))}
+                                {/* Interactive Hero Subject Pie Chart & Drilldown Analytics */}
+                                <div className="p-6 md:p-8 rounded-3xl bg-card border border-border space-y-6 shadow-xl">
+                                    <div className="flex items-center justify-between border-b border-border/40 pb-4 flex-wrap gap-2">
+                                        <div>
+                                            <h3 className="font-extrabold text-lg flex items-center gap-2">
+                                                <PieChart className="w-5 h-5 text-primary animate-pulse" /> Subject Accuracy Pie Chart
+                                            </h3>
+                                            <p className="text-xs text-muted-foreground mt-0.5">
+                                                Click any subject slice or badge to inspect accuracy and study recommendations
+                                            </p>
                                         </div>
-                                        <p className="text-xs text-muted-foreground mt-4">📋 Mock test data · 🎯 Practice data · Both combined</p>
+                                        <span className="text-xs font-bold px-3 py-1.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                                            {topicInsights.length} Consolidated Subject{topicInsights.length !== 1 ? 's' : ''}
+                                        </span>
                                     </div>
-                                )}
+
+                                    {topicInsights.length > 0 ? (
+                                        <div className="space-y-6">
+                                            {/* Hero Donut Pie Chart & Subject Badges */}
+                                            <div className="flex flex-col items-center justify-center space-y-6 py-2">
+                                                {/* PROMINENT LARGE PIE CHART */}
+                                                <div className="w-64 h-64 md:w-72 md:h-72 relative flex items-center justify-center drop-shadow-2xl">
+                                                    <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90 transform">
+                                                        {(() => {
+                                                            const totalQuestions = topicInsights.reduce((sum, item) => sum + item.totalAttempted, 0);
+                                                            let accumulatedPercent = 0;
+
+                                                            const COLORS = [
+                                                                '#f59e0b', // Amber (History)
+                                                                '#10b981', // Emerald (Geography)
+                                                                '#3b82f6', // Blue (Polity)
+                                                                '#8b5cf6', // Purple (Economy)
+                                                                '#06b6d4', // Cyan (Science)
+                                                                '#ef4444', // Red (Aptitude)
+                                                                '#ec4899', // Pink (English)
+                                                                '#6366f1'  // Indigo (Computer)
+                                                            ];
+
+                                                            return topicInsights.map((ti, idx) => {
+                                                                const percent = totalQuestions > 0 ? (ti.totalAttempted / totalQuestions) * 100 : 100 / topicInsights.length;
+                                                                const strokeDasharray = `${percent} ${100 - percent}`;
+                                                                const strokeDashoffset = -accumulatedPercent;
+                                                                accumulatedPercent += percent;
+                                                                const strokeColor = COLORS[idx % COLORS.length];
+                                                                const isSelected = (selectedSubject || topicInsights[0]?.topic) === ti.topic;
+
+                                                                return (
+                                                                    <circle
+                                                                        key={ti.topic}
+                                                                        cx="50"
+                                                                        cy="50"
+                                                                        r="38"
+                                                                        fill="transparent"
+                                                                        stroke={strokeColor}
+                                                                        strokeWidth={isSelected ? "18" : "14"}
+                                                                        strokeDasharray={strokeDasharray}
+                                                                        strokeDashoffset={strokeDashoffset}
+                                                                        className={cn(
+                                                                            "transition-all duration-300 cursor-pointer",
+                                                                            isSelected ? "opacity-100" : "opacity-75 hover:opacity-100 hover:stroke-[16]"
+                                                                        )}
+                                                                        onClick={() => setSelectedSubject(ti.topic)}
+                                                                        pathLength="100"
+                                                                    />
+                                                                );
+                                                            });
+                                                        })()}
+                                                    </svg>
+
+                                                    {/* Center Info Badge inside Donut */}
+                                                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                                                        <span className="text-3xl md:text-4xl font-black tracking-tight text-foreground">
+                                                            {Math.round(topicInsights.reduce((sum, item) => sum + item.accuracy * item.totalAttempted, 0) / Math.max(1, topicInsights.reduce((sum, item) => sum + item.totalAttempted, 0)))}%
+                                                        </span>
+                                                        <span className="text-[10px] uppercase tracking-widest font-extrabold text-muted-foreground">
+                                                            Avg Accuracy
+                                                        </span>
+                                                        <span className="text-[11px] font-bold text-primary mt-0.5">
+                                                            {topicInsights.reduce((sum, item) => sum + item.totalAttempted, 0)} Solved Qs
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Interactive Subject Badges Pill Legend */}
+                                                <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl">
+                                                    {topicInsights.map((ti, idx) => {
+                                                        const COLORS = ['#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#06b6d4', '#ef4444', '#ec4899', '#6366f1'];
+                                                        const themeColor = COLORS[idx % COLORS.length];
+                                                        const isSelected = (selectedSubject || topicInsights[0]?.topic) === ti.topic;
+
+                                                        return (
+                                                            <button
+                                                                key={ti.topic}
+                                                                onClick={() => setSelectedSubject(ti.topic)}
+                                                                className={cn(
+                                                                    "flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-extrabold transition-all cursor-pointer",
+                                                                    isSelected
+                                                                        ? "bg-card shadow-md scale-105 border-primary ring-2 ring-primary/20 text-foreground"
+                                                                        : "bg-muted/40 hover:bg-muted border-border/70 text-muted-foreground"
+                                                                )}
+                                                            >
+                                                                <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: themeColor, boxShadow: `0 0 8px ${themeColor}80` }} />
+                                                                <span>{ti.topic}</span>
+                                                                <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-muted font-black" style={{ color: themeColor }}>
+                                                                    {ti.accuracy}%
+                                                                </span>
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+
+                                            {/* Selected Subject Focused AI Insight & Topics Card */}
+                                            {(() => {
+                                                const currentTopicName = selectedSubject || topicInsights[0]?.topic;
+                                                const activeSubject = topicInsights.find(t => t.topic === currentTopicName) || topicInsights[0];
+                                                if (!activeSubject) return null;
+
+                                                const activeIdx = topicInsights.findIndex(t => t.topic === activeSubject.topic);
+                                                const COLORS = ['#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#06b6d4', '#ef4444', '#ec4899', '#6366f1'];
+                                                const themeColor = COLORS[activeIdx % COLORS.length];
+                                                const accuracyColor = activeSubject.accuracy >= 75 ? '#10b981' : activeSubject.accuracy >= 50 ? '#f59e0b' : '#ef4444';
+
+                                                const subtopics = computeSubtopicsForSubject(activeSubject.topic, results, practiceStats);
+
+                                                return (
+                                                    <div className="p-5 md:p-6 rounded-2xl bg-card border border-primary/30 shadow-sm space-y-5 relative overflow-hidden">
+                                                        <div className="absolute top-0 left-0 w-1.5 h-full" style={{ backgroundColor: themeColor }} />
+
+                                                        <div className="flex items-center justify-between gap-3 flex-wrap pl-2">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <span className="w-3.5 h-3.5 rounded-full" style={{ backgroundColor: themeColor, boxShadow: `0 0 10px ${themeColor}80` }} />
+                                                                <h4 className="font-extrabold text-lg text-foreground">{activeSubject.topic}</h4>
+                                                                <span className="text-xs px-2.5 py-0.5 rounded-md font-bold text-muted-foreground bg-muted border border-border/50">
+                                                                    Selected Subject
+                                                                </span>
+                                                            </div>
+
+                                                            <div className="flex items-center gap-3">
+                                                                <span className="text-xs text-muted-foreground font-semibold">
+                                                                    {activeSubject.totalCorrect} / {activeSubject.totalAttempted} Correct Questions
+                                                                </span>
+                                                                <span className="text-base font-black px-3 py-1 rounded-xl bg-muted/60 border border-border" style={{ color: accuracyColor }}>
+                                                                    {activeSubject.accuracy}%
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="pl-2">
+                                                            <ProgressBar value={activeSubject.accuracy} max={100} color={accuracyColor} />
+                                                        </div>
+
+                                                        <div className="p-3.5 rounded-xl bg-muted/30 border border-border/50 space-y-1 pl-3">
+                                                            <div className="flex items-center gap-1.5 text-xs font-bold text-primary">
+                                                                <Sparkles className="w-4 h-4 text-primary animate-pulse" /> AI Study Recommendation
+                                                            </div>
+                                                            <p className="text-xs text-muted-foreground leading-relaxed">
+                                                                {activeSubject.accuracy < 50
+                                                                    ? `Your overall accuracy in ${activeSubject.topic} is currently low (${activeSubject.accuracy}%). Focus on basic concepts & practice 20+ topic questions to build core strength.`
+                                                                    : activeSubject.accuracy < 75
+                                                                        ? `Your accuracy in ${activeSubject.topic} is moderate (${activeSubject.accuracy}%). Practice timed sets and work on option elimination techniques.`
+                                                                        : `High accuracy in ${activeSubject.topic} (${activeSubject.accuracy}%). Excellent! Maintain your speed with weekly revision.`}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* Subtopics Breakdown Section for Selected Subject */}
+                                                        <div className="pt-2 pl-2 space-y-3">
+                                                            <div
+                                                                onClick={() => setIsSubtopicsExpanded(!isSubtopicsExpanded)}
+                                                                className="flex items-center justify-between border-t border-border/40 pt-4 cursor-pointer group select-none hover:opacity-80 transition-opacity"
+                                                            >
+                                                                <h5 className="font-extrabold text-sm text-foreground flex items-center gap-2">
+                                                                    <Layers className="w-4 h-4 text-primary" /> {activeSubject.topic} Topics Breakdown ({subtopics.length})
+                                                                </h5>
+                                                                <div className="flex items-center gap-2">
+                                                                    <span className="text-[11px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
+                                                                        {isSubtopicsExpanded ? 'Collapse' : 'Expand'}
+                                                                    </span>
+                                                                    {isSubtopicsExpanded ? (
+                                                                        <ChevronUp className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                                                                    ) : (
+                                                                        <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                                                                    )}
+                                                                </div>
+                                                            </div>
+
+                                                            <AnimatePresence>
+                                                                {isSubtopicsExpanded && (
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0, height: 0 }}
+                                                                        animate={{ opacity: 1, height: 'auto' }}
+                                                                        exit={{ opacity: 0, height: 0 }}
+                                                                        className="overflow-hidden space-y-3"
+                                                                    >
+                                                                        {subtopics.length > 0 ? (
+                                                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                                                                                {subtopics.map(st => {
+                                                                                    const stColor = st.accuracy >= 75 ? '#10b981' : st.accuracy >= 50 ? '#f59e0b' : '#ef4444';
+                                                                                    return (
+                                                                                        <div key={st.subtopic} className="p-3.5 rounded-xl bg-muted/20 border border-border/60 hover:border-primary/40 transition-all space-y-2">
+                                                                                            <div className="flex items-center justify-between gap-2">
+                                                                                                <span className="font-extrabold text-xs text-foreground truncate">{st.subtopic}</span>
+                                                                                                <span className="text-xs font-black px-2 py-0.5 rounded-md bg-card border border-border" style={{ color: stColor }}>
+                                                                                                    {st.accuracy}%
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div className="flex items-center justify-between text-[10px] text-muted-foreground font-semibold">
+                                                                                                <span>{st.totalCorrect} / {st.totalAttempted} Correct</span>
+                                                                                                <span>{st.accuracy >= 75 ? 'Strong Topic' : st.accuracy >= 50 ? 'Moderate' : 'Needs Focus'}</span>
+                                                                                            </div>
+                                                                                            <ProgressBar value={st.accuracy} max={100} color={stColor} />
+                                                                                        </div>
+                                                                                    );
+                                                                                })}
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div className="p-4 rounded-xl bg-muted/10 border border-dashed text-center text-xs text-muted-foreground">
+                                                                                No specific topic breakdown recorded for {activeSubject.topic} yet.
+                                                                            </div>
+                                                                        )}
+                                                                    </motion.div>
+                                                                )}
+                                                            </AnimatePresence>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })()}
+                                        </div>
+                                    ) : (
+                                        <div className="p-8 text-center text-muted-foreground text-xs border border-dashed rounded-2xl space-y-2">
+                                            <PieChart className="w-10 h-10 mx-auto opacity-30 animate-pulse text-primary" />
+                                            <p className="font-bold text-foreground">No Solved Subject Data Available</p>
+                                            <p>Attempt questions in the Question Bank or Mock Tests to generate your subject pie chart analytics.</p>
+                                        </div>
+                                    )}
+                                </div>
                             </motion.div>
                         )}
 
@@ -1049,8 +1396,8 @@ export default function AIReport() {
                                         <div className="p-6 rounded-2xl bg-card border border-border space-y-5">
                                             <div className="flex justify-between items-center mb-6">
                                                 <h3 className="text-2xl font-bold flex items-center gap-3"><Award className="w-6 h-6 text-yellow-400" /> Practice Overview</h3>
-                                                <div className="relative group">
-                                                    <button onClick={clearPracticeHistory} className="text-sm font-medium text-red-500 hover:text-red-400 flex items-center gap-1.5 transition-colors bg-red-500/10 hover:bg-red-500/20 px-3 py-1.5 rounded-lg relative z-10">
+                                                <div className="relative group" onMouseEnter={() => playTooltipVoice("duaaon mein yaad rakhna", 0.8, 1.05)}>
+                                                    <button onClick={handleOpenClearModal} className="text-sm font-medium text-red-500 hover:text-red-400 flex items-center gap-1.5 transition-colors bg-red-500/10 hover:bg-red-500/20 px-3 py-1.5 rounded-lg relative z-10">
                                                         <Trash2 className="w-4 h-4" /> Clear History
                                                     </button>
                                                     <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-top-14 transition-all duration-300 pointer-events-none z-50 flex flex-col items-center w-max">
@@ -1062,7 +1409,10 @@ export default function AIReport() {
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                                                <div className="group text-center p-5 rounded-2xl bg-card border border-border/50 hover:bg-muted/30 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/5 cursor-default relative overflow-visible">
+                                                <div
+                                                    onMouseEnter={() => playTooltipVoice("aur kar le thode questions bhai!", 0.75, 1.0)}
+                                                    className="group text-center p-5 rounded-2xl bg-card border border-border/50 hover:bg-muted/30 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/5 cursor-default relative overflow-visible"
+                                                >
                                                     {/* Cheeky Tooltip */}
                                                     <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-top-14 transition-all duration-300 pointer-events-none z-50 flex flex-col items-center">
                                                         <div className="bg-foreground text-background px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap shadow-xl">
@@ -1075,7 +1425,10 @@ export default function AIReport() {
                                                     <p className="text-4xl font-bold mb-1 group-hover:scale-105 transition-transform">{practiceStats!.totalAttempted}</p>
                                                     <p className="text-sm font-medium text-muted-foreground">Total Attempted</p>
                                                 </div>
-                                                <div className="group text-center p-5 rounded-2xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/5 cursor-default relative overflow-visible">
+                                                <div
+                                                    onMouseEnter={() => playTooltipVoice("keep going bhai, shaabash!", 0.8, 1.1)}
+                                                    className="group text-center p-5 rounded-2xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/5 cursor-default relative overflow-visible"
+                                                >
                                                     {/* Cheeky Tooltip */}
                                                     <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-top-14 transition-all duration-300 pointer-events-none z-50 flex flex-col items-center">
                                                         <div className="bg-green-500 text-white px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap shadow-xl">
@@ -1088,11 +1441,14 @@ export default function AIReport() {
                                                     <p className="text-4xl font-bold text-green-500 mb-1 group-hover:scale-105 transition-transform">{practiceStats!.correct}</p>
                                                     <p className="text-sm font-medium text-muted-foreground">Correct</p>
                                                 </div>
-                                                <div className="group text-center p-5 rounded-2xl bg-red-500/5 border border-red-500/20 hover:bg-red-500/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/5 cursor-default relative overflow-visible">
+                                                <div
+                                                    onMouseEnter={() => playTooltipVoice("Padh le bhai", 0.65, 1.1)}
+                                                    className="group text-center p-5 rounded-2xl bg-red-500/5 border border-red-500/20 hover:bg-red-500/10 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/5 cursor-default relative overflow-visible"
+                                                >
                                                     {/* Cheeky Tooltip */}
                                                     <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-top-14 transition-all duration-300 pointer-events-none z-50 flex flex-col items-center">
                                                         <div className="bg-red-500 text-white px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap shadow-xl">
-                                                            pdle bhai 🤦‍♂️
+                                                            Padh le bhai 🤦‍♂️
                                                         </div>
                                                         <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-red-500 -mt-px relative z-50"></div>
                                                     </div>
@@ -1113,26 +1469,6 @@ export default function AIReport() {
                                                 <p className="text-xs text-muted-foreground mt-4">Last activity: {new Date(practiceStats!.lastUpdated).toLocaleString('en-IN')}</p>
                                             )}
                                         </div>
-
-                                        {practiceStats!.topicWiseScore && practiceStats!.topicWiseScore.length > 0 && (
-                                            <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-sm space-y-6 mt-6">
-                                                <h3 className="text-xl font-bold flex items-center gap-2">
-                                                    <BookOpen className="w-5 h-5 text-primary" />
-                                                    Topic-wise Practice Stats
-                                                </h3>
-                                                <div className="space-y-3">
-                                                    {[...practiceStats!.topicWiseScore].sort((a, b) => a.percentage - b.percentage).map(ts => (
-                                                        <div key={ts.topic} className="space-y-1.5 p-4 rounded-2xl hover:bg-muted/30 transition-all duration-300 border border-transparent hover:border-border/50 hover:shadow-sm">
-                                                            <div className="flex items-center justify-between text-sm">
-                                                                <span className="font-medium truncate flex-1 mr-2">{ts.topic}</span>
-                                                                <span className="font-bold flex-shrink-0" style={{ color: ts.percentage >= 70 ? '#22c55e' : ts.percentage >= 50 ? '#f97316' : '#ef4444' }}>{ts.correct}/{ts.total} ({ts.percentage}%)</span>
-                                                            </div>
-                                                            <ProgressBar value={ts.percentage} max={100} color={ts.percentage >= 70 ? '#22c55e' : ts.percentage >= 50 ? '#f97316' : '#ef4444'} />
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
 
                                         <div className="p-8 rounded-3xl bg-card border border-border/50 shadow-sm space-y-6 mt-6">
                                             <h3 className="text-xl font-bold flex items-center gap-2">
@@ -1204,6 +1540,47 @@ export default function AIReport() {
                     </AnimatePresence>
                 </>
             )}
+
+            {/* Clear History Double Confirmation Modal */}
+            <AnimatePresence>
+                {showClearConfirmModal && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                            className="w-full max-w-md bg-card border border-border shadow-2xl rounded-3xl p-6 space-y-5 text-center relative overflow-hidden"
+                        >
+                            <div className="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 flex items-center justify-center mx-auto shadow-inner">
+                                <Trash2 className="w-7 h-7" />
+                            </div>
+
+                            <div className="space-y-2">
+                                <h3 className="text-xl font-extrabold text-foreground">Clear Practice History?</h3>
+                                <p className="text-sm font-medium text-muted-foreground leading-relaxed">
+                                    Aapka saara practice score aur daily history permanently delete ho jayega. Kya aap sure hain?
+                                </p>
+                            </div>
+
+                            <div className="flex items-center gap-3 pt-2">
+                                <button
+                                    onClick={() => setShowClearConfirmModal(false)}
+                                    className="flex-1 py-3 rounded-xl font-bold text-sm bg-muted hover:bg-muted/80 text-foreground transition-all border border-border"
+                                >
+                                    Nahi, Rehne Do
+                                </button>
+                                <button
+                                    onClick={handleConfirmClearHistory}
+                                    className="flex-1 py-3 rounded-xl font-bold text-sm bg-red-600 hover:bg-red-500 text-white transition-all shadow-lg shadow-red-600/20 active:scale-95 flex items-center justify-center gap-2"
+                                >
+                                    <Trash2 className="w-4 h-4" />
+                                    Haan, Delete Kar Do!
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

@@ -42,7 +42,6 @@ const primaryNav = [
 const secondaryNav = [
     { path: '/official-exams', label: 'Official Exams', icon: GraduationCap },
     { path: '/flashcards', label: 'Flashcards', icon: Layers },
-    { path: '/import', label: 'Import Questions', icon: FileUp },
     { path: '/import-pdf', label: 'Import PDF', icon: FileText },
     { path: '/relax-mode', label: 'Relax Mode', icon: Sparkles },
     { path: '/guide', label: 'User Guide', icon: HelpCircle },
@@ -257,14 +256,14 @@ export default function Layout({ children }: LayoutProps) {
             </header>
 
             {/* Main Content */}
-            <main className="pt-20 pb-8 min-h-screen">
+            <main className="pt-20 pb-8 min-h-screen" style={{ paddingBottom: 'calc(2rem + env(safe-area-inset-bottom, 0px))' }}>
                 <div className="container mx-auto px-4">
                     {children}
                 </div>
             </main>
 
             {/* Footer */}
-            <footer className="border-t py-6 bg-muted/30">
+            <footer className="border-t py-6 bg-muted/30" style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}>
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-sm text-muted-foreground">© 2026 ExamMaster. Your path to exam success.</p>

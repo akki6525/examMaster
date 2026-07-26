@@ -1232,7 +1232,7 @@ export default function RelaxMode() {
                                                 <Volume2 className="text-amber-500 w-5 h-5 animate-pulse" />
                                                 Devotional Songs & Ragas
                                             </h3>
-                                            <p className="text-xs text-muted-foreground mt-0.5">Soothing traditional musical recitals curated for mental clarity and peaceful study breaks (YouTube Controls Disabled)</p>
+                                            <p className="text-xs text-muted-foreground mt-0.5">Soothing traditional musical recitals curated for mental clarity and peaceful study breaks</p>
                                         </div>
                                     </div>
 
@@ -1241,8 +1241,8 @@ export default function RelaxMode() {
                                         <div
                                             ref={ytContainerRef}
                                             className={`bg-zinc-950 border border-border shadow-lg shadow-amber-500/5 transition-all duration-300 relative ${isYtFullscreen
-                                                    ? 'fixed inset-0 z-[2800] w-screen h-screen flex flex-col items-center justify-center bg-black border-none'
-                                                    : 'w-full aspect-video rounded-3xl overflow-hidden'
+                                                ? 'fixed inset-0 z-[2800] w-screen h-screen flex flex-col items-center justify-center bg-black border-none'
+                                                : 'w-full aspect-video rounded-3xl overflow-hidden'
                                                 }`}
                                             onMouseMove={resetControlsTimeout}
                                             onTouchStart={resetControlsTimeout}
@@ -1407,11 +1407,11 @@ export default function RelaxMode() {
                                 Now Channeling
                             </div>
 
-                                                    {/* Catchy animated audio waves replacing the spinning disc */}
+                            {/* Catchy animated audio waves replacing the spinning disc */}
                             <div className="flex items-end justify-center gap-1.5 h-28 w-28 mx-auto relative select-none my-2">
                                 {/* Glow backdrops */}
                                 <div className="absolute inset-0 bg-primary/10 rounded-full blur-2xl animate-pulse pointer-events-none" />
-                                
+
                                 {/* Active visualizer bars */}
                                 {[...Array(9)].map((_, i) => {
                                     const heights = [
@@ -1425,10 +1425,10 @@ export default function RelaxMode() {
                                         [45, 95, 55, 85, 60, 45],
                                         [15, 60, 25, 75, 35, 15]
                                     ][i % 9];
-                                    
+
                                     const delay = i * 0.08;
                                     const colorClass = i % 2 === 0 ? "from-amber-400 to-amber-500" : "from-amber-500 to-amber-600";
-                                    
+
                                     return (
                                         <motion.div
                                             key={i}
@@ -1448,7 +1448,7 @@ export default function RelaxMode() {
                                 })}
                             </div>
 
-    {/* Track specifications */}
+                            {/* Track specifications */}
                             <div className="text-center space-y-1.5">
                                 <h4 className="font-bold text-base truncate px-2">{currentTrack.title}</h4>
                                 <p className="text-xs text-muted-foreground px-2 line-clamp-2 min-h-[2rem] leading-normal">{currentTrack.description}</p>
