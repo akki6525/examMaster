@@ -384,12 +384,23 @@ export default function DocumentViewer({ docId, fileName, fileType, onClose }: D
         return Object.values(annotations).reduce((acc, list) => acc + list.length, 0);
     }, [annotations]);
 
+function escapeHtml(str: string): string {
+    if (!str) return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
     // ─── Search highlight ───────────────────────────────────────────────────
     const highlightedText = useMemo(() => {
-        if (!searchQuery.trim()) return rawText;
-        const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        return rawText.replace(
-            new RegExp(`(${escaped})`, 'gi'),
+        const safeText = escapeHtml(rawText);
+        if (!searchQuery.trim()) return safeText;
+        const escapedSearch = escapeHtml(searchQuery).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return safeText.replace(
+            new RegExp(`(${escapedSearch})`, 'gi'),
             '<mark style="background:#fbbf24;color:#1a1a1a;border-radius:2px;padding:0 2px">$1</mark>'
         );
     }, [rawText, searchQuery]);

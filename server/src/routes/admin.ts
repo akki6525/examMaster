@@ -31,7 +31,7 @@ router.get('/users', authMiddleware, adminGuard, (req, res) => {
     try {
         const db = loadDB();
         const users = Object.values(db.users).map((u: any) => {
-            const { passwordHash, ...safe } = u;
+            const { passwordHash, password, salt, resetToken, token, ...safe } = u;
             const userId = u.id;
 
             // Decrypt user fields

@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
     Shield, Users, Key, Trash2, Edit3, Check, X, AlertTriangle, RefreshCw, User, Mail, Phone, Clock,
     ChevronDown, ChevronUp, Lock, Target, Award, FileText, BookOpen, TrendingUp, CheckCircle2,
-    XCircle, Brain, Zap, BarChart2
+    XCircle, Brain, Zap, BarChart2, Download
 } from 'lucide-react';
 
 const API_BASE = 'http://localhost:3001/api';
@@ -197,10 +197,36 @@ export default function AdminPanel() {
     const adminAccount = users.find(u => u.username.toLowerCase() === 'admin');
     const studentUsers = filtered.filter(u => u.username.toLowerCase() !== 'admin');
 
+    const exportToCSV = () => {
+        if (!studentUsers.length) return;
+        const headers = ['ID', 'Name', 'Username', 'Email', 'Phone', 'Questions Solved', 'Accuracy (%)', 'Mock Tests Taken', 'Avg Score (%)', 'Docs Uploaded'];
+        const rows = studentUsers.map(u => [
+            u.id,
+            `"${u.name.replace(/"/g, '""')}"`,
+            `"${u.username.replace(/"/g, '""')}"`,
+            `"${u.email.replace(/"/g, '""')}"`,
+            `"${(u.phone || '').replace(/"/g, '""')}"`,
+            u.stats?.totalAttempted || 0,
+            u.stats?.accuracy || 0,
+            u.stats?.testsTaken || 0,
+            u.stats?.avgScore || 0,
+            u.stats?.documentsUploaded || 0
+        ]);
+
+        const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', `Student_Performance_Report_${new Date().toISOString().slice(0, 10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <div className="min-h-screen p-4 md:p-8 space-y-6">
             {/* Header */}
-            <div className="flex items-center gap-4 pb-4 border-b border-border/60">
+            <div className="flex items-center gap-4 pb-4 border-b border-border/60 flex-wrap">
                 <div className="p-3 rounded-2xl bg-red-500/10 border border-red-500/30">
                     <Shield className="w-7 h-7 text-red-400" />
                 </div>
@@ -208,13 +234,24 @@ export default function AdminPanel() {
                     <h1 className="text-2xl font-black tracking-tight">Admin Control Panel</h1>
                     <p className="text-sm text-muted-foreground">Logged in as <span className="font-bold text-red-400">{user?.username}</span> · Full system access</p>
                 </div>
-                <button
-                    onClick={fetchUsers}
-                    className="ml-auto flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/20 border border-border/60 hover:bg-muted/40 text-sm font-medium transition-all"
-                >
-                    <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-                    Refresh
-                </button>
+                <div className="ml-auto flex items-center gap-2">
+                    <button
+                        onClick={exportToCSV}
+                        disabled={studentUsers.length === 0}
+                        className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 disabled:opacity-40 text-emerald-400 text-sm font-bold transition-all shadow-sm"
+                        title="Download student analytics report as CSV"
+                    >
+                        <Download className="w-4 h-4" />
+                        <span>Export CSV</span>
+                    </button>
+                    <button
+                        onClick={fetchUsers}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/20 border border-border/60 hover:bg-muted/40 text-sm font-medium transition-all"
+                    >
+                        <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                        <span>Refresh</span>
+                    </button>
+                </div>
             </div>
 
             {/* Stats bar */}

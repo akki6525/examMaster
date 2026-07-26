@@ -22,10 +22,32 @@ export function persistDocuments() {
     });
 }
 
-// All uploads must be authenticated
-router.use(authMiddleware);
+// Simple rate-limiter tracker for file uploads to prevent Resource Exhaustion (Upload DoS)
+const uploadTracker = new Map<string, { count: number; resetTime: number }>();
 
-// Configure multer for file uploads
+function uploadRateLimiter(req: any, res: any, next: any) {
+    const key = req.user?.id || req.ip || 'anonymous';
+    const now = Date.now();
+    const tracker = uploadTracker.get(key);
+
+    if (!tracker || now > tracker.resetTime) {
+        uploadTracker.set(key, { count: 1, resetTime: now + 15 * 60 * 1000 });
+        return next();
+    }
+
+    if (tracker.count >= 20) {
+        return res.status(429).json({ error: 'Upload rate limit exceeded. Please wait 15 minutes before uploading more documents.' });
+    }
+
+    tracker.count++;
+    next();
+}
+
+// All uploads must be authenticated and rate-limited
+router.use(authMiddleware);
+router.use(uploadRateLimiter);
+
+// Configure multer for file uploads with 50MB file size cap
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(process.cwd(), 'uploads'));
@@ -57,7 +79,7 @@ const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.
 const upload = multer({
     storage,
     fileFilter,
-    limits: { fileSize: 500 * 1024 * 1024 } // 500MB limit
+    limits: { fileSize: 50 * 1024 * 1024 } // 50MB limit to prevent Upload DoS
 });
 
 // Upload single file

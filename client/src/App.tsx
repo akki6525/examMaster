@@ -21,6 +21,8 @@ import { useAuthStore } from './stores/authStore';
 import Login from './components/auth/Login';
 import ToastContainer from './components/common/ToastContainer';
 
+import ErrorBoundary from './components/common/ErrorBoundary';
+
 function App() {
   const { theme } = useThemeStore();
   const { isAuthenticated } = useAuthStore();
@@ -73,22 +75,24 @@ function App() {
   return (
     <Router>
       <Layout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/test/:testId" element={<TestInterface />} />
-          <Route path="/results/:resultId" element={<Results />} />
-          <Route path="/question-bank" element={<QuestionBank />} />
-          <Route path="/flashcards" element={<Flashcards />} />
-          <Route path="/official-exams" element={<OfficialExams />} />
-          <Route path="/import-pdf" element={<PDFImport />} />
-          <Route path="/ai-report" element={<AIReport />} />
-          <Route path="/student-corner" element={<StudentCorner />} />
-          <Route path="/smart-mock-tests" element={<SmartMockTests />} />
-          <Route path="/relax-mode" element={<RelaxMode />} />
-          <Route path="/guide" element={<Guide />} />
-          <Route path="/admin" element={<AdminPanel />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/test/:testId" element={<TestInterface />} />
+            <Route path="/results/:resultId" element={<Results />} />
+            <Route path="/question-bank" element={<QuestionBank />} />
+            <Route path="/flashcards" element={<Flashcards />} />
+            <Route path="/official-exams" element={<OfficialExams />} />
+            <Route path="/import-pdf" element={<PDFImport />} />
+            <Route path="/ai-report" element={<AIReport />} />
+            <Route path="/student-corner" element={<StudentCorner />} />
+            <Route path="/smart-mock-tests" element={<SmartMockTests />} />
+            <Route path="/relax-mode" element={<RelaxMode />} />
+            <Route path="/guide" element={<Guide />} />
+            <Route path="/admin" element={<AdminPanel />} />
+          </Routes>
+        </ErrorBoundary>
       </Layout>
       <ToastContainer />
     </Router>

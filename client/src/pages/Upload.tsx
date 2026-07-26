@@ -81,12 +81,22 @@ export default function Upload() {
     const [files, setFiles] = useState<UploadedFile[]>([]);
     const [viewerTarget, setViewerTarget] = useState<ViewerTarget | null>(null);
     const [deletingId, setDeletingId] = useState<string | null>(null);
+    const [filterType, setFilterType] = useState<string>('all');
 
     const { uploadFile, documents, fetchDocuments, deleteDocument, error } = useDocumentStore();
 
     useEffect(() => {
         fetchDocuments();
     }, [fetchDocuments]);
+
+    const filteredDocuments = documents.filter(d => {
+        if (filterType === 'all') return true;
+        if (filterType === 'pdf') return d.fileType === 'application/pdf';
+        if (filterType === 'docx') return d.fileType.includes('wordprocessingml');
+        if (filterType === 'txt') return d.fileType === 'text/plain';
+        if (filterType === 'image') return d.fileType.startsWith('image/');
+        return true;
+    });
 
     const onDrop = useCallback(async (acceptedFiles: File[]) => {
         const newFiles: UploadedFile[] = acceptedFiles.map(file => ({
@@ -337,15 +347,40 @@ export default function Upload() {
                 transition={{ delay: 0.1 }}
                 className="space-y-4"
             >
-                <div className="flex items-center gap-2">
-                    <FolderOpen className="w-5 h-5 text-primary" />
-                    <h2 className="font-semibold text-lg">Your Documents</h2>
-                    <span className="ml-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                        {documents.length}
-                    </span>
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                    <div className="flex items-center gap-2">
+                        <FolderOpen className="w-5 h-5 text-primary" />
+                        <h2 className="font-semibold text-lg">Your Documents</h2>
+                        <span className="ml-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                            {filteredDocuments.length}
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 bg-muted/40 p-1 rounded-2xl border border-border/60">
+                        {[
+                            { id: 'all', label: 'All' },
+                            { id: 'pdf', label: 'PDFs' },
+                            { id: 'docx', label: 'DOCX' },
+                            { id: 'txt', label: 'TXT' },
+                            { id: 'image', label: 'Images' },
+                        ].map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setFilterType(tab.id)}
+                                className={cn(
+                                    "px-3 py-1 text-xs font-bold rounded-xl transition-all",
+                                    filterType === tab.id
+                                        ? "bg-primary text-white shadow-sm"
+                                        : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                                )}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {documents.length === 0 ? (
+                {filteredDocuments.length === 0 ? (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -354,13 +389,15 @@ export default function Upload() {
                         <div className="w-20 h-20 rounded-3xl bg-muted flex items-center justify-center mb-4">
                             <FolderOpen className="w-10 h-10 text-muted-foreground/40" />
                         </div>
-                        <p className="text-muted-foreground font-medium">No documents yet</p>
-                        <p className="text-sm text-muted-foreground/60 mt-1">Upload your first file above to get started</p>
+                        <p className="text-muted-foreground font-medium">No documents found</p>
+                        <p className="text-sm text-muted-foreground/60 mt-1">
+                            {filterType === 'all' ? 'Upload your first file above to get started' : `No ${filterType.toUpperCase()} files in your library`}
+                        </p>
                     </motion.div>
                 ) : (
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
                         <AnimatePresence>
-                            {documents.map((doc: DocumentInfo, idx: number) => (
+                            {filteredDocuments.map((doc: DocumentInfo, idx: number) => (
                                 <motion.div
                                     key={doc.id}
                                     initial={{ opacity: 0, scale: 0.95, y: 12 }}

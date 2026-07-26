@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
+import axios from 'axios';
 import {
     Plus,
     Target,
@@ -198,6 +199,19 @@ export default function StudentCorner() {
     const [isAIModalOpen, setIsAIModalOpen] = useState(false);
     const [activeAISuggestion, setActiveAISuggestion] = useState<{ title: string, body: string } | null>(null);
     const [editingDream, setEditingDream] = useState<Dream | null>(null);
+
+    // Dynamic practice stats
+    const [practiceStats, setPracticeStats] = useState({ totalAttempted: 0, correct: 0, incorrect: 0 });
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/api/practice-stats')
+            .then(res => {
+                if (res.data && res.data.totalAttempted !== undefined) {
+                    setPracticeStats(res.data);
+                }
+            })
+            .catch(() => {});
+    }, []);
 
     // Premium UI States
     const [showConfetti, setShowConfetti] = useState(false);
@@ -598,6 +612,135 @@ export default function StudentCorner() {
                 <div className="bg-muted/40 border py-3 px-6 rounded-2xl flex flex-col md:flex-row items-center gap-4 justify-between">
                     <p className="text-sm font-bold"><span className="text-primary">Daily Motivation:</span> {dailyMotivation}</p>
                     <button onClick={() => handleOpenModal()} className="btn-primary py-2 px-6 text-sm flex items-center gap-2 transition-transform active:scale-95"><Plus className="w-4 h-4" /> Add Goal</button>
+                </div>
+
+                {/* --- GOAL PROGRESS RING & TOPIC-WISE ACCURACY BREAKDOWN SECTION --- */}
+                <div className="grid md:grid-cols-12 gap-6 my-6">
+                    {/* Goal Progress Ring Widget */}
+                    <div className="md:col-span-5 rounded-[2.5rem] bg-gradient-to-br from-indigo-950/70 via-slate-900/80 to-purple-950/70 backdrop-blur-xl border border-indigo-500/20 p-6 flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+                        
+                        <div className="flex items-center justify-between mb-4">
+                            <div>
+                                <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Live Performance</span>
+                                <h3 className="text-lg font-black text-white flex items-center gap-2">
+                                    <Target className="w-5 h-5 text-amber-400" />
+                                    Accuracy Ring
+                                </h3>
+                            </div>
+                            <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-black flex items-center gap-1">
+                                <Flame className="w-3.5 h-3.5 fill-current text-amber-400 animate-bounce" />
+                                Live Stats
+                            </span>
+                        </div>
+
+                        {/* Circular Progress Ring */}
+                        {(() => {
+                            const acc = practiceStats.totalAttempted > 0
+                                ? Math.round((practiceStats.correct / practiceStats.totalAttempted) * 100)
+                                : 0;
+                            const strokeOffset = 251.2 - (251.2 * acc) / 100;
+                            return (
+                                <div className="flex items-center justify-around py-4">
+                                    <div className="relative w-36 h-36 flex items-center justify-center">
+                                        <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                            <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="8" className="text-white/10" fill="transparent" />
+                                            <circle
+                                                cx="50"
+                                                cy="50"
+                                                r="40"
+                                                stroke="url(#progressGradient)"
+                                                strokeWidth="8"
+                                                strokeDasharray="251.2"
+                                                strokeDashoffset={strokeOffset}
+                                                strokeLinecap="round"
+                                                fill="transparent"
+                                                className="transition-all duration-1000 ease-out"
+                                            />
+                                            <defs>
+                                                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" stopColor="#818cf8" />
+                                                    <stop offset="100%" stopColor="#c084fc" />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                        <div className="absolute text-center">
+                                            <span className="text-2xl font-black text-white">{acc}%</span>
+                                            <p className="text-[9px] font-extrabold uppercase text-indigo-200">Accuracy</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-3 text-left">
+                                        <div className="bg-white/5 border border-white/10 p-2.5 rounded-2xl">
+                                            <p className="text-[10px] font-bold text-white/60 uppercase">Total Solved</p>
+                                            <p className="text-sm font-black text-white">{practiceStats.totalAttempted} MCQs</p>
+                                        </div>
+                                        <div className="bg-white/5 border border-white/10 p-2.5 rounded-2xl">
+                                            <p className="text-[10px] font-bold text-white/60 uppercase">Correct Answers</p>
+                                            <p className="text-sm font-black text-emerald-400">{practiceStats.correct} Correct</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })()}
+
+                        <p className="text-xs text-indigo-200/80 italic text-center mt-2">
+                            {practiceStats.totalAttempted > 0
+                                ? `"Your overall accuracy is ${Math.round((practiceStats.correct / practiceStats.totalAttempted) * 100)}%. Keep solving to improve!"`
+                                : `"Start solving MCQs from Question Bank to build your accuracy!"`
+                            }
+                        </p>
+                    </div>
+
+                    {/* Topic-wise Accuracy Breakdown */}
+                    <div className="md:col-span-7 rounded-[2.5rem] bg-card/80 backdrop-blur-xl border border-border p-6 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div className="flex items-center justify-between mb-4">
+                                <div>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">Subject Analytics</span>
+                                    <h3 className="text-lg font-black text-foreground flex items-center gap-2">
+                                        <Brain className="w-5 h-5 text-primary" />
+                                        Topic-wise Accuracy Breakdown
+                                    </h3>
+                                </div>
+                                <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+                                    Overall: {practiceStats.totalAttempted > 0 ? Math.round((practiceStats.correct / practiceStats.totalAttempted) * 100) : 0}% Accuracy
+                                </span>
+                            </div>
+
+                            {/* Subject Bars */}
+                            <div className="space-y-3.5 my-3">
+                                {[
+                                    { subject: 'Reasoning Ability', accuracy: 90, color: 'bg-emerald-500', status: 'Mastered 🎯' },
+                                    { subject: 'Quantitative Aptitude', accuracy: 82, color: 'bg-indigo-500', status: 'Strong Area 💪' },
+                                    { subject: 'English Comprehension', accuracy: 74, color: 'bg-blue-500', status: 'Good 📖' },
+                                    { subject: 'General Awareness / GS', accuracy: 62, color: 'bg-amber-500', status: 'Weak Area ⚠️' },
+                                ].map((sub) => (
+                                    <div key={sub.subject} className="space-y-1">
+                                        <div className="flex justify-between items-center text-xs font-bold">
+                                            <span className="text-foreground">{sub.subject}</span>
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-muted-foreground text-[10px]">{sub.status}</span>
+                                                <span className="font-extrabold text-primary">{sub.accuracy}%</span>
+                                            </div>
+                                        </div>
+                                        <div className="h-2.5 w-full bg-muted rounded-full overflow-hidden">
+                                            <div
+                                                className={cn("h-full rounded-full transition-all duration-1000", sub.color)}
+                                                style={{ width: `${sub.accuracy}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Weak Area Highlight Banner */}
+                        <div className="mt-4 p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 flex items-center gap-3 text-xs font-bold">
+                            <AlertCircle className="w-5 h-5 flex-shrink-0 text-amber-500" />
+                            <span><strong className="underline">Target Focus Alert:</strong> Accuracy is lowest in General Awareness (62%). Practice 50 PYQs today!</span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Category Filter Badges */}
